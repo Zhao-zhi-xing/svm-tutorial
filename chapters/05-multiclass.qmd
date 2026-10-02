@@ -7,7 +7,11 @@ title: "多分类：分数、投票与联合学习"
 source('scripts/setup-chapter.R', encoding='UTF-8')
 ```
 
-本章目标：区分二分类归约、预测规则和联合目标。原笔记介绍过 OvR、OvO、DAGSVM，但没有充分解释模糊区域和软件实现。本章以《神经网络与深度学习》第 3.1.2 节、图 3.3 为起点，重新绘制可交互的示意 [@nndl]。
+::: {.chapter-intro}
+**学习目标**：区分二分类归约、预测规则和联合目标。原笔记介绍过 OvR、OvO、DAGSVM，但没有充分解释模糊区域和软件实现。本章以《神经网络与深度学习》第 3.1.2 节、图 3.3 为起点，重新绘制可交互的示意 [@nndl]。
+
+**前置知识**：二分类分数函数及其预测规则。
+:::
 
 ## 三种图，不只是三种算法名称
 
@@ -120,9 +124,14 @@ fig, result = lab.case_plot('iris')
 print(lab.figure_html(fig, 'iris-python'))
 ```
 
+<details class="result-details">
+<summary>查看完整实验记录（参数与指标）</summary>
+
 ```{python}
 print(result)
 ```
+
+</details>
 
 ### R
 
@@ -132,9 +141,14 @@ result_r <- fit_case_r('iris')
 cat(figure_html_r(result_r, 'iris-r'))
 ```
 
+<details class="result-details">
+<summary>查看完整实验记录（参数与指标）</summary>
+
 ```{r}
 result_r[c('parameters','cv_macro_f1','accuracy','macro_f1','support_vectors')]
 ```
+
+</details>
 :::
 
 ## 练习与解答

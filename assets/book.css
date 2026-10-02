@@ -1,90 +1,104 @@
-:root { --ink:#17324d; --blue:#245e91; --teal:#137d80; --muted:#586777; --line:#d5e1e9; }
-body { color:var(--ink); font-family:'Segoe UI','Microsoft YaHei','PingFang SC',sans-serif; font-size:17px; }
-main { line-height:1.85; }
-h1,h2,h3 { font-family:'Georgia','Noto Serif CJK SC','SimSun',serif; color:var(--ink); line-height:1.4; }
-h1 { font-weight:700; letter-spacing:-.02em; }
-h2 { margin-top:2.5rem; padding-bottom:.5rem; border-bottom:1px solid var(--line); }
-a { color:var(--blue); text-underline-offset:.2em; }
-.sidebar { background:#f2f6fa; }
-.sidebar-title { font-weight:700; font-size:1.2rem; }
-.book-intro { border-left:4px solid var(--teal); padding:.7rem 1.3rem; margin:1.5rem 0; background:#f3faf9; }
-.book-intro p:last-child { margin-bottom:0; }
-.lab { margin:1.7rem 0; padding:1rem; border:1px solid var(--line); border-top:3px solid var(--teal); background:#fff; }
-.lab-title { font-size:1.05rem; font-weight:700; margin:0 0 .35rem; }
-.lab-hint { font-size:.87rem; color:var(--muted); line-height:1.65; }
-.lab-controls { display:flex; flex-wrap:wrap; align-items:center; gap:.8rem 1.2rem; margin:.8rem 0; }
-.lab-controls label { display:flex; align-items:center; gap:.45rem; font-size:.9rem; }
-.lab-controls input[type=range] { width:130px; accent-color:var(--teal); }
-.lab-controls select,.lab-controls button { font:inherit; padding:.3rem .6rem; background:#f4f8fb; border:1px solid #9daebb; border-radius:4px; color:var(--ink); }
-.lab-controls button:hover { background:#e4eff6; }
-.lab-controls :focus-visible { outline:3px solid #eea948; outline-offset:3px; }
-/* 指标沿用用户提供的三列卡片样式，说明与数值分开。 */
-.lab-stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:1rem; background:transparent; text-align:left; }
-.stat-card { padding:12px 15px; border:1px solid #dce5f1; border-radius:11px; background:#f9fbfe; }
-.stat-label { display:block; font-size:.82rem; color:#637c99; line-height:1.45; }
-.stat-value { display:block; margin-top:3px; font-size:1.3rem; font-weight:700; color:#10253f; line-height:1.35; font-variant-numeric:tabular-nums; }
-.stat-wide,.stat-note { grid-column:1 / -1; }
-.stat-note { margin:.3rem 0 0; font-size:.85rem; color:var(--muted); line-height:1.75; }
-.lab-plot,.plotly-output { width:100%; min-width:0; min-height:560px; }
-.lab { min-width:0; }
-main .cell-output-display { width:100%; }
-.lab-table { font-size:.85rem; margin-top:.8rem; }
-.lab-table th,.lab-table td { padding:.3rem .6rem; border-bottom:1px solid var(--line); }
-.nav-tabs .nav-link { font-weight:600; }
-.nav-tabs .nav-link.active { color:var(--teal); border-top:3px solid var(--teal); }
-pre,code { font-family:'Cascadia Code','Consolas',monospace; }
-pre { font-size:.83rem; }
-.callout { line-height:1.75; }
-.chapter-number { color:var(--teal); }
-
-@media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; } }
-
-/* 阅读布局：等宽两侧导航让正文中心与窗口中心一致。
-   保留 Quarto 的命名网格线，公式、页间导航和锚点沿用原生行为。 */
+/* 教程阅读系统：宽度、颜色与字号统一从这里维护。 */
 :root {
-  --tutorial-nav-width: 270px;
-  --tutorial-body-width: 1040px;
-  --tutorial-gutter: 32px;
-  --tutorial-header-height: 56px;
-  --ink: #30323b;
-  --blue: #3451b2;
-  --muted: #60636e;
+  --ink:#30323b; --blue:#3451b2; --teal:#137d80; --muted:#60636e;
+  --line:#e2e5eb; --surface:#f6f7f9; --active:#eaf0ff;
+  --tutorial-nav-width:270px; --tutorial-body-width:1040px;
+  --reading-width:800px; --tutorial-gutter:32px; --tutorial-header-height:56px;
 }
-body { background:#fff; }
-h1,h2,h3,h4 { color:#30323b; font-family:'Segoe UI','Microsoft YaHei','PingFang SC',sans-serif; }
-h1 { font-size:2rem; }
-h2 { font-size:1.5rem; border-bottom:0; padding-bottom:0; }
-h3 { font-size:1.2rem; }
+body { background:#fff; color:var(--ink); font-family:'Segoe UI','Microsoft YaHei','PingFang SC',sans-serif; font-size:17px; }
+main.content { min-width:0; line-height:1.85; }
+h1,h2,h3,h4 { font-family:inherit; color:var(--ink); font-weight:650; line-height:1.45; }
+h1 { font-size:32px; letter-spacing:-.02em; }
+h2 { font-size:25px; margin-top:2.3rem; margin-bottom:1rem; border:0; padding:0; }
+h3 { font-size:20px; margin-top:1.7rem; margin-bottom:.8rem; }
+main p { margin-bottom:1.05rem; }
+main li+li { margin-top:.4rem; }
+/* 只收束正文段落；公式、代码、标签页和实验保留完整画布。 */
+main.content > :is(p,h2,h3,ul,ol,blockquote),
+main.content section:is(.level1,.level2,.level3,.level4) > :is(p,h2,h3,h4,ul,ol,blockquote),
+#title-block-header,.chapter-intro,.book-intro,main .callout,.learning-paths,.home-actions,.tutorial-meta {
+  max-width:var(--reading-width); margin-left:auto; margin-right:auto;
+}
+main.content p:has(.math.display) { max-width:100%; overflow-x:auto; overflow-y:hidden; padding-block:.25rem; }
+main mjx-container[display='true'] { margin:1.1rem 0!important; }
+a { color:var(--blue); text-underline-offset:.22em; }
+a:hover { color:#253f91; }
+:is(a,button,input,select,summary):focus-visible { outline:3px solid var(--blue); outline-offset:3px; }
+::selection { background:#dce5fa; color:#1b2f69; }
+* { scrollbar-color:#aab2c2 transparent; scrollbar-width:thin; }
 .chapter-number { color:inherit; }
-#quarto-header { border-bottom:1px solid #e5e5e8; background:#fff; }
+#quarto-header { border-bottom:1px solid var(--line); background:#fff; }
 #quarto-header .navbar { min-height:var(--tutorial-header-height); padding:8px 32px; box-shadow:none; }
 #quarto-header .navbar-container { max-width:1580px; margin-inline:auto; width:100%; }
 #quarto-header .navbar-nav { gap:12px; }
 #quarto-header .nav-link { font-size:.88rem; color:var(--ink); }
-.sidebar-title { font-size:1.08rem; line-height:1.6; }
-.sidebar-title a { color:var(--ink); }
-.tutorial-directory-label { font-size:.9rem; font-weight:600; margin-top:24px; padding-top:20px; border-top:1px solid #dedee3; }
-#quarto-sidebar { background:#f6f6f7; }
+#quarto-sidebar { background:var(--surface); }
 #quarto-sidebar .sidebar-header { margin-top:0!important; padding-top:0!important; }
+.tutorial-brand,.sidebar-title { font-size:1.08rem; font-weight:700; color:var(--ink); line-height:1.5; }
+.sidebar-title a { color:var(--ink); }
+.tutorial-brand { margin-bottom:24px; }
+.tutorial-directory-label { font-size:.9rem; font-weight:600; padding-top:20px; border-top:1px solid var(--line); }
 #quarto-sidebar .sidebar-menu-container { padding-top:12px; }
-#quarto-sidebar .sidebar-item-container { padding:7px 0; }
-#quarto-sidebar .sidebar-item-text { color:#60636e; font-size:.87rem; line-height:1.6; }
-#quarto-sidebar .sidebar-link.active, #quarto-sidebar .sidebar-link:hover { color:var(--blue); }
+#quarto-sidebar .sidebar-item-container { padding:3px 0; }
+#quarto-sidebar .sidebar-item-text { color:var(--muted); font-size:14px; line-height:1.6; padding:8px 10px; border-radius:6px; }
+#quarto-sidebar .sidebar-link:hover { background:#eef1f7; color:var(--blue); }
+#quarto-sidebar .sidebar-link.active { background:var(--active); color:var(--blue); font-weight:600; }
+#quarto-sidebar .chapter-number::before { content:'第'; }
+#quarto-sidebar .chapter-number::after { content:'章：'; }
 #quarto-sidebar .sidebar-search { margin-top:16px; }
 #quarto-margin-sidebar { background:transparent; }
-#TOC { border-left:1px solid #e3e3e8; padding-left:16px; }
+#TOC { border-left:1px solid var(--line); padding-left:16px; }
 #TOC h2 { font-size:.88rem; font-weight:600; margin:0 0 12px; }
-#TOC .nav-link { font-size:.84rem; color:#60636e; padding:6px 0; line-height:1.55; border-left:0; }
+#TOC .nav-link { font-size:.84rem; color:var(--muted); padding:6px 0; line-height:1.55; border-left:0; }
 #TOC .nav-link.active { color:var(--blue); position:relative; }
 #TOC .nav-link.active::before { content:''; position:absolute; left:-17px; top:6px; bottom:6px; width:2px; background:var(--blue); }
 #TOC ul ul { padding-left:12px; }
-div.sourceCode { background:#f6f6f7; border:0; border-radius:8px; }
-pre.sourceCode { padding:20px 24px; }
-main pre { overflow-x:auto; }
-main.content { min-width:0; }
-.lab-table { display:block; overflow-x:auto; }
-::selection { background:#dce5fa; color:#1b2f69; }
-a:focus-visible { outline:2px solid var(--blue); outline-offset:3px; }
+.book-intro { padding:0; background:transparent; font-size:18px; line-height:1.9; margin-block:1.2rem; }
+.tutorial-meta { color:var(--muted); font-size:14px; margin-block:.75rem 1rem; }
+.home-actions { margin-block:1.2rem 2.3rem; }
+.start-learning { display:inline-block; padding:9px 18px; background:var(--blue); color:#fff; border-radius:6px; text-decoration:none; font-size:15px; font-weight:600; }
+.start-learning:hover { background:#253f91; color:#fff; }
+.chapter-intro { margin-block:1.1rem 2rem; padding-block:.9rem; border-block:1px solid var(--line); }
+.chapter-intro p { margin-bottom:.5rem; font-size:15px; line-height:1.8; }
+.chapter-intro p:last-child { margin-bottom:0; color:var(--muted); }
+.learning-paths { padding-left:1.4rem; }
+.learning-paths li { padding-block:.35rem; }
+pre,code { font-family:'Cascadia Code','Consolas',monospace; }
+div.sourceCode { position:relative; background:var(--surface); border:1px solid #edf0f4; border-radius:8px; margin-block:1rem; }
+pre.sourceCode { padding:30px 22px 18px; font-size:14px; line-height:1.7; margin:0; }
+main pre { overflow-x:auto; white-space:pre; }
+pre.sourceCode code,pre.sourceCode code span { white-space:pre; overflow-wrap:normal; }
+.code-language { position:absolute; right:42px; top:6px; font-size:12px; color:var(--muted); line-height:1.5; pointer-events:none; }
+.cell-output-stdout pre { font-size:13px; line-height:1.7; padding:14px 18px; background:#fafbfc; border-radius:6px; }
+.result-details { margin-block:1rem; border:1px solid var(--line); border-radius:6px; padding:0 16px; }
+.result-details summary { cursor:pointer; color:var(--muted); font-size:14px; padding:10px 0; }
+.result-details[open] summary { color:var(--blue); border-bottom:1px solid var(--line); margin-bottom:10px; }
+.callout { line-height:1.8; border-radius:6px!important; border-left-width:1px!important; margin-block:1.4rem; }
+.callout .callout-header { font-size:15px; padding-block:10px; }
+.callout .callout-body { font-size:15px; }
+.nav-tabs { gap:6px; border-bottom:1px solid var(--line); margin-block:1.2rem .9rem; }
+.nav-tabs .nav-link { font-size:15px; font-weight:600; padding:9px 20px; border:0; border-bottom:2px solid transparent; color:var(--muted); }
+.nav-tabs .nav-link.active { background:var(--active); color:var(--blue); border-bottom:2px solid var(--blue); }
+.tab-content { min-width:0; }
+.lab { margin:1.8rem 0; padding:20px 16px 16px; border:1px solid var(--line); border-radius:8px; background:#fff; min-width:0; }
+.lab-title { font-size:18px; font-weight:650; margin:0 0 .4rem; }
+.lab-hint { font-size:14px; color:var(--muted); line-height:1.8; }
+.lab-controls { display:flex; flex-wrap:wrap; align-items:center; gap:12px 20px; margin:16px 0; padding-block:12px; border-block:1px solid #edf0f4; }
+.lab-controls label { display:flex; align-items:center; gap:8px; font-size:14px; }
+.lab-controls input[type=range] { width:130px; accent-color:var(--blue); }
+.lab-controls select,.lab-controls button { font:inherit; font-size:14px; padding:6px 10px; background:var(--surface); border:1px solid #b2bbcb; border-radius:5px; color:var(--ink); }
+.lab-controls button:hover { background:var(--active); border-color:var(--blue); }
+.lab-stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:16px; text-align:left; }
+.stat-card { padding:12px 15px; border:1px solid #dce5f1; border-radius:11px; background:#f9fbfe; }
+.stat-label { display:block; font-size:13px; color:#536780; line-height:1.5; }
+.stat-value { display:block; margin-top:3px; font-size:21px; font-weight:700; color:#10253f; line-height:1.35; font-variant-numeric:tabular-nums; }
+.stat-wide,.stat-note { grid-column:1 / -1; }
+.stat-note { margin:.3rem 0 0; font-size:14px; color:var(--muted); line-height:1.8; }
+.lab-plot,.plotly-output { width:100%; min-width:0; min-height:560px; }
+main .cell-output-display { width:100%; }
+.lab-table { display:block; overflow-x:auto; font-size:14px; margin-top:.8rem; }
+.lab-table th,.lab-table td { padding:6px 10px; border-bottom:1px solid var(--line); }
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; } }
 @media (min-width:1200px) {
   #quarto-content.page-columns {
     grid-template-columns:
@@ -115,15 +129,14 @@ a:focus-visible { outline:2px solid var(--blue); outline-offset:3px; }
   .lab-plot,.plotly-output { min-height:480px; }
 }
 
-.tutorial-brand { font-size:1.08rem; font-weight:700; color:var(--ink); line-height:1.4; }
-#quarto-sidebar .chapter-number::before { content:'第'; }
-#quarto-sidebar .chapter-number::after { content:'章：'; }
-@media (min-width:992px) {
-  .tutorial-brand { margin-bottom:24px; }
-  .tutorial-directory-label { margin-top:0; padding-top:20px; border-top:1px solid #dedee3; }
-}
-
 /* 小型统计图保持紧凑；几何演示继续使用较大的画布。 */
 [data-svm-lab="tuning"] .lab-plot { max-width:660px; height:420px; min-height:0; margin-inline:auto; }
 .plotly-output.figure-confusion { max-width:600px; height:490px; min-height:0; margin:24px auto; }
 .plotly-output.figure-comparison { max-width:880px; height:410px; min-height:0; margin:24px auto; }
+
+body:has(.tutorial-meta) .quarto-title-meta { display:none!important; }
+
+/* 首页的一标题为 Book 提供不编号语义；视觉标题由原生 title block 呈现。 */
+body:has(.tutorial-meta) main > section.level1 > h1 { display:none; }
+body:has(.tutorial-meta) #TOC > ul > li > a { display:none; }
+body:has(.tutorial-meta) #TOC > ul > li > ul { padding-left:0; }

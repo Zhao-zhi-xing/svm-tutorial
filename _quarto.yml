@@ -23,7 +23,7 @@ book:
   title: "支持向量机教程：从几何到现代学习"
   subtitle: "Python / R 实验与交互式探索"
   author: "赵知行"
-  date: "2026-10-02"
+  date: "2026-10-03"
   language: zh
   search: true
   navbar:
@@ -43,18 +43,30 @@ book:
     header: "<div class='tutorial-brand'>支持向量机教程</div><div class='tutorial-directory-label'>目录</div>"
     collapse-level: 1
   chapters:
-    - index.qmd
-    - chapters/00-python-start.qmd
-    - chapters/01-geometry.qmd
-    - chapters/02-soft-margin.qmd
-    - chapters/03-duality-smo.qmd
-    - chapters/04-kernels.qmd
-    - chapters/05-multiclass.qmd
-    - chapters/06-workflow.qmd
-    - chapters/07-cases.qmd
-    - chapters/08-modern.qmd
-    - chapters/09-authoring.qmd
-    - references.qmd
+    - href: index.qmd
+      text: "导读与学习路线"
+    - href: chapters/00-python-start.qmd
+      text: "纯 Python 入门"
+    - href: chapters/01-geometry.qmd
+      text: "超平面与间隔"
+    - href: chapters/02-soft-margin.qmd
+      text: "软间隔与损失"
+    - href: chapters/03-duality-smo.qmd
+      text: "对偶、KKT 与 SMO"
+    - href: chapters/04-kernels.qmd
+      text: "核方法"
+    - href: chapters/05-multiclass.qmd
+      text: "多分类"
+    - href: chapters/06-workflow.qmd
+      text: "可靠建模流程"
+    - href: chapters/07-cases.qmd
+      text: "真实数据案例"
+    - href: chapters/08-modern.qmd
+      text: "现代研究导读"
+    - href: chapters/09-authoring.qmd
+      text: "维护本教程"
+    - href: references.qmd
+      text: "参考文献"
 
 lang: zh
 bibliography: references.bib
@@ -80,7 +92,7 @@ format:
     number-sections: true
     code-copy: true
     code-fold: false
-    code-overflow: wrap
+    code-overflow: scroll
     html-math-method: mathjax
     include-in-header: assets/header.html
     include-after-body: assets/footer.html

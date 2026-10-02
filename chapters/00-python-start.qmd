@@ -2,6 +2,12 @@
 title: "第一次独立训练 SVM：纯 Python 入门"
 ---
 
+::: {.chapter-intro}
+**学习目标**：独立运行 Iris 实验，理解数据划分、调参与评估之间的顺序。
+
+**前置知识**：基本 Python 语法；可从配套 Notebook 开始。
+:::
+
 本章适合第一次上手。配套Notebook只使用Python、scikit-learn、NumPy、pandas与Plotly，不导入本项目的 `lab` 辅助模块，不读取其他章节状态，不需要R，也不下载外部数据。Iris从scikit-learn内置数据加载。
 
 ## 下载并运行

@@ -1,0 +1,123 @@
+{
+  "measurements": [
+    {
+      "page": "index.html",
+      "viewport": 1280,
+      "center": 640,
+      "body": 676,
+      "prose": 676,
+      "proseCenter": 640,
+      "overflow": 1280
+    },
+    {
+      "page": "index.html",
+      "viewport": 1440,
+      "center": 720,
+      "body": 836,
+      "prose": 800,
+      "proseCenter": 720,
+      "overflow": 1440
+    },
+    {
+      "page": "index.html",
+      "viewport": 1920,
+      "center": 960,
+      "body": 1040,
+      "prose": 800,
+      "proseCenter": 960,
+      "overflow": 1920
+    },
+    {
+      "page": "index.html",
+      "viewport": 2560,
+      "center": 1280,
+      "body": 1040,
+      "prose": 800,
+      "proseCenter": 1280,
+      "overflow": 2560
+    },
+    {
+      "page": "chapters/03-duality-smo.html",
+      "viewport": 1280,
+      "center": 640,
+      "body": 676,
+      "prose": 676,
+      "proseCenter": 640,
+      "overflow": 1280
+    },
+    {
+      "page": "chapters/03-duality-smo.html",
+      "viewport": 1440,
+      "center": 720,
+      "body": 836,
+      "prose": 800,
+      "proseCenter": 720,
+      "overflow": 1440
+    },
+    {
+      "page": "chapters/03-duality-smo.html",
+      "viewport": 1920,
+      "center": 960,
+      "body": 1040,
+      "prose": 800,
+      "proseCenter": 960,
+      "overflow": 1920
+    },
+    {
+      "page": "chapters/03-duality-smo.html",
+      "viewport": 2560,
+      "center": 1280,
+      "body": 1040,
+      "prose": 800,
+      "proseCenter": 1280,
+      "overflow": 2560
+    },
+    {
+      "page": "chapters/07-cases.html",
+      "viewport": 1280,
+      "center": 640,
+      "body": 676,
+      "prose": 676,
+      "proseCenter": 640,
+      "overflow": 1280
+    },
+    {
+      "page": "chapters/07-cases.html",
+      "viewport": 1440,
+      "center": 720,
+      "body": 836,
+      "prose": 800,
+      "proseCenter": 720,
+      "overflow": 1440
+    },
+    {
+      "page": "chapters/07-cases.html",
+      "viewport": 1920,
+      "center": 960,
+      "body": 1040,
+      "prose": 800,
+      "proseCenter": 960,
+      "overflow": 1920
+    },
+    {
+      "page": "chapters/07-cases.html",
+      "viewport": 2560,
+      "center": 1280,
+      "body": 1040,
+      "prose": 800,
+      "proseCenter": 1280,
+      "overflow": 2560
+    }
+  ],
+  "checks": [
+    "800px centered prose",
+    "1040px centered canvas",
+    "no document overflow at four desktop widths",
+    "unnumbered homepage",
+    "short active navigation",
+    "chapter introductions",
+    "code language labels",
+    "collapsed results and keyboard focus"
+  ],
+  "page_errors": []
+}

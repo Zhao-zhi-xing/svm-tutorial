@@ -7,7 +7,11 @@ title: "案例：从 Iris 到高维基因表达"
 source('scripts/setup-chapter.R', encoding='UTF-8')
 ```
 
-本章目标：把原笔记中的模拟、Iris、Heart 和 Khan 案例整理成独立实验，理解任务之间的差异。完整 Python 实现在 `scripts/svm_lab.py`，R 实现在 `scripts/lab.R`；每次调用都重新读取该实验自己的数据。
+::: {.chapter-intro}
+**学习目标**：把原笔记中的模拟、Iris、Heart 和 Khan 案例整理成独立实验，理解任务之间的差异。完整 Python 实现在 `scripts/svm_lab.py`，R 实现在 `scripts/lab.R`；每次调用都重新读取该实验自己的数据。
+
+**前置知识**：预处理 Pipeline、交叉验证与评价指标。
+:::
 
 ## 模拟数据提供可控问题
 
@@ -36,9 +40,14 @@ fig, heart_result = lab.case_plot('heart')
 print(lab.figure_html(fig, 'heart-python'))
 ```
 
+<details class="result-details">
+<summary>查看完整实验记录（参数与指标）</summary>
+
 ```{python}
 print(heart_result)
 ```
+
+</details>
 
 ### R
 
@@ -48,9 +57,14 @@ heart_r <- fit_case_r('heart')
 cat(figure_html_r(heart_r, 'heart-r'))
 ```
 
+<details class="result-details">
+<summary>查看完整实验记录（参数与指标）</summary>
+
 ```{r}
 heart_r[c('train_n','test_n','parameters','cv_macro_f1','accuracy','macro_f1')]
 ```
+
+</details>
 :::
 
 混淆矩阵的行是真实类别、列是预测类别，类别按从上到下排列。格内第一行是样本数，第二行是该真实类别中的占比；颜色仍表示样本数，方便同时看错误数量与各类识别情况。
@@ -72,9 +86,14 @@ fig, khan_result = lab.case_plot('khan')
 print(lab.figure_html(fig, 'khan-python'))
 ```
 
+<details class="result-details">
+<summary>查看完整实验记录（参数与指标）</summary>
+
 ```{python}
 print(khan_result)
 ```
+
+</details>
 
 ### R
 
@@ -84,9 +103,14 @@ khan_r <- fit_case_r('khan')
 cat(figure_html_r(khan_r, 'khan-r'))
 ```
 
+<details class="result-details">
+<summary>查看完整实验记录（参数与指标）</summary>
+
 ```{r}
 khan_r[c('train_n','test_n','parameters','cv_macro_f1','accuracy','macro_f1')]
 ```
+
+</details>
 :::
 
 20 个测试样本中，一个错误就改变 5 个百分点的 accuracy。某次高分不证明在新医院、不同平台或批次上同样有效。批次效应和特征选择是高维小样本研究不可忽略的问题。
@@ -103,10 +127,15 @@ fig, comparison = lab.compare_models()
 print(lab.figure_html(fig, 'model-comparison'))
 ```
 
+<details class="result-details">
+<summary>查看完整实验记录（参数与指标）</summary>
+
 ```{python}
 for row in comparison:
     print(row)
 ```
+
+</details>
 
 数据太小，测试波动往往比模型差异更大。若需要稳健结论，应在预先规定的重复划分或外层 CV 上报告分布，并加入时间与内存测量。Transformer 或基础模型的比较还应明确预训练数据、许可证、外部资源和特征工程预算。
 

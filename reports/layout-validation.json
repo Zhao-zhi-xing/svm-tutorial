@@ -6,9 +6,9 @@
         "x": 302,
         "y": 56,
         "width": 676,
-        "height": 3144.734375
+        "height": 3253.578125
       },
-      "plot_width": 640
+      "plot_width": 642
     },
     {
       "viewport": 1440,
@@ -16,9 +16,9 @@
         "x": 302,
         "y": 56,
         "width": 836,
-        "height": 2969.390625
+        "height": 3111.453125
       },
-      "plot_width": 800
+      "plot_width": 802
     },
     {
       "viewport": 1920,
@@ -26,9 +26,9 @@
         "x": 440,
         "y": 56,
         "width": 1040,
-        "height": 2843.640625
+        "height": 3086.265625
       },
-      "plot_width": 1004
+      "plot_width": 1006
     },
     {
       "viewport": 2560,
@@ -36,9 +36,9 @@
         "x": 760,
         "y": 56,
         "width": 1040,
-        "height": 2843.640625
+        "height": 3086.265625
       },
-      "plot_width": 1004
+      "plot_width": 1006
     }
   ],
   "checks": [

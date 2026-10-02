@@ -1,9 +1,18 @@
 ---
-title: "从一条分隔线开始"
+subtitle: "从几何直觉到可靠实验"
+number-sections: false
 ---
+
+# 支持向量机教程 {.unnumbered}
+
+<p class="tutorial-meta">赵知行 · 更新于 2026 年 10 月 3 日</p>
 
 ::: {.book-intro}
 支持向量机把一个直观问题变成了可求解的优化问题：**在允许犯错的前提下，怎样让分类边界离训练样本尽可能远？** 本教程从几何直觉出发，走到对偶、核方法、多分类和可靠实验，最后讨论这些思想在现代机器学习中的位置。
+:::
+
+::: {.home-actions}
+[开始学习 →](chapters/00-python-start.qmd){.start-learning}
 :::
 
 本教程由赵知行 2024 年的 SVM 学习笔记重构。旧版以 R 和 ISL 为主线；新版补写 Python 实验，统一符号和推导，强化多分类与实验方法，并加入可操作的交互图。基础参考为 ISL、CS229 和 *Support Vector Machines Succinctly* [@islp; @cs229; @succinctly]。
@@ -22,10 +31,13 @@ title: "从一条分隔线开始"
 
 ## 怎样读本教程
 
-- **第一次学 SVM**：先运行[纯Python入门Notebook](chapters/00-python-start.qmd)，再按目录顺序读到多分类，每章先操作图，再看公式，最后做练习。
-- **想写 Python/R 程序**：重点读建模流程和案例。语言标签页可以切换代码与结果；数据划分在两种语言之间共享。
-- **想继续研究**：读现代学习章节，先理解经典核近似与最大间隔，再查看近期文献的假设和局限。
-- **想学习 Quarto**：阅读写作章节，并下载 [完整 Markdown 制作指南](使用VSCode制作与维护QuartoBook.md)。
+::: {.learning-paths}
+- **首次学习**：先运行[纯Python入门Notebook](chapters/00-python-start.qmd)，再按目录顺序读到多分类，每章先操作图，再看公式，最后做练习。
+- **编程实践**：重点读建模流程和案例。语言标签页可以切换代码与结果；数据划分在两种语言之间共享。
+- **深入研究**：读现代学习章节，先理解经典核近似与最大间隔，再查看近期文献的假设和局限。
+:::
+
+想学习 Quarto：阅读[维护本教程](chapters/09-authoring.qmd)，并下载 [完整 Markdown 制作指南](使用VSCode制作与维护QuartoBook.md)。
 
 需要的先修知识是向量内积、范数、基本微积分，以及训练集/测试集的概念。拉格朗日对偶和 KKT 会在本教程中重新解释。
 
