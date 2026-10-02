@@ -332,3 +332,16 @@ powershell -ExecutionPolicy Bypass -File scripts/book.ps1 validate
 构建后可运行 `python scripts/layout_check.py` 检查 1280、1440、1920、2560px 窗口下的正文居中、目录位置、页面溢出、目录锚点和图表缩放。此命令需要可选的 Playwright 开发依赖与本机 Chrome，结果保存至 `reports/layout-validation.json`。
 
 已发布站点：[SVM 教程](https://zhao-zhi-xing.github.io/svm-tutorial/)。源码提交并推送后，在教程根目录执行 `powershell -ExecutionPolicy Bypass -File scripts/book.ps1 render`，再执行 `quarto publish gh-pages --no-render` 更新网站；Quarto 未加入 PATH 时可使用 `.tools/runtime-path.txt` 中记录的完整路径。
+
+
+## 18. 紧凑热图与模型比较图
+
+C–γ 热图在 `assets/tutorial.js` 的 `tuning()` 中设置 420px 高度，CSS 将它的最大宽度限制为 660px 并居中；格内显示三位小数，悬停保留四位小数与参数值。
+
+Python 混淆矩阵由 `scripts/svm_lab.py` 的 `confusion_plot()` 绘制，R 版本在 `scripts/lab.R` 的 `figure_html_r()`。两者都使用 490px 高度、600px 最大宽度、正方形格子和从上到下的真实类别顺序。颜色编码原始样本数，格内和悬停补充按真实类别归一化的比例；这不会改变模型结果或训练协议。
+
+`compare_models()` 使用水平分组柱形图：浅色为选参时的五折验证分数，深色为独立测试分数。保留固定模型顺序、从零开始的坐标和原始选参记录；末端直接显示三位小数。柱图为 410px 高、最大宽度 880px。
+
+`layout.meta.tutorial_kind` 标记 `confusion` 或 `comparison`；浏览器初始化时据此添加 CSS 类。初始化器必须保留各图明确设置的 `height`、`margin` 和 `font`，否则统一的几何图样式会把统计图再次撑大。
+
+样式借鉴：[Plotly 带标注热图](https://plotly.com/python/annotated-heatmap/)、[Plotly 水平柱形图](https://plotly.com/python/horizontal-bar-charts/)。

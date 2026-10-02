@@ -180,7 +180,7 @@
   function tuning(el) {
     const d=window.SVM_MODELS.rbf,Cs=[...new Set(d.models.map(m=>m.C))],Gs=[...new Set(d.models.map(m=>m.gamma))];
     const z=Cs.map(C=>Gs.map(g=>d.models.find(m=>m.C===C&&m.gamma===g).cv_macro_f1));
-    Plotly.newPlot(plot(el),[{type:'heatmap',z,x:Gs.map(String),y:Cs.map(String),colorscale:'Viridis',hovertemplate:'C=%{y}, γ=%{x}<br>CV macro-F1=%{z:.4f}<extra></extra>'}],layout({title:'训练集五折验证网格',xaxis:{title:'γ（离散值）',type:'category'},yaxis:{title:'C（离散值）',type:'category',scaleanchor:undefined}}),config);
+    Plotly.newPlot(plot(el),[{type:'heatmap',z,x:Gs.map(String),y:Cs.map(String),colorscale:'Viridis',xgap:3,ygap:3,text:z.map(row=>row.map(v=>v.toFixed(3))),texttemplate:'%{text}',textfont:{size:14},colorbar:{title:{text:'CV macro-F1',side:'top'},thickness:12,len:.9,outlinewidth:0},hovertemplate:'C=%{y}, γ=%{x}<br>CV macro-F1=%{z:.4f}<extra></extra>'}],layout({height:420,title:{text:'训练集五折验证网格',x:.5,xanchor:'center',font:{size:17}},margin:{l:65,r:95,t:65,b:65},xaxis:{title:'γ（离散值）',type:'category'},yaxis:{title:'C（离散值）',type:'category',scaleanchor:undefined}}),config);
     const best=d.models[d.best_index];renderStats(el,[['最佳 C',best.C],['最佳 γ',best.gamma],['最佳 CV macro-F1',round(best.cv_macro_f1)]],'颜色来自训练集五折验证，测试集没有参与选参。');
   }
   function initializeFigures(){
@@ -188,7 +188,9 @@
       if(el.dataset.initialized)return;
       const source=document.getElementById(el.dataset.plotlySource);if(!source)return;
       const f=JSON.parse(source.textContent);el.dataset.initialized='true';
-      f.layout={...f.layout,font:base.font,margin:{l:70,r:40,t:75,b:115},height:f.layout.yaxis?.scaleanchor?860:560,autosize:true};
+      const kind=f.layout.meta?.tutorial_kind;
+      if(kind)el.classList.add('figure-'+kind);
+      f.layout={...f.layout,font:f.layout.font||base.font,margin:f.layout.margin||{l:70,r:40,t:75,b:115},height:f.layout.height||(f.layout.yaxis?.scaleanchor?860:560),autosize:true};
       Plotly.newPlot(el,f.data,f.layout,config);
     });
   }

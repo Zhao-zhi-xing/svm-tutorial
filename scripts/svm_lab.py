@@ -118,11 +118,34 @@ def fit_case(name='iris'):
     return search, test, columns, result
 
 
+def confusion_plot(r):
+    """保留原始计数，行占比仅用于标注；第一类显示在最上方。"""
+    counts=np.asarray(r['confusion'],dtype=float)
+    totals=counts.sum(axis=1,keepdims=True)
+    fractions=np.divide(counts,totals,out=np.zeros_like(counts),where=totals!=0)
+    labels=[str(x) for x in r['labels']]
+    display=['AHD = No','AHD = Yes'] if r['case']=='heart' else labels
+    fig=go.Figure(go.Heatmap(z=counts,x=labels,y=labels,zmin=0,
+        colorscale=[[0,'#f1f5fa'],[.35,'#b5cde6'],[.7,'#5487b9'],[1,'#244f7d']],
+        xgap=6,ygap=6,text=[[f'{int(count)}<br><span style="font-size:12px">{share:.0%}</span>' for count,share in zip(row,shares)] for row,shares in zip(counts,fractions)],customdata=fractions,
+        texttemplate='%{text}',textfont=dict(size=20),
+        colorbar=dict(title=dict(text='样本数',side='top'),thickness=12,len=.8,outlinewidth=0,tickfont=dict(size=11)),
+        hovertemplate='真实类别 %{y}<br>预测类别 %{x}<br>样本数 %{z:.0f}<br>该真实类别占比 %{customdata:.1%}<extra></extra>'))
+    title=f"{r['case'].title()} · {r['language']} 测试集混淆矩阵"
+    fig.update_layout(title=dict(text=title,x=.5,xanchor='center',font=dict(size=17)),
+        height=490,meta=dict(tutorial_kind='confusion'),paper_bgcolor='white',plot_bgcolor='white',
+        font=dict(family='Segoe UI, Microsoft YaHei, sans-serif',size=13,color='#30323b'),
+        margin=dict(l=100,r=85,t=90,b=90),
+        xaxis=dict(title='预测类别',type='category',tickvals=labels,ticktext=display,showgrid=False,zeroline=False,constrain='domain'),
+        yaxis=dict(title='真实类别',type='category',tickvals=labels,ticktext=display,autorange='reversed',scaleanchor='x',scaleratio=1,constrain='domain',showgrid=False,zeroline=False),
+        annotations=[dict(x=.5,y=1.1,xref='paper',yref='paper',showarrow=False,text=f"Accuracy {r['accuracy']:.3f}  ·  Macro-F1 {r['macro_f1']:.3f}  ·  n = {r['test_n']}",font=dict(size=12,color='#60636e')),
+                     dict(x=.5,y=-.24,xref='paper',yref='paper',showarrow=False,text='格内：样本数 / 该真实类别占比',font=dict(size=12,color='#60636e'))])
+    return fig
+
+
 def case_plot(name='iris'):
     _,_,_,r = fit_case(name)
-    fig = go.Figure(go.Heatmap(z=r['confusion'],x=[str(x) for x in r['labels']],y=[str(x) for x in r['labels']],colorscale='Blues',text=r['confusion'],texttemplate='%{text}',hovertemplate='真实=%{y}<br>预测=%{x}<br>数量=%{z}<extra></extra>'))
-    fig.update_layout(title=f"{name} · Python 测试集：accuracy={r['accuracy']:.3f}, macro-F1={r['macro_f1']:.3f}",xaxis_title='预测类别',yaxis_title='真实类别',height=560)
-    return fig, r
+    return confusion_plot(r), r
 
 
 def figure_html(fig, identifier):
@@ -243,6 +266,15 @@ def compare_models():
         folds=[(np.flatnonzero(tr.fold.values!=f),np.flatnonzero(tr.fold.values==f)) for f in range(5)]
         fit=GridSearchCV(pipeline,params,scoring='f1_macro',cv=folds).fit(tr[features],tr.target)
         rows.append({'model':name,'cv_macro_f1':fit.best_score_,'test_macro_f1':f1_score(te.target,fit.predict(te[features]),average='macro'),'params':str(fit.best_params_)})
-    fig=go.Figure(go.Bar(x=[r['model'] for r in rows],y=[r['test_macro_f1'] for r in rows],customdata=[r['params'] for r in rows],hovertemplate='%{x}<br>macro-F1=%{y:.3f}<br>%{customdata}<extra></extra>'))
-    fig.update_layout(title='Iris：相同划分、相同 CV 折的有限网格比较',yaxis_title='测试 macro-F1',height=560)
+    fig=go.Figure()
+    for field,label,color in [('cv_macro_f1','五折验证（选参分数）','#a9bfd8'),('test_macro_f1','独立测试集','#245e91')]:
+        fig.add_bar(y=[r['model'] for r in rows],x=[r[field] for r in rows],orientation='h',name=label,
+            marker=dict(color=color,line=dict(width=0)),text=[r[field] for r in rows],texttemplate='%{text:.3f}',textposition='outside',cliponaxis=False,
+            customdata=[r['params'] for r in rows],hovertemplate='%{y}<br>'+label+' macro-F1=%{x:.4f}<br>%{customdata}<extra></extra>')
+    fig.update_layout(title=dict(text='Iris · 同一协议下的模型比较',x=.02,xanchor='left',font=dict(size=18)),
+        height=410,meta=dict(tutorial_kind='comparison'),barmode='group',bargap=.32,bargroupgap=.12,
+        paper_bgcolor='white',plot_bgcolor='white',font=dict(family='Segoe UI, Microsoft YaHei, sans-serif',size=13,color='#30323b'),
+        margin=dict(l=100,r=60,t=100,b=65),legend=dict(orientation='h',x=0,y=1.16,font=dict(size=12)),
+        xaxis=dict(title='Macro-F1',range=[0,1.08],tickvals=[0,.2,.4,.6,.8,1],tickformat='.1f',gridcolor='#edf0f4',zeroline=False),
+        yaxis=dict(autorange='reversed',categoryorder='array',categoryarray=[r['model'] for r in rows],showgrid=False,zeroline=False))
     return fig,rows

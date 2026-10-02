@@ -122,9 +122,25 @@ binary_html_r <- function(name='linear',kernel='linear',C=1,gamma=1,id='binary-r
 }
 
 figure_html_r <- function(result, id) {
-  z <- lapply(seq_len(nrow(result$confusion)),function(i) as.numeric(result$confusion[i,]))
-  figure <- list(data=list(list(type='heatmap',z=z,x=as.character(result$labels),y=as.character(result$labels),colorscale='Blues',text=z,texttemplate='%{text}',hovertemplate='真实=%{y}<br>预测=%{x}<br>数量=%{z}<extra></extra>')),
-    layout=list(title=sprintf('%s · R 测试集：accuracy=%.3f, macro-F1=%.3f',result$case,result$accuracy,result$macro_f1),height=560,xaxis=list(title='预测类别'),yaxis=list(title='真实类别')))
+  counts <- result$confusion
+  z <- lapply(seq_len(nrow(counts)),function(i) as.numeric(counts[i,]))
+  fractions <- counts / pmax(rowSums(counts), 1)
+  shares <- lapply(seq_len(nrow(fractions)),function(i) as.numeric(fractions[i,]))
+  cell_text <- lapply(seq_len(nrow(counts)),function(i) sprintf('%d<br><span style="font-size:12px">%.0f%%</span>',as.integer(counts[i,]),100*fractions[i,]))
+  labels <- as.character(result$labels)
+  display <- if (result$case=='heart') c('AHD = No','AHD = Yes') else labels
+  figure <- list(data=list(list(type='heatmap',z=z,x=labels,y=labels,zmin=0,
+    colorscale=list(list(0,'#f1f5fa'),list(.35,'#b5cde6'),list(.7,'#5487b9'),list(1,'#244f7d')),
+    xgap=6,ygap=6,text=cell_text,customdata=shares,texttemplate='%{text}',textfont=list(size=20),
+    colorbar=list(title=list(text='样本数',side='top'),thickness=12,len=.8,outlinewidth=0,tickfont=list(size=11)),
+    hovertemplate='真实类别 %{y}<br>预测类别 %{x}<br>样本数 %{z:.0f}<br>该真实类别占比 %{customdata:.1%}<extra></extra>')),
+    layout=list(title=list(text=sprintf('%s · R 测试集混淆矩阵',tools::toTitleCase(result$case)),x=.5,xanchor='center',font=list(size=17)),
+      height=490,meta=list(tutorial_kind='confusion'),paper_bgcolor='white',plot_bgcolor='white',
+      font=list(family='Segoe UI, Microsoft YaHei, sans-serif',size=13,color='#30323b'),margin=list(l=100,r=85,t=90,b=90),
+      xaxis=list(title='预测类别',type='category',tickvals=labels,ticktext=display,showgrid=FALSE,zeroline=FALSE,constrain='domain'),
+      yaxis=list(title='真实类别',type='category',tickvals=labels,ticktext=display,autorange='reversed',scaleanchor='x',scaleratio=1,constrain='domain',showgrid=FALSE,zeroline=FALSE),
+      annotations=list(list(x=.5,y=1.1,xref='paper',yref='paper',showarrow=FALSE,text=sprintf('Accuracy %.3f  ·  Macro-F1 %.3f  ·  n = %d',result$accuracy,result$macro_f1,result$test_n),font=list(size=12,color='#60636e')),
+        list(x=.5,y=-.24,xref='paper',yref='paper',showarrow=FALSE,text='格内：样本数 / 该真实类别占比',font=list(size=12,color='#60636e')))))
   encoded <- jsonlite::toJSON(figure,auto_unbox=TRUE, digits=8, force=TRUE)
   paste0('<div class="plotly-output" id="',id,'" data-plotly-source="',id,'-json"></div><script type="application/json" id="',id,'-json">',encoded,'</script>')
 }

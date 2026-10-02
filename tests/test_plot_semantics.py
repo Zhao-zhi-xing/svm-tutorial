@@ -26,3 +26,14 @@ def test_binary_boundaries_are_named_separate_traces():
         x=np.asarray(trace.x,dtype=float)
         # Complete paths keep dash patterns continuous across grid cells.
         assert np.count_nonzero(np.isnan(x)) <= 3
+
+
+def test_confusion_annotations_preserve_counts_and_normalize_true_class_rows():
+    result={'case':'heart','language':'Python','labels':[0,1],'confusion':[[45,4],[7,35]],'accuracy':80/91,'macro_f1':.878,'test_n':91}
+    fig=lab.confusion_plot(result)
+    trace=fig.data[0]
+    np.testing.assert_array_equal(trace.z,result['confusion'])
+    np.testing.assert_allclose(trace.customdata,[[45/49,4/49],[7/42,35/42]])
+    assert fig.layout.yaxis.autorange=='reversed'
+    result['confusion']=[[0,0],[7,35]]
+    assert np.isfinite(np.asarray(lab.confusion_plot(result).data[0].customdata)).all()
