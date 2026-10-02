@@ -98,13 +98,13 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-3d380487a461785dbc10e0a319457fdf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0e621268080d55bbd7df441cb99ca0ef.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -172,38 +172,59 @@ window.Quarto = {
 <link rel="stylesheet" href="../assets/book.css">
 </head>
 
-<body class="nav-sidebar docked quarto-light">
+<body class="nav-sidebar docked nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+            <div id="quarto-search" class="" title="搜索"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="展开或折叠导航栏" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">首页</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../chapters/00-python-start.html"> 
+<span class="menu-text">教程</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Zhao-zhi-xing/svm-tutorial"> <i class="bi bi-github" role="img" aria-label="GitHub 源码">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-geometry.html">理解间隔</a></li><li class="breadcrumb-item"><a href="../chapters/03-duality-smo.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/03-duality-smo.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="搜索" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../">支持向量机教程：从几何到现代学习</a> 
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="搜索"></div>
-        </div>
-        </div>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+<div class="tutorial-brand">
+支持向量机教程
+</div>
+<div class="tutorial-directory-label">
+目录
+</div>
+</div></div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -218,110 +239,66 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">第一次独立训练 SVM：纯 Python 入门</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">理解间隔</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="展开或折叠此栏">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/01-geometry.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">超平面与最大间隔</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/02-soft-margin.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">软间隔、损失与正则化</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/03-duality-smo.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">从二分类到多分类</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="展开或折叠此栏">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/04-kernels.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">核技巧与非线性边界</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/05-multiclass.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">多分类：分数、投票与联合学习</span></span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">建立可信的实验</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="展开或折叠此栏">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/06-workflow.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">建立可信的建模流程</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/07-cases.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">案例：从 Iris 到高维基因表达</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/08-modern.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">SVM 与现代学习：继续研究什么</span></span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">写作与继续学习</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="展开或折叠此栏">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/09-authoring.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">用 VS Code 维护本教程</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">参考文献</span></span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -329,49 +306,31 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">目录</h2>
+    <h2 id="toc-title">本章目录</h2>
    
-  <ul>
-  <li><a href="#从约束优化到拉格朗日函数" id="toc-从约束优化到拉格朗日函数" class="nav-link active" data-scroll-target="#从约束优化到拉格朗日函数"><span class="header-section-number">5.1</span> 从约束优化到拉格朗日函数</a>
   <ul class="collapse">
-  <li><a href="#为什么给约束配一个乘子" id="toc-为什么给约束配一个乘子" class="nav-link" data-scroll-target="#为什么给约束配一个乘子"><span class="header-section-number">5.1.1</span> 为什么给约束配一个乘子</a></li>
-  <li><a href="#弱对偶与强对偶是怎样得到的" id="toc-弱对偶与强对偶是怎样得到的" class="nav-link" data-scroll-target="#弱对偶与强对偶是怎样得到的"><span class="header-section-number">5.1.2</span> 弱对偶与强对偶是怎样得到的</a></li>
-  </ul></li>
-  <li><a href="#什么是-kkt-点" id="toc-什么是-kkt-点" class="nav-link" data-scroll-target="#什么是-kkt-点"><span class="header-section-number">5.2</span> 什么是 KKT 点</a>
-  <ul class="collapse">
-  <li><a href="#为什么凸问题中的-kkt-能证明全局最优" id="toc-为什么凸问题中的-kkt-能证明全局最优" class="nav-link" data-scroll-target="#为什么凸问题中的-kkt-能证明全局最优"><span class="header-section-number">5.2.1</span> 为什么凸问题中的 KKT 能证明全局最优</a></li>
-  </ul></li>
-  <li><a href="#硬间隔完整的-kkt-与对偶推导" id="toc-硬间隔完整的-kkt-与对偶推导" class="nav-link" data-scroll-target="#硬间隔完整的-kkt-与对偶推导"><span class="header-section-number">5.3</span> 硬间隔：完整的 KKT 与对偶推导</a>
-  <ul class="collapse">
-  <li><a href="#如何恢复硬间隔的截距" id="toc-如何恢复硬间隔的截距" class="nav-link" data-scroll-target="#如何恢复硬间隔的截距"><span class="header-section-number">5.3.1</span> 如何恢复硬间隔的截距</a></li>
-  </ul></li>
+  <li><a href="#从约束优化到拉格朗日函数" id="toc-从约束优化到拉格朗日函数" class="nav-link active" data-scroll-target="#从约束优化到拉格朗日函数"><span class="header-section-number">5.1</span> 从约束优化到拉格朗日函数</a></li>
+  <li><a href="#什么是-kkt-点" id="toc-什么是-kkt-点" class="nav-link" data-scroll-target="#什么是-kkt-点"><span class="header-section-number">5.2</span> 什么是 KKT 点</a></li>
+  <li><a href="#硬间隔完整的-kkt-与对偶推导" id="toc-硬间隔完整的-kkt-与对偶推导" class="nav-link" data-scroll-target="#硬间隔完整的-kkt-与对偶推导"><span class="header-section-number">5.3</span> 硬间隔：完整的 KKT 与对偶推导</a></li>
   <li><a href="#软间隔松弛变量怎样产生盒约束" id="toc-软间隔松弛变量怎样产生盒约束" class="nav-link" data-scroll-target="#软间隔松弛变量怎样产生盒约束"><span class="header-section-number">5.4</span> 软间隔：松弛变量怎样产生盒约束</a></li>
-  <li><a href="#软间隔的完整-kkt-条件" id="toc-软间隔的完整-kkt-条件" class="nav-link" data-scroll-target="#软间隔的完整-kkt-条件"><span class="header-section-number">5.5</span> 软间隔的完整 KKT 条件</a>
-  <ul class="collapse">
-  <li><a href="#三类系数逐步推出来" id="toc-三类系数逐步推出来" class="nav-link" data-scroll-target="#三类系数逐步推出来"><span class="header-section-number">5.5.1</span> 三类系数逐步推出来</a></li>
-  <li><a href="#没有自由支持向量时怎样求-b" id="toc-没有自由支持向量时怎样求-b" class="nav-link" data-scroll-target="#没有自由支持向量时怎样求-b"><span class="header-section-number">5.5.2</span> 没有自由支持向量时，怎样求 b</a></li>
-  <li><a href="#原始对偶间隙给出可检查的证书" id="toc-原始对偶间隙给出可检查的证书" class="nav-link" data-scroll-target="#原始对偶间隙给出可检查的证书"><span class="header-section-number">5.5.3</span> 原始—对偶间隙给出可检查的证书</a></li>
-  </ul></li>
-  <li><a href="#两个变量足够进行一次更新" id="toc-两个变量足够进行一次更新" class="nav-link" data-scroll-target="#两个变量足够进行一次更新"><span class="header-section-number">5.6</span> 两个变量足够进行一次更新</a>
-  <ul class="collapse">
-  <li><a href="#为什么这个更新就是一维二次函数的最优点" id="toc-为什么这个更新就是一维二次函数的最优点" class="nav-link" data-scroll-target="#为什么这个更新就是一维二次函数的最优点"><span class="header-section-number">5.6.1</span> 为什么这个更新就是一维二次函数的最优点</a></li>
-  </ul></li>
+  <li><a href="#软间隔的完整-kkt-条件" id="toc-软间隔的完整-kkt-条件" class="nav-link" data-scroll-target="#软间隔的完整-kkt-条件"><span class="header-section-number">5.5</span> 软间隔的完整 KKT 条件</a></li>
+  <li><a href="#两个变量足够进行一次更新" id="toc-两个变量足够进行一次更新" class="nav-link" data-scroll-target="#两个变量足够进行一次更新"><span class="header-section-number">5.6</span> 两个变量足够进行一次更新</a></li>
   <li><a href="#点击样本检查-kkt拖动步骤回放-smo" id="toc-点击样本检查-kkt拖动步骤回放-smo" class="nav-link" data-scroll-target="#点击样本检查-kkt拖动步骤回放-smo"><span class="header-section-number">5.7</span> 点击样本，检查 KKT；拖动步骤，回放 SMO</a></li>
   <li><a href="#练习与解答" id="toc-练习与解答" class="nav-link" data-scroll-target="#练习与解答"><span class="header-section-number">5.8</span> 练习与解答</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-geometry.html">理解间隔</a></li><li class="breadcrumb-item"><a href="../chapters/03-duality-smo.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-body">
+<div class="quarto-title-meta">
 
     
   
@@ -623,10 +582,15 @@ Platt, John. 1998年. <em>Sequential Minimal Optimization: A Fast Algorithm for 
 
 </main> <!-- /main -->
 <script>
+
 document.addEventListener('shown.bs.tab',function(){
+
   document.querySelectorAll('.js-plotly-plot').forEach(function(p){if(p.offsetWidth) Plotly.Plots.resize(p);});
+
 });
+
 </script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1032,7 +996,7 @@ document.addEventListener('shown.bs.tab',function(){
     }
   });
   </script>
-<nav class="page-navigation column-body">
+<nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../chapters/02-soft-margin.html" class="pagination-link" aria-label="软间隔、损失与正则化">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">软间隔、损失与正则化</span></span>

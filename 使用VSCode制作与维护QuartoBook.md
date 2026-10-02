@@ -300,7 +300,7 @@ powershell -ExecutionPolicy Bypass -File scripts/book.ps1 validate
 
 ## 15. 本次视觉与推导调整的维护入口
 
-本教程以桌面阅读为主。`_quarto.yml` 的 `grid.body-width` 为 1160px，图形在 `assets/tutorial.js` 中统一设置二维几何图高度 860px、三维图高度 800px、其他实验图高度 560px；等比例坐标需要足够高度，单纯拉宽容器不会让正方形绘图区同步变宽。
+本教程以桌面阅读为主。`_quarto.yml` 的 `grid.body-width` 为 1040px，图形在 `assets/tutorial.js` 中统一设置二维几何图高度 860px、三维图高度 800px、其他实验图高度 560px；等比例坐标需要足够高度，单纯拉宽容器不会让正方形绘图区同步变宽。
 
 指标卡片由 `renderStats(el, entries, note)` 生成。每项写成 `[标签, 数值]`；加第三项 `true` 可横跨三列，例如范数或最终分类结果。补充说明单独放在 `note`，配色、字号和边框统一在 `assets/book.css` 的 `.stat-card` 中维护。
 
@@ -318,3 +318,17 @@ powershell -ExecutionPolicy Bypass -File scripts/book.ps1 validate
 新增对照实验和重复评估的训练代码在 `scripts/experiments.py`，交互在 `assets/experiments-ui.js`。运行 `python scripts/experiments.py` 更新CSV、划分记录与 `assets/experiments.json/js`；常规 `prepare` 也会调用它。然后重新构建HTML。页面容器使用 `data-experiment="scaling|imbalance|calibration|repeated|smo"`，切换对照不会触发实时训练。
 
 教学SMO的 `record_history=True` 保存每次成功更新后的系数、法向量、截距、目标与残差。浏览器重放真实记录，初始状态的w=0不画边界。新增测试检查每步约束与对偶单调性；浏览器验收覆盖每个步骤和样本选择。重复评估CSV包含参数、CV分数、外层分数及划分哈希，JSON保存外层和内层验证ID。
+
+
+## 17. 居中正文与双侧目录
+
+布局参考 [simple-ml-code 的章节页面](https://acgpp.github.io/simple-ml-code/chapters/chapter6.html)：左侧是教程章节列表，右侧是当前章节的二级标题，正文位于中间。保留 Quarto Book 的搜索、编号、交叉引用和语言标签页。
+
+- `_quarto.yml`：`book.chapters` 使用平铺章节；`book.sidebar` 设置左侧标题；`book.navbar` 设置首页、教程和 GitHub 链接；`toc-title` 与 `toc-depth` 设置右侧目录。
+- `assets/book.css`：`--tutorial-body-width` 是正文最大宽度（1040px），`--tutorial-nav-width` 是两侧导航的等宽区域（270px），`--tutorial-gutter` 是正文与目录之间的留白（32px）。同步修改 YAML 的 grid 参数与这些变量。
+- 桌面窗口宽度达到 1200px 时，两侧导航占用等宽区域，使正文中心与窗口中心重合；大窗口增加外围留白，正文不会无限拉长。中等窗口收起右侧目录，为正文保留空间。
+- 图表使用 `width:100%` 和 `min-width:0`，不再用固定最小宽度撑开正文。Plotly 的窗口变化事件会更新图表宽度，语言标签页切换仍会触发尺寸更新。
+
+构建后可运行 `python scripts/layout_check.py` 检查 1280、1440、1920、2560px 窗口下的正文居中、目录位置、页面溢出、目录锚点和图表缩放。此命令需要可选的 Playwright 开发依赖与本机 Chrome，结果保存至 `reports/layout-validation.json`。
+
+已发布站点：[SVM 教程](https://zhao-zhi-xing.github.io/svm-tutorial/)。源码提交并推送后，在教程根目录执行 `powershell -ExecutionPolicy Bypass -File scripts/book.ps1 render`，再执行 `quarto publish gh-pages --no-render` 更新网站；Quarto 未加入 PATH 时可使用 `.tools/runtime-path.txt` 中记录的完整路径。

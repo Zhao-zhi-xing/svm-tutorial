@@ -6,6 +6,7 @@
     "section": "",
     "text": "0.1 先观察，再推导\n本教程由赵知行 2024 年的 SVM 学习笔记重构。旧版以 R 和 ISL 为主线；新版补写 Python 实验，统一符号和推导，强化多分类与实验方法，并加入可操作的交互图。基础参考为 ISL、CS229 和 Support Vector Machines Succinctly (James 等 2023年; Ng, 不详; Kowalczyk 2017年)。\n试着调整下面的法向量角度和截距。选择一个样本，观察它与超平面的距离。你现在操作的是一条手动设置的直线；学完后，我们会用优化算法找到符合约束的最大间隔解。",
     "crumbs": [
+      "首页",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>从一条分隔线开始</span>"
     ]
   },
@@ -16,6 +17,7 @@
     "section": "",
     "text": "超平面探索\n调整滑块；虚线表示 f(x)=±1。图右上角可缩放、复位和导出图片。",
     "crumbs": [
+      "首页",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>从一条分隔线开始</span>"
     ]
   },
@@ -26,6 +28,7 @@
     "section": "0.2 怎样读本教程",
     "text": "0.2 怎样读本教程\n\n第一次学 SVM：先运行纯Python入门Notebook，再按目录顺序读到多分类，每章先操作图，再看公式，最后做练习。\n想写 Python/R 程序：重点读建模流程和案例。语言标签页可以切换代码与结果；数据划分在两种语言之间共享。\n想继续研究：读现代学习章节，先理解经典核近似与最大间隔，再查看近期文献的假设和局限。\n想学习 Quarto：阅读写作章节，并下载 完整 Markdown 制作指南。\n\n需要的先修知识是向量内积、范数、基本微积分，以及训练集/测试集的概念。拉格朗日对偶和 KKT 会在本教程中重新解释。",
     "crumbs": [
+      "首页",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>从一条分隔线开始</span>"
     ]
   },
@@ -36,6 +39,7 @@
     "section": "0.3 统一符号与实验约定",
     "text": "0.3 统一符号与实验约定\n样本为 \\(x_i\\in\\mathbb R^p\\)，二分类标签为 \\(y_i\\in\\{-1,+1\\}\\)，训练样本数为 \\(n\\)。线性分数函数为 \\(f(x)=w^Tx+b\\)，预测按分数符号决定；多分类案例另用整数类别编号。\n公式中的 \\(C\\) 表示误差惩罚系数，数值越大意味着相对于范数惩罚更重视训练损失。它与一些 ISL 图示中“松弛预算”的 \\(C\\) 含义不同，不能直接比较大小。\n默认实验固定随机种子为 42，将数据行、训练/测试划分和训练集的五折编号保存为 CSV。预计算交互图展示有限的参数组合，不在浏览器中实时训练模型。测试集的指标用于解释泛化表现；调参只依据训练集交叉验证。",
     "crumbs": [
+      "首页",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>从一条分隔线开始</span>"
     ]
   },
@@ -46,6 +50,7 @@
     "section": "0.4 SVM 还值得学吗？",
     "text": "0.4 SVM 还值得学吗？\n值得。它提供了一条可以从几何一直追到优化、统计学习和算法实现的完整路径。SVM 是否适合某个实际任务，则取决于数据规模、特征表示、预算和评价协议。现代深度模型扩大了可学习表示的能力；小数据也出现 TabPFN 等基础模型。我们会通过实验和文献讨论这些变化，不预设某种方法总能胜出。\n本教程研究资料检索截至 2026 年 10 月 2 日。研究章节是有代表性的导读，不是覆盖所有 SVM 变体的系统综述。原笔记的迁移、纠错和图片处理见 迁移说明。\n\n\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, Robert Tibshirani, 和 Jonathan Taylor. 2023年. An Introduction to Statistical Learning with Applications in Python. Springer. https://doi.org/10.1007/978-3-031-38747-0.\n\n\nKowalczyk, Alexandre. 2017年. Support Vector Machines Succinctly. Syncfusion. https://www.syncfusion.com/succinctly-free-ebooks/support-vector-machines-succinctly.\n\n\nNg, Andrew. 不详. CS229 Lecture Notes: Support Vector Machines. Stanford University. https://cs229.stanford.edu/notes/cs229-notes3.pdf.",
     "crumbs": [
+      "首页",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>从一条分隔线开始</span>"
     ]
   },
@@ -56,6 +61,7 @@
     "section": "",
     "text": "2.1 下载并运行\n本章适合第一次上手。配套Notebook只使用Python、scikit-learn、NumPy、pandas与Plotly，不导入本项目的 lab 辅助模块，不读取其他章节状态，不需要R，也不下载外部数据。Iris从scikit-learn内置数据加载。\n下载完整入门Notebook。在VS Code打开它，选择项目 .venv 的Python内核，点击“全部运行”。也可以复制到任意目录，在自己安装好依赖的Python环境中运行。\nNotebook目录同时交付依赖清单，单独下载Notebook后可按该清单安装。VS Code需要Python和Jupyter扩展；Quarto扩展用于编辑教程源码。生成HTML教程本身的双语言构建仍采用knitr+reticulate，纯Python Notebook的运行不依赖它。",
     "crumbs": [
+      "首页",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>第一次独立训练 SVM：纯 Python 入门</span>"
     ]
   },
@@ -66,6 +72,7 @@
     "section": "",
     "text": "python -m pip install -r requirements.txt\npython -m pip install -r requirements-notebook.txt",
     "crumbs": [
+      "首页",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>第一次独立训练 SVM：纯 Python 入门</span>"
     ]
   },
@@ -76,6 +83,7 @@
     "section": "2.2 实验完整展开的流程",
     "text": "2.2 实验完整展开的流程\n\n载入150个Iris样本及4个数值特征，保留原始行ID。\n分层划分105个训练样本、45个测试样本，验证ID互不重叠。\n使用 Pipeline(StandardScaler, SVC)，每个训练折独立标准化。\n训练集内五折交叉验证选择C与γ，共9种配置。\n参数确定后才计算测试accuracy、macro-F1、混淆矩阵与错误样本。\n用Plotly显示混淆矩阵、CV参数热图；保留每个参数的均值与标准差。\n\nNotebook中的导入、数据、模型、搜索、评估和绘图均完整展开。它在干净Python内核中从头执行并保留结果，方便核对。",
     "crumbs": [
+      "首页",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>第一次独立训练 SVM：纯 Python 入门</span>"
     ]
   },
@@ -86,6 +94,7 @@
     "section": "2.3 先读懂三个输出",
     "text": "2.3 先读懂三个输出\n最佳CV分数来自训练集内部，测试分数来自未参与选参的45个样本。两者对应不同问题；不要在查看测试表现后继续改参数，再把同一测试集称为最终评估。\n混淆矩阵的行是真实类别，列是预测类别。训练模型使用全部4个特征；本例没有用二维散点冒充四维决策边界。支持向量数量是模型结构信息，不能替代测试指标。",
     "crumbs": [
+      "首页",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>第一次独立训练 SVM：纯 Python 入门</span>"
     ]
   },
@@ -96,6 +105,7 @@
     "section": "2.4 修改练习",
     "text": "2.4 修改练习\n先预测增大C可能造成什么变化，再改变一个预先规定的网格，完整重新执行。记录选参结果，说明实验协议的改变。若反复尝试导致测试集参与决策，应另设最终评估数据。继续阅读软间隔、核方法和重复评估章节，将程序与原理对应起来。",
     "crumbs": [
+      "首页",
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>第一次独立训练 SVM：纯 Python 入门</span>"
     ]
   },
@@ -106,7 +116,7 @@
     "section": "",
     "text": "3.1 分数函数和法向量\n本章目标：说清分数、函数间隔和几何间隔的区别，并把最大间隔问题写成凸优化。可以先回到首页操作超平面图，再用下面的公式解释观察结果。\n二维直线 \\(w_1x_1+w_2x_2+b=0\\) 把平面分成两半；在 \\(p\\) 维空间，它是一个 \\(p-1\\) 维仿射超平面（要求 \\(w\\ne0\\)）。\\(w\\) 垂直于超平面，\\(b\\) 决定它的平移。\\(f(x)\\) 的正负给出所在侧，但它的绝对值尚不能当成距离。\n例如，\\(f(x)=x_1+x_2-1\\) 与 \\(10f(x)\\) 给出完全相同的分隔线，却输出相差十倍的分数。分类边界具有尺度不确定性。这正是引入几何间隔的原因。",
     "crumbs": [
-      "理解间隔",
+      "首页",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>超平面与最大间隔</span>"
     ]
   },
@@ -117,7 +127,7 @@
     "section": "3.2 函数间隔与几何间隔",
     "text": "3.2 函数间隔与几何间隔\n单个样本的函数间隔为\n\\[\\hat\\gamma_i=y_i(w^Tx_i+b). \\tag{3.1}\\]\n正值表示分类正确，负值表示分类错误；正值越大不能脱离 \\(w\\) 的尺度解释。把 \\(x_i\\) 沿法向量投影到超平面：\n\\[x_i^{\\perp}=x_i-\\frac{w^Tx_i+b}{\\|w\\|^2}w.\\]\n由投影公式得到带符号几何间隔\n\\[\\gamma_i=\\frac{y_i(w^Tx_i+b)}{\\|w\\|},\\qquad\n\\operatorname{dist}(x_i,H)=\\frac{|w^Tx_i+b|}{\\|w\\|}. \\tag{3.2}\\]\n几何间隔同时考虑距离和正确侧，而无符号距离只回答“离线多远”。正比例缩放 \\((w,b)\\) 不改变 式 3.2；负比例缩放会反转类别，因此不能等同处理。\n\n\n\n\n\n\n注记\n\n\n\n首页图把 \\(\\|w\\|\\) 固定为 1，因此 \\(|f(x)|\\) 恰好是距离。一般模型没有这个约定，不能照搬这个结论。\n\n\n\n3.2.1 投影公式的推导\n最短位移必须沿法向量，写成 \\(x_i^\\perp=x_i-tw\\)。代入平面方程，\n\\[0=w^T(x_i-tw)+b=w^Tx_i+b-t\\|w\\|^2,\\]\n所以 \\(t=(w^Tx_i+b)/\\|w\\|^2\\)，位移长度为 \\(|t|\\|w\\|\\)。这直接得到距离公式，而不是把分数的绝对值凭直觉当作距离。两条平行平面 \\(w^Tx+b=c_1,c_2\\) 的距离同理为 \\(|c_1-c_2|/\\|w\\|\\)。",
     "crumbs": [
-      "理解间隔",
+      "首页",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>超平面与最大间隔</span>"
     ]
   },
@@ -128,7 +138,7 @@
     "section": "3.3 从最大间隔到硬间隔 SVM",
     "text": "3.3 从最大间隔到硬间隔 SVM\n对于线性可分的训练集，我们希望最大化最小的 \\(\\gamma_i\\)。利用正比例缩放，可以把最近样本的函数间隔定为 1：\n\\[y_i(w^Tx_i+b)\\ge1,\\quad i=1,\\ldots,n.\\]\n此时两条支撑超平面 \\(f(x)=+1\\) 与 \\(f(x)=-1\\) 的距离为 \\(2/\\|w\\|\\)。最大化间隔等价于最小化范数，得到\n\\[\\min_{w,b}\\frac12\\|w\\|^2\n\\quad\\text{s.t.}\\quad y_i(w^Tx_i+b)\\ge1. \\tag{3.3}\\]\n范数平方是凸函数，约束是仿射不等式，因此这是凸二次规划。不要把“凸”理解为所有参数都严格唯一：\\(w\\) 的目标严格凸，\\(b\\) 没有被惩罚，截距的唯一性需要结合数据和最优约束判断。\n\n3.3.1 归一化与最大间隔之间的每一步\n设一个分隔解的最小函数间隔为 \\(m=\\min_i y_i(w^Tx_i+b)&gt;0\\)。将 \\((w,b)\\) 同除以 \\(m\\)，最近样本的函数间隔变为1，几何间隔保持不变。规范化后单侧最小间隔是 \\(1/\\|w\\|\\)，两侧总宽度是 \\(2/\\|w\\|\\)：\n\\[\\max\\frac{2}{\\|w\\|}\\ \\Longleftrightarrow\\ \\min\\|w\\|\\ \\Longleftrightarrow\\ \\min\\frac12\\|w\\|^2,\\]\n等价性用到范数为正，以及平方在非负数上单调。若最优解的所有约束都严格大于1，可以再缩小 \\((w,b)\\) 降低目标，产生矛盾，因此至少一个约束活跃。这里“最大”来自优化后的解，不能把首页手动设置的两条 \\(f=\\pm1\\) 参考线直接称为最大间隔。",
     "crumbs": [
-      "理解间隔",
+      "首页",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>超平面与最大间隔</span>"
     ]
   },
@@ -139,7 +149,7 @@
     "section": "3.4 为什么关注支持向量",
     "text": "3.4 为什么关注支持向量\n硬间隔最优解中，非零对偶系数对应的支持向量位于两侧间隔边界，决定最优约束结构。反过来，边界上的样本在退化情形下也可能有零系数，因此不能把最近点与支持向量无条件等同。远处非支持向量在保持最优约束结构时，小幅移动通常不会改变解；但删改大量样本或移动到间隔内仍可能改变最优解，不能说 SVM 对所有远点永远不敏感。\n硬间隔要求严格线性可分，单个异常点也可能迫使间隔大幅收缩。如果类别重叠，它甚至没有可行解。下一章引入软间隔，把不可行或脆弱的要求变成可调的损失。",
     "crumbs": [
-      "理解间隔",
+      "首页",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>超平面与最大间隔</span>"
     ]
   },
@@ -150,7 +160,7 @@
     "section": "3.5 练习与解答",
     "text": "3.5 练习与解答\n\n对 \\(w=(3,4), b=-5, x=(1,1), y=+1\\)，计算 \\(f(x)\\)、函数间隔、几何间隔和距离。\n如果把 \\((w,b)\\) 乘 2，上述哪些量改变？\n为什么 式 3.3 不需要额外写 \\(\\min_i\\hat\\gamma_i=1\\)？\n\n\n\n\n\n\n\n提示参考解答\n\n\n\n\n\n\n分数为 2，函数间隔为 2，\\(\\|w\\|=5\\)，几何间隔和距离均为 0.4。\n分数、函数间隔和范数加倍；几何间隔、距离与边界不变。\n如果所有约束都严格大于 1，适当缩小 \\((w,b)\\) 仍可行且能降低目标。因此非退化可分问题的最优解会有活跃约束。\n\n\n\n\n本章推导可对照 CS229 的 margin 部分与 ISL 的 maximal margin classifier (Ng, 不详; James 等 2023年)。\n\n\n\n\nJames, Gareth, Daniela Witten, Trevor Hastie, Robert Tibshirani, 和 Jonathan Taylor. 2023年. An Introduction to Statistical Learning with Applications in Python. Springer. https://doi.org/10.1007/978-3-031-38747-0.\n\n\nNg, Andrew. 不详. CS229 Lecture Notes: Support Vector Machines. Stanford University. https://cs229.stanford.edu/notes/cs229-notes3.pdf.",
     "crumbs": [
-      "理解间隔",
+      "首页",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>超平面与最大间隔</span>"
     ]
   },
@@ -161,7 +171,7 @@
     "section": "",
     "text": "4.1 松弛变量允许什么\n本章目标：解释松弛变量，把几何约束转为 hinge loss，并正确理解参数 \\(C\\)。软间隔容许训练错误，目的是在训练拟合与函数复杂度之间作选择。\n引入 \\(\\xi_i\\ge0\\)，把硬约束改为 \\(y_if(x_i)\\ge1-\\xi_i\\)：\n\\[\\min_{w,b,\\xi}\\frac12\\|w\\|^2+C\\sum_{i=1}^n\\xi_i,\n\\quad y_if(x_i)\\ge1-\\xi_i,\\quad\\xi_i\\ge0. \\tag{4.1}\\]\n在最优解处，\\(\\xi_i=\\max(0,1-y_if(x_i))\\)。按分数理解三种情况：\n这不是把每个错误点直接“丢掉”。错误越深，hinge 损失越大。软间隔仍可能受到异常值和错误标签的影响。",
     "crumbs": [
-      "理解间隔",
+      "首页",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>软间隔、损失与正则化</span>"
     ]
   },
@@ -172,7 +182,7 @@
     "section": "",
     "text": "\\(y_if(x_i)\\ge1\\)：在间隔之外或边界上，松弛为 0。\n\\(0&lt;y_if(x_i)&lt;1\\)：分类正确，但进入间隔，\\(0&lt;\\xi_i&lt;1\\)。\n\\(y_if(x_i)&lt;0\\)：分类错误，\\(\\xi_i&gt;1\\)。\\(y_if(x_i)=0\\) 位于决策边界。",
     "crumbs": [
-      "理解间隔",
+      "首页",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>软间隔、损失与正则化</span>"
     ]
   },
@@ -183,7 +193,7 @@
     "section": "4.2 操作 \\(C\\)，观察折中",
     "text": "4.2 操作 \\(C\\)，观察折中\n\n\n\n\n软间隔实验：训练损失与间隔\n深蓝粗实线是决策边界，绿/橙虚线是两侧间隔线；空心圈为支持向量。可点击图例分别隐藏线条。模型先标准化再训练，图显示原始坐标。\n\n\n\n\n图 4.1: 软间隔线性 SVM 的参数探索。\n\n\n\n在 图 4.1 中，\\(C\\) 越大，训练损失相对于范数惩罚越重要；\\(C\\) 越小，模型更愿意接受损失。线性固定数据下，这会影响间隔，但不能断言每个数据集的错误数、支持向量数或测试精度都严格单调。\n\n\n\n\n\n\n警告两个 C 不要混淆\n\n\n\nISL 的某些几何推导采用 \\(\\sum_i\\xi_i\\le C\\) 的松弛预算，预算越大允许的违约越多。本教程和 scikit-learn/e1071 使用的是损失项前的惩罚系数，大 \\(C\\) 更重视拟合。两者的方向相反。",
     "crumbs": [
-      "理解间隔",
+      "首页",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>软间隔、损失与正则化</span>"
     ]
   },
@@ -194,7 +204,7 @@
     "section": "4.3 Hinge loss 与逻辑损失",
     "text": "4.3 Hinge loss 与逻辑损失\n消去 \\(\\xi\\)，式 4.1 等价于\n\\[\\min_{w,b}\\frac12\\|w\\|^2+C\\sum_i\\max(0,1-y_if(x_i)).\\]\n若另一篇文献写成 \\(\\frac\\lambda2\\|w\\|^2+\\frac1n\\sum_i\\ell_i\\)，则在相同模型、相同损失下 \\(\\lambda=1/(nC)\\)。如果正则项没有 \\(1/2\\)，常数还会改变。必须比较完整目标，而不只是参数名。\nprint(lab.figure_html(lab.loss_plot(), 'loss-comparison'))\n\n\n\n\n逻辑损失为 \\(\\log(1+e^{-yf})\\)，在所有有限分数处均有梯度；hinge 在 \\(yf&gt;1\\) 后为 0，导数也为 0。两者都鼓励正确的带符号分数，但 hinge 在 \\(yf=1\\) 不可微，需要次梯度或专门求解器。逻辑回归提供概率模型，SVM 的原始分数没有概率含义。\n\n4.3.1 从松弛变量消去到次梯度\n固定 \\(w,b\\)，两个约束等价于 \\(\\xi_i\\ge\\max(0,1-y_if(x_i))\\)。因为 \\(C&gt;0\\)，目标随每个 \\(\\xi_i\\) 单调增加，最优时必取这个下界；代回才得到 hinge 形式。若 \\(C=0\\)，这一步关于唯一最小松弛的结论就不能照搬。\n记 \\(m=yf(x)\\)，hinge 的次微分为\n\\[\\partial_m\\max(0,1-m)=\\begin{cases}\\{-1\\},&m&lt;1,\\\\{[-1,0]},&m=1,\\\\\\{0\\},&m&gt;1.\\end{cases}\\]\n令 \\(s_i=1\\)（\\(m_i&lt;1\\)）、\\(s_i=0\\)（\\(m_i&gt;1\\)），在 \\(m_i=1\\) 时选 \\(s_i\\in[0,1]\\)，则原始目标的最优次梯度条件为\n\\[w=C\\sum_i s_i y_ix_i,\\qquad\\sum_i s_i y_i=0.\\]\n令 \\(\\alpha_i=Cs_i\\) 就对应下一章的 \\(0\\le\\alpha_i\\le C\\) 与三类 KKT 状态。这也解释了为何间隔之外的点不再贡献 hinge 梯度，而处在拐点的样本可以有不同对偶系数。\n\n\n4.3.2 正则参数转换与 0–1 图的边界约定\n将 \\(\\frac12\\|w\\|^2+C\\sum_i\\ell_i\\) 整体除以正数 \\(nC\\)，最优点不变，得到 \\(\\frac{1}{2nC}\\|w\\|^2+\\frac1n\\sum_i\\ell_i\\)，因而 \\(\\lambda=1/(nC)\\)。总损失、平均损失和正则项的常数必须一起核对。\n本图约定零分数也计作错误，\\(\\ell_{01}(m)=\\mathbf1\\{m\\le0\\}\\)。因此零点左侧为1、右侧为0，不能在两个采样点之间画斜坡。阶跃图的竖线仅连接两侧极限，不表示零点的损失能取0到1之间的任意值；实心点表示 \\(\\ell_{01}(0)=1\\)，空心点表示右极限0。它的断点在0，hinge 的拐点在1，二者不要混淆。\n对 \\(m\\le0\\)，\\(\\max(0,1-m)\\ge1\\)；对 \\(m&gt;0\\)，0–1为0而hinge非负。因此 hinge 是该0–1损失的凸上界。逻辑损失在0处为 \\(\\log2&lt;1\\)，本图未缩放的逻辑损失不是同样的逐点上界；除以 \\(\\log2\\) 后才满足这一上界比较。",
     "crumbs": [
-      "理解间隔",
+      "首页",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>软间隔、损失与正则化</span>"
     ]
   },
@@ -205,7 +215,7 @@
     "section": "4.4 R 对应实验",
     "text": "4.4 R 对应实验\n下面的核心二分类实验在两种语言中使用相同 CSV 和保存的训练折；R 使用 e1071，Python 使用 SVC，二者都基于 LIBSVM。你可以检查同样的参数设置产生何种结果。\n\nPythonR\n\n\n\ndf = lab.load_data('linear')\ntrain = df[df.split == 'train']\ntest = df[df.split == 'test']\nmodel = lab.Pipeline([\n    ('scale', lab.StandardScaler()),\n    ('svm', lab.SVC(C=1, kernel='linear'))\n]).fit(train[['x1', 'x2']], train.target)\nprediction = model.predict(test[['x1', 'x2']])\nprint('测试 accuracy:', lab.accuracy_score(test.target, prediction))\n\n测试 accuracy: 1.0\n\nprint('支持向量数:', model.named_steps['svm'].n_support_.sum())\n\n支持向量数: 19\n\n\nprint(lab.figure_html(lab.binary_plot(), 'linear-python'))\n\n\n\n\n\n\n\ndf &lt;- read.csv('data/linear.csv')\ntrain &lt;- df[df$split=='train', ]; test &lt;- df[df$split=='test', ]\nfeatures &lt;- c('x1','x2')\nstate &lt;- fit_preprocessor(train[features])\nmodel &lt;- e1071::svm(x=transform_features(train[features],state),\n  y=factor(train$target), kernel='linear', cost=1, scale=FALSE)\nprediction &lt;- predict(model,transform_features(test[features],state))\ncat('测试 accuracy:',mean(as.character(prediction)==test$target), '\\n')\n\n测试 accuracy: 1 \n\ncat('支持向量数:',nrow(model$SV), '\\n')\n\n支持向量数: 19 \n\n\ncat(binary_html_r(id='linear-r'))",
     "crumbs": [
-      "理解间隔",
+      "首页",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>软间隔、损失与正则化</span>"
     ]
   },
@@ -216,7 +226,7 @@
     "section": "4.5 练习与解答",
     "text": "4.5 练习与解答\n\n\\(yf=-0.3\\) 时，最优松弛和 hinge loss 是多少？\n在同一个 \\(C\\) 下扩大训练样本数，为什么总损失和平均损失目标不能直接视为一样？\n操作上图，寻找一个支持向量数量变化、测试 accuracy 却不变的参数组合。\n\n\n\n\n\n\n\n提示参考解答\n\n\n\n\n\n\n均为 1.3。\n本教程损失是求和，样本数增大改变它相对于范数项的尺度；平均损失形式需要相应转换正则参数。\n支持向量数是模型结构信息，不是测试精度的充分统计量。根据图中实际结果解释，不要求固定答案。",
     "crumbs": [
-      "理解间隔",
+      "首页",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>软间隔、损失与正则化</span>"
     ]
   },
@@ -227,7 +237,7 @@
     "section": "",
     "text": "5.1 从约束优化到拉格朗日函数\n本章目标：推导软间隔对偶、解释三类对偶系数，并运行一个可读的 SMO。先理解约束如何产生支持向量，再阅读程序会更容易。\n这里恢复原笔记中“原始问题 → 对偶问题 → KKT 点 → 恢复参数”的完整推导，并同时讨论硬间隔与软间隔。统一用 \\(\\mu_i\\) 表示松弛非负约束的乘子，避免与几何间隔 \\(\\gamma\\) 混淆。",
     "crumbs": [
-      "理解间隔",
+      "首页",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>对偶、KKT 与 SMO</span>"
     ]
   },
@@ -238,7 +248,7 @@
     "section": "",
     "text": "5.1.1 为什么给约束配一个乘子\n先看一般问题，记全部原始变量为 \\(u\\)：\n\\[\\min_u f_0(u),\\qquad g_i(u)\\le0,\\quad h_j(u)=0.\\]\n定义\n\\[L(u,\\alpha,\\beta)=f_0(u)+\\sum_i\\alpha_i g_i(u)+\\sum_j\\beta_jh_j(u),\\qquad \\alpha_i\\ge0,\\quad\\beta_j\\in\\mathbb R.\\]\n不等式乘子限制非负，等式乘子没有符号限制。固定 \\(u\\)，考虑 \\(\\theta_P(u)=\\sup_{\\alpha\\ge0,\\beta}L(u,\\alpha,\\beta)\\)。若某个 \\(g_i(u)&gt;0\\)，让其乘子趋于 \\(+\\infty\\)；若某个 \\(h_j(u)\\ne0\\)，让 \\(\\beta_j\\) 沿对应符号发散。因此\n\\[\\theta_P(u)=\\begin{cases}f_0(u),&u\\text{ 可行},\\\\+\\infty,&u\\text{ 不可行}.\\end{cases}\\]\n于是原始问题可写为 \\(p^*=\\inf_u\\sup_{\\alpha\\ge0,\\beta}L\\)。使用 inf/sup 而非始终使用 min/max，是为了不预先假设最优值能够取到。\n\n\n5.1.2 弱对偶与强对偶是怎样得到的\n对偶函数是 \\(q(\\alpha,\\beta)=\\inf_uL(u,\\alpha,\\beta)\\)。任意原始可行 \\(u\\) 与对偶可行乘子满足\n\\[q(\\alpha,\\beta)\\le L(u,\\alpha,\\beta)\\le f_0(u),\\]\n所以 \\(d^*=\\sup_{\\alpha\\ge0,\\beta}q(\\alpha,\\beta)\\le p^*\\)。这就是弱对偶；并不要求凸性。不能把交换 inf/sup 当成普通的代数变形。\n若 \\(f_0,g_i\\) 凸、等式约束仿射，并满足适当约束资格条件，才可进一步得到强对偶。Slater 条件提供一个常用保证：存在满足等式且所有不等式严格成立的点。软间隔可直接取 \\(w=0,b=0,\\xi_i=2\\)，使 \\(1-\\xi_i-y_if(x_i)=-1&lt;0\\) 与 \\(-\\xi_i=-2&lt;0\\)。硬间隔则要求数据可分：将一个严格分隔解放大，便能令所有 \\(y_if(x_i)&gt;1\\)。此时 \\(d^*=p^*\\) (Boyd 和 Vandenberghe 2004年)。",
     "crumbs": [
-      "理解间隔",
+      "首页",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>对偶、KKT 与 SMO</span>"
     ]
   },
@@ -249,7 +259,7 @@
     "section": "5.2 什么是 KKT 点",
     "text": "5.2 什么是 KKT 点\nKKT 点包括原始变量和乘子，而不只是一个梯度为零的 \\(w\\)。对可微问题，四组条件为\n\\[\\begin{aligned}\n&\\text{原始可行：}&&g_i(u^*)\\le0,\\quad h_j(u^*)=0,\\\\\n&\\text{对偶可行：}&&\\alpha_i^*\\ge0,\\\\\n&\\text{驻点：}&&\\nabla f_0(u^*)+\\sum_i\\alpha_i^*\\nabla g_i(u^*)+\\sum_j\\beta_j^*\\nabla h_j(u^*)=0,\\\\\n&\\text{互补松弛：}&&\\alpha_i^*g_i(u^*)=0.\n\\end{aligned} \\tag{5.1}\\]\n互补松弛说明：约束若严格松弛，乘子必须为零；乘子若为正，约束必须活跃。反方向“约束活跃就必有正乘子”不成立，可能存在退化。\n\n5.2.1 为什么凸问题中的 KKT 能证明全局最优\n在凸性与仿射等式假设下，固定可行乘子后的 \\(L\\) 对 \\(u\\) 凸。驻点意味着 \\(u^*\\) 是 \\(L\\) 的全局最小点；互补松弛给出 \\(L(u^*,\\alpha^*,\\beta^*)=f_0(u^*)\\)。对任意原始可行 \\(u\\)，\n\\[f_0(u^*)=L(u^*,\\alpha^*,\\beta^*)\\le L(u,\\alpha^*,\\beta^*)\\le f_0(u).\\]\n这证明 KKT 的充分性。要保证最优点存在对应 KKT 乘子，即讨论必要性，还需要约束资格条件等假设；本教程的 SVM 使用前述 Slater 保证。非凸问题的 KKT 通常只有必要条件的意义，驻点可能是局部极大或鞍点，不能照搬这个全局最优证明。",
     "crumbs": [
-      "理解间隔",
+      "首页",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>对偶、KKT 与 SMO</span>"
     ]
   },
@@ -260,7 +270,7 @@
     "section": "5.3 硬间隔：完整的 KKT 与对偶推导",
     "text": "5.3 硬间隔：完整的 KKT 与对偶推导\n把 式 3.3 约束写成 \\(g_i=1-y_i(w^Tx_i+b)\\le0\\)：\n\\[L_H=\\frac12\\|w\\|^2+\\sum_i\\alpha_i[1-y_i(w^Tx_i+b)].\\]\n硬间隔的 KKT 条件是\n\\[\\begin{aligned}\n&w-\\sum_i\\alpha_iy_ix_i=0,\\qquad -\\sum_i\\alpha_i y_i=0,\\\\\n&y_i(w^Tx_i+b)\\ge1,\\qquad \\alpha_i\\ge0,\\\\\n&\\alpha_i[y_i(w^Tx_i+b)-1]=0\\quad(\\forall i).\n\\end{aligned} \\tag{5.2}\\]\n记 \\(S=\\sum_i\\alpha_i y_ix_i\\)，先整理再求下确界：\n\\[\\begin{aligned}\nL_H\n&=\\frac12\\|w\\|^2-w^TS-b\\sum_i\\alpha_i y_i+\\sum_i\\alpha_i\\\\\n&=\\frac12\\|w-S\\|^2-\\frac12\\|S\\|^2-b\\sum_i\\alpha_i y_i+\\sum_i\\alpha_i.\n\\end{aligned}\\]\n若 \\(\\sum_i\\alpha_i y_i\\ne0\\)，可以改变 \\(b\\) 使 \\(L_H\\to-\\infty\\)；若该和为零，\\(w\\) 的最小点为 \\(S\\)。因此\n\\[q_H(\\alpha)=\\begin{cases}\\displaystyle\\sum_i\\alpha_i-\\frac12\\sum_{i,j}\\alpha_i\\alpha_jy_iy_jx_i^Tx_j,&\\sum_i\\alpha_i y_i=0,\\\\-\\infty,&\\text{否则}.\\end{cases}\\]\n最终对偶是最大化上式的有限分支，约束为 \\(\\alpha_i\\ge0\\) 和 \\(\\sum_i\\alpha_i y_i=0\\)。硬间隔没有 \\(\\alpha_i\\le C\\) 这个上界。 由互补松弛，\\(\\alpha_i&gt;0\\Rightarrow y_if(x_i)=1\\)；边界上的点仍可能有 \\(\\alpha_i=0\\)，所以原笔记中的“当且仅当”需改为单向蕴含。\n\n5.3.1 如何恢复硬间隔的截距\n令 \\(\\mathcal S=\\{i:\\alpha_i&gt;0\\}\\)，对任意 \\(i\\in\\mathcal S\\)，\\(y_if(x_i)=1\\)，由于 \\(y_i^2=1\\)，\n\\[b_i=y_i-w^Tx_i,\\qquad b=\\frac1{|\\mathcal S|}\\sum_{i\\in\\mathcal S}b_i.\\]\n平均可减轻数值容差影响。在非退化、两类均出现的可分情形，等式约束要求两侧都有正系数，因而\n\\[\\min_{y_i=+1}w^Tx_i=1-b,\\qquad \\max_{y_i=-1}w^Tx_i=-1-b,\\]\n两式相加得到原笔记的另一种形式：\n\\[b=-\\frac{\\max_{y_i=-1}w^Tx_i+\\min_{y_i=+1}w^Tx_i}{2}.\\]\n这依赖硬间隔最优解及其归一化，不能直接套用到有间隔违约的软间隔。",
     "crumbs": [
-      "理解间隔",
+      "首页",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>对偶、KKT 与 SMO</span>"
     ]
   },
@@ -271,7 +281,7 @@
     "section": "5.4 软间隔：松弛变量怎样产生盒约束",
     "text": "5.4 软间隔：松弛变量怎样产生盒约束\n对 式 4.1 的两组不等式 \\(1-\\xi_i-y_if(x_i)\\le0\\)、\\(-\\xi_i\\le0\\) 引入 \\(\\alpha_i\\ge0\\)、\\(\\mu_i\\ge0\\)：\n\\[L_S=\\frac12\\|w\\|^2+C\\sum_i\\xi_i+\\sum_i\\alpha_i(1-\\xi_i-y_if(x_i))-\\sum_i\\mu_i\\xi_i.\\]\n分别求导：\n\\[\\nabla_w L_S=w-S=0,\\quad \\partial_bL_S=-\\sum_i\\alpha_i y_i=0,\\quad\\partial_{\\xi_i}L_S=C-\\alpha_i-\\mu_i=0.\\]\n从最后一式得到 \\(\\mu_i=C-\\alpha_i\\ge0\\)，所以 \\(\\alpha_i\\le C\\)。结合 \\(\\alpha_i\\ge0\\) 才是 \\(0\\le\\alpha_i\\le C\\)；原笔记中间写成 \\(\\alpha_i\\ge C\\) 的方向错误已纠正。\n将所有项按变量重组：\n\\[L_S=\\frac12\\|w-S\\|^2-\\frac12\\|S\\|^2+\\sum_i\\alpha_i-b\\sum_i\\alpha_i y_i+\\sum_i(C-\\alpha_i-\\mu_i)\\xi_i.\\]\n构造对偶时，对已用乘子表示约束的原始变量在全空间求下确界；若 \\(b\\) 或某个 \\(\\xi_i\\) 的线性系数不为零，下确界就是 \\(-\\infty\\)。系数为零时得到\n\\[\\max_\\alpha D(\\alpha)=\\sum_i\\alpha_i-\\frac12\\sum_{i,j}\\alpha_i\\alpha_jy_iy_jx_i^Tx_j,\\qquad\n0\\le\\alpha_i\\le C,\\quad \\sum_i\\alpha_i y_i=0. \\tag{5.3}\\]\n这里 \\(-b\\sum_i\\alpha_i y_i\\) 的符号应为负号，随后因等式约束消失；不要因为最后结果相同而跳过中间符号。令 \\(Q_{ij}=y_iy_jx_i^Tx_j\\)，则 \\(v^TQv=\\|\\sum_i v_i y_ix_i\\|^2\\ge0\\)，所以对偶目标的 Hessian 为 \\(-Q\\preceq0\\)，确实是凹二次规划。",
     "crumbs": [
-      "理解间隔",
+      "首页",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>对偶、KKT 与 SMO</span>"
     ]
   },
@@ -282,7 +292,7 @@
     "section": "5.5 软间隔的完整 KKT 条件",
     "text": "5.5 软间隔的完整 KKT 条件\n\\[\\begin{aligned}\n&\\text{驻点：}&&w=\\sum_i\\alpha_i y_ix_i,\\quad\\sum_i\\alpha_i y_i=0,\\quad C-\\alpha_i-\\mu_i=0,\\\\\n&\\text{原始可行：}&&y_if(x_i)\\ge1-\\xi_i,\\quad\\xi_i\\ge0,\\\\\n&\\text{对偶可行：}&&\\alpha_i\\ge0,\\quad\\mu_i\\ge0,\\\\\n&\\text{互补松弛：}&&\\alpha_i[1-\\xi_i-y_if(x_i)]=0,\\quad\\mu_i\\xi_i=0.\n\\end{aligned} \\tag{5.4}\\]\n\n5.5.1 三类系数逐步推出来\n\\(\\alpha_i=0\\)。 \\(\\mu_i=C&gt;0\\)，于是 \\(\\mu_i\\xi_i=0\\Rightarrow\\xi_i=0\\)。再用原始可行性，得到 \\(y_if(x_i)\\ge1\\)。通常是间隔外点，也可能恰好在边界上。\n\\(0&lt;\\alpha_i&lt;C\\)。 \\(\\mu_i&gt;0\\Rightarrow\\xi_i=0\\)；\\(\\alpha_i&gt;0\\) 又要求第一个约束取等号，所以 \\(y_if(x_i)=1\\)，是自由支持向量。\n\\(\\alpha_i=C\\)。 \\(\\mu_i=0\\) 不能单独推出 \\(\\xi_i\\) 的数值；但 \\(\\alpha_i&gt;0\\) 的互补松弛给出 等式 \\(y_if(x_i)=1-\\xi_i\\le1\\)。原笔记直接由 \\(y_if\\ge1-\\xi_i\\) 推出 \\(y_if\\le1\\) 并不成立，必须补上这一步等式。\n反过来，\\(y_if&gt;1\\Rightarrow\\alpha_i=0\\)；\\(y_if&lt;1\\Rightarrow\\alpha_i=C\\)；\\(y_if=1\\) 时系数可以取盒内任何允许值。边界等号是退化和数值容差最容易影响判断的地方。支持向量按非零系数定义，不是简单按“离线最近”定义。\n\n\n5.5.2 没有自由支持向量时，怎样求 b\n记 \\(h_i=\\sum_j\\alpha_jy_jK(x_j,x_i)\\)。若 \\(0&lt;\\alpha_i&lt;C\\)，则 \\(b=y_i-h_i\\)，可对这些样本求平均；不能对所有达到上界的支持向量都使用此式。\n若没有自由支持向量，用两种间隔不等式分别推导截距上下界：\n\\[\\begin{array}{ll}\n\\alpha_i=0,\\ y_i=+1:&b\\ge1-h_i,\\\\\n\\alpha_i=0,\\ y_i=-1:&b\\le-1-h_i,\\\\\n\\alpha_i=C,\\ y_i=+1:&b\\le1-h_i,\\\\\n\\alpha_i=C,\\ y_i=-1:&b\\ge-1-h_i.\n\\end{array}\\]\n汇总所有下界的最大值为 \\(b_{\\rm low}\\)、所有上界的最小值为 \\(b_{\\rm high}\\)。KKT 要求 \\(b\\in[b_{\\rm low},b_{\\rm high}]\\)；有限区间可取中点。若数值上区间倒置，应检查容差和优化残差，不应任意平均违约点。\n\n\n5.5.3 原始—对偶间隙给出可检查的证书\n对原始与对偶可行的变量，记 \\(m_i=y_if(x_i)\\)、\\(S=\\sum_i\\alpha_i y_ix_i\\)：\n\\[\\begin{aligned}\nP-D&=\\frac12\\|w\\|^2+C\\sum_i\\xi_i-\\sum_i\\alpha_i+\\frac12\\|S\\|^2\\\\\n&=\\frac12\\|w-S\\|^2+\\sum_i\\alpha_i(m_i-1+\\xi_i)+\\sum_i(C-\\alpha_i)\\xi_i\\ge0.\n\\end{aligned} \\tag{5.5}\\]\n每项均非负；驻点与互补松弛成立时恰好为零。这个分解把抽象 KKT 与实际检查联系起来：不但要看预测是否相同，还应看可行性、KKT 残差与原始—对偶间隙。",
     "crumbs": [
-      "理解间隔",
+      "首页",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>对偶、KKT 与 SMO</span>"
     ]
   },
@@ -293,7 +303,7 @@
     "section": "5.6 两个变量足够进行一次更新",
     "text": "5.6 两个变量足够进行一次更新\n若只改变一个 \\(\\alpha_i\\)，通常会破坏 \\(\\sum_i\\alpha_iy_i=0\\)；SMO 同时改变两个变量。令旧值为 \\(\\alpha_i,\\alpha_j\\)，更新后的关系为\n\\[\\alpha_i'=\\alpha_i+y_iy_j(\\alpha_j-\\alpha_j').\\]\n计算盒约束允许的 \\([L,H]\\)，再沿可行方向优化并截断。如果 \\(y_i\\ne y_j\\)，\n\\[L=\\max(0,\\alpha_j-\\alpha_i),\\quad H=\\min(C,C+\\alpha_j-\\alpha_i).\\]\n若 \\(y_i=y_j\\)，\n\\[L=\\max(0,\\alpha_i+\\alpha_j-C),\\quad H=\\min(C,\\alpha_i+\\alpha_j).\\]\n记 \\(E_i=f(x_i)-y_i\\) 和 \\(\\eta=K_{ii}+K_{jj}-2K_{ij}&gt;0\\)，则\n\\[\\alpha_j'=\\operatorname{clip}\\!\\left(\\alpha_j+\\frac{y_j(E_i-E_j)}\\eta,L,H\\right).\\]\n更新 \\(\\alpha_i\\) 和截距，然后继续扫描违反 KKT 的点。这里的 \\(\\eta\\) 使用正曲率约定，某些教材定义为其负值，公式符号也相应变化。\n\n5.6.1 为什么这个更新就是一维二次函数的最优点\n设 \\(t=\\alpha_j'\\)，用等式约束消去 \\(\\alpha_i'\\)，把对偶目标限制到这条可行直线上，记为 \\(\\psi(t)\\)。在旧点 \\(t_0=\\alpha_j\\)，\n\\[\\psi'(t_0)=y_j(E_i-E_j),\\qquad\n\\psi''(t)=-\\eta,\\qquad\\eta=K_{ii}+K_{jj}-2K_{ij}=\\|\\phi(x_i)-\\phi(x_j)\\|^2\\ge0.\\]\n\\(\\eta&gt;0\\) 时，令导数为零得到 \\(t=t_0+y_j(E_i-E_j)/\\eta\\)，再投影到盒约束区间 \\([L,H]\\)。若 \\(\\eta=0\\)，目标沿该方向为线性或常数，应比较端点；本教程的简化代码跳过这个退化分支，不能据此宣称对任意重复样本都收敛。\n截距更新也由边界条件推出来。令 \\(\\Delta\\alpha_i=\\alpha_i'-\\alpha_i\\)、\\(\\Delta\\alpha_j=\\alpha_j'-\\alpha_j\\)，若更新后第 \\(i\\) 个样本是自由支持向量，就要求 \\(f'(x_i)=y_i\\)，因此\n\\[b_1=b-E_i-y_i\\Delta\\alpha_iK_{ii}-y_j\\Delta\\alpha_jK_{ij}.\\]\n同理 \\(b_2=b-E_j-y_i\\Delta\\alpha_iK_{ij}-y_j\\Delta\\alpha_jK_{jj}\\)。代码在 \\(i\\) 自由时用 \\(b_1\\)，否则在 \\(j\\) 自由时用 \\(b_2\\)，两者都不自由时取平均作为本次阈值更新；最终仍需用残差检查是否达到容差。\n\nimport numpy as np\nX = np.array([[-2,-1],[-1,-2],[-1,0],[1,0],[1,2],[2,1]], float)\ny = np.array([-1,-1,-1,1,1,1])\nmodel = lab.LinearSMO(C=2, tol=1e-5).fit(X, y)\nprint('alpha =', model.alpha_.round(4))\n\nalpha = [0.  0.  0.5 0.5 0.  0. ]\n\nprint('w =', model.coef_, 'b =', model.intercept_)\n\nw = [1. 0.] b = 0.0\n\nprint('等式残差 =', abs(model.alpha_ @ y))\n\n等式残差 = 0.0\n\nprint('最大 KKT 残差 =', model.kkt_residual_)\n\n最大 KKT 残差 = 0.0\n\nprint('是否达到本实现容差 =', model.converged_)\n\n是否达到本实现容差 = True\n\n\n\nslack = np.maximum(0, 1-y*model.decision_function(X))\nprimal = 0.5*np.dot(model.coef_,model.coef_) + model.C*slack.sum()\ndual = model.alpha_.sum() - 0.5*np.dot(model.coef_,model.coef_)\nprint('原始目标 P =', primal)\n\n原始目标 P = 0.5\n\nprint('对偶目标 D =', dual)\n\n对偶目标 D = 0.5\n\nprint('原始—对偶间隙 P-D =', primal-dual)\n\n原始—对偶间隙 P-D = 0.0\n\n\n完整代码位于 scripts/svm_lab.py 的 LinearSMO。这个教学实现有迭代上限和收敛报告，跳过零曲率的变量对，不处理所有重复点退化问题。成熟 LIBSVM 还有工作集选择、缓存、shrinking、退化分支与更严谨的停止条件；实际建模使用成熟求解器 (Platt 1998年; Chang 和 Lin 2011年)。",
     "crumbs": [
-      "理解间隔",
+      "首页",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>对偶、KKT 与 SMO</span>"
     ]
   },
@@ -304,7 +314,7 @@
     "section": "5.7 点击样本，检查 KKT；拖动步骤，回放 SMO",
     "text": "5.7 点击样本，检查 KKT；拖动步骤，回放 SMO\n下面使用8个二维教学样本，包含间隔内样本，固定 \\(C=0.7\\)。图中数字是样本编号，空心圈表示当前非零系数。点击一个样本（或使用下拉框），将图、所选样本指标和逐样本数据表对应起来。步骤滑块从初始零系数开始，记录求解器每次实际成功的成对更新；默认展示最终收敛结果。\n\nKKT 与 SMO：从系数更新到分类边界深蓝粗实线为f=0，绿/橙虚线为f=±1。点击样本观察α、松弛ξ、yf和KKT残差；拖动步骤回放。\n\n\n每一步都保持 \\(0\\le\\alpha_i\\le C\\) 和 \\(\\sum_i\\alpha_i y_i=0\\)。但中间的截距、间隔和互补松弛通常尚未满足KKT：观察 \\(P-D\\) 与最大残差如何变化，不要把每一次局部更新都当成最优解。对偶目标应随成功更新不下降，间隙不一定逐步单调。初始 \\(w=0\\) 时没有可定义的分隔超平面，因此不绘制边界。\n图表中的松弛按当前预测计算为 \\(\\max(0,1-y_if)\\)，使原始变量可行；这里检查的是当前线性目标与对偶的间隙。表格依据系数在0、盒内、上界的位置选择不同KKT残差公式，数值计算使用容差。本演示不改变前述教学求解器对重复样本退化分支的限制。",
     "crumbs": [
-      "理解间隔",
+      "首页",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>对偶、KKT 与 SMO</span>"
     ]
   },
@@ -315,7 +325,7 @@
     "section": "5.8 练习与解答",
     "text": "5.8 练习与解答\n\n为什么软间隔多出 \\(\\alpha_i\\le C\\)？\n为什么不能把所有支持向量的 \\(y_if(x_i)\\) 都设为 1？\n运行 python -m pytest tests/test_smo.py -q，检查可分与非可分情形。\n\n\n\n\n\n\n\n提示参考解答\n\n\n\n\n\n\n对松弛变量求驻点得到 \\(C-\\alpha_i-\\mu_i=0\\)，而 \\(\\mu_i\\ge0\\)。\n达到上界 \\(\\alpha_i=C\\) 时，可以有 \\(\\xi_i&gt;0\\)，对应 \\(y_if(x_i)&lt;1\\)。\n测试检查盒约束、等式约束、KKT 残差和与 LIBSVM 的预测一致性；这不构成对所有输入的收敛证明。\n\n\n\n\n\n\n\n\nBoyd, Stephen, 和 Lieven Vandenberghe. 2004年. Convex Optimization. Cambridge University Press. https://web.stanford.edu/~boyd/cvxbook/.\n\n\nChang, Chih-Chung, 和 Chih-Jen Lin. 2011年. 《LIBSVM: A Library for Support Vector Machines》. ACM Transactions on Intelligent Systems and Technology 2 (3): 27:1～27. https://doi.org/10.1145/1961189.1961199.\n\n\nPlatt, John. 1998年. Sequential Minimal Optimization: A Fast Algorithm for Training Support Vector Machines. MSR-TR-98-14. Microsoft Research. https://www.microsoft.com/en-us/research/publication/sequential-minimal-optimization-a-fast-algorithm-for-training-support-vector-machines/.",
     "crumbs": [
-      "理解间隔",
+      "首页",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>对偶、KKT 与 SMO</span>"
     ]
   },
@@ -326,7 +336,7 @@
     "section": "",
     "text": "6.1 先显式地改变特征\n本章目标：理解“核等于特征内积”，正确使用 RBF 参数，并认识核矩阵的计算代价。核方法不是任意画一条复杂曲线，而是在某个特征空间中保持线性模型的结构。\n原空间不能线性分离的数据，在新表示中可能变得可分。例如对圆环数据使用\n\\[\\phi(x)=(x_1,x_2,x_1^2+x_2^2)^T.\\]\n下面的三维图显示内圈与外圈在第三维上的分离。绿色水平面是人为设置的教学平面，它在原空间对应圆形边界。\n这个映射对应的核为 \\(K(x,z)=x^Tz+\\|x\\|^2\\|z\\|^2\\)。它既不是 RBF 核，也不是下面的标准二次多项式核；可视化必须说明实际画的是哪个映射。",
     "crumbs": [
-      "从二分类到多分类",
+      "首页",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>核技巧与非线性边界</span>"
     ]
   },
@@ -337,7 +347,7 @@
     "section": "",
     "text": "把半径平方放到第三维\n拖动旋转三维视角，观察两类样本与分隔平面的关系。\n\n\n\n\n图 6.1: 有限维特征映射中的圆环分离。",
     "crumbs": [
-      "从二分类到多分类",
+      "首页",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>核技巧与非线性边界</span>"
     ]
   },
@@ -348,7 +358,7 @@
     "section": "6.2 核技巧如何出现",
     "text": "6.2 核技巧如何出现\n对偶目标和预测都只依赖内积。如果 \\(K(x,z)=\\langle\\phi(x),\\phi(z)\\rangle\\)，就可以使用\n\\[f(x)=\\sum_{i=1}^n\\alpha_i y_i K(x_i,x)+b \\tag{6.1}\\]\n而不必显式构造 \\(\\phi\\)。例如二维的 \\(K(x,z)=(x^Tz)^2\\) 对应\n\\[\\phi(x)=(x_1^2,\\sqrt2x_1x_2,x_2^2)^T.\\]\n展开内积会得到 \\(x_1^2z_1^2+2x_1x_2z_1z_2+x_2^2z_2^2\\)，恰好等于 \\((x^Tz)^2\\)。这里的 \\(\\sqrt2\\) 不能遗漏；也可使用包含重复交叉项的更长映射，但它不是最紧凑的表示。",
     "crumbs": [
-      "从二分类到多分类",
+      "首页",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>核技巧与非线性边界</span>"
     ]
   },
@@ -359,7 +369,7 @@
     "section": "6.3 合法核与 RKHS 的入口",
     "text": "6.3 合法核与 RKHS 的入口\n一个实值对称核合法的关键条件是：对任意有限样本集，Gram 矩阵 \\(G_{ij}=K(x_i,x_j)\\) 均为半正定，即对任意 \\(a\\) 有 \\(a^TGa\\ge0\\)。仅对一个数据集检查通过并不能证明对所有输入都合法。\n合法核诱导再生核希尔伯特空间（RKHS）。在这个空间里，核函数同时描述相似性和函数正则化；\\(\\|f\\|_{\\mathcal H}^2\\) 惩罚的是表示空间中的复杂度。表示定理说明许多带范数正则化的最优函数可以写成有限个 \\(K(x_i,\\cdot)\\) 的线性组合。SVM 的稀疏性还来自 hinge 损失和 KKT，不是所有核方法都稀疏。\n常见选择：线性核 \\(x^Tz\\)；整数次数、非负系数的多项式核 \\((\\gamma x^Tz+r)^d\\)；RBF 核 \\(e^{-\\gamma\\|x-z\\|^2}\\)。sigmoid 形式 \\(\\tanh(\\eta x^Tz+\\theta)\\) 不是对任意参数和数据域都合法，不能与线性和 RBF 一样无条件推荐。\n\n6.3.1 为什么特征内积保证半正定\n若 \\(G_{ij}=\\langle\\phi(x_i),\\phi(x_j)\\rangle\\)，则\n\\[a^TGa=\\sum_{i,j}a_i a_j\\langle\\phi(x_i),\\phi(x_j)\\rangle=\\left\\|\\sum_i a_i\\phi(x_i)\\right\\|^2\\ge0.\\]\n这个证明同时说明核对偶的凸性来源。将 \\(x_i\\) 换为 \\(\\phi(x_i)\\)，驻点仍是 \\(w=\\sum_i\\alpha_i y_i\\phi(x_i)\\)，所以\n\\[\\|w\\|_{\\mathcal H}^2=\\sum_{i,j}\\alpha_i\\alpha_jy_i y_jK(x_i,x_j).\\]\n规范化后的特征空间间隔宽度为 \\(2/\\|w\\|_{\\mathcal H}\\)。输入平面上的分数等值线通常弯曲，不能据其视觉宽度估计上述范数。\n\n\n6.3.2 表示定理的几何理由\n将候选函数写成训练核函数张成空间中的部分 \\(f_\\parallel\\) 与正交部分 \\(f_\\perp\\)。由再生性质，\\(f_\\perp(x_i)=\\langle f_\\perp,K(x_i,\\cdot)\\rangle=0\\)，删除它不改变任何训练分数；但 \\(\\|f\\|_{\\mathcal H}^2=\\|f_\\parallel\\|^2+\\|f_\\perp\\|^2\\)。带正范数惩罚的最优解因此可以取 \\(f_\\perp=0\\)，得到有限核展开。截距作为单独参数处理。这解释“有限展开”，但没有证明每个系数都稀疏；SVM的稀疏性需要KKT与损失结构。\n\n\n6.3.3 展开 RBF，看到无限维映射\n先分解平方距离：\n\\[e^{-\\gamma\\|x-z\\|^2}=e^{-\\gamma\\|x\\|^2}e^{-\\gamma\\|z\\|^2}e^{2\\gamma x^Tz}.\\]\n对 \\(p\\) 维输入，设多重指标 \\(k=(k_1,\\ldots,k_p)\\)，\\(|k|=\\sum_rk_r\\)、\\(k!=\\prod_rk_r!\\)、\\(x^k=\\prod_rx_r^{k_r}\\)。展开各坐标的指数函数，\n\\[K(x,z)=\\sum_{k\\in\\mathbb N_0^p}\\phi_k(x)\\phi_k(z),\\qquad\n\\phi_k(x)=e^{-\\gamma\\|x\\|^2}\\sqrt{\\frac{(2\\gamma)^{|k|}}{k!}}x^k.\\]\n\\(\\gamma&gt;0\\) 时有无穷多个坐标，而且 \\(\\sum_k\\phi_k(x)^2=K(x,x)=1\\)。核技巧计算一个指数就获得这个内积，避免显式枚举无限坐标；前面的三维圆环图只展示它自己的有限维映射。",
     "crumbs": [
-      "从二分类到多分类",
+      "首页",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>核技巧与非线性边界</span>"
     ]
   },
@@ -370,7 +380,7 @@
     "section": "6.4 RBF 的两个旋钮",
     "text": "6.4 RBF 的两个旋钮\nRBF 中 \\(\\gamma=1/(2\\sigma^2)\\)。小 \\(\\gamma\\) 表示相似性随距离缓慢衰减；大 \\(\\gamma\\) 表示影响更局部。\\(C\\) 控制损失与正则化的折中，两者需要联合选择。\n\n\n\n\n同一份数据，改变 C 和 γ\n16个预计算组合：深蓝粗实线为 f=0，绿/橙虚线为 f=+1 / −1。点击图例可单独隐藏线条；空心圈为支持向量，菱形为测试样本。\n\n\n\n\n图 6.2: 预计算 RBF SVM 的参数探索。\n\n\n\n在 图 6.2 中观察过于平滑与局部碎片化的边界，再看验证分数。测试分数不一定随视觉上“更复杂”而下降；有限样本波动也会影响它。不要反复查看测试集后继续调参，否则测试集就变成了验证集。\n\n\n\n\n\n\n注记\n\n\n\nRBF 图中的 \\(f(x)=\\pm1\\) 是分数等值线，不是输入空间中距边界固定距离的曲线。最大间隔发生在特征空间，不能把二维核图的宽度直接当成 RKHS 间隔。",
     "crumbs": [
-      "从二分类到多分类",
+      "首页",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>核技巧与非线性边界</span>"
     ]
   },
@@ -381,7 +391,7 @@
     "section": "6.5 核方法的代价与近似",
     "text": "6.5 核方法的代价与近似\n下面在相同数据上固定 \\(C=1,\\gamma=1\\)，分别用 Python/R 训练并生成对应的 Plotly 图。它是复现对照，不是在测试集上重新选参。\n\nPythonR\n\n\nprint(lab.figure_html(lab.binary_plot('moons','rbf',1,1), 'rbf-python'))\n\n\n\n\n\n\ncat(binary_html_r('moons','radial',1,1,id='rbf-r'))\n\n\n\n\n\n\n\n显式 \\(n\\times n\\) 的 float64 Gram 矩阵需要约 \\(8n^2\\) 字节：\\(n=10\\,000\\) 约 0.8 GB，\\(n=100\\,000\\) 约 80 GB，尚未包括其他开销。LIBSVM 使用缓存，不必总是一次存下整个矩阵，但核训练仍可能很昂贵。预测需计算与支持向量的核，支持向量多会增加延迟。\n大样本线性问题可以使用 LinearSVC 或基于随机梯度的 hinge 模型。非线性问题可考虑 Nyström 或随机 Fourier 特征：先用有限维 \\(z(x)\\) 近似核，再训练线性模型。近似次数、随机性和正则化一起影响结果。\nprint(lab.figure_html(lab.approximate_kernel_experiment(), 'nystrom-experiment'))\n\n\n\n\n上图固定配置，只演示特征数与效果的关系。它不是证明 Nyström 优于精确核，也没有用测试集选择最佳特征数。真正比较时，应将特征数纳入训练集内的验证，并报告时间和内存。",
     "crumbs": [
-      "从二分类到多分类",
+      "首页",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>核技巧与非线性边界</span>"
     ]
   },
@@ -392,7 +402,7 @@
     "section": "6.6 练习与解答",
     "text": "6.6 练习与解答\n\n计算 \\(x=(1,2),z=(2,1)\\) 的二次核，并验证显式映射内积相等。\n将所有数值特征放大 10 倍，RBF 的相同 \\(\\gamma\\) 还表示同样的模型吗？\n为什么三维图不能宣称展示了 RBF 的特征空间？\n\n\n\n\n\n\n\n提示参考解答\n\n\n\n\n\n\n\\(x^Tz=4\\)，核为 16；映射内积为 \\(4+8+4=16\\)。\n不同，平方距离扩大 100 倍，等效于把 \\(\\gamma\\) 放大 100 倍。特征尺度因此必须与核参数一起考虑。\n该图展示明确的三维映射；一般 RBF 具有无限维特征表示，三维投影不能完整代表它。",
     "crumbs": [
-      "从二分类到多分类",
+      "首页",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>核技巧与非线性边界</span>"
     ]
   },
@@ -403,7 +413,7 @@
     "section": "",
     "text": "7.1 三种图，不只是三种算法名称\n本章目标：区分二分类归约、预测规则和联合目标。原笔记介绍过 OvR、OvO、DAGSVM，但没有充分解释模糊区域和软件实现。本章以《神经网络与深度学习》第 3.1.2 节、图 3.3 为起点，重新绘制可交互的示意 (邱锡鹏 2020年)。\n对三个类别，分别训练三个 OvR 线性分类器和三个成对 OvO 分类器。下图的训练已完成；你可以切换预测规则、逐个显示分隔线，点击图或移动滑块改变待预测样本。\n图 7.1 在新模拟数据上重新训练并绘制，不是教材图 3.3 的数值复刻。灰色区域可能随训练数据不同而改变。",
     "crumbs": [
-      "从二分类到多分类",
+      "首页",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>多分类：分数、投票与联合学习</span>"
     ]
   },
@@ -414,7 +424,7 @@
     "section": "",
     "text": "同一个点，查看分数、符号和票数\n灰色表示原始规则的歧义。argmax 的虚线是两类分数相等线；其中只有部分线段属于最终决策边界。\n\n\n\n\n图 7.1: OvR 符号、argmax 与 OvO 投票的交互比较，参考教材图 3.3 的思想重绘。",
     "crumbs": [
-      "从二分类到多分类",
+      "首页",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>多分类：分数、投票与联合学习</span>"
     ]
   },
@@ -425,7 +435,7 @@
     "section": "7.2 一对其余：训练 \\(K\\) 个二分类器",
     "text": "7.2 一对其余：训练 \\(K\\) 个二分类器\n第 \\(k\\) 个模型把类别 \\(k\\) 标为正类，其余全部标为负类，得到 \\(f_k(x)\\)。如果只采用“唯一一个正分数”的符号规则，会出现全负或多个为正的区域；这正是图 3.3 展示的歧义。\n实际常用预测为\n\\[\\hat y(x)=\\operatorname*{argmax}_{k=1,\\ldots,K} f_k(x). \\tag{7.1}\\]\n它使用同一组 OvR 模型的分数，给出了明确选择规则。最高分完全相同仍需要平票约定；不同二分类器的分数尺度也可能不一致，所以 argmax 不等于“概率最大”。类别多时，一对其余会产生严重的正负样本不平衡，需要考虑类别权重、评价指标和校准。\n\n\n\n\n\n\n注记argmax 是预测操作，不指定训练方式\n\n\n\n独立训练的 OvR SVM、联合训练的多分类 SVM、多项逻辑回归和神经网络都可以使用 argmax。仅从这条预测公式无法判断模型优化的是哪个目标。教材把它作为多分类决策方式讨论，本教程进一步区分其训练来源。",
     "crumbs": [
-      "从二分类到多分类",
+      "首页",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>多分类：分数、投票与联合学习</span>"
     ]
   },
@@ -436,7 +446,7 @@
     "section": "7.3 一对一：训练 \\(K(K-1)/2\\) 个分类器",
     "text": "7.3 一对一：训练 \\(K(K-1)/2\\) 个分类器\n每个模型只看到两个类别的数据，预测时投给其中一个类别，再选择票数最高者。类别对本身也可能不平衡，所以“一对一不会出现不平衡”是错误结论。\n分类器更多不必然意味着训练更慢：每个分类器使用的数据更少，速度和内存取决于规模、求解器、特征与缓存。预测需要组合许多成对结果，类别很多时成本才更明显。\n三类时可能出现循环：\\(0\\) 胜 \\(1\\)，\\(1\\) 胜 \\(2\\)，\\(2\\) 胜 \\(0\\)，票数各为 1。图中的灰色区域直接显示原始投票的歧义；实际软件通常有确定的平票处理。",
     "crumbs": [
-      "从二分类到多分类",
+      "首页",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>多分类：分数、投票与联合学习</span>"
     ]
   },
@@ -447,7 +457,7 @@
     "section": "7.4 scikit-learn 最容易误读的参数",
     "text": "7.4 scikit-learn 最容易误读的参数\nSVC 的多分类训练采用 LIBSVM 的 OvO。decision_function_shape='ovr' 只是把成对结果转换成每类一个分数的输出形状，不会把训练改成 OvR。想显式采用 OvR，应使用 OneVsRestClassifier。\n\nfrom sklearn.svm import SVC, LinearSVC\nfrom sklearn.multiclass import OneVsRestClassifier\ndf = lab.load_data('iris')\nfeatures = [c for c in df if c not in ['id','split','fold','target']]\ntr = df[df.split == 'train']; te = df[df.split == 'test']\nX, y = tr[features], tr.target\n# 标准化置于归约分类器外部，同一变换作用于所有类别。\novo = lab.Pipeline([('scale',lab.StandardScaler()),\n    ('svm',SVC(kernel='linear',decision_function_shape='ovo'))]).fit(X,y)\novr = lab.Pipeline([('scale',lab.StandardScaler()),\n    ('svm',OneVsRestClassifier(SVC(kernel='linear')))]).fit(X,y)\nprint('OvO 成对输出形状:', ovo.decision_function(te[features]).shape)\n\nOvO 成对输出形状: (45, 3)\n\nprint('OvR 类别输出形状:', ovr.decision_function(te[features]).shape)\n\nOvR 类别输出形状: (45, 3)\n\n\n对三类，两种形状都恰好是三列，不能靠列数区分语义；对四类才分别是 6 列和 4 列。SVC(break_ties=True) 在 decision_function_shape='ovr' 的条件下利用转换分数处理投票平票；本教程示意图直接显示平票，不冒充该实现。\nLinearSVC 默认是 OvR；设置 multi_class='crammer_singer' 才采用联合多分类目标。SVC(kernel='linear') 和 LinearSVC 也不完全相同：求解器、损失和截距处理等默认设置不同。",
     "crumbs": [
-      "从二分类到多分类",
+      "首页",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>多分类：分数、投票与联合学习</span>"
     ]
   },
@@ -458,7 +468,7 @@
     "section": "7.5 联合多分类 SVM",
     "text": "7.5 联合多分类 SVM\nCrammer–Singer 形式对每个类别学习 \\(w_k\\)（这里省略截距写法）：\n\\[\\min_{W,\\xi}\\frac12\\sum_k\\|w_k\\|^2+C\\sum_i\\xi_i,\\]\n\\[w_{y_i}^Tx_i-w_k^Tx_i\\ge1-\\xi_i\\quad(k\\ne y_i),\\qquad \\xi_i\\ge0.\\]\n对应损失是 \\(\\max(0,\\max_{k\\ne y_i}[1+f_k(x_i)-f_{y_i}(x_i)])\\)。它要求真类分数比所有错误类高出间隔，类别参数在一个目标中耦合。这与独立 OvR 的 \\(K\\) 个二分类目标不同 (Crammer 和 Singer 2001年)。\n预测边界由 \\(f_i(x)=f_j(x)\\) 给出，即 \\((w_i-w_j)^Tx+(b_i-b_j)=0\\)。但该直线的某部分若被第三类更高分“覆盖”，就不会成为最终边界。图中虚线全部显示分数相等线，彩色区域才是最终预测。\n\n7.5.1 从联合约束推导多分类 hinge\n固定所有类别分数，Crammer–Singer约束要求 \\(\\xi_i\\ge1+f_k(x_i)-f_{y_i}(x_i)\\)（所有 \\(k\\ne y_i\\)），同时 \\(\\xi_i\\ge0\\)。因为 \\(C&gt;0\\)，\n\\[\\xi_i^*=\\max\\{0,\\max_{k\\ne y_i}[1+f_k(x_i)-f_{y_i}(x_i)]\\}.\\]\n所以最严重的竞争类别决定本样本损失；它不是把 \\(K-1\\) 个竞争损失简单求和，也不是分别训练 \\(K\\) 个OvR二分类器。若唯一最大竞争者为 \\(k^*\\) 且损失为正，该项对 \\(w_{k^*}\\) 的梯度是 \\(x_i\\)，对 \\(w_{y_i}\\) 是 \\(-x_i\\)；其余类别为0。并列或恰好达到0时使用这些梯度的凸组合，说明为何称为次梯度。\nargmax的两类分数相等条件为 \\(f_i=f_j\\)；成为实际决策边界还需 \\(f_i=f_j\\ge f_k\\) 对所有其余类别成立。这个额外条件解释了图中部分虚线为何不是最终边界。\nOvO取所有无序类别对，共 \\(\\binom K2=K(K-1)/2\\) 个模型。若本图的 \\(h_{ij}\\ge0\\) 投给较大编号 \\(j\\)，否则投给 \\(i\\)，票数为\n\\[v_k(x)=\\sum_{i&lt;j}\\big[\\mathbf1\\{h_{ij}(x)\\ge0\\}\\mathbf1\\{k=j\\}+\\mathbf1\\{h_{ij}(x)&lt;0\\}\\mathbf1\\{k=i\\}\\big].\\]\n之后再对 \\(v_k\\) 取argmax；票数并列仍要单独规定处理。二分类分数先组合成票数、再作类别选择，与直接对独立OvR分数取argmax是两条不同的预测流程。",
     "crumbs": [
-      "从二分类到多分类",
+      "首页",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>多分类：分数、投票与联合学习</span>"
     ]
   },
@@ -469,7 +479,7 @@
     "section": "7.6 DAGSVM 与 ECOC",
     "text": "7.6 DAGSVM 与 ECOC\nDAGSVM 复用 OvO 训练模型，预测沿淘汰路径进行，通常每个样本只需要 \\(K-1\\) 次成对判断。它改变推理流程，淘汰顺序可能影响错误传播，不是对投票的普遍改进保证 (Platt 等 1999年)。\nECOC 给每个类别分配码字，把若干类别分组形成二分类问题，再用预测码与类别码的距离解码。它可以引入冗余以提高容错，但效果取决于编码设计、二分类器错误相关性和解码规则；更长码不保证更准确。",
     "crumbs": [
-      "从二分类到多分类",
+      "首页",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>多分类：分数、投票与联合学习</span>"
     ]
   },
@@ -480,7 +490,7 @@
     "section": "7.7 双语言验证：Iris",
     "text": "7.7 双语言验证：Iris\n使用全部四个特征训练，下面展示测试集混淆矩阵；前面的二维图只是为了讲解多分类几何。模型使用训练折内标准化和同样的参数网格。\n\nPythonR\n\n\nfig, result = lab.case_plot('iris')\nprint(lab.figure_html(fig, 'iris-python'))\n\n\n\n\n\nprint(result)\n\n{'case': 'iris', 'language': 'Python', 'train_n': 105, 'test_n': 45, 'parameters': {'svm__C': 10, 'svm__gamma': 0.01, 'svm__kernel': 'rbf'}, 'cv_macro_f1': 0.980854700854701, 'accuracy': 0.9111111111111111, 'macro_f1': 0.9107142857142857, 'labels': [0, 1, 2], 'confusion': [[15, 0, 0], [0, 14, 1], [0, 3, 12]], 'support_vectors': 38}\n\n\n\n\nresult_r &lt;- fit_case_r('iris')\ncat(figure_html_r(result_r, 'iris-r'))\n\n\n\n\n\nresult_r[c('parameters','cv_macro_f1','accuracy','macro_f1','support_vectors')]\n\n$parameters\n$parameters$C\n[1] 10\n\n$parameters$gamma\n[1] 0.01\n\nattr(,\"out.attrs\")\nattr(,\"out.attrs\")$dim\n    C gamma \n    3     3 \n\nattr(,\"out.attrs\")$dimnames\nattr(,\"out.attrs\")$dimnames$C\n[1] \"C= 0.1\" \"C= 1.0\" \"C=10.0\"\n\nattr(,\"out.attrs\")$dimnames$gamma\n[1] \"gamma=0.01\" \"gamma=0.10\" \"gamma=1.00\"\n\n\n\n$cv_macro_f1\n[1] 0.9808547\n\n$accuracy\n[1] 0.9111111\n\n$macro_f1\n[1] 0.9107143\n\n$support_vectors\n[1] 38",
     "crumbs": [
-      "从二分类到多分类",
+      "首页",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>多分类：分数、投票与联合学习</span>"
     ]
   },
@@ -491,7 +501,7 @@
     "section": "7.8 练习与解答",
     "text": "7.8 练习与解答\n\n四类问题，OvR 和 OvO 分别需要多少个分类器？\n一个点的 OvR 分数为 \\((-0.2,-0.1,-0.5)\\)。符号规则与 argmax 分别怎样判断？\n如果两个类别票数相同，怎样设计透明的平票规则？\n\n\n\n\n\n\n\n提示参考解答\n\n\n\n\n\n\n分别为 4 和 6。\n符号规则全负，无法唯一分类；argmax 选第二类（若用从 0 开始的编号，为类别 1）。\n可规定使用汇总分数，再以固定类别顺序处理完全同分。必须在评估前固定规则，不能看测试标签选择规则。\n\n\n\n\n\n\n\n\nCrammer, Koby, 和 Yoram Singer. 2001年. 《On the Algorithmic Implementation of Multiclass Kernel-based Vector Machines》. Journal of Machine Learning Research 2: 265～92. https://www.jmlr.org/papers/v2/crammer01a.html.\n\n\nPlatt, John, Nello Cristianini, 和 John Shawe-Taylor. 1999年. 《Large Margin DAGs for Multiclass Classification》. Advances in Neural Information Processing Systems 12. https://proceedings.neurips.cc/paper/1999/hash/4abe17a1c80cbdd2aa241b70840879de-Abstract.html.\n\n\n邱锡鹏. 2020年. 神经网络与深度学习. 机械工业出版社. https://nndl.github.io/.",
     "crumbs": [
-      "从二分类到多分类",
+      "首页",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>多分类：分数、投票与联合学习</span>"
     ]
   },
@@ -502,7 +512,7 @@
     "section": "",
     "text": "8.1 先划分，再学习任何变换\n本章目标：把“能跑出一个模型”升级成可复现、无信息泄漏的实验。真正决定结果可信度的，往往是数据划分和预处理位置。\n正确顺序是保存测试集、在训练集内交叉验证，并在每个训练折内拟合缺失值填补、编码、标准化和模型。若在全数据上先求均值/标准差，验证折的信息已经进入训练。监督特征筛选更不能在全数据上先做。\nPython 使用 Pipeline 将这些步骤放在一起；R 示例的 fit_preprocessor() 每次只读取当前训练折。数值缺失用训练折中位数填补，类别缺失用训练折众数填补，类别编码字典也只从训练折学习。未知类别映射成全零 one-hot，需在真实任务中检查它是否合理。\n实验数据含 id、split、fold 和 target；前三者是实验元数据，不能混入特征。随机分层划分适合这里的独立样本演示；同一受试者多条记录需要按组划分，时间预测需要按时间划分。",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>建立可信的建模流程</span>"
     ]
   },
@@ -513,7 +523,7 @@
     "section": "",
     "text": "8.1.1 标准化怎样改变图中的法向量\n训练折均值为 \\(\\mu\\)、各特征标准差为 \\(s_r&gt;0\\)，令 \\(A=\\operatorname{diag}(1/s_r)\\)。标准化变量 \\(z=A(x-\\mu)\\)，在此空间学习 \\(f=v^Tz+c\\)，展开为\n\\[f(x)=(A^Tv)^Tx+c-v^TA\\mu=w_{\\rm raw}^Tx+b_{\\rm raw},\\quad\nw_{\\rm raw}=A^Tv,\\quad b_{\\rm raw}=c-w_{\\rm raw}^T\\mu.\\]\n因此原始坐标的两条 \\(f=\\pm1\\) 线之间距离是 \\(2/\\|w_{\\rm raw}\\|\\)，标准化空间的是 \\(2/\\|v\\|\\)。模型优化的是标准化空间中的范数，二者通常不同。本教程线性图卡片显示原始坐标的线间距离，避免混用两个量。常数特征需要专门处理；示例由预处理器遵循既定缩放约定。",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>建立可信的建模流程</span>"
     ]
   },
@@ -524,7 +534,7 @@
     "section": "8.2 调参不能看测试集",
     "text": "8.2 调参不能看测试集\n\nfrom sklearn.model_selection import GridSearchCV\nimport numpy as np\ndf = lab.load_data('moons')\ntr = df[df.split == 'train']\nfolds = [(np.flatnonzero(tr.fold.values != f),\n          np.flatnonzero(tr.fold.values == f)) for f in range(5)]\npipeline = lab.Pipeline([('scale', lab.StandardScaler()), ('svm', lab.SVC())])\nsearch = GridSearchCV(pipeline,\n    {'svm__C':[0.1,1,10,100], 'svm__gamma':[0.03,0.1,1,10]},\n    cv=folds, scoring='f1_macro').fit(tr[['x1','x2']], tr.target)\nprint('训练集内最佳参数:', search.best_params_)\n\n训练集内最佳参数: {'svm__C': 1, 'svm__gamma': 10}\n\nprint('CV macro-F1:', search.best_score_)\n\nCV macro-F1: 0.9526035928644625\n\n\n\n读懂 C–γ 热图悬停查看训练集内验证分数。参数在对数尺度上取离散值。\n\n\n选择最大验证分数会带来“选优偏差”；这个最大值不等于无偏的泛化估计。如果需要同时选模型并估计表现，可用嵌套交叉验证：外层评估、内层选择。报告参数网格、划分方法、随机性、计算预算以及不确定性，而不是只写一个最高精度。",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>建立可信的建模流程</span>"
     ]
   },
@@ -535,7 +545,7 @@
     "section": "8.3 指标回答不同问题",
     "text": "8.3 指标回答不同问题\naccuracy 统计总体正确比例，在不平衡数据中容易掩盖少数类错误。macro-F1 先分别计算每类 F1 再平均，让各类权重相同；weighted-F1 按样本数加权，micro 指标汇总所有样本。多分类一定要同时看混淆矩阵及每类召回率。\n二分类 ROC 绘制阈值变化下的 TPR 与 FPR；PR 绘制 precision 与 recall。ROC-AUC 衡量排序，AP 是不同召回增量对应 precision 的加权和，不等于任意梯形积分 PR-AUC。严重不平衡时，PR 及少数类召回通常更直观。阈值应按训练/验证信息与业务成本选择。\n\n8.3.1 把评估指标写成可核对的公式\n对某个正类，\\(\\mathrm{Precision}=TP/(TP+FP)\\)、\\(\\mathrm{Recall}=TP/(TP+FN)\\)，从调和平均得到\n\\[F_1=\\frac{2\\,\\mathrm{Precision}\\,\\mathrm{Recall}}{\\mathrm{Precision}+\\mathrm{Recall}}=\\frac{2TP}{2TP+FP+FN},\\qquad\n\\mathrm{macro\\text{-}}F_1=\\frac1K\\sum_{k=1}^K F_{1,k}.\\]\n多分类的每个 \\(F_{1,k}\\) 按“类别 \\(k\\) 对其余类别”计数；分母为零时需要固定约定，代码按0处理。macro-F1不是先平均precision/recall再计算F1。\n给定阈值 \\(t\\)，按 \\(f(x)\\ge t\\) 判正类，ROC 的横纵轴为 \\(FP/(FP+TN)\\)、\\(TP/(TP+FN)\\)，PR 的横纵轴为recall、precision。阈值降低会同时纳入更多样本，曲线由排序而非单个分类阈值决定。\nAUC可解释为随机正样本分数超过随机负样本的概率，平分计半：\n\\[\\mathrm{AUC}=\\frac1{n_+n_-}\\sum_{i:y_i=1}\\sum_{j:y_j=0}\\left[\\mathbf1\\{f_i&gt;f_j\\}+\\frac12\\mathbf1\\{f_i=f_j\\}\\right].\\]\nAverage Precision 按recall的增量加权precision，\\(\\mathrm{AP}=\\sum_l(R_l-R_{l-1})P_l\\)（按recall递增排列）。它不等于任意线性插值后的PR梯形面积。排序指标不能替代概率校准检查。\n\nPythonR\n\n\nfig, ranking_metrics = lab.evaluation_plot('heart')\nprint(lab.figure_html(fig, 'heart-ranking-python'))\n\n\n\n\n\n\ncat(evaluation_html_r())\n\n\n\n\n\n\n\n这组图使用测试集决策分数、正类为 AHD=Yes。图例默认显示 ROC，点击 PR 可显示 PR 曲线；两者轴含义不同，最好一次查看一条。这里不将训练 ROC 当成泛化证据。",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>建立可信的建模流程</span>"
     ]
   },
@@ -546,7 +556,7 @@
     "section": "8.4 概率校准与分数",
     "text": "8.4 概率校准与分数\n\\(f(x)\\) 不是 \\(P(y=1\\mid x)\\)。如果需要风险概率，可以用训练集内的交叉验证校准。Platt scaling 对分数拟合 sigmoid；isotonic 是更灵活的单调映射，但小校准集容易过拟合。\n下面显式把整个预处理和分类 Pipeline 交给校准器，避免在校准折外提前拟合标准化：\n\nfrom sklearn.calibration import CalibratedClassifierCV\nfrom sklearn.metrics import brier_score_loss\ndf = lab.load_data('moons')\ntr = df[df.split == 'train']; te = df[df.split == 'test']\nbase = lab.Pipeline([('scale',lab.StandardScaler()),\n                     ('svm',lab.SVC(C=1,gamma=1))])\ncalibrated = CalibratedClassifierCV(base, method='sigmoid', cv=5)\ncalibrated.fit(tr[['x1','x2']],tr.target)\n\nCalibratedClassifierCV(cv=5,\n                       estimator=Pipeline(steps=[('scale', StandardScaler()),\n                                                 ('svm', SVC(C=1, gamma=1))]))In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.CalibratedClassifierCV?Documentation for CalibratedClassifierCViFittedCalibratedClassifierCV(cv=5,\n                       estimator=Pipeline(steps=[('scale', StandardScaler()),\n                                                 ('svm', SVC(C=1, gamma=1))])) estimator: PipelinePipeline(steps=[('scale', StandardScaler()), ('svm', SVC(C=1, gamma=1))]) StandardScaler?Documentation for StandardScalerStandardScaler() SVC?Documentation for SVCSVC(C=1, gamma=1) \n\nprobabilities = calibrated.predict_proba(te[['x1','x2']])[:,1]\nprint('测试 Brier score:', brier_score_loss(te.target,probabilities))\n\n测试 Brier score: 0.07183578496048904\n\n\n这里参数预先固定，避免一边看测试概率一边改模型。多分类需要说明采用何种校准/归一化策略。概率质量应检查 Brier/log loss 和可靠性图，单看 accuracy 无法判断概率是否可信。不同 scikit-learn 版本的概率接口可能变化，本教程固定依赖为 1.6.1，升级时应重新核对 官方校准文档。",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>建立可信的建模流程</span>"
     ]
   },
@@ -557,7 +567,7 @@
     "section": "8.5 类别不平衡与部署成本",
     "text": "8.5 类别不平衡与部署成本\n类权重相当于让不同样本使用不同惩罚 \\(C_i\\)。class_weight='balanced' 是一个可比较的基线，不是保证少数类表现更好的规则。重采样必须在训练折内进行，否则重复样本可能跨越训练/验证边界。若概率将用于决策，还要考虑真实类别先验与部署分布。\n实际模型选择还包括训练时间、峰值内存、预测延迟、支持向量数量和特征计算成本。机器不同，单次耗时缺乏可比性；需要重复测量和说明硬件。小数据案例不用于推断大规模部署性能。",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>建立可信的建模流程</span>"
     ]
   },
@@ -568,7 +578,7 @@
     "section": "8.6 从原则到对照实验",
     "text": "8.6 从原则到对照实验\n下面三组实验分别隔离一个问题。数据都是固定随机种子的模拟样本，并保存训练/测试ID；模型参数预先规定。它们用来观察机制，不代表调参后的最佳性能。模型训练在生成脚本中完成，浏览器只切换预计算结果。\n\n8.6.1 特征尺度会怎样改变 RBF 边界\n同一份双月牙数据，将第一维人为乘1000。对比“未标准化”与“只用训练集拟合StandardScaler”，两种模型都设置 \\(C=1,\\gamma=\\text{scale}\\)。注意 scale 是按输入方差计算γ的规则，不是同一个数值；卡片给出实际γ。图形始终使用原始坐标，避免把变换后坐标与原始距离混用。\n\n标准化前后：同一原始坐标下的边界切换处理方式，查看测试指标、实际γ和支持向量。空心菱形为测试样本。\n\n\n先解释边界为何改变，再比较测试表现。不要从单次固定配置得出“标准化必然提高所有数据集精度”。参考LIBSVM实践指南。\n\n\n8.6.2 类别加权改变的是不同类别的代价\n模拟数据使用每类两个簇、重叠分布和4%的随机标签扰动，使少数类识别具有挑战；类别1为少数类，对比同样参数下普通SVM与 class_weight='balanced'。权重只由训练标签计算，不读取测试比例。检查少数类precision、recall、F1，不能只看accuracy。\n\n普通与加权 SVM：少数类的代价切换模型，观察边界及少数类precision/recall的权衡。\n\n\n加权改变训练代价，阈值选择改变预测规则，重采样改变训练样本分布；它们不是同一种操作。本实验只比较前者。若继续选权重或阈值，必须在训练/验证数据内完成。参考官方类别权重示例。\n\n\n8.6.3 校准前后：概率与真实频率是否一致\n可靠性曲线将预测值分为8个固定区间：横轴是区间内平均预测概率，纵轴是实际正类比例。悬停查看每箱样本数。空箱不画点。曲线接近对角线只是有限样本证据，还需要结合Brier与log loss及采样不确定性。\n\n概率校准：sigmoid 与 isotonic切换方法，查看可靠性曲线与测试Brier/log loss；悬停查看分箱样本数。\n\n\n未校准基线只是对原始SVM分数直接取sigmoid，没有拟合校准参数，不能称为SVM自带概率。另两种方法将完整Pipeline交给训练集内五折校准器，以避免预处理泄漏；它们同时使用交叉验证集成，比较包含这部分实现差异。固定分类器参数，测试集不参与选择校准方法。本例不能证明isotonic总是更好。参考官方可靠性曲线实验。",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>建立可信的建模流程</span>"
     ]
   },
@@ -579,7 +589,7 @@
     "section": "8.7 练习与解答",
     "text": "8.7 练习与解答\n\n为什么先在全数据上标准化，再交叉验证，会泄漏？\n一个 99% 阴性数据集，总预测阴性的 accuracy 是多少？它的阳性召回率呢？\n为什么决策分数可以用于 ROC，却不能直接当风险概率？\n\n\n\n\n\n\n\n提示参考解答\n\n\n\n\n\n\n验证折影响了变换参数，训练过程间接使用了它的信息。\naccuracy 为 99%，阳性召回为 0%。\nROC 需要阈值排序，不需要概率尺度；概率还要求与事件频率一致的校准含义。",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>建立可信的建模流程</span>"
     ]
   },
@@ -590,7 +600,7 @@
     "section": "",
     "text": "9.1 模拟数据提供可控问题\n本章目标：把原笔记中的模拟、Iris、Heart 和 Khan 案例整理成独立实验，理解任务之间的差异。完整 Python 实现在 scripts/svm_lab.py，R 实现在 scripts/lab.R；每次调用都重新读取该实验自己的数据。\n前面软间隔实验使用两个重叠高斯簇，核实验使用带噪双月牙。它们分别用于观察线性折中和非线性表示。模拟数据的好处是能控制噪声与结构；局限是它不包含真实采样偏差、缺失机制和领域约束。\n生成脚本保存随机种子、每行 ID、训练/测试和五折编号。不要只保存图：重新绘图需要模型参数、预处理和数据。模型交互网格来自 scripts/prepare.py，每个参数组合都按同一评估规则计算。",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>案例：从 Iris 到高维基因表达</span>"
     ]
   },
@@ -601,7 +611,7 @@
     "section": "9.2 Iris：多分类与二维投影",
     "text": "9.2 Iris：多分类与二维投影\nIris 有 150 个样本、四个数值特征、三个类别。本教程保存 105 个训练样本和 45 个测试样本，五折内选择 RBF 参数。多分类章节已经给出双语言混淆矩阵。\n在四维上训练的模型不能用随意选取两维的散点图完整解释。若画二维决策切片，必须说明另外两个特征固定为多少；若重新训练二维模型，则必须明确它与四维模型不同。原笔记中的预测散点可以用来标出错误，但不能单独证明四维边界。",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>案例：从 Iris 到高维基因表达</span>"
     ]
   },
@@ -612,7 +622,7 @@
     "section": "9.3 Heart：混合类型与缺失值",
     "text": "9.3 Heart：混合类型与缺失值\n原 Heart.csv 有数值、类别和缺失值。本教程删除行号列，将 AHD=Yes 作为正类。缺失填补、one-hot 和标准化都只拟合训练折；不把 ChestPain 和 Thal 强行当成连续数字。\n旧代码 Heart &lt;- na.omit(train) 会误用前一个实验的 train。新版直接从 Heart 数据建立完整 Pipeline，不依赖已有变量；填补保留全部 303 行，而不是悄悄改变样本集。\n\nPythonR\n\n\nfig, heart_result = lab.case_plot('heart')\nprint(lab.figure_html(fig, 'heart-python'))\n\n\n\n\n\nprint(heart_result)\n\n{'case': 'heart', 'language': 'Python', 'train_n': 212, 'test_n': 91, 'parameters': {'svm__C': 1, 'svm__gamma': 0.01, 'svm__kernel': 'rbf'}, 'cv_macro_f1': 0.8401539251105756, 'accuracy': 0.8791208791208791, 'macro_f1': 0.8776433198875443, 'labels': [0, 1], 'confusion': [[45, 4], [7, 35]], 'support_vectors': 126}\n\n\n\n\nheart_r &lt;- fit_case_r('heart')\ncat(figure_html_r(heart_r, 'heart-r'))\n\n\n\n\n\nheart_r[c('train_n','test_n','parameters','cv_macro_f1','accuracy','macro_f1')]\n\n$train_n\n[1] 212\n\n$test_n\n[1] 91\n\n$parameters\n$parameters$C\n[1] 1\n\n$parameters$gamma\n[1] 0.01\n\nattr(,\"out.attrs\")\nattr(,\"out.attrs\")$dim\n    C gamma \n    3     3 \n\nattr(,\"out.attrs\")$dimnames\nattr(,\"out.attrs\")$dimnames$C\n[1] \"C= 0.1\" \"C= 1.0\" \"C=10.0\"\n\nattr(,\"out.attrs\")$dimnames$gamma\n[1] \"gamma=0.01\" \"gamma=0.10\" \"gamma=1.00\"\n\n\n\n$cv_macro_f1\n[1] 0.8401539\n\n$accuracy\n[1] 0.8791209\n\n$macro_f1\n[1] 0.8776433\n\n\n\n\n\n这是历史教学数据上的分类实验，不是可用于临床的风险模型。真实应用还需要采样、外部验证、校准和时间/人群迁移方面的证据。这里关心的是正确的数据流程。",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>案例：从 Iris 到高维基因表达</span>"
     ]
   },
@@ -623,7 +633,7 @@
     "section": "9.4 Khan：样本少、维度高",
     "text": "9.4 Khan：样本少、维度高\nKhan 来自 ISLR2：训练集 63 个样本、测试集 20 个样本，2308 个表达特征，四个类别。保留原始规定的训练/测试划分，训练集按类别轮流分入五折；这与其他案例随机分层划分不同。\n当 \\(p\\gg n\\)，线性模型也可以有很强的表达能力，RBF 并非必需。这里只在训练集内比较线性核 \\(C\\in\\{0.1,1,10\\}\\)。如果增加基因筛选，必须放入每个训练折，不能先用所有标签挑基因。\n\nPythonR\n\n\nfig, khan_result = lab.case_plot('khan')\nprint(lab.figure_html(fig, 'khan-python'))\n\n\n\n\n\nprint(khan_result)\n\n{'case': 'khan', 'language': 'Python', 'train_n': 63, 'test_n': 20, 'parameters': {'svm__C': 0.1, 'svm__kernel': 'linear'}, 'cv_macro_f1': 0.9873015873015873, 'accuracy': 0.9, 'macro_f1': 0.9142857142857144, 'labels': [1, 2, 3, 4], 'confusion': [[3, 0, 0, 0], [0, 6, 0, 0], [0, 2, 4, 0], [0, 0, 0, 5]], 'support_vectors': 58}\n\n\n\n\nkhan_r &lt;- fit_case_r('khan')\ncat(figure_html_r(khan_r, 'khan-r'))\n\n\n\n\n\nkhan_r[c('train_n','test_n','parameters','cv_macro_f1','accuracy','macro_f1')]\n\n$train_n\n[1] 63\n\n$test_n\n[1] 20\n\n$parameters\n$parameters$C\n[1] 0.1\n\n$parameters$gamma\n[1] 0.1\n\nattr(,\"out.attrs\")\nattr(,\"out.attrs\")$dim\n    C gamma \n    3     1 \n\nattr(,\"out.attrs\")$dimnames\nattr(,\"out.attrs\")$dimnames$C\n[1] \"C= 0.1\" \"C= 1.0\" \"C=10.0\"\n\nattr(,\"out.attrs\")$dimnames$gamma\n[1] \"gamma=0.1\"\n\n\n\n$cv_macro_f1\n[1] 0.9873016\n\n$accuracy\n[1] 0.9\n\n$macro_f1\n[1] 0.9142857\n\n\n\n\n\n20 个测试样本中，一个错误就改变 5 个百分点的 accuracy。某次高分不证明在新医院、不同平台或批次上同样有效。批次效应和特征选择是高维小样本研究不可忽略的问题。",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>案例：从 Iris 到高维基因表达</span>"
     ]
   },
@@ -634,7 +644,7 @@
     "section": "9.5 同一协议比较不同模型",
     "text": "9.5 同一协议比较不同模型\n以下 Iris 比较在相同训练/测试划分和五个训练折上，分别选择 SVM、逻辑回归、随机森林和小型 MLP 的有限参数网格。各模型网格规模不完全相同，因此这里只是教学对照，不能称为等算力竞赛或普遍模型排名。\nfig, comparison = lab.compare_models()\nprint(lab.figure_html(fig, 'model-comparison'))\n\n\n\n\n\nfor row in comparison:\n    print(row)\n\n{'model': 'RBF SVM', 'cv_macro_f1': np.float64(0.980854700854701), 'test_macro_f1': 0.9107142857142857, 'params': \"{'model__C': 10, 'model__gamma': 0.01}\"}\n{'model': '逻辑回归', 'cv_macro_f1': np.float64(0.980854700854701), 'test_macro_f1': 0.9107142857142857, 'params': \"{'model__C': 1}\"}\n{'model': '随机森林', 'cv_macro_f1': np.float64(0.9618070818070817), 'test_macro_f1': 0.8877665544332212, 'params': \"{'model__max_depth': 2}\"}\n{'model': '小型 MLP', 'cv_macro_f1': np.float64(0.980854700854701), 'test_macro_f1': 0.9332591768631814, 'params': \"{'model__alpha': 1, 'model__hidden_layer_sizes': (8,)}\"}\n\n\n数据太小，测试波动往往比模型差异更大。若需要稳健结论，应在预先规定的重复划分或外层 CV 上报告分布，并加入时间与内存测量。Transformer 或基础模型的比较还应明确预训练数据、许可证、外部资源和特征工程预算。",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>案例：从 Iris 到高维基因表达</span>"
     ]
   },
@@ -645,7 +655,7 @@
     "section": "9.6 重复评估：一次分数不足以决定模型",
     "text": "9.6 重复评估：一次分数不足以决定模型\n新增模拟数据包含240个样本、10维输入。使用8个固定种子作分层外层留出（训练70%、测试30%）；每次外层训练中再用相同的三折划分选参。比较线性SVM、RBF SVM与逻辑回归，标准化始终在训练折内拟合。\n线性SVM和逻辑回归搜索3种C，RBF搜索3种C×2种γ，所以搜索预算并非完全相等。这是明确协议下的教学比较，不是算法排名。箱线图叠加每次真实分数；配对差值使用同一次划分的RBF分数减线性SVM分数。\n\n重复外层评估：分布与配对差值切换分数分布/配对差值。分数来自每轮重新执行内层调参后的外层测试。\n\n\n卡片的均值±标准差描述划分敏感性。外层测试集重叠，各次结果不是独立样本，不能据此直接构造独立样本置信区间或宣称统计显著。也不能查看这些测试结果后继续修改网格并仍把它们当成未见评估。\n下载逐次结果CSV和外层ID与内层验证ID。固定数据及全部划分记录可通过生成脚本重建。建议先解释配对差值的符号与变化，再决定是否需要更多数据、外部评估或更复杂的模型。",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>案例：从 Iris 到高维基因表达</span>"
     ]
   },
@@ -656,7 +666,7 @@
     "section": "9.7 数据与结果可追溯",
     "text": "9.7 数据与结果可追溯\n共享数据位于 data/，manifest.json 记录文件 SHA-256。自动验证结果见 实验验证 JSON。复制案例时保留实验元数据，但将 id/split/fold 从模型输入中排除。\nHeart 文件来自旧笔记；Iris 来自 scikit-learn；Khan 从 ISLR2 包导出。具体来源和分享注意事项见 data/README.md。任何公开分享都不应把“教学实验成功”描述成真实场景性能承诺。",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>案例：从 Iris 到高维基因表达</span>"
     ]
   },
@@ -667,7 +677,7 @@
     "section": "9.8 练习与解答",
     "text": "9.8 练习与解答\n\n加入一个“只使用两个花瓣特征”的 Iris 模型，与四特征模型比较，但不要混淆两种边界。\n如果 Khan 的测试集只错两个样本，accuracy 是多少？为什么应同时报告每类指标？\n将 Heart 的类别编码改为数字后直接标准化，可能引入什么错误假设？\n\n\n\n\n\n\n\n提示参考解答\n\n\n\n\n\n\n明确重新训练模型，沿用保存的划分，在训练集内调参；二维图只解释二维模型。\n90%。类别样本数不同，总精度可能掩盖某一类完全未识别。\n任意编码引入类别间顺序和距离；RBF 会将这些数值差当作真实几何距离。",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>案例：从 Iris 到高维基因表达</span>"
     ]
   },
@@ -678,7 +688,7 @@
     "section": "",
     "text": "10.1 “被 Transformer 淘汰”不是一个完整问题\n本章目标：建立可追踪的研究地图，理解经典模型、核方法和深度学习之间的联系。资料检索截至 2026 年 10 月 2 日。下面选取代表性研究，不以几篇论文推断整个学界的热度，也不把应用中的参数改造全部称为新理论。\n比较需要先规定任务和输入表示。直接把像素或长文本送给传统 SVM，与使用大规模预训练表示的 Transformer 对照，并不是相同特征和资源条件。SVM 常使用固定表示，深度学习可以联合学习表示；两者优势来源不同。\n学习 SVM 的价值包括理解凸优化、间隔、正则化与核相似度。选择 SVM 的理由则应来自实际验证：有限数据、合适的固定特征、可接受的核计算成本，或者需要一个强线性基线。树模型、逻辑回归、神经网络和表格基础模型也必须纳入候选。\n小数据并不自动归属于 SVM。 Hollmann 等 2025 年的 TabPFN 研究在小到中型表格数据中展示了基础模型的潜力 (Hollmann 等 2025年)。它引入预训练和先验，比较时要看数据范围、模型版本、资源与协议，而不能把论文结论外推到任意业务数据。本教程不下载预训练权重，也不声称这里的 Iris 实验能验证 TabPFN 的研究结果。",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>SVM 与现代学习：继续研究什么</span>"
     ]
   },
@@ -689,7 +699,7 @@
     "section": "10.2 方向一：让核方法扩展到更大规模",
     "text": "10.2 方向一：让核方法扩展到更大规模\n\n10.2.1 已成熟的入口\n经典瓶颈来自样本两两相似度及大量支持向量。Nyström 用若干代表点近似核矩阵；随机 Fourier 特征近似平移不变核；分块、迭代解法和预条件减少计算负担。它们是成熟研究基础，不是 2025 年才出现的发明。\nFALKON 将 Nyström 与预条件共轭梯度结合，用于大规模核岭回归 (Rudi 等 2017年)。它是核方法扩展性的重要例子，但目标不是 hinge-SVM，不能直接称为一个新 SVM 求解器。“核方法”章中的 Nyström + LinearSVC 则是本教程可运行的 SVM 相关入口。\n\n\n10.2.2 近期延伸与问题\n2025 年的 Towards Unified Native Spaces in Kernel Methods 研究统一参数化核及其函数空间关系 (Emery 等 2025年)。这是核设计/理论方向，不能仅因文中提到 SVM 就说它直接改进了 SVM 的分类性能。\n进一步可研究：如何选择代表点、近似误差如何影响间隔和泛化、预测是否满足延迟预算、核尺度变动时低秩近似是否仍有效。一次近似模型更快并不意味着在相同精度要求下总更优。",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>SVM 与现代学习：继续研究什么</span>"
     ]
   },
@@ -700,7 +710,7 @@
     "section": "10.3 方向二：从软间隔到稳健学习",
     "text": "10.3 方向二：从软间隔到稳健学习\n软间隔允许个别样本违约，但普通经验风险并没有明确控制分布变化。稳健优化考虑输入扰动集合，分布鲁棒优化考虑可能的数据分布集合，两者需要区分。\n一个概念性分布鲁棒目标是\n\\[\\min_f\\ \\sup_{Q\\in\\mathcal U(P_n)}\\mathbb E_Q[\\ell(y,f(x))]+\\lambda\\|f\\|^2.\\]\n\\(\\mathcal U(P_n)\\) 如何定义决定了鲁棒含义和保守程度；集合太大可能牺牲名义准确率。Wasserstein 球、矩约束和机会约束属于不同建模选择。\n2024 年预印本 Wasserstein Distributionally Robust Multiclass Support Vector Machine 以 Crammer–Singer 损失建立多分类鲁棒模型，并讨论核版本的可处理上界 (Ibrahim 等 2024年)。2025 年预印本 Globalized distributionally robust chance-constrained support vector machine based on core sets 研究面向群体不确定性的机会约束 SVM (Li 等 2025年)。这里按核实的 arXiv 记录将二者标为预印本，不假定已有同行评审结论。\n可继续追问：不确定集合能否由领域知识支持？鲁棒参数是否只在训练集内选择？跨域、标签噪声和对抗扰动各自的评价集是什么？“鲁棒”必须对应明确威胁模型，不能只是另一个精度形容词。",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>SVM 与现代学习：继续研究什么</span>"
     ]
   },
@@ -711,7 +721,7 @@
     "section": "10.4 方向三：现代表示与间隔目标结合",
     "text": "10.4 方向三：现代表示与间隔目标结合\n\n10.4.1 实用入口：固定表示上的 SVM\n先用预训练编码器提取 \\(z(x)\\)，再在表示上训练线性 SVM，可以将表示学习与分类决策分开。它便于研究不同表示和标签量下的基线；也有预训练成本、数据重叠及领域迁移问题。标准化、特征选择和调参仍必须在训练流程内完成。\n\n\n10.4.2 联合学习不是简单换一个输出层\n将编码器与 hinge 目标联合优化会使整体问题非凸，失去原始线性/核 SVM 的全局凸性保证。若核本身由网络学习，需重新分析表示、正则化和优化，而不是复用所有经典 SVM 结论。\nICML 2025 的 Deep Principal Support Vector Machines for Nonlinear Sufficient Dimension Reduction 用神经网络函数类推广 principal SVM 的非线性充分降维框架 (Chen 等 2025年)。它关注的是降维，不是普通“深度特征加 SVM”分类管线。阅读时先搞清响应变量、充分性目标与学习的子空间，再看实验。\n本方向的可运行扩展练习是：将同一批固定特征分别交给线性 SVM 和逻辑回归，固定训练划分、调参预算和指标，分析收益来自表示还是分类头。大规模编码器实验留给有相应算力和数据授权的后续项目。",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>SVM 与现代学习：继续研究什么</span>"
     ]
   },
@@ -722,7 +732,7 @@
     "section": "10.5 方向四：最大间隔解释深度学习的优化",
     "text": "10.5 方向四：最大间隔解释深度学习的优化\nSoudry 等的经典结果说明，在特定的线性可分条件、损失和梯度下降设置下，逻辑回归参数的范数可能持续增大，但其方向趋向硬间隔 SVM 解 (Soudry 等 2018年)。这是隐式偏置：优化算法会偏向某类解，即使目标没有显式范数正则项。\n这不是说逻辑回归输出的每个有限迭代点都等于 SVM，也不是所有非凸神经网络都收敛到同一个间隔解。模型参数化、优化几何、损失尾部和初始化会改变结论。\n2026 年 JMLR 的 Optimizing Attention with Mirror Descent: Generalized Max-Margin Token Selection 分析特定 softmax 注意力分类模型中的镜像下降，建立向广义 \\(\\ell_p\\) 硬间隔问题方向收敛的结论 (Julistiono 等 2026年)。它提供了最大间隔思想与注意力优化之间的联系；条件覆盖的模型远小于完整的大语言模型，不能据此断言“Transformer 本质上就是 SVM”。\n建议的理论阅读顺序是：本教程 KKT → 线性可分逻辑回归的隐式偏置 → 优化几何 → 注意力模型。读每篇论文时分别记录“模型”“损失”“优化器”“数据假设”“收敛对象”和“哪些结论未被证明”。",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>SVM 与现代学习：继续研究什么</span>"
     ]
   },
@@ -733,7 +743,7 @@
     "section": "10.6 怎样判断一个 SVM 改进值得研究",
     "text": "10.6 怎样判断一个 SVM 改进值得研究\n先问它解决什么问题，而不是先挑一个新名称。若只在几个小数据集上调核函数获得更高分，至少还需要对照强基线、重复划分、相同选参预算、消融和统计不确定性。若声称理论改进，需要明确证明对象和假设。若声称更快，需要相同精度要求下的时间、内存和推理成本。\nTwin SVM、模糊 SVM、多任务和量子核等可以作为进一步检索关键词，但本教程不将它们直接归为“当前主流”。研究方向的选择应与数据问题、可验证假设和可复现实验匹配。",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>SVM 与现代学习：继续研究什么</span>"
     ]
   },
@@ -744,7 +754,7 @@
     "section": "10.7 练习与论文阅读任务",
     "text": "10.7 练习与论文阅读任务\n\n阅读 Soudry 论文摘要与设定：写出它关于“方向”而非“参数收敛”的区别。\n阅读一个分布鲁棒 SVM 预印本：指出其不确定集合，以及你所在领域能否解释该集合。\n为 Nyström + LinearSVC 设计一个实验：在训练集内选近似维数，同时记录时间、内存和外层验证表现。\n\n\n\n\n\n\n\n提示参考讨论\n\n\n\n\n\n\n范数可以发散而归一化方向收敛；条件是理论结论的一部分，不能省略。\n没有与实际分布变化相对应的集合，鲁棒优化只会变成额外参数化。\n将近似维数纳入内层 CV；外层验证只用于评估。保留不同随机种子下的误差及成本分布。\n\n\n\n\n\n\n\n\nChen, Yinfeng, Jin Liu, 和 Rui Qiu. 2025年. 《Deep Principal Support Vector Machines for Nonlinear Sufficient Dimension Reduction》. Proceedings of the 42nd International Conference on Machine Learning 267: 8574～93. https://proceedings.mlr.press/v267/chen25ap.html.\n\n\nEmery, Xavier, Emilio Porcu, 和 Moreno Bevilacqua. 2025年. 《Towards Unified Native Spaces in Kernel Methods》. Journal of Machine Learning Research 26 (267): 1～35. https://jmlr.org/papers/v26/25-0022.html.\n\n\nHollmann, Noah, Samuel Müller, Lennart Purucker, 等. 2025年. 《Accurate predictions on small data with a tabular foundation model》. Nature 637: 319～26. https://doi.org/10.1038/s41586-024-08328-6.\n\n\nIbrahim, Michael, Heraldo Rozas, 和 Nagi Gebraeel. 2024年. Wasserstein Distributionally Robust Multiclass Support Vector Machine. https://arxiv.org/abs/2409.08409.\n\n\nJulistiono, Addison Kristanto, Davoud Ataee Tarzanagh, 和 Navid Azizan. 2026年. 《Optimizing Attention with Mirror Descent: Generalized Max-Margin Token Selection》. Journal of Machine Learning Research 27 (36): 1～61. https://jmlr.org/papers/v27/25-0549.html.\n\n\nLi, Yueyao, Chenglong Bao, 和 Wenxun Xing. 2025年. Globalized distributionally robust chance-constrained support vector machine based on core sets. https://arxiv.org/abs/2505.10024.\n\n\nRudi, Alessandro, Luigi Carratino, 和 Lorenzo Rosasco. 2017年. 《FALKON: An Optimal Large Scale Kernel Method》. Advances in Neural Information Processing Systems. https://papers.neurips.cc/paper/6978-falkon-an-optimal-large-scale-kernel-method.pdf.\n\n\nSoudry, Daniel, Elad Hoffer, Mor Shpigel Nacson, Suriya Gunasekar, 和 Nathan Srebro. 2018年. 《The Implicit Bias of Gradient Descent on Separable Data》. Journal of Machine Learning Research 19 (70): 1～57. https://jmlr.org/papers/v19/18-188.html.",
     "crumbs": [
-      "建立可信的实验",
+      "首页",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>SVM 与现代学习：继续研究什么</span>"
     ]
   },
@@ -755,7 +765,7 @@
     "section": "",
     "text": "11.1 第一次操作\nQuarto Book 将 Markdown、计算代码、图表和引用组织成一套可构建的教程源码。这个项目本身就是学习样例：你可以从修改一句话开始，再添加一个实验和一个章节。\n项目任务会配置 R 库和 Python 解释器。编辑器的 Python 解释器选择与 reticulate 的运行解释器是两件事；需要时用构建脚本的路径参数明确指定。",
     "crumbs": [
-      "写作与继续学习",
+      "首页",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>用 VS Code 维护本教程</span>"
     ]
   },
@@ -766,7 +776,7 @@
     "section": "",
     "text": "VS Code 打开 SVM/quarto-book 文件夹。\n菜单「终端 → 运行任务 → Quarto：预览完整教程」。\n浏览器打开 http://localhost:4317。\n修改一份 .qmd 并保存，观察预览更新。\nCtrl+Shift+B 完整构建；结果在 _book/。",
     "crumbs": [
-      "写作与继续学习",
+      "首页",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>用 VS Code 维护本教程</span>"
     ]
   },
@@ -777,7 +787,7 @@
     "section": "11.2 Quarto 与 bookdown",
     "text": "11.2 Quarto 与 bookdown\nQuarto Book 是本教程选择的路线；bookdown 仍是可用的 R Markdown 工具。新建 Python/R 教程时，Quarto 的统一配置和多语言支持更自然。传统 bookdown 项目可以继续维护，迁移时需要逐一处理目录、引用和输出配置，不能只改扩展名。\nPosit 的 官方 FAQ 说明 R Markdown 的维护安排；bookdown.org 的托管公告 涉及托管服务，不能理解为 bookdown 包停用。",
     "crumbs": [
-      "写作与继续学习",
+      "首页",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>用 VS Code 维护本教程</span>"
     ]
   },
@@ -788,7 +798,7 @@
     "section": "11.3 从代码到交互页面",
     "text": "11.3 从代码到交互页面\nPython/R 在构建时计算数据和结果；Plotly 在浏览器中显示这些结果。超平面滑块直接计算几何，C/γ 下拉框则选择已计算模型。读者无需安装语言内核，也无需连接训练服务器。\n本教程将交互辅助代码封装在 assets/tutorial.js。正文作者通常只需要调用现有函数或插入现有组件；若要创建全新交互行为，再编辑对应模块。",
     "crumbs": [
-      "写作与继续学习",
+      "首页",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>用 VS Code 维护本教程</span>"
     ]
   },
@@ -799,7 +809,7 @@
     "section": "11.4 完整 Markdown 教程",
     "text": "11.4 完整 Markdown 教程\n下载 《使用 VS Code 制作与维护 Quarto Book》。它包含环境恢复、添加章节、双语言标签页、Plotly、交互数据更新、缓存、常见报错和发布步骤。\n原笔记如何被迁移、哪些公式和代码被纠正，见 迁移说明。",
     "crumbs": [
-      "写作与继续学习",
+      "首页",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>用 VS Code 维护本教程</span>"
     ]
   },
@@ -810,7 +820,7 @@
     "section": "11.5 练习",
     "text": "11.5 练习\n在不修改生成 HTML 的情况下，把首页的一段文字改成自己的说明，添加一个带引用的公式，再插入一个 Python Plotly 图。完整构建后确认编号、引用、悬停和桌面图形尺寸正确。",
     "crumbs": [
-      "写作与继续学习",
+      "首页",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>用 VS Code 维护本教程</span>"
     ]
   },
@@ -821,7 +831,7 @@
     "section": "",
     "text": "12.1 出版工具的官方入口\n正文引用优先使用教材、原始论文与官方文档。预印本身份和检索截止时间见研究章节。\n旧笔记的三份主要参考 PDF 保留在上级目录的参考资料中；HTML 不附带书籍 PDF。新图注明对应思想来源，旧附件另存于源码的 docs/original-attachments/ 供追溯。",
     "crumbs": [
-      "写作与继续学习",
+      "首页",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>参考文献</span>"
     ]
   },
@@ -832,7 +842,7 @@
     "section": "",
     "text": "Quarto Book\nQuarto 与 R Markdown 的关系\nVS Code 与 Quarto\nPlotly Python\nQuarto HTML 标签页\nQuarto 交互内容",
     "crumbs": [
-      "写作与继续学习",
+      "首页",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>参考文献</span>"
     ]
   }
