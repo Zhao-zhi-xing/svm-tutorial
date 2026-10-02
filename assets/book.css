@@ -122,3 +122,8 @@ a:focus-visible { outline:2px solid var(--blue); outline-offset:3px; }
   .tutorial-brand { margin-bottom:24px; }
   .tutorial-directory-label { margin-top:0; padding-top:20px; border-top:1px solid #dedee3; }
 }
+
+/* 小型统计图保持紧凑；几何演示继续使用较大的画布。 */
+[data-svm-lab="tuning"] .lab-plot { max-width:660px; height:420px; min-height:0; margin-inline:auto; }
+.plotly-output.figure-confusion { max-width:600px; height:490px; min-height:0; margin:24px auto; }
+.plotly-output.figure-comparison { max-width:880px; height:410px; min-height:0; margin:24px auto; }
