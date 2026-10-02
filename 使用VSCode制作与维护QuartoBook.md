@@ -345,3 +345,18 @@ Python 混淆矩阵由 `scripts/svm_lab.py` 的 `confusion_plot()` 绘制，R �
 `layout.meta.tutorial_kind` 标记 `confusion` 或 `comparison`；浏览器初始化时据此添加 CSS 类。初始化器必须保留各图明确设置的 `height`、`margin` 和 `font`，否则统一的几何图样式会把统计图再次撑大。
 
 样式借鉴：[Plotly 带标注热图](https://plotly.com/python/annotated-heatmap/)、[Plotly 水平柱形图](https://plotly.com/python/horizontal-bar-charts/)。
+
+
+## 现代技术文档样式的维护（2026-10-03）
+
+整站样式集中在 `assets/book.css`。顶部变量定义正文最大宽度 1040px、普通阅读宽度 800px、两侧导航宽度 270px，以及字体、蓝色强调、浅灰背景与分隔线。正文采用系统中文无衬线字体，字号 17px、行高 1.85；不需要外部字体服务。
+
+普通段落、标题和列表自动居中；代码、长公式、Python/R 标签页和实验可使用完整正文宽度。不要直接缩窄 `main`，否则几何画布也会变窄。小型图的尺寸单独维护：参数热图 420px 高、混淆矩阵 490px 高、模型比较 410px 高。
+
+`_quarto.yml` 的 `book.chapters` 使用 `href` 指定章节、`text` 指定左侧简短名称；章节 YAML 的 `title` 保留正文完整标题。首页使用 Markdown 一级标题 `# 支持向量机教程 {.unnumbered}`（不要放在 YAML 的 `title` 字符串中），并设置 `number-sections: false`，作为不编号导读；正文各章仍自动编号。新增章节时复制 `.chapter-intro` 区块，写明学习目标和前置知识，不加入未经验证的学习时长。
+
+核心代码默认展开，`code-overflow: scroll` 保留缩进。需要折叠冗长参数和日志时，将对应代码块放在原生 `<details class="result-details">` 中，用 `<summary>查看完整实验记录（参数与指标）</summary>` 命名；HTML 标签与 Markdown 代码块之间留空行。重要推导不折叠，练习解答继续使用 Quarto 的 `callout-tip collapse="true"`。
+
+`assets/footer.html` 为代码增加语言标识，并在 Python/R 标签切换与结果折叠展开后调用 Plotly resize。复制按钮由 Quarto 提供，不要删除其 HTML 标记。
+
+完整构建后运行 `scripts/layout_check.py`、`scripts/chart_check.py` 和 `scripts/browser_check.py` 检查居中、目录、交互与图表；`scripts/reading_check.py` 专门检查普通阅读宽度、首页编号和折叠结果。浏览器检查使用安装了 Playwright 的 Python 与本机 Chrome，不属于读者运行教程的依赖。发布后若仍看到旧样式，可用 Ctrl+F5 刷新。

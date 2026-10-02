@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; 建立可信的建模流程 – 支持向量机教程：从几何到现代学习</title>
+<title>7&nbsp; 建立可信的建模流程 – 支持向量机教程：从几何到现代学习</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0e621268080d55bbd7df441cb99ca0ef.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fe1b2164e170bcee65568756051c19de.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -189,7 +189,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/06-workflow.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">建立可信的建模流程</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/06-workflow.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">可靠建模流程</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -211,73 +211,73 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">从一条分隔线开始</span></span></a>
+ <span class="menu-text">导读与学习路线</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/00-python-start.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">第一次独立训练 SVM：纯 Python 入门</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">纯 Python 入门</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/01-geometry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">超平面与最大间隔</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">超平面与间隔</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/02-soft-margin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">软间隔、损失与正则化</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔与损失</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/03-duality-smo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/04-kernels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">核技巧与非线性边界</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">核方法</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/05-multiclass.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">多分类：分数、投票与联合学习</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">多分类</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/06-workflow.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">建立可信的建模流程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">可靠建模流程</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/07-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">案例：从 Iris 到高维基因表达</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">真实数据案例</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/08-modern.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">SVM 与现代学习：继续研究什么</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">现代研究导读</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/09-authoring.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">用 VS Code 维护本教程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">维护本教程</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">参考文献</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">参考文献</span></span></a>
   </div>
 </li>
     </ul>
@@ -290,13 +290,13 @@ window.Quarto = {
     <h2 id="toc-title">本章目录</h2>
    
   <ul class="collapse">
-  <li><a href="#先划分再学习任何变换" id="toc-先划分再学习任何变换" class="nav-link active" data-scroll-target="#先划分再学习任何变换"><span class="header-section-number">8.1</span> 先划分，再学习任何变换</a></li>
-  <li><a href="#调参不能看测试集" id="toc-调参不能看测试集" class="nav-link" data-scroll-target="#调参不能看测试集"><span class="header-section-number">8.2</span> 调参不能看测试集</a></li>
-  <li><a href="#指标回答不同问题" id="toc-指标回答不同问题" class="nav-link" data-scroll-target="#指标回答不同问题"><span class="header-section-number">8.3</span> 指标回答不同问题</a></li>
-  <li><a href="#概率校准与分数" id="toc-概率校准与分数" class="nav-link" data-scroll-target="#概率校准与分数"><span class="header-section-number">8.4</span> 概率校准与分数</a></li>
-  <li><a href="#类别不平衡与部署成本" id="toc-类别不平衡与部署成本" class="nav-link" data-scroll-target="#类别不平衡与部署成本"><span class="header-section-number">8.5</span> 类别不平衡与部署成本</a></li>
-  <li><a href="#从原则到对照实验" id="toc-从原则到对照实验" class="nav-link" data-scroll-target="#从原则到对照实验"><span class="header-section-number">8.6</span> 从原则到对照实验</a></li>
-  <li><a href="#练习与解答" id="toc-练习与解答" class="nav-link" data-scroll-target="#练习与解答"><span class="header-section-number">8.7</span> 练习与解答</a></li>
+  <li><a href="#先划分再学习任何变换" id="toc-先划分再学习任何变换" class="nav-link active" data-scroll-target="#先划分再学习任何变换"><span class="header-section-number">7.1</span> 先划分，再学习任何变换</a></li>
+  <li><a href="#调参不能看测试集" id="toc-调参不能看测试集" class="nav-link" data-scroll-target="#调参不能看测试集"><span class="header-section-number">7.2</span> 调参不能看测试集</a></li>
+  <li><a href="#指标回答不同问题" id="toc-指标回答不同问题" class="nav-link" data-scroll-target="#指标回答不同问题"><span class="header-section-number">7.3</span> 指标回答不同问题</a></li>
+  <li><a href="#概率校准与分数" id="toc-概率校准与分数" class="nav-link" data-scroll-target="#概率校准与分数"><span class="header-section-number">7.4</span> 概率校准与分数</a></li>
+  <li><a href="#类别不平衡与部署成本" id="toc-类别不平衡与部署成本" class="nav-link" data-scroll-target="#类别不平衡与部署成本"><span class="header-section-number">7.5</span> 类别不平衡与部署成本</a></li>
+  <li><a href="#从原则到对照实验" id="toc-从原则到对照实验" class="nav-link" data-scroll-target="#从原则到对照实验"><span class="header-section-number">7.6</span> 从原则到对照实验</a></li>
+  <li><a href="#练习与解答" id="toc-练习与解答" class="nav-link" data-scroll-target="#练习与解答"><span class="header-section-number">7.7</span> 练习与解答</a></li>
   </ul>
 </nav>
     </div>
@@ -305,7 +305,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">建立可信的建模流程</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">建立可信的建模流程</span></h1>
 </div>
 
 
@@ -322,22 +322,25 @@ window.Quarto = {
 </header>
 
 
-<p>本章目标：把“能跑出一个模型”升级成可复现、无信息泄漏的实验。真正决定结果可信度的，往往是数据划分和预处理位置。</p>
-<section id="先划分再学习任何变换" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="先划分再学习任何变换"><span class="header-section-number">8.1</span> 先划分，再学习任何变换</h2>
+<div class="chapter-intro">
+<p><strong>学习目标</strong>：把“能跑出一个模型”升级成可复现、无信息泄漏的实验。真正决定结果可信度的，往往是数据划分和预处理位置。</p>
+<p><strong>前置知识</strong>：训练集与测试集、基础 Python 或 R。</p>
+</div>
+<section id="先划分再学习任何变换" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="先划分再学习任何变换"><span class="header-section-number">7.1</span> 先划分，再学习任何变换</h2>
 <p>正确顺序是保存测试集、在训练集内交叉验证，并在每个训练折内拟合缺失值填补、编码、标准化和模型。若在全数据上先求均值/标准差，验证折的信息已经进入训练。监督特征筛选更不能在全数据上先做。</p>
 <p>Python 使用 <code>Pipeline</code> 将这些步骤放在一起；R 示例的 <code>fit_preprocessor()</code> 每次只读取当前训练折。数值缺失用训练折中位数填补，类别缺失用训练折众数填补，类别编码字典也只从训练折学习。未知类别映射成全零 one-hot，需在真实任务中检查它是否合理。</p>
 <p>实验数据含 <code>id</code>、<code>split</code>、<code>fold</code> 和 <code>target</code>；前三者是实验元数据，不能混入特征。随机分层划分适合这里的独立样本演示；同一受试者多条记录需要按组划分，时间预测需要按时间划分。</p>
-<section id="标准化怎样改变图中的法向量" class="level3" data-number="8.1.1">
-<h3 data-number="8.1.1" class="anchored" data-anchor-id="标准化怎样改变图中的法向量"><span class="header-section-number">8.1.1</span> 标准化怎样改变图中的法向量</h3>
+<section id="标准化怎样改变图中的法向量" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="标准化怎样改变图中的法向量"><span class="header-section-number">7.1.1</span> 标准化怎样改变图中的法向量</h3>
 <p>训练折均值为 <span class="math inline">\(\mu\)</span>、各特征标准差为 <span class="math inline">\(s_r&gt;0\)</span>，令 <span class="math inline">\(A=\operatorname{diag}(1/s_r)\)</span>。标准化变量 <span class="math inline">\(z=A(x-\mu)\)</span>，在此空间学习 <span class="math inline">\(f=v^Tz+c\)</span>，展开为</p>
 <p><span class="math display">\[f(x)=(A^Tv)^Tx+c-v^TA\mu=w_{\rm raw}^Tx+b_{\rm raw},\quad
 w_{\rm raw}=A^Tv,\quad b_{\rm raw}=c-w_{\rm raw}^T\mu.\]</span></p>
 <p>因此原始坐标的两条 <span class="math inline">\(f=\pm1\)</span> 线之间距离是 <span class="math inline">\(2/\|w_{\rm raw}\|\)</span>，标准化空间的是 <span class="math inline">\(2/\|v\|\)</span>。模型优化的是<strong>标准化空间</strong>中的范数，二者通常不同。本教程线性图卡片显示原始坐标的线间距离，避免混用两个量。常数特征需要专门处理；示例由预处理器遵循既定缩放约定。</p>
 </section>
 </section>
-<section id="调参不能看测试集" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="调参不能看测试集"><span class="header-section-number">8.2</span> 调参不能看测试集</h2>
+<section id="调参不能看测试集" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="调参不能看测试集"><span class="header-section-number">7.2</span> 调参不能看测试集</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -364,12 +367,12 @@ w_{\rm raw}=A^Tv,\quad b_{\rm raw}=c-w_{\rm raw}^T\mu.\]</span></p>
 </section>
 <p>选择最大验证分数会带来“选优偏差”；这个最大值不等于无偏的泛化估计。如果需要同时选模型并估计表现，可用嵌套交叉验证：外层评估、内层选择。报告参数网格、划分方法、随机性、计算预算以及不确定性，而不是只写一个最高精度。</p>
 </section>
-<section id="指标回答不同问题" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="指标回答不同问题"><span class="header-section-number">8.3</span> 指标回答不同问题</h2>
+<section id="指标回答不同问题" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="指标回答不同问题"><span class="header-section-number">7.3</span> 指标回答不同问题</h2>
 <p>accuracy 统计总体正确比例，在不平衡数据中容易掩盖少数类错误。macro-F1 先分别计算每类 F1 再平均，让各类权重相同；weighted-F1 按样本数加权，micro 指标汇总所有样本。多分类一定要同时看混淆矩阵及每类召回率。</p>
 <p>二分类 ROC 绘制阈值变化下的 TPR 与 FPR；PR 绘制 precision 与 recall。ROC-AUC 衡量排序，AP 是不同召回增量对应 precision 的加权和，不等于任意梯形积分 PR-AUC。严重不平衡时，PR 及少数类召回通常更直观。阈值应按训练/验证信息与业务成本选择。</p>
-<section id="把评估指标写成可核对的公式" class="level3" data-number="8.3.1">
-<h3 data-number="8.3.1" class="anchored" data-anchor-id="把评估指标写成可核对的公式"><span class="header-section-number">8.3.1</span> 把评估指标写成可核对的公式</h3>
+<section id="把评估指标写成可核对的公式" class="level3" data-number="7.3.1">
+<h3 data-number="7.3.1" class="anchored" data-anchor-id="把评估指标写成可核对的公式"><span class="header-section-number">7.3.1</span> 把评估指标写成可核对的公式</h3>
 <p>对某个正类，<span class="math inline">\(\mathrm{Precision}=TP/(TP+FP)\)</span>、<span class="math inline">\(\mathrm{Recall}=TP/(TP+FN)\)</span>，从调和平均得到</p>
 <p><span class="math display">\[F_1=\frac{2\,\mathrm{Precision}\,\mathrm{Recall}}{\mathrm{Precision}+\mathrm{Recall}}=\frac{2TP}{2TP+FP+FN},\qquad
 \mathrm{macro\text{-}}F_1=\frac1K\sum_{k=1}^K F_{1,k}.\]</span></p>
@@ -401,8 +404,8 @@ w_{\rm raw}=A^Tv,\quad b_{\rm raw}=c-w_{\rm raw}^T\mu.\]</span></p>
 <p>这组图使用测试集决策分数、正类为 <code>AHD=Yes</code>。图例默认显示 ROC，点击 PR 可显示 PR 曲线；两者轴含义不同，最好一次查看一条。这里不将训练 ROC 当成泛化证据。</p>
 </section>
 </section>
-<section id="概率校准与分数" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="概率校准与分数"><span class="header-section-number">8.4</span> 概率校准与分数</h2>
+<section id="概率校准与分数" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="概率校准与分数"><span class="header-section-number">7.4</span> 概率校准与分数</h2>
 <p><span class="math inline">\(f(x)\)</span> 不是 <span class="math inline">\(P(y=1\mid x)\)</span>。如果需要风险概率，可以用训练集内的交叉验证校准。Platt scaling 对分数拟合 sigmoid；isotonic 是更灵活的单调映射，但小校准集容易过拟合。</p>
 <p>下面显式把整个预处理和分类 Pipeline 交给校准器，避免在校准折外提前拟合标准化：</p>
 <div class="cell">
@@ -844,16 +847,16 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 <p>这里参数预先固定，避免一边看测试概率一边改模型。多分类需要说明采用何种校准/归一化策略。概率质量应检查 Brier/log loss 和可靠性图，单看 accuracy 无法判断概率是否可信。不同 scikit-learn 版本的概率接口可能变化，本教程固定依赖为 1.6.1，升级时应重新核对 <a href="https://scikit-learn.org/1.6/modules/calibration.html">官方校准文档</a>。</p>
 </section>
-<section id="类别不平衡与部署成本" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="类别不平衡与部署成本"><span class="header-section-number">8.5</span> 类别不平衡与部署成本</h2>
+<section id="类别不平衡与部署成本" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="类别不平衡与部署成本"><span class="header-section-number">7.5</span> 类别不平衡与部署成本</h2>
 <p>类权重相当于让不同样本使用不同惩罚 <span class="math inline">\(C_i\)</span>。<code>class_weight='balanced'</code> 是一个可比较的基线，不是保证少数类表现更好的规则。重采样必须在训练折内进行，否则重复样本可能跨越训练/验证边界。若概率将用于决策，还要考虑真实类别先验与部署分布。</p>
 <p>实际模型选择还包括训练时间、峰值内存、预测延迟、支持向量数量和特征计算成本。机器不同，单次耗时缺乏可比性；需要重复测量和说明硬件。小数据案例不用于推断大规模部署性能。</p>
 </section>
-<section id="从原则到对照实验" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="从原则到对照实验"><span class="header-section-number">8.6</span> 从原则到对照实验</h2>
+<section id="从原则到对照实验" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="从原则到对照实验"><span class="header-section-number">7.6</span> 从原则到对照实验</h2>
 <p>下面三组实验分别隔离一个问题。数据都是固定随机种子的模拟样本，并保存训练/测试ID；模型参数预先规定。它们用来观察机制，不代表调参后的最佳性能。模型训练在生成脚本中完成，浏览器只切换预计算结果。</p>
-<section id="特征尺度会怎样改变-rbf-边界" class="level3" data-number="8.6.1">
-<h3 data-number="8.6.1" class="anchored" data-anchor-id="特征尺度会怎样改变-rbf-边界"><span class="header-section-number">8.6.1</span> 特征尺度会怎样改变 RBF 边界</h3>
+<section id="特征尺度会怎样改变-rbf-边界" class="level3" data-number="7.6.1">
+<h3 data-number="7.6.1" class="anchored" data-anchor-id="特征尺度会怎样改变-rbf-边界"><span class="header-section-number">7.6.1</span> 特征尺度会怎样改变 RBF 边界</h3>
 <p>同一份双月牙数据，将第一维人为乘1000。对比“未标准化”与“只用训练集拟合StandardScaler”，两种模型都设置 <span class="math inline">\(C=1,\gamma=\text{scale}\)</span>。注意 <code>scale</code> 是按输入方差计算γ的规则，不是同一个数值；卡片给出实际γ。图形始终使用原始坐标，避免把变换后坐标与原始距离混用。</p>
 <section class="lab" data-experiment="scaling" aria-label="标准化前后：同一原始坐标下的边界">
 <p class="lab-title">标准化前后：同一原始坐标下的边界</p><p class="lab-hint">切换处理方式，查看测试指标、实际γ和支持向量。空心菱形为测试样本。</p>
@@ -861,8 +864,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </section>
 <p>先解释边界为何改变，再比较测试表现。不要从单次固定配置得出“标准化必然提高所有数据集精度”。参考<a href="https://www.csie.ntu.edu.tw/~cjlin/papers/guide/guide.pdf">LIBSVM实践指南</a>。</p>
 </section>
-<section id="类别加权改变的是不同类别的代价" class="level3" data-number="8.6.2">
-<h3 data-number="8.6.2" class="anchored" data-anchor-id="类别加权改变的是不同类别的代价"><span class="header-section-number">8.6.2</span> 类别加权改变的是不同类别的代价</h3>
+<section id="类别加权改变的是不同类别的代价" class="level3" data-number="7.6.2">
+<h3 data-number="7.6.2" class="anchored" data-anchor-id="类别加权改变的是不同类别的代价"><span class="header-section-number">7.6.2</span> 类别加权改变的是不同类别的代价</h3>
 <p>模拟数据使用每类两个簇、重叠分布和4%的随机标签扰动，使少数类识别具有挑战；类别1为少数类，对比同样参数下普通SVM与 <code>class_weight='balanced'</code>。权重只由训练标签计算，不读取测试比例。检查少数类precision、recall、F1，不能只看accuracy。</p>
 <section class="lab" data-experiment="imbalance" aria-label="普通与加权 SVM：少数类的代价">
 <p class="lab-title">普通与加权 SVM：少数类的代价</p><p class="lab-hint">切换模型，观察边界及少数类precision/recall的权衡。</p>
@@ -870,8 +873,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </section>
 <p>加权改变训练代价，阈值选择改变预测规则，重采样改变训练样本分布；它们不是同一种操作。本实验只比较前者。若继续选权重或阈值，必须在训练/验证数据内完成。参考<a href="https://scikit-learn.org/1.6/auto_examples/svm/plot_separating_hyperplane_unbalanced.html">官方类别权重示例</a>。</p>
 </section>
-<section id="校准前后概率与真实频率是否一致" class="level3" data-number="8.6.3">
-<h3 data-number="8.6.3" class="anchored" data-anchor-id="校准前后概率与真实频率是否一致"><span class="header-section-number">8.6.3</span> 校准前后：概率与真实频率是否一致</h3>
+<section id="校准前后概率与真实频率是否一致" class="level3" data-number="7.6.3">
+<h3 data-number="7.6.3" class="anchored" data-anchor-id="校准前后概率与真实频率是否一致"><span class="header-section-number">7.6.3</span> 校准前后：概率与真实频率是否一致</h3>
 <p>可靠性曲线将预测值分为8个固定区间：横轴是区间内平均预测概率，纵轴是实际正类比例。悬停查看每箱样本数。空箱不画点。曲线接近对角线只是有限样本证据，还需要结合Brier与log loss及采样不确定性。</p>
 <section class="lab" data-experiment="calibration" aria-label="概率校准：sigmoid 与 isotonic">
 <p class="lab-title">概率校准：sigmoid 与 isotonic</p><p class="lab-hint">切换方法，查看可靠性曲线与测试Brier/log loss；悬停查看分箱样本数。</p>
@@ -880,8 +883,8 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <p>未校准基线只是对原始SVM分数直接取sigmoid，没有拟合校准参数，不能称为SVM自带概率。另两种方法将完整Pipeline交给训练集内五折校准器，以避免预处理泄漏；它们同时使用交叉验证集成，比较包含这部分实现差异。固定分类器参数，测试集不参与选择校准方法。本例不能证明isotonic总是更好。参考<a href="https://scikit-learn.org/1.6/auto_examples/calibration/plot_calibration_curve.html">官方可靠性曲线实验</a>。</p>
 </section>
 </section>
-<section id="练习与解答" class="level2" data-number="8.7">
-<h2 data-number="8.7" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">8.7</span> 练习与解答</h2>
+<section id="练习与解答" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">7.7</span> 练习与解答</h2>
 <ol type="1">
 <li>为什么先在全数据上标准化，再交叉验证，会泄漏？</li>
 <li>一个 99% 阴性数据集，总预测阴性的 accuracy 是多少？它的阳性召回率呢？</li>
@@ -914,9 +917,31 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </main> <!-- /main -->
 <script>
 
-document.addEventListener('shown.bs.tab',function(){
+function resizeTutorialPlots(){
 
-  document.querySelectorAll('.js-plotly-plot').forEach(function(p){if(p.offsetWidth) Plotly.Plots.resize(p);});
+  if(!window.Plotly)return;
+
+  requestAnimationFrame(function(){document.querySelectorAll('.js-plotly-plot').forEach(function(p){if(p.offsetWidth) Plotly.Plots.resize(p);});});
+
+}
+
+document.addEventListener('shown.bs.tab',resizeTutorialPlots);
+
+document.addEventListener('DOMContentLoaded',function(){
+
+  document.querySelectorAll('pre.sourceCode > code').forEach(function(code){
+
+    var language=Array.from(code.classList).find(function(c){return !['sourceCode','code-with-copy'].includes(c);});
+
+    if(!language)return;
+
+    var label=document.createElement('span');label.className='code-language';label.textContent=language==='r'?'R':language==='python'?'Python':language;
+
+    code.closest('div.sourceCode').appendChild(label);
+
+  });
+
+  document.querySelectorAll('details.result-details').forEach(function(el){el.addEventListener('toggle',resizeTutorialPlots);});
 
 });
 
@@ -1329,13 +1354,13 @@ document.addEventListener('shown.bs.tab',function(){
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/05-multiclass.html" class="pagination-link" aria-label="多分类：分数、投票与联合学习">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">多分类：分数、投票与联合学习</span></span>
+      <a href="../chapters/05-multiclass.html" class="pagination-link" aria-label="多分类">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">多分类</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/07-cases.html" class="pagination-link" aria-label="案例：从 Iris 到高维基因表达">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">案例：从 Iris 到高维基因表达</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/07-cases.html" class="pagination-link" aria-label="真实数据案例">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">真实数据案例</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

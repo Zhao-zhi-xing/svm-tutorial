@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; 案例：从 Iris 到高维基因表达 – 支持向量机教程：从几何到现代学习</title>
+<title>8&nbsp; 案例：从 Iris 到高维基因表达 – 支持向量机教程：从几何到现代学习</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0e621268080d55bbd7df441cb99ca0ef.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fe1b2164e170bcee65568756051c19de.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -189,7 +189,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/07-cases.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">案例：从 Iris 到高维基因表达</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/07-cases.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">真实数据案例</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -211,73 +211,73 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">从一条分隔线开始</span></span></a>
+ <span class="menu-text">导读与学习路线</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/00-python-start.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">第一次独立训练 SVM：纯 Python 入门</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">纯 Python 入门</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/01-geometry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">超平面与最大间隔</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">超平面与间隔</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/02-soft-margin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">软间隔、损失与正则化</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔与损失</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/03-duality-smo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/04-kernels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">核技巧与非线性边界</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">核方法</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/05-multiclass.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">多分类：分数、投票与联合学习</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">多分类</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/06-workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">建立可信的建模流程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">可靠建模流程</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/07-cases.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">案例：从 Iris 到高维基因表达</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">真实数据案例</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/08-modern.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">SVM 与现代学习：继续研究什么</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">现代研究导读</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/09-authoring.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">用 VS Code 维护本教程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">维护本教程</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">参考文献</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">参考文献</span></span></a>
   </div>
 </li>
     </ul>
@@ -290,14 +290,14 @@ window.Quarto = {
     <h2 id="toc-title">本章目录</h2>
    
   <ul class="collapse">
-  <li><a href="#模拟数据提供可控问题" id="toc-模拟数据提供可控问题" class="nav-link active" data-scroll-target="#模拟数据提供可控问题"><span class="header-section-number">9.1</span> 模拟数据提供可控问题</a></li>
-  <li><a href="#iris多分类与二维投影" id="toc-iris多分类与二维投影" class="nav-link" data-scroll-target="#iris多分类与二维投影"><span class="header-section-number">9.2</span> Iris：多分类与二维投影</a></li>
-  <li><a href="#heart混合类型与缺失值" id="toc-heart混合类型与缺失值" class="nav-link" data-scroll-target="#heart混合类型与缺失值"><span class="header-section-number">9.3</span> Heart：混合类型与缺失值</a></li>
-  <li><a href="#khan样本少维度高" id="toc-khan样本少维度高" class="nav-link" data-scroll-target="#khan样本少维度高"><span class="header-section-number">9.4</span> Khan：样本少、维度高</a></li>
-  <li><a href="#同一协议比较不同模型" id="toc-同一协议比较不同模型" class="nav-link" data-scroll-target="#同一协议比较不同模型"><span class="header-section-number">9.5</span> 同一协议比较不同模型</a></li>
-  <li><a href="#重复评估一次分数不足以决定模型" id="toc-重复评估一次分数不足以决定模型" class="nav-link" data-scroll-target="#重复评估一次分数不足以决定模型"><span class="header-section-number">9.6</span> 重复评估：一次分数不足以决定模型</a></li>
-  <li><a href="#数据与结果可追溯" id="toc-数据与结果可追溯" class="nav-link" data-scroll-target="#数据与结果可追溯"><span class="header-section-number">9.7</span> 数据与结果可追溯</a></li>
-  <li><a href="#练习与解答" id="toc-练习与解答" class="nav-link" data-scroll-target="#练习与解答"><span class="header-section-number">9.8</span> 练习与解答</a></li>
+  <li><a href="#模拟数据提供可控问题" id="toc-模拟数据提供可控问题" class="nav-link active" data-scroll-target="#模拟数据提供可控问题"><span class="header-section-number">8.1</span> 模拟数据提供可控问题</a></li>
+  <li><a href="#iris多分类与二维投影" id="toc-iris多分类与二维投影" class="nav-link" data-scroll-target="#iris多分类与二维投影"><span class="header-section-number">8.2</span> Iris：多分类与二维投影</a></li>
+  <li><a href="#heart混合类型与缺失值" id="toc-heart混合类型与缺失值" class="nav-link" data-scroll-target="#heart混合类型与缺失值"><span class="header-section-number">8.3</span> Heart：混合类型与缺失值</a></li>
+  <li><a href="#khan样本少维度高" id="toc-khan样本少维度高" class="nav-link" data-scroll-target="#khan样本少维度高"><span class="header-section-number">8.4</span> Khan：样本少、维度高</a></li>
+  <li><a href="#同一协议比较不同模型" id="toc-同一协议比较不同模型" class="nav-link" data-scroll-target="#同一协议比较不同模型"><span class="header-section-number">8.5</span> 同一协议比较不同模型</a></li>
+  <li><a href="#重复评估一次分数不足以决定模型" id="toc-重复评估一次分数不足以决定模型" class="nav-link" data-scroll-target="#重复评估一次分数不足以决定模型"><span class="header-section-number">8.6</span> 重复评估：一次分数不足以决定模型</a></li>
+  <li><a href="#数据与结果可追溯" id="toc-数据与结果可追溯" class="nav-link" data-scroll-target="#数据与结果可追溯"><span class="header-section-number">8.7</span> 数据与结果可追溯</a></li>
+  <li><a href="#练习与解答" id="toc-练习与解答" class="nav-link" data-scroll-target="#练习与解答"><span class="header-section-number">8.8</span> 练习与解答</a></li>
   </ul>
 </nav>
     </div>
@@ -306,7 +306,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">案例：从 Iris 到高维基因表达</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">案例：从 Iris 到高维基因表达</span></h1>
 </div>
 
 
@@ -323,19 +323,22 @@ window.Quarto = {
 </header>
 
 
-<p>本章目标：把原笔记中的模拟、Iris、Heart 和 Khan 案例整理成独立实验，理解任务之间的差异。完整 Python 实现在 <code>scripts/svm_lab.py</code>，R 实现在 <code>scripts/lab.R</code>；每次调用都重新读取该实验自己的数据。</p>
-<section id="模拟数据提供可控问题" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="模拟数据提供可控问题"><span class="header-section-number">9.1</span> 模拟数据提供可控问题</h2>
+<div class="chapter-intro">
+<p><strong>学习目标</strong>：把原笔记中的模拟、Iris、Heart 和 Khan 案例整理成独立实验，理解任务之间的差异。完整 Python 实现在 <code>scripts/svm_lab.py</code>，R 实现在 <code>scripts/lab.R</code>；每次调用都重新读取该实验自己的数据。</p>
+<p><strong>前置知识</strong>：预处理 Pipeline、交叉验证与评价指标。</p>
+</div>
+<section id="模拟数据提供可控问题" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="模拟数据提供可控问题"><span class="header-section-number">8.1</span> 模拟数据提供可控问题</h2>
 <p>前面软间隔实验使用两个重叠高斯簇，核实验使用带噪双月牙。它们分别用于观察线性折中和非线性表示。模拟数据的好处是能控制噪声与结构；局限是它不包含真实采样偏差、缺失机制和领域约束。</p>
 <p>生成脚本保存随机种子、每行 ID、训练/测试和五折编号。不要只保存图：重新绘图需要模型参数、预处理和数据。模型交互网格来自 <code>scripts/prepare.py</code>，每个参数组合都按同一评估规则计算。</p>
 </section>
-<section id="iris多分类与二维投影" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="iris多分类与二维投影"><span class="header-section-number">9.2</span> Iris：多分类与二维投影</h2>
+<section id="iris多分类与二维投影" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="iris多分类与二维投影"><span class="header-section-number">8.2</span> Iris：多分类与二维投影</h2>
 <p>Iris 有 150 个样本、四个数值特征、三个类别。本教程保存 105 个训练样本和 45 个测试样本，五折内选择 RBF 参数。多分类章节已经给出双语言混淆矩阵。</p>
 <p>在四维上训练的模型不能用随意选取两维的散点图完整解释。若画二维决策切片，必须说明另外两个特征固定为多少；若重新训练二维模型，则必须明确它与四维模型不同。原笔记中的预测散点可以用来标出错误，但不能单独证明四维边界。</p>
 </section>
-<section id="heart混合类型与缺失值" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="heart混合类型与缺失值"><span class="header-section-number">9.3</span> Heart：混合类型与缺失值</h2>
+<section id="heart混合类型与缺失值" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="heart混合类型与缺失值"><span class="header-section-number">8.3</span> Heart：混合类型与缺失值</h2>
 <p>原 <code>Heart.csv</code> 有数值、类别和缺失值。本教程删除行号列，将 <code>AHD=Yes</code> 作为正类。缺失填补、one-hot 和标准化都只拟合训练折；不把 <code>ChestPain</code> 和 <code>Thal</code> 强行当成连续数字。</p>
 <p>旧代码 <code>Heart &lt;- na.omit(train)</code> 会误用前一个实验的 <code>train</code>。新版直接从 Heart 数据建立完整 Pipeline，不依赖已有变量；填补保留全部 303 行，而不是悄悄改变样本集。</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
@@ -348,12 +351,17 @@ window.Quarto = {
 
 </div>
 <script type="application/json" id="heart-python-json">{"data":[{"colorbar":{"len":0.8,"outlinewidth":0,"thickness":12,"tickfont":{"size":11},"title":{"side":"top","text":"\u6837\u672c\u6570"}},"colorscale":[[0,"#f1f5fa"],[0.35,"#b5cde6"],[0.7,"#5487b9"],[1,"#244f7d"]],"customdata":[[0.9183673469387755,0.08163265306122448],[0.16666666666666666,0.8333333333333334]],"hovertemplate":"\u771f\u5b9e\u7c7b\u522b %{y}\u003cbr\u003e\u9884\u6d4b\u7c7b\u522b %{x}\u003cbr\u003e\u6837\u672c\u6570 %{z:.0f}\u003cbr\u003e\u8be5\u771f\u5b9e\u7c7b\u522b\u5360\u6bd4 %{customdata:.1%}\u003cextra\u003e\u003c\u002fextra\u003e","text":[["45\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e92%\u003c\u002fspan\u003e","4\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e8%\u003c\u002fspan\u003e"],["7\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e17%\u003c\u002fspan\u003e","35\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e83%\u003c\u002fspan\u003e"]],"textfont":{"size":20},"texttemplate":"%{text}","x":["0","1"],"xgap":6,"y":["0","1"],"ygap":6,"z":[[45.0,4.0],[7.0,35.0]],"zmin":0,"type":"heatmap"}],"layout":{"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"font":{"size":17},"text":"Heart \u00b7 Python \u6d4b\u8bd5\u96c6\u6df7\u6dc6\u77e9\u9635","x":0.5,"xanchor":"center"},"font":{"family":"Segoe UI, Microsoft YaHei, sans-serif","size":13,"color":"#30323b"},"margin":{"l":100,"r":85,"t":90,"b":90},"xaxis":{"title":{"text":"\u9884\u6d4b\u7c7b\u522b"},"type":"category","tickvals":["0","1"],"ticktext":["AHD = No","AHD = Yes"],"showgrid":false,"zeroline":false,"constrain":"domain"},"yaxis":{"title":{"text":"\u771f\u5b9e\u7c7b\u522b"},"type":"category","tickvals":["0","1"],"ticktext":["AHD = No","AHD = Yes"],"autorange":"reversed","scaleanchor":"x","scaleratio":1,"constrain":"domain","showgrid":false,"zeroline":false},"height":490,"meta":{"tutorial_kind":"confusion"},"paper_bgcolor":"white","plot_bgcolor":"white","annotations":[{"font":{"color":"#60636e","size":12},"showarrow":false,"text":"Accuracy 0.879  \u00b7  Macro-F1 0.878  \u00b7  n = 91","x":0.5,"xref":"paper","y":1.1,"yref":"paper"},{"font":{"color":"#60636e","size":12},"showarrow":false,"text":"\u683c\u5185\uff1a\u6837\u672c\u6570 \u002f \u8be5\u771f\u5b9e\u7c7b\u522b\u5360\u6bd4","x":0.5,"xref":"paper","y":-0.24,"yref":"paper"}]}}</script>
+<details class="result-details">
+<summary>
+查看完整实验记录（参数与指标）
+</summary>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(heart_result)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{'case': 'heart', 'language': 'Python', 'train_n': 212, 'test_n': 91, 'parameters': {'svm__C': 1, 'svm__gamma': 0.01, 'svm__kernel': 'rbf'}, 'cv_macro_f1': 0.8401539251105756, 'accuracy': 0.8791208791208791, 'macro_f1': 0.8776433198875443, 'labels': [0, 1], 'confusion': [[45, 4], [7, 35]], 'support_vectors': 126}</code></pre>
 </div>
 </div>
+</details>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>heart_r <span class="ot">&lt;-</span> <span class="fu">fit_case_r</span>(<span class="st">'heart'</span>)</span>
@@ -362,6 +370,10 @@ window.Quarto = {
 
 </div>
 <script type="application/json" id="heart-r-json">{"data":[{"type":"heatmap","z":[[45,4],[7,35]],"x":["0","1"],"y":["0","1"],"zmin":0,"colorscale":[[0,"#f1f5fa"],[0.35,"#b5cde6"],[0.7,"#5487b9"],[1,"#244f7d"]],"xgap":6,"ygap":6,"text":[["45<br><span style=\"font-size:12px\">92%<\/span>","4<br><span style=\"font-size:12px\">8%<\/span>"],["7<br><span style=\"font-size:12px\">17%<\/span>","35<br><span style=\"font-size:12px\">83%<\/span>"]],"customdata":[[0.91836735,0.08163265],[0.16666667,0.83333333]],"texttemplate":"%{text}","textfont":{"size":20},"colorbar":{"title":{"text":"样本数","side":"top"},"thickness":12,"len":0.8,"outlinewidth":0,"tickfont":{"size":11}},"hovertemplate":"真实类别 %{y}<br>预测类别 %{x}<br>样本数 %{z:.0f}<br>该真实类别占比 %{customdata:.1%}<extra><\/extra>"}],"layout":{"title":{"text":"Heart · R 测试集混淆矩阵","x":0.5,"xanchor":"center","font":{"size":17}},"height":490,"meta":{"tutorial_kind":"confusion"},"paper_bgcolor":"white","plot_bgcolor":"white","font":{"family":"Segoe UI, Microsoft YaHei, sans-serif","size":13,"color":"#30323b"},"margin":{"l":100,"r":85,"t":90,"b":90},"xaxis":{"title":"预测类别","type":"category","tickvals":["0","1"],"ticktext":["AHD = No","AHD = Yes"],"showgrid":false,"zeroline":false,"constrain":"domain"},"yaxis":{"title":"真实类别","type":"category","tickvals":["0","1"],"ticktext":["AHD = No","AHD = Yes"],"autorange":"reversed","scaleanchor":"x","scaleratio":1,"constrain":"domain","showgrid":false,"zeroline":false},"annotations":[{"x":0.5,"y":1.1,"xref":"paper","yref":"paper","showarrow":false,"text":"Accuracy 0.879  ·  Macro-F1 0.878  ·  n = 91","font":{"size":12,"color":"#60636e"}},{"x":0.5,"y":-0.24,"xref":"paper","yref":"paper","showarrow":false,"text":"格内：样本数 / 该真实类别占比","font":{"size":12,"color":"#60636e"}}]}}</script>
+<details class="result-details">
+<summary>
+查看完整实验记录（参数与指标）
+</summary>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>heart_r[<span class="fu">c</span>(<span class="st">'train_n'</span>,<span class="st">'test_n'</span>,<span class="st">'parameters'</span>,<span class="st">'cv_macro_f1'</span>,<span class="st">'accuracy'</span>,<span class="st">'macro_f1'</span>)]</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -402,14 +414,15 @@ $macro_f1
 [1] 0.8776433</code></pre>
 </div>
 </div>
+</details>
 </div>
 </div>
 </div>
 <p>混淆矩阵的行是真实类别、列是预测类别，类别按从上到下排列。格内第一行是样本数，第二行是该真实类别中的占比；颜色仍表示样本数，方便同时看错误数量与各类识别情况。</p>
 <p>这是历史教学数据上的分类实验，不是可用于临床的风险模型。真实应用还需要采样、外部验证、校准和时间/人群迁移方面的证据。这里关心的是正确的数据流程。</p>
 </section>
-<section id="khan样本少维度高" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="khan样本少维度高"><span class="header-section-number">9.4</span> Khan：样本少、维度高</h2>
+<section id="khan样本少维度高" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="khan样本少维度高"><span class="header-section-number">8.4</span> Khan：样本少、维度高</h2>
 <p>Khan 来自 <code>ISLR2</code>：训练集 63 个样本、测试集 20 个样本，2308 个表达特征，四个类别。保留原始规定的训练/测试划分，训练集按类别轮流分入五折；这与其他案例随机分层划分不同。</p>
 <p>当 <span class="math inline">\(p\gg n\)</span>，线性模型也可以有很强的表达能力，RBF 并非必需。这里只在训练集内比较线性核 <span class="math inline">\(C\in\{0.1,1,10\}\)</span>。如果增加基因筛选，必须放入每个训练折，不能先用所有标签挑基因。</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
@@ -422,12 +435,17 @@ $macro_f1
 
 </div>
 <script type="application/json" id="khan-python-json">{"data":[{"colorbar":{"len":0.8,"outlinewidth":0,"thickness":12,"tickfont":{"size":11},"title":{"side":"top","text":"\u6837\u672c\u6570"}},"colorscale":[[0,"#f1f5fa"],[0.35,"#b5cde6"],[0.7,"#5487b9"],[1,"#244f7d"]],"customdata":[[1.0,0.0,0.0,0.0],[0.0,1.0,0.0,0.0],[0.0,0.3333333333333333,0.6666666666666666,0.0],[0.0,0.0,0.0,1.0]],"hovertemplate":"\u771f\u5b9e\u7c7b\u522b %{y}\u003cbr\u003e\u9884\u6d4b\u7c7b\u522b %{x}\u003cbr\u003e\u6837\u672c\u6570 %{z:.0f}\u003cbr\u003e\u8be5\u771f\u5b9e\u7c7b\u522b\u5360\u6bd4 %{customdata:.1%}\u003cextra\u003e\u003c\u002fextra\u003e","text":[["3\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e100%\u003c\u002fspan\u003e","0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e","0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e","0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e"],["0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e","6\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e100%\u003c\u002fspan\u003e","0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e","0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e"],["0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e","2\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e33%\u003c\u002fspan\u003e","4\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e67%\u003c\u002fspan\u003e","0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e"],["0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e","0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e","0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e","5\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e100%\u003c\u002fspan\u003e"]],"textfont":{"size":20},"texttemplate":"%{text}","x":["1","2","3","4"],"xgap":6,"y":["1","2","3","4"],"ygap":6,"z":[[3.0,0.0,0.0,0.0],[0.0,6.0,0.0,0.0],[0.0,2.0,4.0,0.0],[0.0,0.0,0.0,5.0]],"zmin":0,"type":"heatmap"}],"layout":{"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"font":{"size":17},"text":"Khan \u00b7 Python \u6d4b\u8bd5\u96c6\u6df7\u6dc6\u77e9\u9635","x":0.5,"xanchor":"center"},"font":{"family":"Segoe UI, Microsoft YaHei, sans-serif","size":13,"color":"#30323b"},"margin":{"l":100,"r":85,"t":90,"b":90},"xaxis":{"title":{"text":"\u9884\u6d4b\u7c7b\u522b"},"type":"category","tickvals":["1","2","3","4"],"ticktext":["1","2","3","4"],"showgrid":false,"zeroline":false,"constrain":"domain"},"yaxis":{"title":{"text":"\u771f\u5b9e\u7c7b\u522b"},"type":"category","tickvals":["1","2","3","4"],"ticktext":["1","2","3","4"],"autorange":"reversed","scaleanchor":"x","scaleratio":1,"constrain":"domain","showgrid":false,"zeroline":false},"height":490,"meta":{"tutorial_kind":"confusion"},"paper_bgcolor":"white","plot_bgcolor":"white","annotations":[{"font":{"color":"#60636e","size":12},"showarrow":false,"text":"Accuracy 0.900  \u00b7  Macro-F1 0.914  \u00b7  n = 20","x":0.5,"xref":"paper","y":1.1,"yref":"paper"},{"font":{"color":"#60636e","size":12},"showarrow":false,"text":"\u683c\u5185\uff1a\u6837\u672c\u6570 \u002f \u8be5\u771f\u5b9e\u7c7b\u522b\u5360\u6bd4","x":0.5,"xref":"paper","y":-0.24,"yref":"paper"}]}}</script>
+<details class="result-details">
+<summary>
+查看完整实验记录（参数与指标）
+</summary>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(khan_result)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{'case': 'khan', 'language': 'Python', 'train_n': 63, 'test_n': 20, 'parameters': {'svm__C': 0.1, 'svm__kernel': 'linear'}, 'cv_macro_f1': 0.9873015873015873, 'accuracy': 0.9, 'macro_f1': 0.9142857142857144, 'labels': [1, 2, 3, 4], 'confusion': [[3, 0, 0, 0], [0, 6, 0, 0], [0, 2, 4, 0], [0, 0, 0, 5]], 'support_vectors': 58}</code></pre>
 </div>
 </div>
+</details>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>khan_r <span class="ot">&lt;-</span> <span class="fu">fit_case_r</span>(<span class="st">'khan'</span>)</span>
@@ -436,6 +454,10 @@ $macro_f1
 
 </div>
 <script type="application/json" id="khan-r-json">{"data":[{"type":"heatmap","z":[[3,0,0,0],[0,6,0,0],[0,2,4,0],[0,0,0,5]],"x":["1","2","3","4"],"y":["1","2","3","4"],"zmin":0,"colorscale":[[0,"#f1f5fa"],[0.35,"#b5cde6"],[0.7,"#5487b9"],[1,"#244f7d"]],"xgap":6,"ygap":6,"text":[["3<br><span style=\"font-size:12px\">100%<\/span>","0<br><span style=\"font-size:12px\">0%<\/span>","0<br><span style=\"font-size:12px\">0%<\/span>","0<br><span style=\"font-size:12px\">0%<\/span>"],["0<br><span style=\"font-size:12px\">0%<\/span>","6<br><span style=\"font-size:12px\">100%<\/span>","0<br><span style=\"font-size:12px\">0%<\/span>","0<br><span style=\"font-size:12px\">0%<\/span>"],["0<br><span style=\"font-size:12px\">0%<\/span>","2<br><span style=\"font-size:12px\">33%<\/span>","4<br><span style=\"font-size:12px\">67%<\/span>","0<br><span style=\"font-size:12px\">0%<\/span>"],["0<br><span style=\"font-size:12px\">0%<\/span>","0<br><span style=\"font-size:12px\">0%<\/span>","0<br><span style=\"font-size:12px\">0%<\/span>","5<br><span style=\"font-size:12px\">100%<\/span>"]],"customdata":[[1,0,0,0],[0,1,0,0],[0,0.33333333,0.66666667,0],[0,0,0,1]],"texttemplate":"%{text}","textfont":{"size":20},"colorbar":{"title":{"text":"样本数","side":"top"},"thickness":12,"len":0.8,"outlinewidth":0,"tickfont":{"size":11}},"hovertemplate":"真实类别 %{y}<br>预测类别 %{x}<br>样本数 %{z:.0f}<br>该真实类别占比 %{customdata:.1%}<extra><\/extra>"}],"layout":{"title":{"text":"Khan · R 测试集混淆矩阵","x":0.5,"xanchor":"center","font":{"size":17}},"height":490,"meta":{"tutorial_kind":"confusion"},"paper_bgcolor":"white","plot_bgcolor":"white","font":{"family":"Segoe UI, Microsoft YaHei, sans-serif","size":13,"color":"#30323b"},"margin":{"l":100,"r":85,"t":90,"b":90},"xaxis":{"title":"预测类别","type":"category","tickvals":["1","2","3","4"],"ticktext":["1","2","3","4"],"showgrid":false,"zeroline":false,"constrain":"domain"},"yaxis":{"title":"真实类别","type":"category","tickvals":["1","2","3","4"],"ticktext":["1","2","3","4"],"autorange":"reversed","scaleanchor":"x","scaleratio":1,"constrain":"domain","showgrid":false,"zeroline":false},"annotations":[{"x":0.5,"y":1.1,"xref":"paper","yref":"paper","showarrow":false,"text":"Accuracy 0.900  ·  Macro-F1 0.914  ·  n = 20","font":{"size":12,"color":"#60636e"}},{"x":0.5,"y":-0.24,"xref":"paper","yref":"paper","showarrow":false,"text":"格内：样本数 / 该真实类别占比","font":{"size":12,"color":"#60636e"}}]}}</script>
+<details class="result-details">
+<summary>
+查看完整实验记录（参数与指标）
+</summary>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>khan_r[<span class="fu">c</span>(<span class="st">'train_n'</span>,<span class="st">'test_n'</span>,<span class="st">'parameters'</span>,<span class="st">'cv_macro_f1'</span>,<span class="st">'accuracy'</span>,<span class="st">'macro_f1'</span>)]</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -476,13 +498,14 @@ $macro_f1
 [1] 0.9142857</code></pre>
 </div>
 </div>
+</details>
 </div>
 </div>
 </div>
 <p>20 个测试样本中，一个错误就改变 5 个百分点的 accuracy。某次高分不证明在新医院、不同平台或批次上同样有效。批次效应和特征选择是高维小样本研究不可忽略的问题。</p>
 </section>
-<section id="同一协议比较不同模型" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="同一协议比较不同模型"><span class="header-section-number">9.5</span> 同一协议比较不同模型</h2>
+<section id="同一协议比较不同模型" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="同一协议比较不同模型"><span class="header-section-number">8.5</span> 同一协议比较不同模型</h2>
 <p>图中浅色柱为选参时的训练集五折验证分数，深色柱为独立测试分数；两者使用同一个 0–1 指标尺度。模型按固定顺序显示，验证分数是从网格中选出的分数，不是无偏的泛化估计。</p>
 <p>以下 Iris 比较在相同训练/测试划分和五个训练折上，分别选择 SVM、逻辑回归、随机森林和小型 MLP 的有限参数网格。各模型网格规模不完全相同，因此这里只是教学对照，不能称为等算力竞赛或普遍模型排名。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fig, comparison <span class="op">=</span> lab.compare_models()</span>
@@ -491,6 +514,10 @@ $macro_f1
 
 </div>
 <script type="application/json" id="model-comparison-json">{"data":[{"cliponaxis":false,"customdata":["{'model__C': 10, 'model__gamma': 0.01}","{'model__C': 1}","{'model__max_depth': 2}","{'model__alpha': 1, 'model__hidden_layer_sizes': (8,)}"],"hovertemplate":"%{y}\u003cbr\u003e\u4e94\u6298\u9a8c\u8bc1\uff08\u9009\u53c2\u5206\u6570\uff09 macro-F1=%{x:.4f}\u003cbr\u003e%{customdata}\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#a9bfd8","line":{"width":0}},"name":"\u4e94\u6298\u9a8c\u8bc1\uff08\u9009\u53c2\u5206\u6570\uff09","orientation":"h","text":["0.980854700854701","0.980854700854701","0.9618070818070817","0.980854700854701"],"textposition":"outside","texttemplate":"%{text:.3f}","x":[0.980854700854701,0.980854700854701,0.9618070818070817,0.980854700854701],"y":["RBF SVM","\u903b\u8f91\u56de\u5f52","\u968f\u673a\u68ee\u6797","\u5c0f\u578b MLP"],"type":"bar"},{"cliponaxis":false,"customdata":["{'model__C': 10, 'model__gamma': 0.01}","{'model__C': 1}","{'model__max_depth': 2}","{'model__alpha': 1, 'model__hidden_layer_sizes': (8,)}"],"hovertemplate":"%{y}\u003cbr\u003e\u72ec\u7acb\u6d4b\u8bd5\u96c6 macro-F1=%{x:.4f}\u003cbr\u003e%{customdata}\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#245e91","line":{"width":0}},"name":"\u72ec\u7acb\u6d4b\u8bd5\u96c6","orientation":"h","text":["0.9107142857142857","0.9107142857142857","0.8877665544332212","0.9332591768631814"],"textposition":"outside","texttemplate":"%{text:.3f}","x":[0.9107142857142857,0.9107142857142857,0.8877665544332212,0.9332591768631814],"y":["RBF SVM","\u903b\u8f91\u56de\u5f52","\u968f\u673a\u68ee\u6797","\u5c0f\u578b MLP"],"type":"bar"}],"layout":{"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"font":{"size":18},"text":"Iris \u00b7 \u540c\u4e00\u534f\u8bae\u4e0b\u7684\u6a21\u578b\u6bd4\u8f83","x":0.02,"xanchor":"left"},"font":{"family":"Segoe UI, Microsoft YaHei, sans-serif","size":13,"color":"#30323b"},"margin":{"l":100,"r":60,"t":100,"b":65},"legend":{"font":{"size":12},"orientation":"h","x":0,"y":1.16},"xaxis":{"title":{"text":"Macro-F1"},"range":[0,1.08],"tickvals":[0,0.2,0.4,0.6,0.8,1],"tickformat":".1f","gridcolor":"#edf0f4","zeroline":false},"yaxis":{"autorange":"reversed","categoryorder":"array","categoryarray":["RBF SVM","\u903b\u8f91\u56de\u5f52","\u968f\u673a\u68ee\u6797","\u5c0f\u578b MLP"],"showgrid":false,"zeroline":false},"height":410,"meta":{"tutorial_kind":"comparison"},"barmode":"group","bargap":0.32,"bargroupgap":0.12,"paper_bgcolor":"white","plot_bgcolor":"white"}}</script>
+<details class="result-details">
+<summary>
+查看完整实验记录（参数与指标）
+</summary>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> comparison:</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(row)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
@@ -501,10 +528,11 @@ $macro_f1
 {'model': '小型 MLP', 'cv_macro_f1': np.float64(0.980854700854701), 'test_macro_f1': 0.9332591768631814, 'params': "{'model__alpha': 1, 'model__hidden_layer_sizes': (8,)}"}</code></pre>
 </div>
 </div>
+</details>
 <p>数据太小，测试波动往往比模型差异更大。若需要稳健结论，应在预先规定的重复划分或外层 CV 上报告分布，并加入时间与内存测量。Transformer 或基础模型的比较还应明确预训练数据、许可证、外部资源和特征工程预算。</p>
 </section>
-<section id="重复评估一次分数不足以决定模型" class="level2" data-number="9.6">
-<h2 data-number="9.6" class="anchored" data-anchor-id="重复评估一次分数不足以决定模型"><span class="header-section-number">9.6</span> 重复评估：一次分数不足以决定模型</h2>
+<section id="重复评估一次分数不足以决定模型" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="重复评估一次分数不足以决定模型"><span class="header-section-number">8.6</span> 重复评估：一次分数不足以决定模型</h2>
 <p>新增模拟数据包含240个样本、10维输入。使用8个固定种子作分层外层留出（训练70%、测试30%）；每次外层训练中再用相同的三折划分选参。比较线性SVM、RBF SVM与逻辑回归，标准化始终在训练折内拟合。</p>
 <p>线性SVM和逻辑回归搜索3种C，RBF搜索3种C×2种γ，所以搜索预算并非完全相等。这是明确协议下的教学比较，不是算法排名。箱线图叠加每次真实分数；配对差值使用同一次划分的RBF分数减线性SVM分数。</p>
 <section class="lab" data-experiment="repeated" aria-label="重复外层评估：分布与配对差值">
@@ -514,13 +542,13 @@ $macro_f1
 <p>卡片的均值±标准差描述划分敏感性。外层测试集重叠，各次结果不是独立样本，不能据此直接构造独立样本置信区间或宣称统计显著。也不能查看这些测试结果后继续修改网格并仍把它们当成未见评估。</p>
 <p>下载<a href="../data/repeated-evaluation.csv">逐次结果CSV</a>和<a href="../data/repeated-splits.json">外层ID与内层验证ID</a>。固定数据及全部划分记录可通过生成脚本重建。建议先解释配对差值的符号与变化，再决定是否需要更多数据、外部评估或更复杂的模型。</p>
 </section>
-<section id="数据与结果可追溯" class="level2" data-number="9.7">
-<h2 data-number="9.7" class="anchored" data-anchor-id="数据与结果可追溯"><span class="header-section-number">9.7</span> 数据与结果可追溯</h2>
+<section id="数据与结果可追溯" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="数据与结果可追溯"><span class="header-section-number">8.7</span> 数据与结果可追溯</h2>
 <p>共享数据位于 <code>data/</code>，<code>manifest.json</code> 记录文件 SHA-256。自动验证结果见 <a href="../reports/validation.json">实验验证 JSON</a>。复制案例时保留实验元数据，但将 <code>id/split/fold</code> 从模型输入中排除。</p>
 <p>Heart 文件来自旧笔记；Iris 来自 scikit-learn；Khan 从 <code>ISLR2</code> 包导出。具体来源和分享注意事项见 <code>data/README.md</code>。任何公开分享都不应把“教学实验成功”描述成真实场景性能承诺。</p>
 </section>
-<section id="练习与解答" class="level2" data-number="9.8">
-<h2 data-number="9.8" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">9.8</span> 练习与解答</h2>
+<section id="练习与解答" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">8.8</span> 练习与解答</h2>
 <ol type="1">
 <li>加入一个“只使用两个花瓣特征”的 Iris 模型，与四特征模型比较，但不要混淆两种边界。</li>
 <li>如果 Khan 的测试集只错两个样本，accuracy 是多少？为什么应同时报告每类指标？</li>
@@ -553,9 +581,31 @@ $macro_f1
 </main> <!-- /main -->
 <script>
 
-document.addEventListener('shown.bs.tab',function(){
+function resizeTutorialPlots(){
 
-  document.querySelectorAll('.js-plotly-plot').forEach(function(p){if(p.offsetWidth) Plotly.Plots.resize(p);});
+  if(!window.Plotly)return;
+
+  requestAnimationFrame(function(){document.querySelectorAll('.js-plotly-plot').forEach(function(p){if(p.offsetWidth) Plotly.Plots.resize(p);});});
+
+}
+
+document.addEventListener('shown.bs.tab',resizeTutorialPlots);
+
+document.addEventListener('DOMContentLoaded',function(){
+
+  document.querySelectorAll('pre.sourceCode > code').forEach(function(code){
+
+    var language=Array.from(code.classList).find(function(c){return !['sourceCode','code-with-copy'].includes(c);});
+
+    if(!language)return;
+
+    var label=document.createElement('span');label.className='code-language';label.textContent=language==='r'?'R':language==='python'?'Python':language;
+
+    code.closest('div.sourceCode').appendChild(label);
+
+  });
+
+  document.querySelectorAll('details.result-details').forEach(function(el){el.addEventListener('toggle',resizeTutorialPlots);});
 
 });
 
@@ -968,13 +1018,13 @@ document.addEventListener('shown.bs.tab',function(){
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/06-workflow.html" class="pagination-link" aria-label="建立可信的建模流程">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">建立可信的建模流程</span></span>
+      <a href="../chapters/06-workflow.html" class="pagination-link" aria-label="可靠建模流程">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">可靠建模流程</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/08-modern.html" class="pagination-link" aria-label="SVM 与现代学习：继续研究什么">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">SVM 与现代学习：继续研究什么</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/08-modern.html" class="pagination-link" aria-label="现代研究导读">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">现代研究导读</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

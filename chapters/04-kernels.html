@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; 核技巧与非线性边界 – 支持向量机教程：从几何到现代学习</title>
+<title>5&nbsp; 核技巧与非线性边界 – 支持向量机教程：从几何到现代学习</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0e621268080d55bbd7df441cb99ca0ef.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fe1b2164e170bcee65568756051c19de.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -189,7 +189,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/04-kernels.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">核技巧与非线性边界</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/04-kernels.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">核方法</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -211,73 +211,73 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">从一条分隔线开始</span></span></a>
+ <span class="menu-text">导读与学习路线</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/00-python-start.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">第一次独立训练 SVM：纯 Python 入门</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">纯 Python 入门</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/01-geometry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">超平面与最大间隔</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">超平面与间隔</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/02-soft-margin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">软间隔、损失与正则化</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔与损失</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/03-duality-smo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/04-kernels.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">核技巧与非线性边界</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">核方法</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/05-multiclass.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">多分类：分数、投票与联合学习</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">多分类</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/06-workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">建立可信的建模流程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">可靠建模流程</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/07-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">案例：从 Iris 到高维基因表达</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">真实数据案例</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/08-modern.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">SVM 与现代学习：继续研究什么</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">现代研究导读</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/09-authoring.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">用 VS Code 维护本教程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">维护本教程</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">参考文献</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">参考文献</span></span></a>
   </div>
 </li>
     </ul>
@@ -290,12 +290,12 @@ window.Quarto = {
     <h2 id="toc-title">本章目录</h2>
    
   <ul class="collapse">
-  <li><a href="#先显式地改变特征" id="toc-先显式地改变特征" class="nav-link active" data-scroll-target="#先显式地改变特征"><span class="header-section-number">6.1</span> 先显式地改变特征</a></li>
-  <li><a href="#核技巧如何出现" id="toc-核技巧如何出现" class="nav-link" data-scroll-target="#核技巧如何出现"><span class="header-section-number">6.2</span> 核技巧如何出现</a></li>
-  <li><a href="#合法核与-rkhs-的入口" id="toc-合法核与-rkhs-的入口" class="nav-link" data-scroll-target="#合法核与-rkhs-的入口"><span class="header-section-number">6.3</span> 合法核与 RKHS 的入口</a></li>
-  <li><a href="#rbf-的两个旋钮" id="toc-rbf-的两个旋钮" class="nav-link" data-scroll-target="#rbf-的两个旋钮"><span class="header-section-number">6.4</span> RBF 的两个旋钮</a></li>
-  <li><a href="#核方法的代价与近似" id="toc-核方法的代价与近似" class="nav-link" data-scroll-target="#核方法的代价与近似"><span class="header-section-number">6.5</span> 核方法的代价与近似</a></li>
-  <li><a href="#练习与解答" id="toc-练习与解答" class="nav-link" data-scroll-target="#练习与解答"><span class="header-section-number">6.6</span> 练习与解答</a></li>
+  <li><a href="#先显式地改变特征" id="toc-先显式地改变特征" class="nav-link active" data-scroll-target="#先显式地改变特征"><span class="header-section-number">5.1</span> 先显式地改变特征</a></li>
+  <li><a href="#核技巧如何出现" id="toc-核技巧如何出现" class="nav-link" data-scroll-target="#核技巧如何出现"><span class="header-section-number">5.2</span> 核技巧如何出现</a></li>
+  <li><a href="#合法核与-rkhs-的入口" id="toc-合法核与-rkhs-的入口" class="nav-link" data-scroll-target="#合法核与-rkhs-的入口"><span class="header-section-number">5.3</span> 合法核与 RKHS 的入口</a></li>
+  <li><a href="#rbf-的两个旋钮" id="toc-rbf-的两个旋钮" class="nav-link" data-scroll-target="#rbf-的两个旋钮"><span class="header-section-number">5.4</span> RBF 的两个旋钮</a></li>
+  <li><a href="#核方法的代价与近似" id="toc-核方法的代价与近似" class="nav-link" data-scroll-target="#核方法的代价与近似"><span class="header-section-number">5.5</span> 核方法的代价与近似</a></li>
+  <li><a href="#练习与解答" id="toc-练习与解答" class="nav-link" data-scroll-target="#练习与解答"><span class="header-section-number">5.6</span> 练习与解答</a></li>
   </ul>
 </nav>
     </div>
@@ -304,7 +304,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">核技巧与非线性边界</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">核技巧与非线性边界</span></h1>
 </div>
 
 
@@ -321,9 +321,12 @@ window.Quarto = {
 </header>
 
 
-<p>本章目标：理解“核等于特征内积”，正确使用 RBF 参数，并认识核矩阵的计算代价。核方法不是任意画一条复杂曲线，而是在某个特征空间中保持线性模型的结构。</p>
-<section id="先显式地改变特征" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="先显式地改变特征"><span class="header-section-number">6.1</span> 先显式地改变特征</h2>
+<div class="chapter-intro">
+<p><strong>学习目标</strong>：理解“核等于特征内积”，正确使用 RBF 参数，并认识核矩阵的计算代价。核方法不是任意画一条复杂曲线，而是在某个特征空间中保持线性模型的结构。</p>
+<p><strong>前置知识</strong>：对偶问题与向量内积。</p>
+</div>
+<section id="先显式地改变特征" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="先显式地改变特征"><span class="header-section-number">5.1</span> 先显式地改变特征</h2>
 <p>原空间不能线性分离的数据，在新表示中可能变得可分。例如对圆环数据使用</p>
 <p><span class="math display">\[\phi(x)=(x_1,x_2,x_1^2+x_2^2)^T.\]</span></p>
 <p>下面的三维图显示内圈与外圈在第三维上的分离。绿色水平面是人为设置的教学平面，它在原空间对应圆形边界。</p>
@@ -337,39 +340,39 @@ window.Quarto = {
 </section>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-feature-map-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;6.1: 有限维特征映射中的圆环分离。
+图&nbsp;5.1: 有限维特征映射中的圆环分离。
 </figcaption>
 </figure>
 </div>
 <p>这个映射对应的核为 <span class="math inline">\(K(x,z)=x^Tz+\|x\|^2\|z\|^2\)</span>。它既不是 RBF 核，也不是下面的标准二次多项式核；可视化必须说明实际画的是哪个映射。</p>
 </section>
-<section id="核技巧如何出现" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="核技巧如何出现"><span class="header-section-number">6.2</span> 核技巧如何出现</h2>
+<section id="核技巧如何出现" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="核技巧如何出现"><span class="header-section-number">5.2</span> 核技巧如何出现</h2>
 <p>对偶目标和预测都只依赖内积。如果 <span class="math inline">\(K(x,z)=\langle\phi(x),\phi(z)\rangle\)</span>，就可以使用</p>
-<p><span id="eq-kernel-score"><span class="math display">\[f(x)=\sum_{i=1}^n\alpha_i y_i K(x_i,x)+b \tag{6.1}\]</span></span></p>
+<p><span id="eq-kernel-score"><span class="math display">\[f(x)=\sum_{i=1}^n\alpha_i y_i K(x_i,x)+b \tag{5.1}\]</span></span></p>
 <p>而不必显式构造 <span class="math inline">\(\phi\)</span>。例如二维的 <span class="math inline">\(K(x,z)=(x^Tz)^2\)</span> 对应</p>
 <p><span class="math display">\[\phi(x)=(x_1^2,\sqrt2x_1x_2,x_2^2)^T.\]</span></p>
 <p>展开内积会得到 <span class="math inline">\(x_1^2z_1^2+2x_1x_2z_1z_2+x_2^2z_2^2\)</span>，恰好等于 <span class="math inline">\((x^Tz)^2\)</span>。这里的 <span class="math inline">\(\sqrt2\)</span> 不能遗漏；也可使用包含重复交叉项的更长映射，但它不是最紧凑的表示。</p>
 </section>
-<section id="合法核与-rkhs-的入口" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="合法核与-rkhs-的入口"><span class="header-section-number">6.3</span> 合法核与 RKHS 的入口</h2>
+<section id="合法核与-rkhs-的入口" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="合法核与-rkhs-的入口"><span class="header-section-number">5.3</span> 合法核与 RKHS 的入口</h2>
 <p>一个实值对称核合法的关键条件是：对任意有限样本集，Gram 矩阵 <span class="math inline">\(G_{ij}=K(x_i,x_j)\)</span> 均为半正定，即对任意 <span class="math inline">\(a\)</span> 有 <span class="math inline">\(a^TGa\ge0\)</span>。仅对一个数据集检查通过并不能证明对所有输入都合法。</p>
 <p>合法核诱导再生核希尔伯特空间（RKHS）。在这个空间里，核函数同时描述相似性和函数正则化；<span class="math inline">\(\|f\|_{\mathcal H}^2\)</span> 惩罚的是表示空间中的复杂度。表示定理说明许多带范数正则化的最优函数可以写成有限个 <span class="math inline">\(K(x_i,\cdot)\)</span> 的线性组合。SVM 的稀疏性还来自 hinge 损失和 KKT，不是所有核方法都稀疏。</p>
 <p>常见选择：线性核 <span class="math inline">\(x^Tz\)</span>；整数次数、非负系数的多项式核 <span class="math inline">\((\gamma x^Tz+r)^d\)</span>；RBF 核 <span class="math inline">\(e^{-\gamma\|x-z\|^2}\)</span>。sigmoid 形式 <span class="math inline">\(\tanh(\eta x^Tz+\theta)\)</span> <strong>不是对任意参数和数据域都合法</strong>，不能与线性和 RBF 一样无条件推荐。</p>
-<section id="为什么特征内积保证半正定" class="level3" data-number="6.3.1">
-<h3 data-number="6.3.1" class="anchored" data-anchor-id="为什么特征内积保证半正定"><span class="header-section-number">6.3.1</span> 为什么特征内积保证半正定</h3>
+<section id="为什么特征内积保证半正定" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="为什么特征内积保证半正定"><span class="header-section-number">5.3.1</span> 为什么特征内积保证半正定</h3>
 <p>若 <span class="math inline">\(G_{ij}=\langle\phi(x_i),\phi(x_j)\rangle\)</span>，则</p>
 <p><span class="math display">\[a^TGa=\sum_{i,j}a_i a_j\langle\phi(x_i),\phi(x_j)\rangle=\left\|\sum_i a_i\phi(x_i)\right\|^2\ge0.\]</span></p>
 <p>这个证明同时说明核对偶的凸性来源。将 <span class="math inline">\(x_i\)</span> 换为 <span class="math inline">\(\phi(x_i)\)</span>，驻点仍是 <span class="math inline">\(w=\sum_i\alpha_i y_i\phi(x_i)\)</span>，所以</p>
 <p><span class="math display">\[\|w\|_{\mathcal H}^2=\sum_{i,j}\alpha_i\alpha_jy_i y_jK(x_i,x_j).\]</span></p>
 <p>规范化后的特征空间间隔宽度为 <span class="math inline">\(2/\|w\|_{\mathcal H}\)</span>。输入平面上的分数等值线通常弯曲，不能据其视觉宽度估计上述范数。</p>
 </section>
-<section id="表示定理的几何理由" class="level3" data-number="6.3.2">
-<h3 data-number="6.3.2" class="anchored" data-anchor-id="表示定理的几何理由"><span class="header-section-number">6.3.2</span> 表示定理的几何理由</h3>
+<section id="表示定理的几何理由" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="表示定理的几何理由"><span class="header-section-number">5.3.2</span> 表示定理的几何理由</h3>
 <p>将候选函数写成训练核函数张成空间中的部分 <span class="math inline">\(f_\parallel\)</span> 与正交部分 <span class="math inline">\(f_\perp\)</span>。由再生性质，<span class="math inline">\(f_\perp(x_i)=\langle f_\perp,K(x_i,\cdot)\rangle=0\)</span>，删除它不改变任何训练分数；但 <span class="math inline">\(\|f\|_{\mathcal H}^2=\|f_\parallel\|^2+\|f_\perp\|^2\)</span>。带正范数惩罚的最优解因此可以取 <span class="math inline">\(f_\perp=0\)</span>，得到有限核展开。截距作为单独参数处理。这解释“有限展开”，但没有证明每个系数都稀疏；SVM的稀疏性需要KKT与损失结构。</p>
 </section>
-<section id="展开-rbf看到无限维映射" class="level3" data-number="6.3.3">
-<h3 data-number="6.3.3" class="anchored" data-anchor-id="展开-rbf看到无限维映射"><span class="header-section-number">6.3.3</span> 展开 RBF，看到无限维映射</h3>
+<section id="展开-rbf看到无限维映射" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="展开-rbf看到无限维映射"><span class="header-section-number">5.3.3</span> 展开 RBF，看到无限维映射</h3>
 <p>先分解平方距离：</p>
 <p><span class="math display">\[e^{-\gamma\|x-z\|^2}=e^{-\gamma\|x\|^2}e^{-\gamma\|z\|^2}e^{2\gamma x^Tz}.\]</span></p>
 <p>对 <span class="math inline">\(p\)</span> 维输入，设多重指标 <span class="math inline">\(k=(k_1,\ldots,k_p)\)</span>，<span class="math inline">\(|k|=\sum_rk_r\)</span>、<span class="math inline">\(k!=\prod_rk_r!\)</span>、<span class="math inline">\(x^k=\prod_rx_r^{k_r}\)</span>。展开各坐标的指数函数，</p>
@@ -378,8 +381,8 @@ window.Quarto = {
 <p><span class="math inline">\(\gamma&gt;0\)</span> 时有无穷多个坐标，而且 <span class="math inline">\(\sum_k\phi_k(x)^2=K(x,x)=1\)</span>。核技巧计算一个指数就获得这个内积，避免显式枚举无限坐标；前面的三维圆环图只展示它自己的有限维映射。</p>
 </section>
 </section>
-<section id="rbf-的两个旋钮" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="rbf-的两个旋钮"><span class="header-section-number">6.4</span> RBF 的两个旋钮</h2>
+<section id="rbf-的两个旋钮" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="rbf-的两个旋钮"><span class="header-section-number">5.4</span> RBF 的两个旋钮</h2>
 <p>RBF 中 <span class="math inline">\(\gamma=1/(2\sigma^2)\)</span>。小 <span class="math inline">\(\gamma\)</span> 表示相似性随距离缓慢衰减；大 <span class="math inline">\(\gamma\)</span> 表示影响更局部。<span class="math inline">\(C\)</span> 控制损失与正则化的折中，两者需要联合选择。</p>
 <div id="fig-rbf-lab" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -391,11 +394,11 @@ window.Quarto = {
 </section>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rbf-lab-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;6.2: 预计算 RBF SVM 的参数探索。
+图&nbsp;5.2: 预计算 RBF SVM 的参数探索。
 </figcaption>
 </figure>
 </div>
-<p>在 <a href="#fig-rbf-lab" class="quarto-xref">图&nbsp;<span>6.2</span></a> 中观察过于平滑与局部碎片化的边界，再看验证分数。测试分数不一定随视觉上“更复杂”而下降；有限样本波动也会影响它。不要反复查看测试集后继续调参，否则测试集就变成了验证集。</p>
+<p>在 <a href="#fig-rbf-lab" class="quarto-xref">图&nbsp;<span>5.2</span></a> 中观察过于平滑与局部碎片化的边界，再看验证分数。测试分数不一定随视觉上“更复杂”而下降；有限样本波动也会影响它。不要反复查看测试集后继续调参，否则测试集就变成了验证集。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -410,8 +413,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="核方法的代价与近似" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="核方法的代价与近似"><span class="header-section-number">6.5</span> 核方法的代价与近似</h2>
+<section id="核方法的代价与近似" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="核方法的代价与近似"><span class="header-section-number">5.5</span> 核方法的代价与近似</h2>
 <p>下面在相同数据上固定 <span class="math inline">\(C=1,\gamma=1\)</span>，分别用 Python/R 训练并生成对应的 Plotly 图。它是复现对照，不是在测试集上重新选参。</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">R</a></li></ul>
@@ -441,8 +444,8 @@ window.Quarto = {
 <script type="application/json" id="nystrom-experiment-json">{"data":[{"mode":"lines+markers","x":[10,30,60,100],"y":[0.9074074074074074,0.8888888888888888,0.8888888888888888,0.8888888888888888],"type":"scatter"}],"layout":{"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"text":"Nystr\u00f6m + LinearSVC\uff1a\u56fa\u5b9a\u914d\u7f6e\u7684\u6559\u5b66\u5b9e\u9a8c\uff08\u975e\u8c03\u53c2\u7ed3\u8bba\uff09"},"xaxis":{"title":{"text":"\u8fd1\u4f3c\u7279\u5f81\u6570"}},"yaxis":{"title":{"text":"\u6d4b\u8bd5 accuracy"}},"height":560}}</script>
 <p>上图固定配置，只演示特征数与效果的关系。它不是证明 Nyström 优于精确核，也没有用测试集选择最佳特征数。真正比较时，应将特征数纳入训练集内的验证，并报告时间和内存。</p>
 </section>
-<section id="练习与解答" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">6.6</span> 练习与解答</h2>
+<section id="练习与解答" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">5.6</span> 练习与解答</h2>
 <ol type="1">
 <li>计算 <span class="math inline">\(x=(1,2),z=(2,1)\)</span> 的二次核，并验证显式映射内积相等。</li>
 <li>将所有数值特征放大 10 倍，RBF 的相同 <span class="math inline">\(\gamma\)</span> 还表示同样的模型吗？</li>
@@ -475,9 +478,31 @@ window.Quarto = {
 </main> <!-- /main -->
 <script>
 
-document.addEventListener('shown.bs.tab',function(){
+function resizeTutorialPlots(){
 
-  document.querySelectorAll('.js-plotly-plot').forEach(function(p){if(p.offsetWidth) Plotly.Plots.resize(p);});
+  if(!window.Plotly)return;
+
+  requestAnimationFrame(function(){document.querySelectorAll('.js-plotly-plot').forEach(function(p){if(p.offsetWidth) Plotly.Plots.resize(p);});});
+
+}
+
+document.addEventListener('shown.bs.tab',resizeTutorialPlots);
+
+document.addEventListener('DOMContentLoaded',function(){
+
+  document.querySelectorAll('pre.sourceCode > code').forEach(function(code){
+
+    var language=Array.from(code.classList).find(function(c){return !['sourceCode','code-with-copy'].includes(c);});
+
+    if(!language)return;
+
+    var label=document.createElement('span');label.className='code-language';label.textContent=language==='r'?'R':language==='python'?'Python':language;
+
+    code.closest('div.sourceCode').appendChild(label);
+
+  });
+
+  document.querySelectorAll('details.result-details').forEach(function(el){el.addEventListener('toggle',resizeTutorialPlots);});
 
 });
 
@@ -891,12 +916,12 @@ document.addEventListener('shown.bs.tab',function(){
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../chapters/03-duality-smo.html" class="pagination-link" aria-label="对偶、KKT 与 SMO">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/05-multiclass.html" class="pagination-link" aria-label="多分类：分数、投票与联合学习">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">多分类：分数、投票与联合学习</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/05-multiclass.html" class="pagination-link" aria-label="多分类">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">多分类</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; 对偶、KKT 与 SMO – 支持向量机教程：从几何到现代学习</title>
+<title>4&nbsp; 对偶、KKT 与 SMO – 支持向量机教程：从几何到现代学习</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -98,7 +98,7 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0e621268080d55bbd7df441cb99ca0ef.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fe1b2164e170bcee65568756051c19de.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -208,7 +208,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/03-duality-smo.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/03-duality-smo.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -230,73 +230,73 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">从一条分隔线开始</span></span></a>
+ <span class="menu-text">导读与学习路线</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/00-python-start.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">第一次独立训练 SVM：纯 Python 入门</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">纯 Python 入门</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/01-geometry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">超平面与最大间隔</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">超平面与间隔</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/02-soft-margin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">软间隔、损失与正则化</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔与损失</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/03-duality-smo.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/04-kernels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">核技巧与非线性边界</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">核方法</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/05-multiclass.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">多分类：分数、投票与联合学习</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">多分类</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/06-workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">建立可信的建模流程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">可靠建模流程</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/07-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">案例：从 Iris 到高维基因表达</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">真实数据案例</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/08-modern.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">SVM 与现代学习：继续研究什么</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">现代研究导读</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/09-authoring.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">用 VS Code 维护本教程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">维护本教程</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">参考文献</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">参考文献</span></span></a>
   </div>
 </li>
     </ul>
@@ -309,14 +309,14 @@ window.Quarto = {
     <h2 id="toc-title">本章目录</h2>
    
   <ul class="collapse">
-  <li><a href="#从约束优化到拉格朗日函数" id="toc-从约束优化到拉格朗日函数" class="nav-link active" data-scroll-target="#从约束优化到拉格朗日函数"><span class="header-section-number">5.1</span> 从约束优化到拉格朗日函数</a></li>
-  <li><a href="#什么是-kkt-点" id="toc-什么是-kkt-点" class="nav-link" data-scroll-target="#什么是-kkt-点"><span class="header-section-number">5.2</span> 什么是 KKT 点</a></li>
-  <li><a href="#硬间隔完整的-kkt-与对偶推导" id="toc-硬间隔完整的-kkt-与对偶推导" class="nav-link" data-scroll-target="#硬间隔完整的-kkt-与对偶推导"><span class="header-section-number">5.3</span> 硬间隔：完整的 KKT 与对偶推导</a></li>
-  <li><a href="#软间隔松弛变量怎样产生盒约束" id="toc-软间隔松弛变量怎样产生盒约束" class="nav-link" data-scroll-target="#软间隔松弛变量怎样产生盒约束"><span class="header-section-number">5.4</span> 软间隔：松弛变量怎样产生盒约束</a></li>
-  <li><a href="#软间隔的完整-kkt-条件" id="toc-软间隔的完整-kkt-条件" class="nav-link" data-scroll-target="#软间隔的完整-kkt-条件"><span class="header-section-number">5.5</span> 软间隔的完整 KKT 条件</a></li>
-  <li><a href="#两个变量足够进行一次更新" id="toc-两个变量足够进行一次更新" class="nav-link" data-scroll-target="#两个变量足够进行一次更新"><span class="header-section-number">5.6</span> 两个变量足够进行一次更新</a></li>
-  <li><a href="#点击样本检查-kkt拖动步骤回放-smo" id="toc-点击样本检查-kkt拖动步骤回放-smo" class="nav-link" data-scroll-target="#点击样本检查-kkt拖动步骤回放-smo"><span class="header-section-number">5.7</span> 点击样本，检查 KKT；拖动步骤，回放 SMO</a></li>
-  <li><a href="#练习与解答" id="toc-练习与解答" class="nav-link" data-scroll-target="#练习与解答"><span class="header-section-number">5.8</span> 练习与解答</a></li>
+  <li><a href="#从约束优化到拉格朗日函数" id="toc-从约束优化到拉格朗日函数" class="nav-link active" data-scroll-target="#从约束优化到拉格朗日函数"><span class="header-section-number">4.1</span> 从约束优化到拉格朗日函数</a></li>
+  <li><a href="#什么是-kkt-点" id="toc-什么是-kkt-点" class="nav-link" data-scroll-target="#什么是-kkt-点"><span class="header-section-number">4.2</span> 什么是 KKT 点</a></li>
+  <li><a href="#硬间隔完整的-kkt-与对偶推导" id="toc-硬间隔完整的-kkt-与对偶推导" class="nav-link" data-scroll-target="#硬间隔完整的-kkt-与对偶推导"><span class="header-section-number">4.3</span> 硬间隔：完整的 KKT 与对偶推导</a></li>
+  <li><a href="#软间隔松弛变量怎样产生盒约束" id="toc-软间隔松弛变量怎样产生盒约束" class="nav-link" data-scroll-target="#软间隔松弛变量怎样产生盒约束"><span class="header-section-number">4.4</span> 软间隔：松弛变量怎样产生盒约束</a></li>
+  <li><a href="#软间隔的完整-kkt-条件" id="toc-软间隔的完整-kkt-条件" class="nav-link" data-scroll-target="#软间隔的完整-kkt-条件"><span class="header-section-number">4.5</span> 软间隔的完整 KKT 条件</a></li>
+  <li><a href="#两个变量足够进行一次更新" id="toc-两个变量足够进行一次更新" class="nav-link" data-scroll-target="#两个变量足够进行一次更新"><span class="header-section-number">4.6</span> 两个变量足够进行一次更新</a></li>
+  <li><a href="#点击样本检查-kkt拖动步骤回放-smo" id="toc-点击样本检查-kkt拖动步骤回放-smo" class="nav-link" data-scroll-target="#点击样本检查-kkt拖动步骤回放-smo"><span class="header-section-number">4.7</span> 点击样本，检查 KKT；拖动步骤，回放 SMO</a></li>
+  <li><a href="#练习与解答" id="toc-练习与解答" class="nav-link" data-scroll-target="#练习与解答"><span class="header-section-number">4.8</span> 练习与解答</a></li>
   </ul>
 </nav>
     </div>
@@ -325,7 +325,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></h1>
 </div>
 
 
@@ -342,12 +342,15 @@ window.Quarto = {
 </header>
 
 
-<p>本章目标：推导软间隔对偶、解释三类对偶系数，并运行一个可读的 SMO。先理解约束如何产生支持向量，再阅读程序会更容易。</p>
-<section id="从约束优化到拉格朗日函数" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="从约束优化到拉格朗日函数"><span class="header-section-number">5.1</span> 从约束优化到拉格朗日函数</h2>
+<div class="chapter-intro">
+<p><strong>学习目标</strong>：推导软间隔对偶、解释三类对偶系数，并运行一个可读的 SMO。先理解约束如何产生支持向量，再阅读程序会更容易。</p>
+<p><strong>前置知识</strong>：软间隔原始问题、偏导数与约束优化。</p>
+</div>
+<section id="从约束优化到拉格朗日函数" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="从约束优化到拉格朗日函数"><span class="header-section-number">4.1</span> 从约束优化到拉格朗日函数</h2>
 <p>这里恢复原笔记中“原始问题 → 对偶问题 → KKT 点 → 恢复参数”的完整推导，并同时讨论硬间隔与软间隔。统一用 <span class="math inline">\(\mu_i\)</span> 表示松弛非负约束的乘子，避免与几何间隔 <span class="math inline">\(\gamma\)</span> 混淆。</p>
-<section id="为什么给约束配一个乘子" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="为什么给约束配一个乘子"><span class="header-section-number">5.1.1</span> 为什么给约束配一个乘子</h3>
+<section id="为什么给约束配一个乘子" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="为什么给约束配一个乘子"><span class="header-section-number">4.1.1</span> 为什么给约束配一个乘子</h3>
 <p>先看一般问题，记全部原始变量为 <span class="math inline">\(u\)</span>：</p>
 <p><span class="math display">\[\min_u f_0(u),\qquad g_i(u)\le0,\quad h_j(u)=0.\]</span></p>
 <p>定义</p>
@@ -356,41 +359,41 @@ window.Quarto = {
 <p><span class="math display">\[\theta_P(u)=\begin{cases}f_0(u),&amp;u\text{ 可行},\\+\infty,&amp;u\text{ 不可行}.\end{cases}\]</span></p>
 <p>于是原始问题可写为 <span class="math inline">\(p^*=\inf_u\sup_{\alpha\ge0,\beta}L\)</span>。使用 inf/sup 而非始终使用 min/max，是为了不预先假设最优值能够取到。</p>
 </section>
-<section id="弱对偶与强对偶是怎样得到的" class="level3" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="弱对偶与强对偶是怎样得到的"><span class="header-section-number">5.1.2</span> 弱对偶与强对偶是怎样得到的</h3>
+<section id="弱对偶与强对偶是怎样得到的" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="弱对偶与强对偶是怎样得到的"><span class="header-section-number">4.1.2</span> 弱对偶与强对偶是怎样得到的</h3>
 <p>对偶函数是 <span class="math inline">\(q(\alpha,\beta)=\inf_uL(u,\alpha,\beta)\)</span>。任意原始可行 <span class="math inline">\(u\)</span> 与对偶可行乘子满足</p>
 <p><span class="math display">\[q(\alpha,\beta)\le L(u,\alpha,\beta)\le f_0(u),\]</span></p>
 <p>所以 <span class="math inline">\(d^*=\sup_{\alpha\ge0,\beta}q(\alpha,\beta)\le p^*\)</span>。这就是弱对偶；并不要求凸性。<strong>不能把交换 inf/sup 当成普通的代数变形。</strong></p>
 <p>若 <span class="math inline">\(f_0,g_i\)</span> 凸、等式约束仿射，并满足适当约束资格条件，才可进一步得到强对偶。Slater 条件提供一个常用保证：存在满足等式且所有不等式严格成立的点。软间隔可直接取 <span class="math inline">\(w=0,b=0,\xi_i=2\)</span>，使 <span class="math inline">\(1-\xi_i-y_if(x_i)=-1&lt;0\)</span> 与 <span class="math inline">\(-\xi_i=-2&lt;0\)</span>。硬间隔则要求数据可分：将一个严格分隔解放大，便能令所有 <span class="math inline">\(y_if(x_i)&gt;1\)</span>。此时 <span class="math inline">\(d^*=p^*\)</span> <span class="citation" data-cites="boyd">(<a href="../references.html#ref-boyd" role="doc-biblioref">Boyd 和 Vandenberghe 2004年</a>)</span>。</p>
 </section>
 </section>
-<section id="什么是-kkt-点" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="什么是-kkt-点"><span class="header-section-number">5.2</span> 什么是 KKT 点</h2>
+<section id="什么是-kkt-点" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="什么是-kkt-点"><span class="header-section-number">4.2</span> 什么是 KKT 点</h2>
 <p>KKT 点包括<strong>原始变量和乘子</strong>，而不只是一个梯度为零的 <span class="math inline">\(w\)</span>。对可微问题，四组条件为</p>
 <p><span id="eq-general-kkt"><span class="math display">\[\begin{aligned}
 &amp;\text{原始可行：}&amp;&amp;g_i(u^*)\le0,\quad h_j(u^*)=0,\\
 &amp;\text{对偶可行：}&amp;&amp;\alpha_i^*\ge0,\\
 &amp;\text{驻点：}&amp;&amp;\nabla f_0(u^*)+\sum_i\alpha_i^*\nabla g_i(u^*)+\sum_j\beta_j^*\nabla h_j(u^*)=0,\\
 &amp;\text{互补松弛：}&amp;&amp;\alpha_i^*g_i(u^*)=0.
-\end{aligned} \tag{5.1}\]</span></span></p>
+\end{aligned} \tag{4.1}\]</span></span></p>
 <p>互补松弛说明：约束若严格松弛，乘子必须为零；乘子若为正，约束必须活跃。反方向“约束活跃就必有正乘子”不成立，可能存在退化。</p>
-<section id="为什么凸问题中的-kkt-能证明全局最优" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="为什么凸问题中的-kkt-能证明全局最优"><span class="header-section-number">5.2.1</span> 为什么凸问题中的 KKT 能证明全局最优</h3>
+<section id="为什么凸问题中的-kkt-能证明全局最优" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="为什么凸问题中的-kkt-能证明全局最优"><span class="header-section-number">4.2.1</span> 为什么凸问题中的 KKT 能证明全局最优</h3>
 <p>在凸性与仿射等式假设下，固定可行乘子后的 <span class="math inline">\(L\)</span> 对 <span class="math inline">\(u\)</span> 凸。驻点意味着 <span class="math inline">\(u^*\)</span> 是 <span class="math inline">\(L\)</span> 的全局最小点；互补松弛给出 <span class="math inline">\(L(u^*,\alpha^*,\beta^*)=f_0(u^*)\)</span>。对任意原始可行 <span class="math inline">\(u\)</span>，</p>
 <p><span class="math display">\[f_0(u^*)=L(u^*,\alpha^*,\beta^*)\le L(u,\alpha^*,\beta^*)\le f_0(u).\]</span></p>
 <p>这证明 KKT 的<strong>充分性</strong>。要保证最优点存在对应 KKT 乘子，即讨论<strong>必要性</strong>，还需要约束资格条件等假设；本教程的 SVM 使用前述 Slater 保证。非凸问题的 KKT 通常只有必要条件的意义，驻点可能是局部极大或鞍点，不能照搬这个全局最优证明。</p>
 </section>
 </section>
-<section id="硬间隔完整的-kkt-与对偶推导" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="硬间隔完整的-kkt-与对偶推导"><span class="header-section-number">5.3</span> 硬间隔：完整的 KKT 与对偶推导</h2>
-<p>把 <a href="01-geometry.html#eq-hard-primal" class="quarto-xref">式&nbsp;<span>3.3</span></a> 约束写成 <span class="math inline">\(g_i=1-y_i(w^Tx_i+b)\le0\)</span>：</p>
+<section id="硬间隔完整的-kkt-与对偶推导" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="硬间隔完整的-kkt-与对偶推导"><span class="header-section-number">4.3</span> 硬间隔：完整的 KKT 与对偶推导</h2>
+<p>把 <a href="01-geometry.html#eq-hard-primal" class="quarto-xref">式&nbsp;<span>2.3</span></a> 约束写成 <span class="math inline">\(g_i=1-y_i(w^Tx_i+b)\le0\)</span>：</p>
 <p><span class="math display">\[L_H=\frac12\|w\|^2+\sum_i\alpha_i[1-y_i(w^Tx_i+b)].\]</span></p>
 <p>硬间隔的 KKT 条件是</p>
 <p><span id="eq-hard-kkt"><span class="math display">\[\begin{aligned}
 &amp;w-\sum_i\alpha_iy_ix_i=0,\qquad -\sum_i\alpha_i y_i=0,\\
 &amp;y_i(w^Tx_i+b)\ge1,\qquad \alpha_i\ge0,\\
 &amp;\alpha_i[y_i(w^Tx_i+b)-1]=0\quad(\forall i).
-\end{aligned} \tag{5.2}\]</span></span></p>
+\end{aligned} \tag{4.2}\]</span></span></p>
 <p>记 <span class="math inline">\(S=\sum_i\alpha_i y_ix_i\)</span>，先整理再求下确界：</p>
 <p><span class="math display">\[\begin{aligned}
 L_H
@@ -400,8 +403,8 @@ L_H
 <p>若 <span class="math inline">\(\sum_i\alpha_i y_i\ne0\)</span>，可以改变 <span class="math inline">\(b\)</span> 使 <span class="math inline">\(L_H\to-\infty\)</span>；若该和为零，<span class="math inline">\(w\)</span> 的最小点为 <span class="math inline">\(S\)</span>。因此</p>
 <p><span class="math display">\[q_H(\alpha)=\begin{cases}\displaystyle\sum_i\alpha_i-\frac12\sum_{i,j}\alpha_i\alpha_jy_iy_jx_i^Tx_j,&amp;\sum_i\alpha_i y_i=0,\\-\infty,&amp;\text{否则}.\end{cases}\]</span></p>
 <p>最终对偶是最大化上式的有限分支，约束为 <span class="math inline">\(\alpha_i\ge0\)</span> 和 <span class="math inline">\(\sum_i\alpha_i y_i=0\)</span>。<strong>硬间隔没有 <span class="math inline">\(\alpha_i\le C\)</span> 这个上界。</strong> 由互补松弛，<span class="math inline">\(\alpha_i&gt;0\Rightarrow y_if(x_i)=1\)</span>；边界上的点仍可能有 <span class="math inline">\(\alpha_i=0\)</span>，所以原笔记中的“当且仅当”需改为单向蕴含。</p>
-<section id="如何恢复硬间隔的截距" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="如何恢复硬间隔的截距"><span class="header-section-number">5.3.1</span> 如何恢复硬间隔的截距</h3>
+<section id="如何恢复硬间隔的截距" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="如何恢复硬间隔的截距"><span class="header-section-number">4.3.1</span> 如何恢复硬间隔的截距</h3>
 <p>令 <span class="math inline">\(\mathcal S=\{i:\alpha_i&gt;0\}\)</span>，对任意 <span class="math inline">\(i\in\mathcal S\)</span>，<span class="math inline">\(y_if(x_i)=1\)</span>，由于 <span class="math inline">\(y_i^2=1\)</span>，</p>
 <p><span class="math display">\[b_i=y_i-w^Tx_i,\qquad b=\frac1{|\mathcal S|}\sum_{i\in\mathcal S}b_i.\]</span></p>
 <p>平均可减轻数值容差影响。在非退化、两类均出现的可分情形，等式约束要求两侧都有正系数，因而</p>
@@ -411,9 +414,9 @@ L_H
 <p>这依赖硬间隔最优解及其归一化，不能直接套用到有间隔违约的软间隔。</p>
 </section>
 </section>
-<section id="软间隔松弛变量怎样产生盒约束" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="软间隔松弛变量怎样产生盒约束"><span class="header-section-number">5.4</span> 软间隔：松弛变量怎样产生盒约束</h2>
-<p>对 <a href="02-soft-margin.html#eq-soft-primal" class="quarto-xref">式&nbsp;<span>4.1</span></a> 的两组不等式 <span class="math inline">\(1-\xi_i-y_if(x_i)\le0\)</span>、<span class="math inline">\(-\xi_i\le0\)</span> 引入 <span class="math inline">\(\alpha_i\ge0\)</span>、<span class="math inline">\(\mu_i\ge0\)</span>：</p>
+<section id="软间隔松弛变量怎样产生盒约束" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="软间隔松弛变量怎样产生盒约束"><span class="header-section-number">4.4</span> 软间隔：松弛变量怎样产生盒约束</h2>
+<p>对 <a href="02-soft-margin.html#eq-soft-primal" class="quarto-xref">式&nbsp;<span>3.1</span></a> 的两组不等式 <span class="math inline">\(1-\xi_i-y_if(x_i)\le0\)</span>、<span class="math inline">\(-\xi_i\le0\)</span> 引入 <span class="math inline">\(\alpha_i\ge0\)</span>、<span class="math inline">\(\mu_i\ge0\)</span>：</p>
 <p><span class="math display">\[L_S=\frac12\|w\|^2+C\sum_i\xi_i+\sum_i\alpha_i(1-\xi_i-y_if(x_i))-\sum_i\mu_i\xi_i.\]</span></p>
 <p>分别求导：</p>
 <p><span class="math display">\[\nabla_w L_S=w-S=0,\quad \partial_bL_S=-\sum_i\alpha_i y_i=0,\quad\partial_{\xi_i}L_S=C-\alpha_i-\mu_i=0.\]</span></p>
@@ -422,26 +425,26 @@ L_H
 <p><span class="math display">\[L_S=\frac12\|w-S\|^2-\frac12\|S\|^2+\sum_i\alpha_i-b\sum_i\alpha_i y_i+\sum_i(C-\alpha_i-\mu_i)\xi_i.\]</span></p>
 <p>构造对偶时，对已用乘子表示约束的原始变量在全空间求下确界；若 <span class="math inline">\(b\)</span> 或某个 <span class="math inline">\(\xi_i\)</span> 的线性系数不为零，下确界就是 <span class="math inline">\(-\infty\)</span>。系数为零时得到</p>
 <p><span id="eq-soft-dual"><span class="math display">\[\max_\alpha D(\alpha)=\sum_i\alpha_i-\frac12\sum_{i,j}\alpha_i\alpha_jy_iy_jx_i^Tx_j,\qquad
-0\le\alpha_i\le C,\quad \sum_i\alpha_i y_i=0. \tag{5.3}\]</span></span></p>
+0\le\alpha_i\le C,\quad \sum_i\alpha_i y_i=0. \tag{4.3}\]</span></span></p>
 <p>这里 <span class="math inline">\(-b\sum_i\alpha_i y_i\)</span> 的符号应为负号，随后因等式约束消失；不要因为最后结果相同而跳过中间符号。令 <span class="math inline">\(Q_{ij}=y_iy_jx_i^Tx_j\)</span>，则 <span class="math inline">\(v^TQv=\|\sum_i v_i y_ix_i\|^2\ge0\)</span>，所以对偶目标的 Hessian 为 <span class="math inline">\(-Q\preceq0\)</span>，确实是凹二次规划。</p>
 </section>
-<section id="软间隔的完整-kkt-条件" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="软间隔的完整-kkt-条件"><span class="header-section-number">5.5</span> 软间隔的完整 KKT 条件</h2>
+<section id="软间隔的完整-kkt-条件" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="软间隔的完整-kkt-条件"><span class="header-section-number">4.5</span> 软间隔的完整 KKT 条件</h2>
 <p><span id="eq-soft-kkt"><span class="math display">\[\begin{aligned}
 &amp;\text{驻点：}&amp;&amp;w=\sum_i\alpha_i y_ix_i,\quad\sum_i\alpha_i y_i=0,\quad C-\alpha_i-\mu_i=0,\\
 &amp;\text{原始可行：}&amp;&amp;y_if(x_i)\ge1-\xi_i,\quad\xi_i\ge0,\\
 &amp;\text{对偶可行：}&amp;&amp;\alpha_i\ge0,\quad\mu_i\ge0,\\
 &amp;\text{互补松弛：}&amp;&amp;\alpha_i[1-\xi_i-y_if(x_i)]=0,\quad\mu_i\xi_i=0.
-\end{aligned} \tag{5.4}\]</span></span></p>
-<section id="三类系数逐步推出来" class="level3" data-number="5.5.1">
-<h3 data-number="5.5.1" class="anchored" data-anchor-id="三类系数逐步推出来"><span class="header-section-number">5.5.1</span> 三类系数逐步推出来</h3>
+\end{aligned} \tag{4.4}\]</span></span></p>
+<section id="三类系数逐步推出来" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="三类系数逐步推出来"><span class="header-section-number">4.5.1</span> 三类系数逐步推出来</h3>
 <p><strong><span class="math inline">\(\alpha_i=0\)</span>。</strong> <span class="math inline">\(\mu_i=C&gt;0\)</span>，于是 <span class="math inline">\(\mu_i\xi_i=0\Rightarrow\xi_i=0\)</span>。再用原始可行性，得到 <span class="math inline">\(y_if(x_i)\ge1\)</span>。通常是间隔外点，也可能恰好在边界上。</p>
 <p><strong><span class="math inline">\(0&lt;\alpha_i&lt;C\)</span>。</strong> <span class="math inline">\(\mu_i&gt;0\Rightarrow\xi_i=0\)</span>；<span class="math inline">\(\alpha_i&gt;0\)</span> 又要求第一个约束取等号，所以 <span class="math inline">\(y_if(x_i)=1\)</span>，是自由支持向量。</p>
 <p><strong><span class="math inline">\(\alpha_i=C\)</span>。</strong> <span class="math inline">\(\mu_i=0\)</span> 不能单独推出 <span class="math inline">\(\xi_i\)</span> 的数值；但 <span class="math inline">\(\alpha_i&gt;0\)</span> 的互补松弛给出 <strong>等式</strong> <span class="math inline">\(y_if(x_i)=1-\xi_i\le1\)</span>。原笔记直接由 <span class="math inline">\(y_if\ge1-\xi_i\)</span> 推出 <span class="math inline">\(y_if\le1\)</span> 并不成立，必须补上这一步等式。</p>
 <p>反过来，<span class="math inline">\(y_if&gt;1\Rightarrow\alpha_i=0\)</span>；<span class="math inline">\(y_if&lt;1\Rightarrow\alpha_i=C\)</span>；<span class="math inline">\(y_if=1\)</span> 时系数可以取盒内任何允许值。边界等号是退化和数值容差最容易影响判断的地方。支持向量按非零系数定义，不是简单按“离线最近”定义。</p>
 </section>
-<section id="没有自由支持向量时怎样求-b" class="level3" data-number="5.5.2">
-<h3 data-number="5.5.2" class="anchored" data-anchor-id="没有自由支持向量时怎样求-b"><span class="header-section-number">5.5.2</span> 没有自由支持向量时，怎样求 b</h3>
+<section id="没有自由支持向量时怎样求-b" class="level3" data-number="4.5.2">
+<h3 data-number="4.5.2" class="anchored" data-anchor-id="没有自由支持向量时怎样求-b"><span class="header-section-number">4.5.2</span> 没有自由支持向量时，怎样求 b</h3>
 <p>记 <span class="math inline">\(h_i=\sum_j\alpha_jy_jK(x_j,x_i)\)</span>。若 <span class="math inline">\(0&lt;\alpha_i&lt;C\)</span>，则 <span class="math inline">\(b=y_i-h_i\)</span>，可对这些样本求平均；不能对所有达到上界的支持向量都使用此式。</p>
 <p>若没有自由支持向量，用两种间隔不等式分别推导截距上下界：</p>
 <p><span class="math display">\[\begin{array}{ll}
@@ -452,18 +455,18 @@ L_H
 \end{array}\]</span></p>
 <p>汇总所有下界的最大值为 <span class="math inline">\(b_{\rm low}\)</span>、所有上界的最小值为 <span class="math inline">\(b_{\rm high}\)</span>。KKT 要求 <span class="math inline">\(b\in[b_{\rm low},b_{\rm high}]\)</span>；有限区间可取中点。若数值上区间倒置，应检查容差和优化残差，不应任意平均违约点。</p>
 </section>
-<section id="原始对偶间隙给出可检查的证书" class="level3" data-number="5.5.3">
-<h3 data-number="5.5.3" class="anchored" data-anchor-id="原始对偶间隙给出可检查的证书"><span class="header-section-number">5.5.3</span> 原始—对偶间隙给出可检查的证书</h3>
+<section id="原始对偶间隙给出可检查的证书" class="level3" data-number="4.5.3">
+<h3 data-number="4.5.3" class="anchored" data-anchor-id="原始对偶间隙给出可检查的证书"><span class="header-section-number">4.5.3</span> 原始—对偶间隙给出可检查的证书</h3>
 <p>对原始与对偶可行的变量，记 <span class="math inline">\(m_i=y_if(x_i)\)</span>、<span class="math inline">\(S=\sum_i\alpha_i y_ix_i\)</span>：</p>
 <p><span id="eq-duality-gap"><span class="math display">\[\begin{aligned}
 P-D&amp;=\frac12\|w\|^2+C\sum_i\xi_i-\sum_i\alpha_i+\frac12\|S\|^2\\
 &amp;=\frac12\|w-S\|^2+\sum_i\alpha_i(m_i-1+\xi_i)+\sum_i(C-\alpha_i)\xi_i\ge0.
-\end{aligned} \tag{5.5}\]</span></span></p>
+\end{aligned} \tag{4.5}\]</span></span></p>
 <p>每项均非负；驻点与互补松弛成立时恰好为零。这个分解把抽象 KKT 与实际检查联系起来：不但要看预测是否相同，还应看可行性、KKT 残差与原始—对偶间隙。</p>
 </section>
 </section>
-<section id="两个变量足够进行一次更新" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="两个变量足够进行一次更新"><span class="header-section-number">5.6</span> 两个变量足够进行一次更新</h2>
+<section id="两个变量足够进行一次更新" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="两个变量足够进行一次更新"><span class="header-section-number">4.6</span> 两个变量足够进行一次更新</h2>
 <p>若只改变一个 <span class="math inline">\(\alpha_i\)</span>，通常会破坏 <span class="math inline">\(\sum_i\alpha_iy_i=0\)</span>；SMO 同时改变两个变量。令旧值为 <span class="math inline">\(\alpha_i,\alpha_j\)</span>，更新后的关系为</p>
 <p><span class="math display">\[\alpha_i'=\alpha_i+y_iy_j(\alpha_j-\alpha_j').\]</span></p>
 <p>计算盒约束允许的 <span class="math inline">\([L,H]\)</span>，再沿可行方向优化并截断。如果 <span class="math inline">\(y_i\ne y_j\)</span>，</p>
@@ -473,8 +476,8 @@ P-D&amp;=\frac12\|w\|^2+C\sum_i\xi_i-\sum_i\alpha_i+\frac12\|S\|^2\\
 <p>记 <span class="math inline">\(E_i=f(x_i)-y_i\)</span> 和 <span class="math inline">\(\eta=K_{ii}+K_{jj}-2K_{ij}&gt;0\)</span>，则</p>
 <p><span class="math display">\[\alpha_j'=\operatorname{clip}\!\left(\alpha_j+\frac{y_j(E_i-E_j)}\eta,L,H\right).\]</span></p>
 <p>更新 <span class="math inline">\(\alpha_i\)</span> 和截距，然后继续扫描违反 KKT 的点。这里的 <span class="math inline">\(\eta\)</span> 使用正曲率约定，某些教材定义为其负值，公式符号也相应变化。</p>
-<section id="为什么这个更新就是一维二次函数的最优点" class="level3" data-number="5.6.1">
-<h3 data-number="5.6.1" class="anchored" data-anchor-id="为什么这个更新就是一维二次函数的最优点"><span class="header-section-number">5.6.1</span> 为什么这个更新就是一维二次函数的最优点</h3>
+<section id="为什么这个更新就是一维二次函数的最优点" class="level3" data-number="4.6.1">
+<h3 data-number="4.6.1" class="anchored" data-anchor-id="为什么这个更新就是一维二次函数的最优点"><span class="header-section-number">4.6.1</span> 为什么这个更新就是一维二次函数的最优点</h3>
 <p>设 <span class="math inline">\(t=\alpha_j'\)</span>，用等式约束消去 <span class="math inline">\(\alpha_i'\)</span>，把对偶目标限制到这条可行直线上，记为 <span class="math inline">\(\psi(t)\)</span>。在旧点 <span class="math inline">\(t_0=\alpha_j\)</span>，</p>
 <p><span class="math display">\[\psi'(t_0)=y_j(E_i-E_j),\qquad
 \psi''(t)=-\eta,\qquad\eta=K_{ii}+K_{jj}-2K_{ij}=\|\phi(x_i)-\phi(x_j)\|^2\ge0.\]</span></p>
@@ -528,8 +531,8 @@ P-D&amp;=\frac12\|w\|^2+C\sum_i\xi_i-\sum_i\alpha_i+\frac12\|S\|^2\\
 <p>完整代码位于 <code>scripts/svm_lab.py</code> 的 <code>LinearSMO</code>。这个教学实现有迭代上限和收敛报告，跳过零曲率的变量对，不处理所有重复点退化问题。成熟 LIBSVM 还有工作集选择、缓存、shrinking、退化分支与更严谨的停止条件；实际建模使用成熟求解器 <span class="citation" data-cites="platt libsvm">(<a href="../references.html#ref-platt" role="doc-biblioref">Platt 1998年</a>; <a href="../references.html#ref-libsvm" role="doc-biblioref">Chang 和 Lin 2011年</a>)</span>。</p>
 </section>
 </section>
-<section id="点击样本检查-kkt拖动步骤回放-smo" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="点击样本检查-kkt拖动步骤回放-smo"><span class="header-section-number">5.7</span> 点击样本，检查 KKT；拖动步骤，回放 SMO</h2>
+<section id="点击样本检查-kkt拖动步骤回放-smo" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="点击样本检查-kkt拖动步骤回放-smo"><span class="header-section-number">4.7</span> 点击样本，检查 KKT；拖动步骤，回放 SMO</h2>
 <p>下面使用8个二维教学样本，包含间隔内样本，固定 <span class="math inline">\(C=0.7\)</span>。图中数字是样本编号，空心圈表示当前非零系数。点击一个样本（或使用下拉框），将图、所选样本指标和逐样本数据表对应起来。步骤滑块从初始零系数开始，记录求解器每次实际成功的成对更新；默认展示最终收敛结果。</p>
 <section class="lab" data-experiment="smo" aria-label="KKT 与 SMO：从系数更新到分类边界">
 <p class="lab-title">KKT 与 SMO：从系数更新到分类边界</p><p class="lab-hint">深蓝粗实线为f=0，绿/橙虚线为f=±1。点击样本观察α、松弛ξ、yf和KKT残差；拖动步骤回放。</p>
@@ -538,8 +541,8 @@ P-D&amp;=\frac12\|w\|^2+C\sum_i\xi_i-\sum_i\alpha_i+\frac12\|S\|^2\\
 <p>每一步都保持 <span class="math inline">\(0\le\alpha_i\le C\)</span> 和 <span class="math inline">\(\sum_i\alpha_i y_i=0\)</span>。但中间的截距、间隔和互补松弛通常尚未满足KKT：观察 <span class="math inline">\(P-D\)</span> 与最大残差如何变化，不要把每一次局部更新都当成最优解。对偶目标应随成功更新不下降，间隙不一定逐步单调。初始 <span class="math inline">\(w=0\)</span> 时没有可定义的分隔超平面，因此不绘制边界。</p>
 <p>图表中的松弛按当前预测计算为 <span class="math inline">\(\max(0,1-y_if)\)</span>，使原始变量可行；这里检查的是当前线性目标与对偶的间隙。表格依据系数在0、盒内、上界的位置选择不同KKT残差公式，数值计算使用容差。本演示不改变前述教学求解器对重复样本退化分支的限制。</p>
 </section>
-<section id="练习与解答" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">5.8</span> 练习与解答</h2>
+<section id="练习与解答" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">4.8</span> 练习与解答</h2>
 <ol type="1">
 <li>为什么软间隔多出 <span class="math inline">\(\alpha_i\le C\)</span>？</li>
 <li>为什么不能把所有支持向量的 <span class="math inline">\(y_if(x_i)\)</span> 都设为 1？</li>
@@ -583,9 +586,31 @@ Platt, John. 1998年. <em>Sequential Minimal Optimization: A Fast Algorithm for 
 </main> <!-- /main -->
 <script>
 
-document.addEventListener('shown.bs.tab',function(){
+function resizeTutorialPlots(){
 
-  document.querySelectorAll('.js-plotly-plot').forEach(function(p){if(p.offsetWidth) Plotly.Plots.resize(p);});
+  if(!window.Plotly)return;
+
+  requestAnimationFrame(function(){document.querySelectorAll('.js-plotly-plot').forEach(function(p){if(p.offsetWidth) Plotly.Plots.resize(p);});});
+
+}
+
+document.addEventListener('shown.bs.tab',resizeTutorialPlots);
+
+document.addEventListener('DOMContentLoaded',function(){
+
+  document.querySelectorAll('pre.sourceCode > code').forEach(function(code){
+
+    var language=Array.from(code.classList).find(function(c){return !['sourceCode','code-with-copy'].includes(c);});
+
+    if(!language)return;
+
+    var label=document.createElement('span');label.className='code-language';label.textContent=language==='r'?'R':language==='python'?'Python':language;
+
+    code.closest('div.sourceCode').appendChild(label);
+
+  });
+
+  document.querySelectorAll('details.result-details').forEach(function(el){el.addEventListener('toggle',resizeTutorialPlots);});
 
 });
 
@@ -998,13 +1023,13 @@ document.addEventListener('shown.bs.tab',function(){
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/02-soft-margin.html" class="pagination-link" aria-label="软间隔、损失与正则化">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">软间隔、损失与正则化</span></span>
+      <a href="../chapters/02-soft-margin.html" class="pagination-link" aria-label="软间隔与损失">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔与损失</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/04-kernels.html" class="pagination-link" aria-label="核技巧与非线性边界">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">核技巧与非线性边界</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/04-kernels.html" class="pagination-link" aria-label="核方法">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">核方法</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

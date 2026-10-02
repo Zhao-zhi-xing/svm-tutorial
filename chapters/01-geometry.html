@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; 超平面与最大间隔 – 支持向量机教程：从几何到现代学习</title>
+<title>2&nbsp; 超平面与最大间隔 – 支持向量机教程：从几何到现代学习</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -63,7 +63,7 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0e621268080d55bbd7df441cb99ca0ef.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fe1b2164e170bcee65568756051c19de.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -173,7 +173,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-geometry.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">超平面与最大间隔</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/01-geometry.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">超平面与间隔</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -195,73 +195,73 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">从一条分隔线开始</span></span></a>
+ <span class="menu-text">导读与学习路线</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/00-python-start.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">第一次独立训练 SVM：纯 Python 入门</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">纯 Python 入门</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/01-geometry.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">超平面与最大间隔</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">超平面与间隔</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/02-soft-margin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">软间隔、损失与正则化</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔与损失</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/03-duality-smo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/04-kernels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">核技巧与非线性边界</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">核方法</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/05-multiclass.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">多分类：分数、投票与联合学习</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">多分类</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/06-workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">建立可信的建模流程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">可靠建模流程</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/07-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">案例：从 Iris 到高维基因表达</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">真实数据案例</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/08-modern.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">SVM 与现代学习：继续研究什么</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">现代研究导读</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/09-authoring.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">用 VS Code 维护本教程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">维护本教程</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">参考文献</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">参考文献</span></span></a>
   </div>
 </li>
     </ul>
@@ -274,11 +274,11 @@ window.Quarto = {
     <h2 id="toc-title">本章目录</h2>
    
   <ul class="collapse">
-  <li><a href="#分数函数和法向量" id="toc-分数函数和法向量" class="nav-link active" data-scroll-target="#分数函数和法向量"><span class="header-section-number">3.1</span> 分数函数和法向量</a></li>
-  <li><a href="#函数间隔与几何间隔" id="toc-函数间隔与几何间隔" class="nav-link" data-scroll-target="#函数间隔与几何间隔"><span class="header-section-number">3.2</span> 函数间隔与几何间隔</a></li>
-  <li><a href="#从最大间隔到硬间隔-svm" id="toc-从最大间隔到硬间隔-svm" class="nav-link" data-scroll-target="#从最大间隔到硬间隔-svm"><span class="header-section-number">3.3</span> 从最大间隔到硬间隔 SVM</a></li>
-  <li><a href="#为什么关注支持向量" id="toc-为什么关注支持向量" class="nav-link" data-scroll-target="#为什么关注支持向量"><span class="header-section-number">3.4</span> 为什么关注支持向量</a></li>
-  <li><a href="#练习与解答" id="toc-练习与解答" class="nav-link" data-scroll-target="#练习与解答"><span class="header-section-number">3.5</span> 练习与解答</a></li>
+  <li><a href="#分数函数和法向量" id="toc-分数函数和法向量" class="nav-link active" data-scroll-target="#分数函数和法向量"><span class="header-section-number">2.1</span> 分数函数和法向量</a></li>
+  <li><a href="#函数间隔与几何间隔" id="toc-函数间隔与几何间隔" class="nav-link" data-scroll-target="#函数间隔与几何间隔"><span class="header-section-number">2.2</span> 函数间隔与几何间隔</a></li>
+  <li><a href="#从最大间隔到硬间隔-svm" id="toc-从最大间隔到硬间隔-svm" class="nav-link" data-scroll-target="#从最大间隔到硬间隔-svm"><span class="header-section-number">2.3</span> 从最大间隔到硬间隔 SVM</a></li>
+  <li><a href="#为什么关注支持向量" id="toc-为什么关注支持向量" class="nav-link" data-scroll-target="#为什么关注支持向量"><span class="header-section-number">2.4</span> 为什么关注支持向量</a></li>
+  <li><a href="#练习与解答" id="toc-练习与解答" class="nav-link" data-scroll-target="#练习与解答"><span class="header-section-number">2.5</span> 练习与解答</a></li>
   </ul>
 </nav>
     </div>
@@ -287,7 +287,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">超平面与最大间隔</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">超平面与最大间隔</span></h1>
 </div>
 
 
@@ -304,22 +304,25 @@ window.Quarto = {
 </header>
 
 
-<p>本章目标：说清分数、函数间隔和几何间隔的区别，并把最大间隔问题写成凸优化。可以先回到首页操作超平面图，再用下面的公式解释观察结果。</p>
-<section id="分数函数和法向量" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="分数函数和法向量"><span class="header-section-number">3.1</span> 分数函数和法向量</h2>
+<div class="chapter-intro">
+<p><strong>学习目标</strong>：说清分数、函数间隔和几何间隔的区别，并把最大间隔问题写成凸优化。可以先回到首页操作超平面图，再用下面的公式解释观察结果。</p>
+<p><strong>前置知识</strong>：向量内积、范数与平面方程。</p>
+</div>
+<section id="分数函数和法向量" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="分数函数和法向量"><span class="header-section-number">2.1</span> 分数函数和法向量</h2>
 <p>二维直线 <span class="math inline">\(w_1x_1+w_2x_2+b=0\)</span> 把平面分成两半；在 <span class="math inline">\(p\)</span> 维空间，它是一个 <span class="math inline">\(p-1\)</span> 维仿射超平面（要求 <span class="math inline">\(w\ne0\)</span>）。<span class="math inline">\(w\)</span> 垂直于超平面，<span class="math inline">\(b\)</span> 决定它的平移。<span class="math inline">\(f(x)\)</span> 的正负给出所在侧，但它的绝对值尚不能当成距离。</p>
 <p>例如，<span class="math inline">\(f(x)=x_1+x_2-1\)</span> 与 <span class="math inline">\(10f(x)\)</span> 给出完全相同的分隔线，却输出相差十倍的分数。<strong>分类边界具有尺度不确定性</strong>。这正是引入几何间隔的原因。</p>
 </section>
-<section id="函数间隔与几何间隔" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="函数间隔与几何间隔"><span class="header-section-number">3.2</span> 函数间隔与几何间隔</h2>
+<section id="函数间隔与几何间隔" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="函数间隔与几何间隔"><span class="header-section-number">2.2</span> 函数间隔与几何间隔</h2>
 <p>单个样本的函数间隔为</p>
-<p><span id="eq-functional-margin"><span class="math display">\[\hat\gamma_i=y_i(w^Tx_i+b). \tag{3.1}\]</span></span></p>
+<p><span id="eq-functional-margin"><span class="math display">\[\hat\gamma_i=y_i(w^Tx_i+b). \tag{2.1}\]</span></span></p>
 <p>正值表示分类正确，负值表示分类错误；正值越大不能脱离 <span class="math inline">\(w\)</span> 的尺度解释。把 <span class="math inline">\(x_i\)</span> 沿法向量投影到超平面：</p>
 <p><span class="math display">\[x_i^{\perp}=x_i-\frac{w^Tx_i+b}{\|w\|^2}w.\]</span></p>
 <p>由投影公式得到带符号几何间隔</p>
 <p><span id="eq-geometric-margin"><span class="math display">\[\gamma_i=\frac{y_i(w^Tx_i+b)}{\|w\|},\qquad
-\operatorname{dist}(x_i,H)=\frac{|w^Tx_i+b|}{\|w\|}. \tag{3.2}\]</span></span></p>
-<p>几何间隔同时考虑<strong>距离和正确侧</strong>，而无符号距离只回答“离线多远”。正比例缩放 <span class="math inline">\((w,b)\)</span> 不改变 <a href="#eq-geometric-margin" class="quarto-xref">式&nbsp;<span>3.2</span></a>；负比例缩放会反转类别，因此不能等同处理。</p>
+\operatorname{dist}(x_i,H)=\frac{|w^Tx_i+b|}{\|w\|}. \tag{2.2}\]</span></span></p>
+<p>几何间隔同时考虑<strong>距离和正确侧</strong>，而无符号距离只回答“离线多远”。正比例缩放 <span class="math inline">\((w,b)\)</span> 不改变 <a href="#eq-geometric-margin" class="quarto-xref">式&nbsp;<span>2.2</span></a>；负比例缩放会反转类别，因此不能等同处理。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -333,39 +336,39 @@ window.Quarto = {
 <p>首页图把 <span class="math inline">\(\|w\|\)</span> 固定为 1，因此 <span class="math inline">\(|f(x)|\)</span> 恰好是距离。一般模型没有这个约定，不能照搬这个结论。</p>
 </div>
 </div>
-<section id="投影公式的推导" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="投影公式的推导"><span class="header-section-number">3.2.1</span> 投影公式的推导</h3>
+<section id="投影公式的推导" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="投影公式的推导"><span class="header-section-number">2.2.1</span> 投影公式的推导</h3>
 <p>最短位移必须沿法向量，写成 <span class="math inline">\(x_i^\perp=x_i-tw\)</span>。代入平面方程，</p>
 <p><span class="math display">\[0=w^T(x_i-tw)+b=w^Tx_i+b-t\|w\|^2,\]</span></p>
 <p>所以 <span class="math inline">\(t=(w^Tx_i+b)/\|w\|^2\)</span>，位移长度为 <span class="math inline">\(|t|\|w\|\)</span>。这直接得到距离公式，而不是把分数的绝对值凭直觉当作距离。两条平行平面 <span class="math inline">\(w^Tx+b=c_1,c_2\)</span> 的距离同理为 <span class="math inline">\(|c_1-c_2|/\|w\|\)</span>。</p>
 </section>
 </section>
-<section id="从最大间隔到硬间隔-svm" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="从最大间隔到硬间隔-svm"><span class="header-section-number">3.3</span> 从最大间隔到硬间隔 SVM</h2>
+<section id="从最大间隔到硬间隔-svm" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="从最大间隔到硬间隔-svm"><span class="header-section-number">2.3</span> 从最大间隔到硬间隔 SVM</h2>
 <p>对于线性可分的训练集，我们希望最大化最小的 <span class="math inline">\(\gamma_i\)</span>。利用正比例缩放，可以把最近样本的函数间隔定为 1：</p>
 <p><span class="math display">\[y_i(w^Tx_i+b)\ge1,\quad i=1,\ldots,n.\]</span></p>
 <p>此时两条支撑超平面 <span class="math inline">\(f(x)=+1\)</span> 与 <span class="math inline">\(f(x)=-1\)</span> 的距离为 <span class="math inline">\(2/\|w\|\)</span>。最大化间隔等价于最小化范数，得到</p>
 <p><span id="eq-hard-primal"><span class="math display">\[\min_{w,b}\frac12\|w\|^2
-\quad\text{s.t.}\quad y_i(w^Tx_i+b)\ge1. \tag{3.3}\]</span></span></p>
+\quad\text{s.t.}\quad y_i(w^Tx_i+b)\ge1. \tag{2.3}\]</span></span></p>
 <p>范数平方是凸函数，约束是仿射不等式，因此这是凸二次规划。不要把“凸”理解为所有参数都严格唯一：<span class="math inline">\(w\)</span> 的目标严格凸，<span class="math inline">\(b\)</span> 没有被惩罚，截距的唯一性需要结合数据和最优约束判断。</p>
-<section id="归一化与最大间隔之间的每一步" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="归一化与最大间隔之间的每一步"><span class="header-section-number">3.3.1</span> 归一化与最大间隔之间的每一步</h3>
+<section id="归一化与最大间隔之间的每一步" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="归一化与最大间隔之间的每一步"><span class="header-section-number">2.3.1</span> 归一化与最大间隔之间的每一步</h3>
 <p>设一个分隔解的最小函数间隔为 <span class="math inline">\(m=\min_i y_i(w^Tx_i+b)&gt;0\)</span>。将 <span class="math inline">\((w,b)\)</span> 同除以 <span class="math inline">\(m\)</span>，最近样本的函数间隔变为1，几何间隔保持不变。规范化后单侧最小间隔是 <span class="math inline">\(1/\|w\|\)</span>，两侧总宽度是 <span class="math inline">\(2/\|w\|\)</span>：</p>
 <p><span class="math display">\[\max\frac{2}{\|w\|}\ \Longleftrightarrow\ \min\|w\|\ \Longleftrightarrow\ \min\frac12\|w\|^2,\]</span></p>
 <p>等价性用到范数为正，以及平方在非负数上单调。若最优解的所有约束都严格大于1，可以再缩小 <span class="math inline">\((w,b)\)</span> 降低目标，产生矛盾，因此至少一个约束活跃。这里“最大”来自优化后的解，不能把首页手动设置的两条 <span class="math inline">\(f=\pm1\)</span> 参考线直接称为最大间隔。</p>
 </section>
 </section>
-<section id="为什么关注支持向量" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="为什么关注支持向量"><span class="header-section-number">3.4</span> 为什么关注支持向量</h2>
+<section id="为什么关注支持向量" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="为什么关注支持向量"><span class="header-section-number">2.4</span> 为什么关注支持向量</h2>
 <p>硬间隔最优解中，非零对偶系数对应的支持向量位于两侧间隔边界，决定最优约束结构。反过来，边界上的样本在退化情形下也可能有零系数，因此不能把最近点与支持向量无条件等同。远处非支持向量在保持最优约束结构时，小幅移动通常不会改变解；但删改大量样本或移动到间隔内仍可能改变最优解，不能说 SVM 对所有远点永远不敏感。</p>
 <p>硬间隔要求严格线性可分，单个异常点也可能迫使间隔大幅收缩。如果类别重叠，它甚至没有可行解。下一章引入软间隔，把不可行或脆弱的要求变成可调的损失。</p>
 </section>
-<section id="练习与解答" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">3.5</span> 练习与解答</h2>
+<section id="练习与解答" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">2.5</span> 练习与解答</h2>
 <ol type="1">
 <li>对 <span class="math inline">\(w=(3,4), b=-5, x=(1,1), y=+1\)</span>，计算 <span class="math inline">\(f(x)\)</span>、函数间隔、几何间隔和距离。</li>
 <li>如果把 <span class="math inline">\((w,b)\)</span> 乘 2，上述哪些量改变？</li>
-<li>为什么 <a href="#eq-hard-primal" class="quarto-xref">式&nbsp;<span>3.3</span></a> 不需要额外写 <span class="math inline">\(\min_i\hat\gamma_i=1\)</span>？</li>
+<li>为什么 <a href="#eq-hard-primal" class="quarto-xref">式&nbsp;<span>2.3</span></a> 不需要额外写 <span class="math inline">\(\min_i\hat\gamma_i=1\)</span>？</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled" title="参考解答">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -403,9 +406,31 @@ Ng, Andrew. 不详. <em>CS229 Lecture Notes: Support Vector Machines</em>. Stanf
 </main> <!-- /main -->
 <script>
 
-document.addEventListener('shown.bs.tab',function(){
+function resizeTutorialPlots(){
 
-  document.querySelectorAll('.js-plotly-plot').forEach(function(p){if(p.offsetWidth) Plotly.Plots.resize(p);});
+  if(!window.Plotly)return;
+
+  requestAnimationFrame(function(){document.querySelectorAll('.js-plotly-plot').forEach(function(p){if(p.offsetWidth) Plotly.Plots.resize(p);});});
+
+}
+
+document.addEventListener('shown.bs.tab',resizeTutorialPlots);
+
+document.addEventListener('DOMContentLoaded',function(){
+
+  document.querySelectorAll('pre.sourceCode > code').forEach(function(code){
+
+    var language=Array.from(code.classList).find(function(c){return !['sourceCode','code-with-copy'].includes(c);});
+
+    if(!language)return;
+
+    var label=document.createElement('span');label.className='code-language';label.textContent=language==='r'?'R':language==='python'?'Python':language;
+
+    code.closest('div.sourceCode').appendChild(label);
+
+  });
+
+  document.querySelectorAll('details.result-details').forEach(function(el){el.addEventListener('toggle',resizeTutorialPlots);});
 
 });
 
@@ -818,13 +843,13 @@ document.addEventListener('shown.bs.tab',function(){
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/00-python-start.html" class="pagination-link" aria-label="第一次独立训练 SVM：纯 Python 入门">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">第一次独立训练 SVM：纯 Python 入门</span></span>
+      <a href="../chapters/00-python-start.html" class="pagination-link" aria-label="纯 Python 入门">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">纯 Python 入门</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/02-soft-margin.html" class="pagination-link" aria-label="软间隔、损失与正则化">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">软间隔、损失与正则化</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/02-soft-margin.html" class="pagination-link" aria-label="软间隔与损失">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔与损失</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

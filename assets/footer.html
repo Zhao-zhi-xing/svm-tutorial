@@ -1,5 +1,16 @@
 <script>
-document.addEventListener('shown.bs.tab',function(){
-  document.querySelectorAll('.js-plotly-plot').forEach(function(p){if(p.offsetWidth) Plotly.Plots.resize(p);});
+function resizeTutorialPlots(){
+  if(!window.Plotly)return;
+  requestAnimationFrame(function(){document.querySelectorAll('.js-plotly-plot').forEach(function(p){if(p.offsetWidth) Plotly.Plots.resize(p);});});
+}
+document.addEventListener('shown.bs.tab',resizeTutorialPlots);
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('pre.sourceCode > code').forEach(function(code){
+    var language=Array.from(code.classList).find(function(c){return !['sourceCode','code-with-copy'].includes(c);});
+    if(!language)return;
+    var label=document.createElement('span');label.className='code-language';label.textContent=language==='r'?'R':language==='python'?'Python':language;
+    code.closest('div.sourceCode').appendChild(label);
+  });
+  document.querySelectorAll('details.result-details').forEach(function(el){el.addEventListener('toggle',resizeTutorialPlots);});
 });
 </script>

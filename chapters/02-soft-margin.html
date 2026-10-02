@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; 软间隔、损失与正则化 – 支持向量机教程：从几何到现代学习</title>
+<title>3&nbsp; 软间隔、损失与正则化 – 支持向量机教程：从几何到现代学习</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0e621268080d55bbd7df441cb99ca0ef.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fe1b2164e170bcee65568756051c19de.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -189,7 +189,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/02-soft-margin.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">软间隔、损失与正则化</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/02-soft-margin.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔与损失</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -211,73 +211,73 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">从一条分隔线开始</span></span></a>
+ <span class="menu-text">导读与学习路线</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/00-python-start.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">第一次独立训练 SVM：纯 Python 入门</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">纯 Python 入门</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/01-geometry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">超平面与最大间隔</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">超平面与间隔</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/02-soft-margin.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">软间隔、损失与正则化</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔与损失</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/03-duality-smo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/04-kernels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">核技巧与非线性边界</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">核方法</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/05-multiclass.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">多分类：分数、投票与联合学习</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">多分类</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/06-workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">建立可信的建模流程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">可靠建模流程</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/07-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">案例：从 Iris 到高维基因表达</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">真实数据案例</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/08-modern.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">SVM 与现代学习：继续研究什么</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">现代研究导读</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/09-authoring.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">用 VS Code 维护本教程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">维护本教程</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">参考文献</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">参考文献</span></span></a>
   </div>
 </li>
     </ul>
@@ -290,11 +290,11 @@ window.Quarto = {
     <h2 id="toc-title">本章目录</h2>
    
   <ul class="collapse">
-  <li><a href="#松弛变量允许什么" id="toc-松弛变量允许什么" class="nav-link active" data-scroll-target="#松弛变量允许什么"><span class="header-section-number">4.1</span> 松弛变量允许什么</a></li>
-  <li><a href="#操作-c观察折中" id="toc-操作-c观察折中" class="nav-link" data-scroll-target="#操作-c观察折中"><span class="header-section-number">4.2</span> 操作 <span class="math inline">\(C\)</span>，观察折中</a></li>
-  <li><a href="#hinge-loss-与逻辑损失" id="toc-hinge-loss-与逻辑损失" class="nav-link" data-scroll-target="#hinge-loss-与逻辑损失"><span class="header-section-number">4.3</span> Hinge loss 与逻辑损失</a></li>
-  <li><a href="#r-对应实验" id="toc-r-对应实验" class="nav-link" data-scroll-target="#r-对应实验"><span class="header-section-number">4.4</span> R 对应实验</a></li>
-  <li><a href="#练习与解答" id="toc-练习与解答" class="nav-link" data-scroll-target="#练习与解答"><span class="header-section-number">4.5</span> 练习与解答</a></li>
+  <li><a href="#松弛变量允许什么" id="toc-松弛变量允许什么" class="nav-link active" data-scroll-target="#松弛变量允许什么"><span class="header-section-number">3.1</span> 松弛变量允许什么</a></li>
+  <li><a href="#操作-c观察折中" id="toc-操作-c观察折中" class="nav-link" data-scroll-target="#操作-c观察折中"><span class="header-section-number">3.2</span> 操作 <span class="math inline">\(C\)</span>，观察折中</a></li>
+  <li><a href="#hinge-loss-与逻辑损失" id="toc-hinge-loss-与逻辑损失" class="nav-link" data-scroll-target="#hinge-loss-与逻辑损失"><span class="header-section-number">3.3</span> Hinge loss 与逻辑损失</a></li>
+  <li><a href="#r-对应实验" id="toc-r-对应实验" class="nav-link" data-scroll-target="#r-对应实验"><span class="header-section-number">3.4</span> R 对应实验</a></li>
+  <li><a href="#练习与解答" id="toc-练习与解答" class="nav-link" data-scroll-target="#练习与解答"><span class="header-section-number">3.5</span> 练习与解答</a></li>
   </ul>
 </nav>
     </div>
@@ -303,7 +303,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">软间隔、损失与正则化</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔、损失与正则化</span></h1>
 </div>
 
 
@@ -320,12 +320,15 @@ window.Quarto = {
 </header>
 
 
-<p>本章目标：解释松弛变量，把几何约束转为 hinge loss，并正确理解参数 <span class="math inline">\(C\)</span>。软间隔容许训练错误，目的是在训练拟合与函数复杂度之间作选择。</p>
-<section id="松弛变量允许什么" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="松弛变量允许什么"><span class="header-section-number">4.1</span> 松弛变量允许什么</h2>
+<div class="chapter-intro">
+<p><strong>学习目标</strong>：解释松弛变量，把几何约束转为 hinge loss，并正确理解参数 <span class="math inline">\(C\)</span>。软间隔容许训练错误，目的是在训练拟合与函数复杂度之间作选择。</p>
+<p><strong>前置知识</strong>：超平面、几何间隔与硬间隔约束。</p>
+</div>
+<section id="松弛变量允许什么" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="松弛变量允许什么"><span class="header-section-number">3.1</span> 松弛变量允许什么</h2>
 <p>引入 <span class="math inline">\(\xi_i\ge0\)</span>，把硬约束改为 <span class="math inline">\(y_if(x_i)\ge1-\xi_i\)</span>：</p>
 <p><span id="eq-soft-primal"><span class="math display">\[\min_{w,b,\xi}\frac12\|w\|^2+C\sum_{i=1}^n\xi_i,
-\quad y_if(x_i)\ge1-\xi_i,\quad\xi_i\ge0. \tag{4.1}\]</span></span></p>
+\quad y_if(x_i)\ge1-\xi_i,\quad\xi_i\ge0. \tag{3.1}\]</span></span></p>
 <p>在最优解处，<span class="math inline">\(\xi_i=\max(0,1-y_if(x_i))\)</span>。按分数理解三种情况：</p>
 <ul>
 <li><span class="math inline">\(y_if(x_i)\ge1\)</span>：在间隔之外或边界上，松弛为 0。</li>
@@ -334,8 +337,8 @@ window.Quarto = {
 </ul>
 <p>这不是把每个错误点直接“丢掉”。错误越深，hinge 损失越大。软间隔仍可能受到异常值和错误标签的影响。</p>
 </section>
-<section id="操作-c观察折中" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="操作-c观察折中"><span class="header-section-number">4.2</span> 操作 <span class="math inline">\(C\)</span>，观察折中</h2>
+<section id="操作-c观察折中" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="操作-c观察折中"><span class="header-section-number">3.2</span> 操作 <span class="math inline">\(C\)</span>，观察折中</h2>
 <div id="fig-soft-lab" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-soft-lab-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -346,11 +349,11 @@ window.Quarto = {
 </section>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-soft-lab-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-图&nbsp;4.1: 软间隔线性 SVM 的参数探索。
+图&nbsp;3.1: 软间隔线性 SVM 的参数探索。
 </figcaption>
 </figure>
 </div>
-<p>在 <a href="#fig-soft-lab" class="quarto-xref">图&nbsp;<span>4.1</span></a> 中，<span class="math inline">\(C\)</span> 越大，训练损失相对于范数惩罚越重要；<span class="math inline">\(C\)</span> 越小，模型更愿意接受损失。线性固定数据下，这会影响间隔，但不能断言每个数据集的错误数、支持向量数或测试精度都严格单调。</p>
+<p>在 <a href="#fig-soft-lab" class="quarto-xref">图&nbsp;<span>3.1</span></a> 中，<span class="math inline">\(C\)</span> 越大，训练损失相对于范数惩罚越重要；<span class="math inline">\(C\)</span> 越小，模型更愿意接受损失。线性固定数据下，这会影响间隔，但不能断言每个数据集的错误数、支持向量数或测试精度都严格单调。</p>
 <div class="callout callout-style-default callout-warning callout-titled" title="两个 C 不要混淆">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -365,9 +368,9 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="hinge-loss-与逻辑损失" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="hinge-loss-与逻辑损失"><span class="header-section-number">4.3</span> Hinge loss 与逻辑损失</h2>
-<p>消去 <span class="math inline">\(\xi\)</span>，<a href="#eq-soft-primal" class="quarto-xref">式&nbsp;<span>4.1</span></a> 等价于</p>
+<section id="hinge-loss-与逻辑损失" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="hinge-loss-与逻辑损失"><span class="header-section-number">3.3</span> Hinge loss 与逻辑损失</h2>
+<p>消去 <span class="math inline">\(\xi\)</span>，<a href="#eq-soft-primal" class="quarto-xref">式&nbsp;<span>3.1</span></a> 等价于</p>
 <p><span class="math display">\[\min_{w,b}\frac12\|w\|^2+C\sum_i\max(0,1-y_if(x_i)).\]</span></p>
 <p>若另一篇文献写成 <span class="math inline">\(\frac\lambda2\|w\|^2+\frac1n\sum_i\ell_i\)</span>，则在相同模型、相同损失下 <span class="math inline">\(\lambda=1/(nC)\)</span>。如果正则项没有 <span class="math inline">\(1/2\)</span>，常数还会改变。必须比较完整目标，而不只是参数名。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lab.figure_html(lab.loss_plot(), <span class="st">'loss-comparison'</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
@@ -376,8 +379,8 @@ window.Quarto = {
 </div>
 <script type="application/json" id="loss-comparison-json">{"data":[{"line":{"width":3},"mode":"lines","name":"hinge","x":[-3.0,-2.95,-2.9,-2.85,-2.8,-2.75,-2.7,-2.65,-2.6,-2.55,-2.5,-2.45,-2.4,-2.35,-2.3,-2.25,-2.2,-2.15,-2.1,-2.05,-2.0,-1.95,-1.9,-1.8499999999999999,-1.7999999999999998,-1.75,-1.7,-1.65,-1.5999999999999999,-1.5499999999999998,-1.5,-1.45,-1.4,-1.3499999999999999,-1.2999999999999998,-1.25,-1.2,-1.15,-1.0999999999999999,-1.0499999999999998,-1.0,-0.9499999999999997,-0.8999999999999999,-0.8500000000000001,-0.7999999999999998,-0.75,-0.6999999999999997,-0.6499999999999999,-0.5999999999999996,-0.5499999999999998,-0.5,-0.44999999999999973,-0.3999999999999999,-0.34999999999999964,-0.2999999999999998,-0.25,-0.19999999999999973,-0.1499999999999999,-0.09999999999999964,-0.04999999999999982,0.0,0.050000000000000266,0.10000000000000009,0.15000000000000036,0.20000000000000018,0.25,0.30000000000000027,0.3500000000000001,0.40000000000000036,0.4500000000000002,0.5,0.5500000000000003,0.6000000000000001,0.6500000000000004,0.7000000000000002,0.75,0.8000000000000003,0.8500000000000001,0.9000000000000004,0.9500000000000002,1.0,1.0499999999999998,1.1000000000000005,1.1500000000000004,1.2000000000000002,1.25,1.2999999999999998,1.3500000000000005,1.4000000000000004,1.4500000000000002,1.5,1.5499999999999998,1.6000000000000005,1.6500000000000004,1.7000000000000002,1.75,1.8000000000000007,1.8500000000000005,1.9000000000000004,1.9500000000000002,2.0,2.0500000000000007,2.1000000000000005,2.1500000000000004,2.2,2.25,2.3000000000000007,2.3500000000000005,2.4000000000000004,2.45,2.5,2.5500000000000007,2.6000000000000005,2.6500000000000004,2.7,2.75,2.8000000000000007,2.8500000000000005,2.9000000000000004,2.95,3.0,3.0500000000000007,3.1000000000000005,3.1500000000000004,3.2,3.25,3.3000000000000007,3.3500000000000005,3.4000000000000004,3.45,3.5,3.5500000000000007,3.6000000000000005,3.6500000000000004,3.7,3.75,3.8000000000000007,3.8500000000000005,3.9000000000000004,3.95,4.0],"y":[4.0,3.95,3.9,3.85,3.8,3.75,3.7,3.65,3.6,3.55,3.5,3.45,3.4,3.35,3.3,3.25,3.2,3.15,3.1,3.05,3.0,2.95,2.9,2.8499999999999996,2.8,2.75,2.7,2.65,2.5999999999999996,2.55,2.5,2.45,2.4,2.3499999999999996,2.3,2.25,2.2,2.15,2.0999999999999996,2.05,2.0,1.9499999999999997,1.9,1.85,1.7999999999999998,1.75,1.6999999999999997,1.65,1.5999999999999996,1.5499999999999998,1.5,1.4499999999999997,1.4,1.3499999999999996,1.2999999999999998,1.25,1.1999999999999997,1.15,1.0999999999999996,1.0499999999999998,1.0,0.9499999999999997,0.8999999999999999,0.8499999999999996,0.7999999999999998,0.75,0.6999999999999997,0.6499999999999999,0.5999999999999996,0.5499999999999998,0.5,0.44999999999999973,0.3999999999999999,0.34999999999999964,0.2999999999999998,0.25,0.19999999999999973,0.1499999999999999,0.09999999999999964,0.04999999999999982,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0],"type":"scatter"},{"line":{"width":3},"mode":"lines","name":"logistic","x":[-3.0,-2.95,-2.9,-2.85,-2.8,-2.75,-2.7,-2.65,-2.6,-2.55,-2.5,-2.45,-2.4,-2.35,-2.3,-2.25,-2.2,-2.15,-2.1,-2.05,-2.0,-1.95,-1.9,-1.8499999999999999,-1.7999999999999998,-1.75,-1.7,-1.65,-1.5999999999999999,-1.5499999999999998,-1.5,-1.45,-1.4,-1.3499999999999999,-1.2999999999999998,-1.25,-1.2,-1.15,-1.0999999999999999,-1.0499999999999998,-1.0,-0.9499999999999997,-0.8999999999999999,-0.8500000000000001,-0.7999999999999998,-0.75,-0.6999999999999997,-0.6499999999999999,-0.5999999999999996,-0.5499999999999998,-0.5,-0.44999999999999973,-0.3999999999999999,-0.34999999999999964,-0.2999999999999998,-0.25,-0.19999999999999973,-0.1499999999999999,-0.09999999999999964,-0.04999999999999982,0.0,0.050000000000000266,0.10000000000000009,0.15000000000000036,0.20000000000000018,0.25,0.30000000000000027,0.3500000000000001,0.40000000000000036,0.4500000000000002,0.5,0.5500000000000003,0.6000000000000001,0.6500000000000004,0.7000000000000002,0.75,0.8000000000000003,0.8500000000000001,0.9000000000000004,0.9500000000000002,1.0,1.0499999999999998,1.1000000000000005,1.1500000000000004,1.2000000000000002,1.25,1.2999999999999998,1.3500000000000005,1.4000000000000004,1.4500000000000002,1.5,1.5499999999999998,1.6000000000000005,1.6500000000000004,1.7000000000000002,1.75,1.8000000000000007,1.8500000000000005,1.9000000000000004,1.9500000000000002,2.0,2.0500000000000007,2.1000000000000005,2.1500000000000004,2.2,2.25,2.3000000000000007,2.3500000000000005,2.4000000000000004,2.45,2.5,2.5500000000000007,2.6000000000000005,2.6500000000000004,2.7,2.75,2.8000000000000007,2.8500000000000005,2.9000000000000004,2.95,3.0,3.0500000000000007,3.1000000000000005,3.1500000000000004,3.2,3.25,3.3000000000000007,3.3500000000000005,3.4000000000000004,3.45,3.5,3.5500000000000007,3.6000000000000005,3.6500000000000004,3.7,3.75,3.8000000000000007,3.8500000000000005,3.9000000000000004,3.95,4.0],"y":[3.048587351573742,3.0010159765895352,2.953562776217963,2.9062331778784833,2.8590328262879714,2.8119675890031988,2.765043561776591,2.718267073682504,2.67164469196767,2.62518322657579,2.5788897342925496,2.5327715224535527,2.4868361521539497,2.4410914408948416,2.3955454645979626,2.350206558916747,2.305083319768696,2.260184603011109,2.215519523179755,2.1710974512080616,2.1269280110429727,2.083021075072867,2.0393867582829603,1.99603541105451,1.9529776105260739,1.9102241504380872,1.8677860293862658,1.8256744374149323,1.7839007408883387,1.7424764655865785,1.7014132779827524,1.6607229646697597,1.620417409918451,1.5805085713638753,1.541008453832992,1.501929081345373,1.4632824673380311,1.4250805831863984,1.3873353251154308,1.3500584796176431,1.3132616875182228,1.2769564068509518,1.2411538747320878,1.2058650684421959,1.1711006659477776,1.1368710061148999,1.1031860488854577,1.0700553357027152,1.0374879504858854,1.0054924814633375,0.9740769841801067,0.9432489459974547,0.9130152523999525,0.8833821554187767,0.8543552444685271,0.8259394198788436,0.7981388693815916,0.7709570477895321,0.7443966600735707,0.7184596480132861,0.6931471805599453,0.6684596480132862,0.6443966600735709,0.620957047789532,0.5981388693815918,0.5759394198788436,0.5543552444685269,0.533382155418777,0.5130152523999525,0.49324894599745484,0.4740769841801067,0.45549248146333754,0.4374879504858856,0.4200553357027151,0.40318604888545784,0.38687100611489994,0.37110066594777763,0.35586506844219584,0.3411538747320877,0.326956406850952,0.31326168751822286,0.30005847961764326,0.28733532511543064,0.2750805831863984,0.2632824673380311,0.2519290813453729,0.24100845383299224,0.2305085713638753,0.22041740991845085,0.21072296466975973,0.2014132779827524,0.19247646558657872,0.18390074088833874,0.17567443741493236,0.16778602938626586,0.16022415043808724,0.15297761052607403,0.14603541105450998,0.13938675828296054,0.1330210750728672,0.1269280110429725,0.12109745120806154,0.1155195231797549,0.11018460301110883,0.10508331976869591,0.10020655891674721,0.09554546459796287,0.09109144089484156,0.08683615215394964,0.0827715224535525,0.07888973429254963,0.07518322657579,0.07164469196766977,0.06826707368250394,0.06504356177659054,0.061967589003198625,0.05903282628797136,0.05623317787848312,0.053562776217963154,0.05101597658953503,0.048587351573742055,0.046271685358661926,0.04406396793857383,0.04195938923394163,0.039953333162430354,0.03804137168778313,0.03621925887065925,0.034482924942971935,0.03282847042486533,0.03125216030123531,0.029750418272620566,0.028319821093368586,0.026957093008208047,0.02565910029672885,0.024422845933779157,0.02324546437242503,0.022124216454879178,0.021056484455681364,0.0200397672603976,0.01907167568219249,0.018149927917809738],"type":"scatter"},{"line":{"color":"#ae3953","shape":"hv","width":3},"mode":"lines","name":"0\u20131","x":[-3,0,0,4],"y":[1,1,0,0],"type":"scatter"},{"marker":{"color":"#ae3953","size":9},"mode":"markers","name":"\u96f6\u5206\u6570\u6309\u9519\u8bef\u5904\u7406","showlegend":false,"x":[0],"y":[1],"type":"scatter"},{"marker":{"color":"#ae3953","size":9,"symbol":"circle-open"},"mode":"markers","name":"\u53f3\u4fa7\u6781\u9650","showlegend":false,"x":[0],"y":[0],"type":"scatter"}],"layout":{"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"title":{"text":"\u5e26\u7b26\u53f7\u5206\u6570 y f(x)"}},"yaxis":{"title":{"text":"\u635f\u5931"}},"title":{"text":"\u635f\u5931\u51fd\u6570\u6bd4\u8f83\uff1a0\u20131 \u5728\u96f6\u5904\u5206\u6bb5\u8df3\u53d8"},"height":560}}</script>
 <p>逻辑损失为 <span class="math inline">\(\log(1+e^{-yf})\)</span>，在所有有限分数处均有梯度；hinge 在 <span class="math inline">\(yf&gt;1\)</span> 后为 0，导数也为 0。两者都鼓励正确的带符号分数，但 hinge 在 <span class="math inline">\(yf=1\)</span> 不可微，需要次梯度或专门求解器。逻辑回归提供概率模型，SVM 的原始分数没有概率含义。</p>
-<section id="从松弛变量消去到次梯度" class="level3" data-number="4.3.1">
-<h3 data-number="4.3.1" class="anchored" data-anchor-id="从松弛变量消去到次梯度"><span class="header-section-number">4.3.1</span> 从松弛变量消去到次梯度</h3>
+<section id="从松弛变量消去到次梯度" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="从松弛变量消去到次梯度"><span class="header-section-number">3.3.1</span> 从松弛变量消去到次梯度</h3>
 <p>固定 <span class="math inline">\(w,b\)</span>，两个约束等价于 <span class="math inline">\(\xi_i\ge\max(0,1-y_if(x_i))\)</span>。因为 <span class="math inline">\(C&gt;0\)</span>，目标随每个 <span class="math inline">\(\xi_i\)</span> 单调增加，最优时必取这个下界；代回才得到 hinge 形式。若 <span class="math inline">\(C=0\)</span>，这一步关于唯一最小松弛的结论就不能照搬。</p>
 <p>记 <span class="math inline">\(m=yf(x)\)</span>，hinge 的次微分为</p>
 <p><span class="math display">\[\partial_m\max(0,1-m)=\begin{cases}\{-1\},&amp;m&lt;1,\\{[-1,0]},&amp;m=1,\\\{0\},&amp;m&gt;1.\end{cases}\]</span></p>
@@ -385,15 +388,15 @@ window.Quarto = {
 <p><span class="math display">\[w=C\sum_i s_i y_ix_i,\qquad\sum_i s_i y_i=0.\]</span></p>
 <p>令 <span class="math inline">\(\alpha_i=Cs_i\)</span> 就对应下一章的 <span class="math inline">\(0\le\alpha_i\le C\)</span> 与三类 KKT 状态。这也解释了为何间隔之外的点不再贡献 hinge 梯度，而处在拐点的样本可以有不同对偶系数。</p>
 </section>
-<section id="正则参数转换与-01-图的边界约定" class="level3" data-number="4.3.2">
-<h3 data-number="4.3.2" class="anchored" data-anchor-id="正则参数转换与-01-图的边界约定"><span class="header-section-number">4.3.2</span> 正则参数转换与 0–1 图的边界约定</h3>
+<section id="正则参数转换与-01-图的边界约定" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="正则参数转换与-01-图的边界约定"><span class="header-section-number">3.3.2</span> 正则参数转换与 0–1 图的边界约定</h3>
 <p>将 <span class="math inline">\(\frac12\|w\|^2+C\sum_i\ell_i\)</span> 整体除以正数 <span class="math inline">\(nC\)</span>，最优点不变，得到 <span class="math inline">\(\frac{1}{2nC}\|w\|^2+\frac1n\sum_i\ell_i\)</span>，因而 <span class="math inline">\(\lambda=1/(nC)\)</span>。总损失、平均损失和正则项的常数必须一起核对。</p>
 <p>本图约定零分数也计作错误，<span class="math inline">\(\ell_{01}(m)=\mathbf1\{m\le0\}\)</span>。因此零点左侧为1、右侧为0，不能在两个采样点之间画斜坡。阶跃图的竖线仅连接两侧极限，<strong>不表示零点的损失能取0到1之间的任意值</strong>；实心点表示 <span class="math inline">\(\ell_{01}(0)=1\)</span>，空心点表示右极限0。它的断点在0，hinge 的拐点在1，二者不要混淆。</p>
 <p>对 <span class="math inline">\(m\le0\)</span>，<span class="math inline">\(\max(0,1-m)\ge1\)</span>；对 <span class="math inline">\(m&gt;0\)</span>，0–1为0而hinge非负。因此 hinge 是该0–1损失的凸上界。逻辑损失在0处为 <span class="math inline">\(\log2&lt;1\)</span>，本图未缩放的逻辑损失不是同样的逐点上界；除以 <span class="math inline">\(\log2\)</span> 后才满足这一上界比较。</p>
 </section>
 </section>
-<section id="r-对应实验" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="r-对应实验"><span class="header-section-number">4.4</span> R 对应实验</h2>
+<section id="r-对应实验" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="r-对应实验"><span class="header-section-number">3.4</span> R 对应实验</h2>
 <p>下面的核心二分类实验在两种语言中使用相同 CSV 和保存的训练折；R 使用 <code>e1071</code>，Python 使用 <code>SVC</code>，二者都基于 LIBSVM。你可以检查同样的参数设置产生何种结果。</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">R</a></li></ul>
@@ -450,8 +453,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="练习与解答" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">4.5</span> 练习与解答</h2>
+<section id="练习与解答" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">3.5</span> 练习与解答</h2>
 <ol type="1">
 <li><span class="math inline">\(yf=-0.3\)</span> 时，最优松弛和 hinge loss 是多少？</li>
 <li>在同一个 <span class="math inline">\(C\)</span> 下扩大训练样本数，为什么总损失和平均损失目标不能直接视为一样？</li>
@@ -484,9 +487,31 @@ window.Quarto = {
 </main> <!-- /main -->
 <script>
 
-document.addEventListener('shown.bs.tab',function(){
+function resizeTutorialPlots(){
 
-  document.querySelectorAll('.js-plotly-plot').forEach(function(p){if(p.offsetWidth) Plotly.Plots.resize(p);});
+  if(!window.Plotly)return;
+
+  requestAnimationFrame(function(){document.querySelectorAll('.js-plotly-plot').forEach(function(p){if(p.offsetWidth) Plotly.Plots.resize(p);});});
+
+}
+
+document.addEventListener('shown.bs.tab',resizeTutorialPlots);
+
+document.addEventListener('DOMContentLoaded',function(){
+
+  document.querySelectorAll('pre.sourceCode > code').forEach(function(code){
+
+    var language=Array.from(code.classList).find(function(c){return !['sourceCode','code-with-copy'].includes(c);});
+
+    if(!language)return;
+
+    var label=document.createElement('span');label.className='code-language';label.textContent=language==='r'?'R':language==='python'?'Python':language;
+
+    code.closest('div.sourceCode').appendChild(label);
+
+  });
+
+  document.querySelectorAll('details.result-details').forEach(function(el){el.addEventListener('toggle',resizeTutorialPlots);});
 
 });
 
@@ -899,13 +924,13 @@ document.addEventListener('shown.bs.tab',function(){
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/01-geometry.html" class="pagination-link" aria-label="超平面与最大间隔">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">超平面与最大间隔</span></span>
+      <a href="../chapters/01-geometry.html" class="pagination-link" aria-label="超平面与间隔">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">超平面与间隔</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../chapters/03-duality-smo.html" class="pagination-link" aria-label="对偶、KKT 与 SMO">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

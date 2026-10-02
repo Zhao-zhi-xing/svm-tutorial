@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; 第一次独立训练 SVM：纯 Python 入门 – 支持向量机教程：从几何到现代学习</title>
+<title>1&nbsp; 第一次独立训练 SVM：纯 Python 入门 – 支持向量机教程：从几何到现代学习</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0e621268080d55bbd7df441cb99ca0ef.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fe1b2164e170bcee65568756051c19de.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -160,7 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/00-python-start.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">第一次独立训练 SVM：纯 Python 入门</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/00-python-start.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">纯 Python 入门</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -182,73 +182,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">从一条分隔线开始</span></span></a>
+ <span class="menu-text">导读与学习路线</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/00-python-start.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">第一次独立训练 SVM：纯 Python 入门</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">纯 Python 入门</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/01-geometry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">超平面与最大间隔</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">超平面与间隔</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/02-soft-margin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">软间隔、损失与正则化</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔与损失</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/03-duality-smo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/04-kernels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">核技巧与非线性边界</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">核方法</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/05-multiclass.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">多分类：分数、投票与联合学习</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">多分类</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/06-workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">建立可信的建模流程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">可靠建模流程</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/07-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">案例：从 Iris 到高维基因表达</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">真实数据案例</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/08-modern.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">SVM 与现代学习：继续研究什么</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">现代研究导读</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/09-authoring.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">用 VS Code 维护本教程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">维护本教程</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">参考文献</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">参考文献</span></span></a>
   </div>
 </li>
     </ul>
@@ -261,10 +261,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">本章目录</h2>
    
   <ul class="collapse">
-  <li><a href="#下载并运行" id="toc-下载并运行" class="nav-link active" data-scroll-target="#下载并运行"><span class="header-section-number">2.1</span> 下载并运行</a></li>
-  <li><a href="#实验完整展开的流程" id="toc-实验完整展开的流程" class="nav-link" data-scroll-target="#实验完整展开的流程"><span class="header-section-number">2.2</span> 实验完整展开的流程</a></li>
-  <li><a href="#先读懂三个输出" id="toc-先读懂三个输出" class="nav-link" data-scroll-target="#先读懂三个输出"><span class="header-section-number">2.3</span> 先读懂三个输出</a></li>
-  <li><a href="#修改练习" id="toc-修改练习" class="nav-link" data-scroll-target="#修改练习"><span class="header-section-number">2.4</span> 修改练习</a></li>
+  <li><a href="#下载并运行" id="toc-下载并运行" class="nav-link active" data-scroll-target="#下载并运行"><span class="header-section-number">1.1</span> 下载并运行</a></li>
+  <li><a href="#实验完整展开的流程" id="toc-实验完整展开的流程" class="nav-link" data-scroll-target="#实验完整展开的流程"><span class="header-section-number">1.2</span> 实验完整展开的流程</a></li>
+  <li><a href="#先读懂三个输出" id="toc-先读懂三个输出" class="nav-link" data-scroll-target="#先读懂三个输出"><span class="header-section-number">1.3</span> 先读懂三个输出</a></li>
+  <li><a href="#修改练习" id="toc-修改练习" class="nav-link" data-scroll-target="#修改练习"><span class="header-section-number">1.4</span> 修改练习</a></li>
   </ul>
 </nav>
     </div>
@@ -273,7 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">第一次独立训练 SVM：纯 Python 入门</span></h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">第一次独立训练 SVM：纯 Python 入门</span></h1>
 </div>
 
 
@@ -290,16 +290,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="chapter-intro">
+<p><strong>学习目标</strong>：独立运行 Iris 实验，理解数据划分、调参与评估之间的顺序。</p>
+<p><strong>前置知识</strong>：基本 Python 语法；可从配套 Notebook 开始。</p>
+</div>
 <p>本章适合第一次上手。配套Notebook只使用Python、scikit-learn、NumPy、pandas与Plotly，不导入本项目的 <code>lab</code> 辅助模块，不读取其他章节状态，不需要R，也不下载外部数据。Iris从scikit-learn内置数据加载。</p>
-<section id="下载并运行" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="下载并运行"><span class="header-section-number">2.1</span> 下载并运行</h2>
+<section id="下载并运行" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="下载并运行"><span class="header-section-number">1.1</span> 下载并运行</h2>
 <p>下载<a href="../notebooks/python-svm-start.ipynb">完整入门Notebook</a>。在VS Code打开它，选择项目 <code>.venv</code> 的Python内核，点击“全部运行”。也可以复制到任意目录，在自己安装好依赖的Python环境中运行。</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>python <span class="op">-</span>m pip install <span class="op">-</span>r requirements<span class="op">.</span><span class="fu">txt</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>python <span class="op">-</span>m pip install <span class="op">-</span>r requirements-notebook<span class="op">.</span><span class="fu">txt</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Notebook目录同时交付<a href="../notebooks/requirements.txt">依赖清单</a>，单独下载Notebook后可按该清单安装。VS Code需要Python和Jupyter扩展；Quarto扩展用于编辑教程源码。生成HTML教程本身的双语言构建仍采用knitr+reticulate，纯Python Notebook的运行不依赖它。</p>
 </section>
-<section id="实验完整展开的流程" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="实验完整展开的流程"><span class="header-section-number">2.2</span> 实验完整展开的流程</h2>
+<section id="实验完整展开的流程" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="实验完整展开的流程"><span class="header-section-number">1.2</span> 实验完整展开的流程</h2>
 <ol type="1">
 <li>载入150个Iris样本及4个数值特征，保留原始行ID。</li>
 <li>分层划分105个训练样本、45个测试样本，验证ID互不重叠。</li>
@@ -310,13 +314,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>Notebook中的导入、数据、模型、搜索、评估和绘图均完整展开。它在干净Python内核中从头执行并保留结果，方便核对。</p>
 </section>
-<section id="先读懂三个输出" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="先读懂三个输出"><span class="header-section-number">2.3</span> 先读懂三个输出</h2>
+<section id="先读懂三个输出" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="先读懂三个输出"><span class="header-section-number">1.3</span> 先读懂三个输出</h2>
 <p>最佳CV分数来自训练集内部，测试分数来自未参与选参的45个样本。两者对应不同问题；不要在查看测试表现后继续改参数，再把同一测试集称为最终评估。</p>
 <p>混淆矩阵的行是真实类别，列是预测类别。训练模型使用全部4个特征；本例没有用二维散点冒充四维决策边界。支持向量数量是模型结构信息，不能替代测试指标。</p>
 </section>
-<section id="修改练习" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="修改练习"><span class="header-section-number">2.4</span> 修改练习</h2>
+<section id="修改练习" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="修改练习"><span class="header-section-number">1.4</span> 修改练习</h2>
 <p>先预测增大C可能造成什么变化，再改变一个预先规定的网格，完整重新执行。记录选参结果，说明实验协议的改变。若反复尝试导致测试集参与决策，应另设最终评估数据。继续阅读软间隔、核方法和重复评估章节，将程序与原理对应起来。</p>
 
 
@@ -325,9 +329,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </main> <!-- /main -->
 <script>
 
-document.addEventListener('shown.bs.tab',function(){
+function resizeTutorialPlots(){
 
-  document.querySelectorAll('.js-plotly-plot').forEach(function(p){if(p.offsetWidth) Plotly.Plots.resize(p);});
+  if(!window.Plotly)return;
+
+  requestAnimationFrame(function(){document.querySelectorAll('.js-plotly-plot').forEach(function(p){if(p.offsetWidth) Plotly.Plots.resize(p);});});
+
+}
+
+document.addEventListener('shown.bs.tab',resizeTutorialPlots);
+
+document.addEventListener('DOMContentLoaded',function(){
+
+  document.querySelectorAll('pre.sourceCode > code').forEach(function(code){
+
+    var language=Array.from(code.classList).find(function(c){return !['sourceCode','code-with-copy'].includes(c);});
+
+    if(!language)return;
+
+    var label=document.createElement('span');label.className='code-language';label.textContent=language==='r'?'R':language==='python'?'Python':language;
+
+    code.closest('div.sourceCode').appendChild(label);
+
+  });
+
+  document.querySelectorAll('details.result-details').forEach(function(el){el.addEventListener('toggle',resizeTutorialPlots);});
 
 });
 
@@ -740,13 +766,13 @@ document.addEventListener('shown.bs.tab',function(){
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../index.html" class="pagination-link" aria-label="从一条分隔线开始">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">从一条分隔线开始</span></span>
+      <a href="../index.html" class="pagination-link" aria-label="导读与学习路线">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">导读与学习路线</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/01-geometry.html" class="pagination-link" aria-label="超平面与最大间隔">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">超平面与最大间隔</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/01-geometry.html" class="pagination-link" aria-label="超平面与间隔">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">超平面与间隔</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
