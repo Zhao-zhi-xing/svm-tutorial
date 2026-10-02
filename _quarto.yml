@@ -26,30 +26,35 @@ book:
   date: "2026-10-02"
   language: zh
   search: true
+  navbar:
+    title: false
+    background: white
+    right:
+      - text: "首页"
+        href: index.qmd
+      - text: "教程"
+        href: chapters/00-python-start.qmd
+      - icon: github
+        href: https://github.com/Zhao-zhi-xing/svm-tutorial
+        aria-label: "GitHub 源码"
   sidebar:
+    title: "支持向量机教程"
     style: docked
-    collapse-level: 2
+    header: "<div class='tutorial-brand'>支持向量机教程</div><div class='tutorial-directory-label'>目录</div>"
+    collapse-level: 1
   chapters:
     - index.qmd
     - chapters/00-python-start.qmd
-    - part: "理解间隔"
-      chapters:
-        - chapters/01-geometry.qmd
-        - chapters/02-soft-margin.qmd
-        - chapters/03-duality-smo.qmd
-    - part: "从二分类到多分类"
-      chapters:
-        - chapters/04-kernels.qmd
-        - chapters/05-multiclass.qmd
-    - part: "建立可信的实验"
-      chapters:
-        - chapters/06-workflow.qmd
-        - chapters/07-cases.qmd
-        - chapters/08-modern.qmd
-    - part: "写作与继续学习"
-      chapters:
-        - chapters/09-authoring.qmd
-        - references.qmd
+    - chapters/01-geometry.qmd
+    - chapters/02-soft-margin.qmd
+    - chapters/03-duality-smo.qmd
+    - chapters/04-kernels.qmd
+    - chapters/05-multiclass.qmd
+    - chapters/06-workflow.qmd
+    - chapters/07-cases.qmd
+    - chapters/08-modern.qmd
+    - chapters/09-authoring.qmd
+    - references.qmd
 
 lang: zh
 bibliography: references.bib
@@ -63,14 +68,15 @@ format:
   html:
     theme: cosmo
     css: assets/book.css
-    page-layout: full
+    page-layout: article
     grid:
-      sidebar-width: 230px
-      body-width: 1160px
-      margin-width: 170px
-      gutter-width: 1.25rem
+      sidebar-width: 270px
+      body-width: 1040px
+      margin-width: 270px
+      gutter-width: 2rem
     toc: true
-    toc-depth: 3
+    toc-title: "本章目录"
+    toc-depth: 2
     number-sections: true
     code-copy: true
     code-fold: false

@@ -25,8 +25,8 @@ a { color:var(--blue); text-underline-offset:.2em; }
 .stat-value { display:block; margin-top:3px; font-size:1.3rem; font-weight:700; color:#10253f; line-height:1.35; font-variant-numeric:tabular-nums; }
 .stat-wide,.stat-note { grid-column:1 / -1; }
 .stat-note { margin:.3rem 0 0; font-size:.85rem; color:var(--muted); line-height:1.75; }
-.lab-plot,.plotly-output { width:100%; min-width:820px; min-height:560px; }
-.lab { min-width:855px; }
+.lab-plot,.plotly-output { width:100%; min-width:0; min-height:560px; }
+.lab { min-width:0; }
 main .cell-output-display { width:100%; }
 .lab-table { font-size:.85rem; margin-top:.8rem; }
 .lab-table th,.lab-table td { padding:.3rem .6rem; border-bottom:1px solid var(--line); }
@@ -38,3 +38,87 @@ pre { font-size:.83rem; }
 .chapter-number { color:var(--teal); }
 
 @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; } }
+
+/* 阅读布局：等宽两侧导航让正文中心与窗口中心一致。
+   保留 Quarto 的命名网格线，公式、页间导航和锚点沿用原生行为。 */
+:root {
+  --tutorial-nav-width: 270px;
+  --tutorial-body-width: 1040px;
+  --tutorial-gutter: 32px;
+  --tutorial-header-height: 56px;
+  --ink: #30323b;
+  --blue: #3451b2;
+  --muted: #60636e;
+}
+body { background:#fff; }
+h1,h2,h3,h4 { color:#30323b; font-family:'Segoe UI','Microsoft YaHei','PingFang SC',sans-serif; }
+h1 { font-size:2rem; }
+h2 { font-size:1.5rem; border-bottom:0; padding-bottom:0; }
+h3 { font-size:1.2rem; }
+.chapter-number { color:inherit; }
+#quarto-header { border-bottom:1px solid #e5e5e8; background:#fff; }
+#quarto-header .navbar { min-height:var(--tutorial-header-height); padding:8px 32px; box-shadow:none; }
+#quarto-header .navbar-container { max-width:1580px; margin-inline:auto; width:100%; }
+#quarto-header .navbar-nav { gap:12px; }
+#quarto-header .nav-link { font-size:.88rem; color:var(--ink); }
+.sidebar-title { font-size:1.08rem; line-height:1.6; }
+.sidebar-title a { color:var(--ink); }
+.tutorial-directory-label { font-size:.9rem; font-weight:600; margin-top:24px; padding-top:20px; border-top:1px solid #dedee3; }
+#quarto-sidebar { background:#f6f6f7; }
+#quarto-sidebar .sidebar-header { margin-top:0!important; padding-top:0!important; }
+#quarto-sidebar .sidebar-menu-container { padding-top:12px; }
+#quarto-sidebar .sidebar-item-container { padding:7px 0; }
+#quarto-sidebar .sidebar-item-text { color:#60636e; font-size:.87rem; line-height:1.6; }
+#quarto-sidebar .sidebar-link.active, #quarto-sidebar .sidebar-link:hover { color:var(--blue); }
+#quarto-sidebar .sidebar-search { margin-top:16px; }
+#quarto-margin-sidebar { background:transparent; }
+#TOC { border-left:1px solid #e3e3e8; padding-left:16px; }
+#TOC h2 { font-size:.88rem; font-weight:600; margin:0 0 12px; }
+#TOC .nav-link { font-size:.84rem; color:#60636e; padding:6px 0; line-height:1.55; border-left:0; }
+#TOC .nav-link.active { color:var(--blue); position:relative; }
+#TOC .nav-link.active::before { content:''; position:absolute; left:-17px; top:6px; bottom:6px; width:2px; background:var(--blue); }
+#TOC ul ul { padding-left:12px; }
+div.sourceCode { background:#f6f6f7; border:0; border-radius:8px; }
+pre.sourceCode { padding:20px 24px; }
+main pre { overflow-x:auto; }
+main.content { min-width:0; }
+.lab-table { display:block; overflow-x:auto; }
+::selection { background:#dce5fa; color:#1b2f69; }
+a:focus-visible { outline:2px solid var(--blue); outline-offset:3px; }
+@media (min-width:1200px) {
+  #quarto-content.page-columns {
+    grid-template-columns:
+      [screen-start] minmax(0,1fr)
+      [page-start] var(--tutorial-nav-width)
+      [body-start] var(--tutorial-gutter)
+      [body-content-start] minmax(0,var(--tutorial-body-width))
+      [body-content-end] var(--tutorial-gutter)
+      [body-end] var(--tutorial-nav-width)
+      [page-end] minmax(0,1fr) [screen-end];
+  }
+  #quarto-sidebar { grid-column:screen-start / body-start; padding:32px 28px 32px max(28px,calc((100vw - 1644px)/2 + 28px)); width:100%!important; top:var(--tutorial-header-height)!important; height:calc(100vh - var(--tutorial-header-height)); }
+  #quarto-margin-sidebar { grid-column:body-end / page-end; padding:48px 24px 24px 0; width:100%!important; top:var(--tutorial-header-height)!important; }
+  main.content { margin-top:0; padding-top:48px; padding-inline:0; }
+}
+@media (min-width:992px) and (max-width:1199.98px) {
+  #quarto-content.page-columns {
+    grid-template-columns:[screen-start] 240px [body-start] 32px [body-content-start] minmax(0,1fr) [body-content-end] 32px [body-end page-end screen-end];
+  }
+  #quarto-sidebar { padding:28px 24px; width:100%!important; top:var(--tutorial-header-height)!important; }
+  #quarto-margin-sidebar { display:none; }
+  main.content { padding-top:40px; margin-top:0; }
+}
+@media (max-width:991.98px) {
+  main.content { padding-inline:20px; }
+  #quarto-margin-sidebar { display:none; }
+  .lab-stats { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .lab-plot,.plotly-output { min-height:480px; }
+}
+
+.tutorial-brand { font-size:1.08rem; font-weight:700; color:var(--ink); line-height:1.4; }
+#quarto-sidebar .chapter-number::before { content:'第'; }
+#quarto-sidebar .chapter-number::after { content:'章：'; }
+@media (min-width:992px) {
+  .tutorial-brand { margin-bottom:24px; }
+  .tutorial-directory-label { margin-top:0; padding-top:20px; border-top:1px solid #dedee3; }
+}

@@ -1,0 +1,54 @@
+{
+  "layouts": [
+    {
+      "viewport": 1280,
+      "body": {
+        "x": 302,
+        "y": 56,
+        "width": 676,
+        "height": 3144.734375
+      },
+      "plot_width": 640
+    },
+    {
+      "viewport": 1440,
+      "body": {
+        "x": 302,
+        "y": 56,
+        "width": 836,
+        "height": 2969.390625
+      },
+      "plot_width": 800
+    },
+    {
+      "viewport": 1920,
+      "body": {
+        "x": 440,
+        "y": 56,
+        "width": 1040,
+        "height": 2843.640625
+      },
+      "plot_width": 1004
+    },
+    {
+      "viewport": 2560,
+      "body": {
+        "x": 760,
+        "y": 56,
+        "width": 1040,
+        "height": 2843.640625
+      },
+      "plot_width": 1004
+    }
+  ],
+  "checks": [
+    "centered body",
+    "separate sidebars",
+    "no horizontal overflow",
+    "flat chapter list",
+    "TOC anchor and active state",
+    "sticky sidebar",
+    "Plotly window resize and reset"
+  ],
+  "page_errors": []
+}

@@ -172,8 +172,9 @@ def main():
       results.append('expanded derivations: MathJax renders without formula errors')
       results.append('desktop-first layout; narrow-screen acceptance retired by user request')
       visit('index.html')
-      search=page.locator('#quarto-search input').first
-      if not search.count():search=page.locator('input.aa-Input')
+      if not page.locator('#quarto-search input:visible').count():
+        page.locator('#quarto-search').click()
+      search=page.locator('input.aa-Input:visible').first
       search.fill('软间隔');page.wait_for_timeout(600)
       assert page.locator('.aa-Item').count()>0
       results.append('book search')
