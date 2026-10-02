@@ -1,0 +1,12 @@
+{
+  "explore-calibration.csv": "7f3df2d73dbfc31556e73ea6794c8816e8aea1d287f7d800fed7b05f2a6c9cdf",
+  "explore-imbalance.csv": "052a8e44fbaf24a11b0132a0fc85d683fa5184de87fc71e758a399fb438e57a9",
+  "explore-scaling.csv": "fd92e8fae9018efa754a44ca8d16e7b0fb2a35696b5a87b41b8c9c00abb96f93",
+  "heart.csv": "1086874ff04662dceaa937135d8965c7d81a30aa2f354ac7d31ac984200d776e",
+  "iris.csv": "00afdfbb33f42f61b2357179ac7d1a94b1c4d50bf53238738930c06dc9c280e3",
+  "khan.csv": "611ccdef3de461b793431861ef3bc13553d81df75c6b16d1450bc9a61b6255fe",
+  "linear.csv": "fcdceedb4ada681b8b15404e210ab2f6f9b3c16b1bae7d88c9cdcedbfac4a84c",
+  "moons.csv": "467202423b4d70d3d0ca28c8614f6c4ad4ac4edf2a1ff1243e62829533bd7950",
+  "multiclass.csv": "3ef99ad7820b04fca43b75fb184e570d25cce804034a6cc5d5d77332a2c0ed6b",
+  "repeated-evaluation.csv": "0b9e67056dc837d0364ad6508bd3cc0487371b2b7fe687a57c7a170cdd3fe4a4"
+}

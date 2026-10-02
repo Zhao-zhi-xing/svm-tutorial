@@ -1,0 +1,265 @@
+{
+  "date": "2026-10-02",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "versions": {
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "scipy": "1.15.3",
+    "scikit-learn": "1.6.1",
+    "plotly": "5.24.1"
+  },
+  "cross_language": [
+    {
+      "case": "iris",
+      "python": {
+        "case": "iris",
+        "language": "Python",
+        "train_n": 105,
+        "test_n": 45,
+        "parameters": {
+          "svm__C": 10,
+          "svm__gamma": 0.01,
+          "svm__kernel": "rbf"
+        },
+        "cv_macro_f1": 0.980854700854701,
+        "accuracy": 0.9111111111111111,
+        "macro_f1": 0.9107142857142857,
+        "labels": [
+          0,
+          1,
+          2
+        ],
+        "confusion": [
+          [
+            15,
+            0,
+            0
+          ],
+          [
+            0,
+            14,
+            1
+          ],
+          [
+            0,
+            3,
+            12
+          ]
+        ],
+        "support_vectors": 38
+      },
+      "r": {
+        "case": "iris",
+        "language": "R",
+        "train_n": 105,
+        "test_n": 45,
+        "parameters": {
+          "C": 10,
+          "gamma": 0.01
+        },
+        "cv_macro_f1": 0.98085470085,
+        "accuracy": 0.91111111111,
+        "macro_f1": 0.91071428571,
+        "labels": [
+          0,
+          1,
+          2
+        ],
+        "confusion": [
+          [
+            15,
+            0,
+            0
+          ],
+          [
+            0,
+            14,
+            1
+          ],
+          [
+            0,
+            3,
+            12
+          ]
+        ],
+        "support_vectors": 38
+      },
+      "confusion_match": true
+    },
+    {
+      "case": "heart",
+      "python": {
+        "case": "heart",
+        "language": "Python",
+        "train_n": 212,
+        "test_n": 91,
+        "parameters": {
+          "svm__C": 1,
+          "svm__gamma": 0.01,
+          "svm__kernel": "rbf"
+        },
+        "cv_macro_f1": 0.8401539251105756,
+        "accuracy": 0.8791208791208791,
+        "macro_f1": 0.8776433198875443,
+        "labels": [
+          0,
+          1
+        ],
+        "confusion": [
+          [
+            45,
+            4
+          ],
+          [
+            7,
+            35
+          ]
+        ],
+        "support_vectors": 126
+      },
+      "r": {
+        "case": "heart",
+        "language": "R",
+        "train_n": 212,
+        "test_n": 91,
+        "parameters": {
+          "C": 1,
+          "gamma": 0.01
+        },
+        "cv_macro_f1": 0.84015392511,
+        "accuracy": 0.87912087912,
+        "macro_f1": 0.87764331989,
+        "labels": [
+          0,
+          1
+        ],
+        "confusion": [
+          [
+            45,
+            4
+          ],
+          [
+            7,
+            35
+          ]
+        ],
+        "support_vectors": 126
+      },
+      "confusion_match": true
+    },
+    {
+      "case": "khan",
+      "python": {
+        "case": "khan",
+        "language": "Python",
+        "train_n": 63,
+        "test_n": 20,
+        "parameters": {
+          "svm__C": 0.1,
+          "svm__kernel": "linear"
+        },
+        "cv_macro_f1": 0.9873015873015873,
+        "accuracy": 0.9,
+        "macro_f1": 0.9142857142857144,
+        "labels": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "confusion": [
+          [
+            3,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            6,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            4,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            5
+          ]
+        ],
+        "support_vectors": 58
+      },
+      "r": {
+        "case": "khan",
+        "language": "R",
+        "train_n": 63,
+        "test_n": 20,
+        "parameters": {
+          "C": 0.1,
+          "gamma": 0.1
+        },
+        "cv_macro_f1": 0.9873015873,
+        "accuracy": 0.9,
+        "macro_f1": 0.91428571429,
+        "labels": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "confusion": [
+          [
+            3,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            6,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            4,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            5
+          ]
+        ],
+        "support_vectors": 58
+      },
+      "confusion_match": true
+    }
+  ],
+  "data_sha256": {
+    "explore-calibration.csv": "7f3df2d73dbfc31556e73ea6794c8816e8aea1d287f7d800fed7b05f2a6c9cdf",
+    "explore-imbalance.csv": "052a8e44fbaf24a11b0132a0fc85d683fa5184de87fc71e758a399fb438e57a9",
+    "explore-scaling.csv": "fd92e8fae9018efa754a44ca8d16e7b0fb2a35696b5a87b41b8c9c00abb96f93",
+    "heart.csv": "1086874ff04662dceaa937135d8965c7d81a30aa2f354ac7d31ac984200d776e",
+    "iris.csv": "00afdfbb33f42f61b2357179ac7d1a94b1c4d50bf53238738930c06dc9c280e3",
+    "khan.csv": "611ccdef3de461b793431861ef3bc13553d81df75c6b16d1450bc9a61b6255fe",
+    "linear.csv": "fcdceedb4ada681b8b15404e210ab2f6f9b3c16b1bae7d88c9cdcedbfac4a84c",
+    "moons.csv": "467202423b4d70d3d0ca28c8614f6c4ad4ac4edf2a1ff1243e62829533bd7950",
+    "multiclass.csv": "3ef99ad7820b04fca43b75fb184e570d25cce804034a6cc5d5d77332a2c0ed6b",
+    "repeated-evaluation.csv": "0b9e67056dc837d0364ad6508bd3cc0487371b2b7fe687a57c7a170cdd3fe4a4"
+  },
+  "limitations": [
+    "固定数据划分上的实现核对，不是总体性能检验",
+    "教学SMO不含完整退化分支",
+    "模型网格为预计算，不是浏览器重训练"
+  ]
+}

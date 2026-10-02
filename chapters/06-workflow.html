@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-Hans" xml:lang="zh-Hans"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>8&nbsp; 建立可信的建模流程 – 支持向量机教程：从几何到现代学习</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/07-cases.html" rel="next">
+<link href="../chapters/05-multiclass.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-3d380487a461785dbc10e0a319457fdf.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "没有结果",
+    "search-matching-documents-text": "匹配的文档",
+    "search-copy-link-title": "复制搜索链接",
+    "search-hide-matches-text": "隐藏其它匹配结果",
+    "search-more-match-text": "更多匹配结果",
+    "search-more-matches-text": "更多匹配结果",
+    "search-clear-button-title": "清除",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "取消",
+    "search-submit-button-title": "提交",
+    "search-label": "搜索"
+  }
+}</script>
+<script src="../assets/plotly.min.js"></script>
+
+<script src="../assets/models.js"></script>
+
+<script defer="" src="../assets/tutorial.js"></script>
+
+
+
+<script src="../assets/experiments.js"></script>
+
+<script defer="" src="../assets/experiments-ui.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../assets/book.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/06-workflow.html">建立可信的实验</a></li><li class="breadcrumb-item"><a href="../chapters/06-workflow.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">建立可信的建模流程</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="搜索" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">支持向量机教程：从几何到现代学习</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="搜索"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">从一条分隔线开始</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/00-python-start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">第一次独立训练 SVM：纯 Python 入门</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">理解间隔</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="展开或折叠此栏">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/01-geometry.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">超平面与最大间隔</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/02-soft-margin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">软间隔、损失与正则化</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-duality-smo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">从二分类到多分类</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="展开或折叠此栏">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-kernels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">核技巧与非线性边界</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/05-multiclass.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">多分类：分数、投票与联合学习</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">建立可信的实验</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="展开或折叠此栏">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06-workflow.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">建立可信的建模流程</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/07-cases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">案例：从 Iris 到高维基因表达</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/08-modern.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">SVM 与现代学习：继续研究什么</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">写作与继续学习</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="展开或折叠此栏">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/09-authoring.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">用 VS Code 维护本教程</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">参考文献</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目录</h2>
+   
+  <ul>
+  <li><a href="#先划分再学习任何变换" id="toc-先划分再学习任何变换" class="nav-link active" data-scroll-target="#先划分再学习任何变换"><span class="header-section-number">8.1</span> 先划分，再学习任何变换</a>
+  <ul class="collapse">
+  <li><a href="#标准化怎样改变图中的法向量" id="toc-标准化怎样改变图中的法向量" class="nav-link" data-scroll-target="#标准化怎样改变图中的法向量"><span class="header-section-number">8.1.1</span> 标准化怎样改变图中的法向量</a></li>
+  </ul></li>
+  <li><a href="#调参不能看测试集" id="toc-调参不能看测试集" class="nav-link" data-scroll-target="#调参不能看测试集"><span class="header-section-number">8.2</span> 调参不能看测试集</a></li>
+  <li><a href="#指标回答不同问题" id="toc-指标回答不同问题" class="nav-link" data-scroll-target="#指标回答不同问题"><span class="header-section-number">8.3</span> 指标回答不同问题</a>
+  <ul class="collapse">
+  <li><a href="#把评估指标写成可核对的公式" id="toc-把评估指标写成可核对的公式" class="nav-link" data-scroll-target="#把评估指标写成可核对的公式"><span class="header-section-number">8.3.1</span> 把评估指标写成可核对的公式</a></li>
+  </ul></li>
+  <li><a href="#概率校准与分数" id="toc-概率校准与分数" class="nav-link" data-scroll-target="#概率校准与分数"><span class="header-section-number">8.4</span> 概率校准与分数</a></li>
+  <li><a href="#类别不平衡与部署成本" id="toc-类别不平衡与部署成本" class="nav-link" data-scroll-target="#类别不平衡与部署成本"><span class="header-section-number">8.5</span> 类别不平衡与部署成本</a></li>
+  <li><a href="#从原则到对照实验" id="toc-从原则到对照实验" class="nav-link" data-scroll-target="#从原则到对照实验"><span class="header-section-number">8.6</span> 从原则到对照实验</a>
+  <ul class="collapse">
+  <li><a href="#特征尺度会怎样改变-rbf-边界" id="toc-特征尺度会怎样改变-rbf-边界" class="nav-link" data-scroll-target="#特征尺度会怎样改变-rbf-边界"><span class="header-section-number">8.6.1</span> 特征尺度会怎样改变 RBF 边界</a></li>
+  <li><a href="#类别加权改变的是不同类别的代价" id="toc-类别加权改变的是不同类别的代价" class="nav-link" data-scroll-target="#类别加权改变的是不同类别的代价"><span class="header-section-number">8.6.2</span> 类别加权改变的是不同类别的代价</a></li>
+  <li><a href="#校准前后概率与真实频率是否一致" id="toc-校准前后概率与真实频率是否一致" class="nav-link" data-scroll-target="#校准前后概率与真实频率是否一致"><span class="header-section-number">8.6.3</span> 校准前后：概率与真实频率是否一致</a></li>
+  </ul></li>
+  <li><a href="#练习与解答" id="toc-练习与解答" class="nav-link" data-scroll-target="#练习与解答"><span class="header-section-number">8.7</span> 练习与解答</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/06-workflow.html">建立可信的实验</a></li><li class="breadcrumb-item"><a href="../chapters/06-workflow.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">建立可信的建模流程</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">建立可信的建模流程</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>本章目标：把“能跑出一个模型”升级成可复现、无信息泄漏的实验。真正决定结果可信度的，往往是数据划分和预处理位置。</p>
+<section id="先划分再学习任何变换" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="先划分再学习任何变换"><span class="header-section-number">8.1</span> 先划分，再学习任何变换</h2>
+<p>正确顺序是保存测试集、在训练集内交叉验证，并在每个训练折内拟合缺失值填补、编码、标准化和模型。若在全数据上先求均值/标准差，验证折的信息已经进入训练。监督特征筛选更不能在全数据上先做。</p>
+<p>Python 使用 <code>Pipeline</code> 将这些步骤放在一起；R 示例的 <code>fit_preprocessor()</code> 每次只读取当前训练折。数值缺失用训练折中位数填补，类别缺失用训练折众数填补，类别编码字典也只从训练折学习。未知类别映射成全零 one-hot，需在真实任务中检查它是否合理。</p>
+<p>实验数据含 <code>id</code>、<code>split</code>、<code>fold</code> 和 <code>target</code>；前三者是实验元数据，不能混入特征。随机分层划分适合这里的独立样本演示；同一受试者多条记录需要按组划分，时间预测需要按时间划分。</p>
+<section id="标准化怎样改变图中的法向量" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="标准化怎样改变图中的法向量"><span class="header-section-number">8.1.1</span> 标准化怎样改变图中的法向量</h3>
+<p>训练折均值为 <span class="math inline">\(\mu\)</span>、各特征标准差为 <span class="math inline">\(s_r&gt;0\)</span>，令 <span class="math inline">\(A=\operatorname{diag}(1/s_r)\)</span>。标准化变量 <span class="math inline">\(z=A(x-\mu)\)</span>，在此空间学习 <span class="math inline">\(f=v^Tz+c\)</span>，展开为</p>
+<p><span class="math display">\[f(x)=(A^Tv)^Tx+c-v^TA\mu=w_{\rm raw}^Tx+b_{\rm raw},\quad
+w_{\rm raw}=A^Tv,\quad b_{\rm raw}=c-w_{\rm raw}^T\mu.\]</span></p>
+<p>因此原始坐标的两条 <span class="math inline">\(f=\pm1\)</span> 线之间距离是 <span class="math inline">\(2/\|w_{\rm raw}\|\)</span>，标准化空间的是 <span class="math inline">\(2/\|v\|\)</span>。模型优化的是<strong>标准化空间</strong>中的范数，二者通常不同。本教程线性图卡片显示原始坐标的线间距离，避免混用两个量。常数特征需要专门处理；示例由预处理器遵循既定缩放约定。</p>
+</section>
+</section>
+<section id="调参不能看测试集" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="调参不能看测试集"><span class="header-section-number">8.2</span> 调参不能看测试集</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> lab.load_data(<span class="st">'moons'</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>tr <span class="op">=</span> df[df.split <span class="op">==</span> <span class="st">'train'</span>]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>folds <span class="op">=</span> [(np.flatnonzero(tr.fold.values <span class="op">!=</span> f),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>          np.flatnonzero(tr.fold.values <span class="op">==</span> f)) <span class="cf">for</span> f <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>pipeline <span class="op">=</span> lab.Pipeline([(<span class="st">'scale'</span>, lab.StandardScaler()), (<span class="st">'svm'</span>, lab.SVC())])</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>search <span class="op">=</span> GridSearchCV(pipeline,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'svm__C'</span>:[<span class="fl">0.1</span>,<span class="dv">1</span>,<span class="dv">10</span>,<span class="dv">100</span>], <span class="st">'svm__gamma'</span>:[<span class="fl">0.03</span>,<span class="fl">0.1</span>,<span class="dv">1</span>,<span class="dv">10</span>]},</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">=</span>folds, scoring<span class="op">=</span><span class="st">'f1_macro'</span>).fit(tr[[<span class="st">'x1'</span>,<span class="st">'x2'</span>]], tr.target)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'训练集内最佳参数:'</span>, search.best_params_)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>训练集内最佳参数: {'svm__C': 1, 'svm__gamma': 10}</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'CV macro-F1:'</span>, search.best_score_)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CV macro-F1: 0.9526035928644625</code></pre>
+</div>
+</div>
+<section class="lab" data-svm-lab="tuning" aria-label="交叉验证网格">
+<p class="lab-title">读懂 C–γ 热图</p><p class="lab-hint">悬停查看训练集内验证分数。参数在对数尺度上取离散值。</p>
+<div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats"></div>
+</section>
+<p>选择最大验证分数会带来“选优偏差”；这个最大值不等于无偏的泛化估计。如果需要同时选模型并估计表现，可用嵌套交叉验证：外层评估、内层选择。报告参数网格、划分方法、随机性、计算预算以及不确定性，而不是只写一个最高精度。</p>
+</section>
+<section id="指标回答不同问题" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="指标回答不同问题"><span class="header-section-number">8.3</span> 指标回答不同问题</h2>
+<p>accuracy 统计总体正确比例，在不平衡数据中容易掩盖少数类错误。macro-F1 先分别计算每类 F1 再平均，让各类权重相同；weighted-F1 按样本数加权，micro 指标汇总所有样本。多分类一定要同时看混淆矩阵及每类召回率。</p>
+<p>二分类 ROC 绘制阈值变化下的 TPR 与 FPR；PR 绘制 precision 与 recall。ROC-AUC 衡量排序，AP 是不同召回增量对应 precision 的加权和，不等于任意梯形积分 PR-AUC。严重不平衡时，PR 及少数类召回通常更直观。阈值应按训练/验证信息与业务成本选择。</p>
+<section id="把评估指标写成可核对的公式" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="把评估指标写成可核对的公式"><span class="header-section-number">8.3.1</span> 把评估指标写成可核对的公式</h3>
+<p>对某个正类，<span class="math inline">\(\mathrm{Precision}=TP/(TP+FP)\)</span>、<span class="math inline">\(\mathrm{Recall}=TP/(TP+FN)\)</span>，从调和平均得到</p>
+<p><span class="math display">\[F_1=\frac{2\,\mathrm{Precision}\,\mathrm{Recall}}{\mathrm{Precision}+\mathrm{Recall}}=\frac{2TP}{2TP+FP+FN},\qquad
+\mathrm{macro\text{-}}F_1=\frac1K\sum_{k=1}^K F_{1,k}.\]</span></p>
+<p>多分类的每个 <span class="math inline">\(F_{1,k}\)</span> 按“类别 <span class="math inline">\(k\)</span> 对其余类别”计数；分母为零时需要固定约定，代码按0处理。macro-F1不是先平均precision/recall再计算F1。</p>
+<p>给定阈值 <span class="math inline">\(t\)</span>，按 <span class="math inline">\(f(x)\ge t\)</span> 判正类，ROC 的横纵轴为 <span class="math inline">\(FP/(FP+TN)\)</span>、<span class="math inline">\(TP/(TP+FN)\)</span>，PR 的横纵轴为recall、precision。阈值降低会同时纳入更多样本，曲线由排序而非单个分类阈值决定。</p>
+<p>AUC可解释为随机正样本分数超过随机负样本的概率，平分计半：</p>
+<p><span class="math display">\[\mathrm{AUC}=\frac1{n_+n_-}\sum_{i:y_i=1}\sum_{j:y_j=0}\left[\mathbf1\{f_i&gt;f_j\}+\frac12\mathbf1\{f_i=f_j\}\right].\]</span></p>
+<p>Average Precision 按recall的增量加权precision，<span class="math inline">\(\mathrm{AP}=\sum_l(R_l-R_{l-1})P_l\)</span>（按recall递增排列）。它不等于任意线性插值后的PR梯形面积。排序指标不能替代概率校准检查。</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">R</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig, ranking_metrics <span class="op">=</span> lab.evaluation_plot(<span class="st">'heart'</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lab.figure_html(fig, <span class="st">'heart-ranking-python'</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="heart-ranking-python" class="plotly-output" data-plotly-source="heart-ranking-python-json">
+
+</div>
+<script type="application/json" id="heart-ranking-python-json">{"data":[{"hovertemplate":"FPR=%{x:.3f}\u003cbr\u003eTPR=%{y:.3f}\u003cextra\u003e\u003c\u002fextra\u003e","mode":"lines","name":"ROC \u00b7 AUC=0.937","x":[0.0,0.0,0.0,0.02040816326530612,0.02040816326530612,0.061224489795918366,0.061224489795918366,0.08163265306122448,0.08163265306122448,0.12244897959183673,0.12244897959183673,0.2653061224489796,0.2653061224489796,0.2857142857142857,0.2857142857142857,0.32653061224489793,0.32653061224489793,0.40816326530612246,0.40816326530612246,1.0],"y":[0.0,0.023809523809523808,0.3333333333333333,0.3333333333333333,0.7619047619047619,0.7619047619047619,0.7857142857142857,0.7857142857142857,0.8333333333333334,0.8333333333333334,0.8571428571428571,0.8571428571428571,0.8809523809523809,0.8809523809523809,0.9047619047619048,0.9047619047619048,0.9761904761904762,0.9761904761904762,1.0,1.0],"type":"scatter"},{"hovertemplate":"Recall=%{x:.3f}\u003cbr\u003ePrecision=%{y:.3f}\u003cextra\u003e\u003c\u002fextra\u003e","mode":"lines","name":"PR \u00b7 AP=0.931","visible":"legendonly","x":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.9761904761904762,0.9761904761904762,0.9761904761904762,0.9761904761904762,0.9761904761904762,0.9523809523809523,0.9285714285714286,0.9047619047619048,0.9047619047619048,0.9047619047619048,0.8809523809523809,0.8809523809523809,0.8571428571428571,0.8571428571428571,0.8571428571428571,0.8571428571428571,0.8571428571428571,0.8571428571428571,0.8571428571428571,0.8571428571428571,0.8333333333333334,0.8333333333333334,0.8333333333333334,0.8095238095238095,0.7857142857142857,0.7857142857142857,0.7619047619047619,0.7619047619047619,0.7619047619047619,0.7380952380952381,0.7142857142857143,0.6904761904761905,0.6666666666666666,0.6428571428571429,0.6190476190476191,0.5952380952380952,0.5714285714285714,0.5476190476190477,0.5238095238095238,0.5,0.47619047619047616,0.4523809523809524,0.42857142857142855,0.40476190476190477,0.38095238095238093,0.35714285714285715,0.3333333333333333,0.3333333333333333,0.30952380952380953,0.2857142857142857,0.2619047619047619,0.23809523809523808,0.21428571428571427,0.19047619047619047,0.16666666666666666,0.14285714285714285,0.11904761904761904,0.09523809523809523,0.07142857142857142,0.047619047619047616,0.023809523809523808,0.0],"y":[0.46153846153846156,0.4666666666666667,0.47191011235955055,0.4772727272727273,0.4827586206896552,0.4883720930232558,0.49411764705882355,0.5,0.5060240963855421,0.5121951219512195,0.5185185185185185,0.525,0.5316455696202531,0.5384615384615384,0.5454545454545454,0.5526315789473685,0.56,0.5675675675675675,0.5753424657534246,0.5833333333333334,0.5915492957746479,0.6,0.6086956521739131,0.6176470588235294,0.6268656716417911,0.6363636363636364,0.6461538461538462,0.65625,0.6666666666666666,0.6774193548387096,0.6721311475409836,0.6833333333333333,0.6949152542372882,0.7068965517241379,0.7192982456140351,0.7142857142857143,0.7090909090909091,0.7037037037037037,0.7169811320754716,0.7307692307692307,0.7254901960784313,0.74,0.7346938775510204,0.75,0.7659574468085106,0.782608695652174,0.8,0.8181818181818182,0.8372093023255814,0.8571428571428571,0.8536585365853658,0.875,0.8974358974358975,0.8947368421052632,0.8918918918918919,0.9166666666666666,0.9142857142857143,0.9411764705882353,0.9696969696969697,0.96875,0.967741935483871,0.9666666666666667,0.9655172413793104,0.9642857142857143,0.9629629629629629,0.9615384615384616,0.96,0.9583333333333334,0.9565217391304348,0.9545454545454546,0.9523809523809523,0.95,0.9473684210526315,0.9444444444444444,0.9411764705882353,0.9375,0.9333333333333333,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"type":"scatter"}],"layout":{"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"title":{"text":"FPR\uff08ROC\uff09\u002f Recall\uff08PR\uff09"},"range":[0,1]},"yaxis":{"title":{"text":"TPR\uff08ROC\uff09\u002f Precision\uff08PR\uff09"},"range":[0,1.02]},"title":{"text":"Heart \u00b7 Python\uff1a\u70b9\u51fb\u56fe\u4f8b\u5207\u6362 ROC\u002fPR"},"height":560}}</script>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">evaluation_html_r</span>())</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="heart-roc-r" class="plotly-output" data-plotly-source="heart-roc-r-json">
+
+</div>
+<script type="application/json" id="heart-roc-r-json">{"data":[{"type":"scatter","mode":"lines","x":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.04081633,0.06122449,0.06122449,0.08163265,0.08163265,0.08163265,0.10204082,0.12244898,0.12244898,0.14285714,0.16326531,0.18367347,0.20408163,0.2244898,0.24489796,0.26530612,0.26530612,0.28571429,0.28571429,0.30612245,0.32653061,0.32653061,0.32653061,0.32653061,0.34693878,0.36734694,0.3877551,0.40816327,0.40816327,0.42857143,0.44897959,0.46938776,0.48979592,0.51020408,0.53061224,0.55102041,0.57142857,0.59183673,0.6122449,0.63265306,0.65306122,0.67346939,0.69387755,0.71428571,0.73469388,0.75510204,0.7755102,0.79591837,0.81632653,0.83673469,0.85714286,0.87755102,0.89795918,0.91836735,0.93877551,0.95918367,0.97959184,1],"y":[0,0.02380952,0.04761905,0.07142857,0.0952381,0.11904762,0.14285714,0.16666667,0.19047619,0.21428571,0.23809524,0.26190476,0.28571429,0.30952381,0.33333333,0.33333333,0.35714286,0.38095238,0.4047619,0.42857143,0.45238095,0.47619048,0.5,0.52380952,0.54761905,0.57142857,0.5952381,0.61904762,0.64285714,0.66666667,0.69047619,0.71428571,0.73809524,0.76190476,0.76190476,0.76190476,0.78571429,0.78571429,0.80952381,0.83333333,0.83333333,0.83333333,0.85714286,0.85714286,0.85714286,0.85714286,0.85714286,0.85714286,0.85714286,0.85714286,0.88095238,0.88095238,0.9047619,0.9047619,0.9047619,0.92857143,0.95238095,0.97619048,0.97619048,0.97619048,0.97619048,0.97619048,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"name":"ROC · AUC=0.937"},{"type":"scatter","mode":"lines","x":[0,0.02380952,0.04761905,0.07142857,0.0952381,0.11904762,0.14285714,0.16666667,0.19047619,0.21428571,0.23809524,0.26190476,0.28571429,0.30952381,0.33333333,0.33333333,0.35714286,0.38095238,0.4047619,0.42857143,0.45238095,0.47619048,0.5,0.52380952,0.54761905,0.57142857,0.5952381,0.61904762,0.64285714,0.66666667,0.69047619,0.71428571,0.73809524,0.76190476,0.76190476,0.76190476,0.78571429,0.78571429,0.80952381,0.83333333,0.83333333,0.83333333,0.85714286,0.85714286,0.85714286,0.85714286,0.85714286,0.85714286,0.85714286,0.85714286,0.88095238,0.88095238,0.9047619,0.9047619,0.9047619,0.92857143,0.95238095,0.97619048,0.97619048,0.97619048,0.97619048,0.97619048,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"y":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0.93333333,0.9375,0.94117647,0.94444444,0.94736842,0.95,0.95238095,0.95454545,0.95652174,0.95833333,0.96,0.96153846,0.96296296,0.96428571,0.96551724,0.96666667,0.96774194,0.96875,0.96969697,0.94117647,0.91428571,0.91666667,0.89189189,0.89473684,0.8974359,0.875,0.85365854,0.85714286,0.8372093,0.81818182,0.8,0.7826087,0.76595745,0.75,0.73469388,0.74,0.7254902,0.73076923,0.71698113,0.7037037,0.70909091,0.71428571,0.71929825,0.70689655,0.69491525,0.68333333,0.67213115,0.67741935,0.66666667,0.65625,0.64615385,0.63636364,0.62686567,0.61764706,0.60869565,0.6,0.5915493,0.58333333,0.57534247,0.56756757,0.56,0.55263158,0.54545455,0.53846154,0.53164557,0.525,0.51851852,0.51219512,0.5060241,0.5,0.49411765,0.48837209,0.48275862,0.47727273,0.47191011,0.46666667,0.46153846],"name":"PR · AP=0.931","visible":"legendonly"}],"layout":{"title":"Heart · R：点击图例切换 ROC/PR","height":560,"xaxis":{"title":"FPR（ROC）/ Recall（PR）","range":[0,1]},"yaxis":{"title":"TPR（ROC）/ Precision（PR）","range":[0,1.02]}}}</script>
+</div>
+</div>
+</div>
+<p>这组图使用测试集决策分数、正类为 <code>AHD=Yes</code>。图例默认显示 ROC，点击 PR 可显示 PR 曲线；两者轴含义不同，最好一次查看一条。这里不将训练 ROC 当成泛化证据。</p>
+</section>
+</section>
+<section id="概率校准与分数" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="概率校准与分数"><span class="header-section-number">8.4</span> 概率校准与分数</h2>
+<p><span class="math inline">\(f(x)\)</span> 不是 <span class="math inline">\(P(y=1\mid x)\)</span>。如果需要风险概率，可以用训练集内的交叉验证校准。Platt scaling 对分数拟合 sigmoid；isotonic 是更灵活的单调映射，但小校准集容易过拟合。</p>
+<p>下面显式把整个预处理和分类 Pipeline 交给校准器，避免在校准折外提前拟合标准化：</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.calibration <span class="im">import</span> CalibratedClassifierCV</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> brier_score_loss</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> lab.load_data(<span class="st">'moons'</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>tr <span class="op">=</span> df[df.split <span class="op">==</span> <span class="st">'train'</span>]<span class="op">;</span> te <span class="op">=</span> df[df.split <span class="op">==</span> <span class="st">'test'</span>]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> lab.Pipeline([(<span class="st">'scale'</span>,lab.StandardScaler()),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                     (<span class="st">'svm'</span>,lab.SVC(C<span class="op">=</span><span class="dv">1</span>,gamma<span class="op">=</span><span class="dv">1</span>))])</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>calibrated <span class="op">=</span> CalibratedClassifierCV(base, method<span class="op">=</span><span class="st">'sigmoid'</span>, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>calibrated.fit(tr[[<span class="st">'x1'</span>,<span class="st">'x2'</span>]],tr.target)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+#sk-container-id-1 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>CalibratedClassifierCV(cv=5,
+                       estimator=Pipeline(steps=[('scale', StandardScaler()),
+                                                 ('svm', SVC(C=1, gamma=1))]))</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox"><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>CalibratedClassifierCV</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.calibration.CalibratedClassifierCV.html">?<span>Documentation for CalibratedClassifierCV</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>CalibratedClassifierCV(cv=5,
+                       estimator=Pipeline(steps=[('scale', StandardScaler()),
+                                                 ('svm', SVC(C=1, gamma=1))]))</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox"><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>estimator: Pipeline</div></div></label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[('scale', StandardScaler()), ('svm', SVC(C=1, gamma=1))])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox"><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>StandardScaler</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></div></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox"><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>SVC</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.svm.SVC.html">?<span>Documentation for SVC</span></a></div></label><div class="sk-toggleable__content fitted"><pre>SVC(C=1, gamma=1)</pre></div> </div></div></div></div></div></div></div></div></div></div></div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>probabilities <span class="op">=</span> calibrated.predict_proba(te[[<span class="st">'x1'</span>,<span class="st">'x2'</span>]])[:,<span class="dv">1</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'测试 Brier score:'</span>, brier_score_loss(te.target,probabilities))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>测试 Brier score: 0.07183578496048904</code></pre>
+</div>
+</div>
+<p>这里参数预先固定，避免一边看测试概率一边改模型。多分类需要说明采用何种校准/归一化策略。概率质量应检查 Brier/log loss 和可靠性图，单看 accuracy 无法判断概率是否可信。不同 scikit-learn 版本的概率接口可能变化，本教程固定依赖为 1.6.1，升级时应重新核对 <a href="https://scikit-learn.org/1.6/modules/calibration.html">官方校准文档</a>。</p>
+</section>
+<section id="类别不平衡与部署成本" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="类别不平衡与部署成本"><span class="header-section-number">8.5</span> 类别不平衡与部署成本</h2>
+<p>类权重相当于让不同样本使用不同惩罚 <span class="math inline">\(C_i\)</span>。<code>class_weight='balanced'</code> 是一个可比较的基线，不是保证少数类表现更好的规则。重采样必须在训练折内进行，否则重复样本可能跨越训练/验证边界。若概率将用于决策，还要考虑真实类别先验与部署分布。</p>
+<p>实际模型选择还包括训练时间、峰值内存、预测延迟、支持向量数量和特征计算成本。机器不同，单次耗时缺乏可比性；需要重复测量和说明硬件。小数据案例不用于推断大规模部署性能。</p>
+</section>
+<section id="从原则到对照实验" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="从原则到对照实验"><span class="header-section-number">8.6</span> 从原则到对照实验</h2>
+<p>下面三组实验分别隔离一个问题。数据都是固定随机种子的模拟样本，并保存训练/测试ID；模型参数预先规定。它们用来观察机制，不代表调参后的最佳性能。模型训练在生成脚本中完成，浏览器只切换预计算结果。</p>
+<section id="特征尺度会怎样改变-rbf-边界" class="level3" data-number="8.6.1">
+<h3 data-number="8.6.1" class="anchored" data-anchor-id="特征尺度会怎样改变-rbf-边界"><span class="header-section-number">8.6.1</span> 特征尺度会怎样改变 RBF 边界</h3>
+<p>同一份双月牙数据，将第一维人为乘1000。对比“未标准化”与“只用训练集拟合StandardScaler”，两种模型都设置 <span class="math inline">\(C=1,\gamma=\text{scale}\)</span>。注意 <code>scale</code> 是按输入方差计算γ的规则，不是同一个数值；卡片给出实际γ。图形始终使用原始坐标，避免把变换后坐标与原始距离混用。</p>
+<section class="lab" data-experiment="scaling" aria-label="标准化前后：同一原始坐标下的边界">
+<p class="lab-title">标准化前后：同一原始坐标下的边界</p><p class="lab-hint">切换处理方式，查看测试指标、实际γ和支持向量。空心菱形为测试样本。</p>
+<div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats" aria-live="polite"></div>
+</section>
+<p>先解释边界为何改变，再比较测试表现。不要从单次固定配置得出“标准化必然提高所有数据集精度”。参考<a href="https://www.csie.ntu.edu.tw/~cjlin/papers/guide/guide.pdf">LIBSVM实践指南</a>。</p>
+</section>
+<section id="类别加权改变的是不同类别的代价" class="level3" data-number="8.6.2">
+<h3 data-number="8.6.2" class="anchored" data-anchor-id="类别加权改变的是不同类别的代价"><span class="header-section-number">8.6.2</span> 类别加权改变的是不同类别的代价</h3>
+<p>模拟数据使用每类两个簇、重叠分布和4%的随机标签扰动，使少数类识别具有挑战；类别1为少数类，对比同样参数下普通SVM与 <code>class_weight='balanced'</code>。权重只由训练标签计算，不读取测试比例。检查少数类precision、recall、F1，不能只看accuracy。</p>
+<section class="lab" data-experiment="imbalance" aria-label="普通与加权 SVM：少数类的代价">
+<p class="lab-title">普通与加权 SVM：少数类的代价</p><p class="lab-hint">切换模型，观察边界及少数类precision/recall的权衡。</p>
+<div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats" aria-live="polite"></div>
+</section>
+<p>加权改变训练代价，阈值选择改变预测规则，重采样改变训练样本分布；它们不是同一种操作。本实验只比较前者。若继续选权重或阈值，必须在训练/验证数据内完成。参考<a href="https://scikit-learn.org/1.6/auto_examples/svm/plot_separating_hyperplane_unbalanced.html">官方类别权重示例</a>。</p>
+</section>
+<section id="校准前后概率与真实频率是否一致" class="level3" data-number="8.6.3">
+<h3 data-number="8.6.3" class="anchored" data-anchor-id="校准前后概率与真实频率是否一致"><span class="header-section-number">8.6.3</span> 校准前后：概率与真实频率是否一致</h3>
+<p>可靠性曲线将预测值分为8个固定区间：横轴是区间内平均预测概率，纵轴是实际正类比例。悬停查看每箱样本数。空箱不画点。曲线接近对角线只是有限样本证据，还需要结合Brier与log loss及采样不确定性。</p>
+<section class="lab" data-experiment="calibration" aria-label="概率校准：sigmoid 与 isotonic">
+<p class="lab-title">概率校准：sigmoid 与 isotonic</p><p class="lab-hint">切换方法，查看可靠性曲线与测试Brier/log loss；悬停查看分箱样本数。</p>
+<div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats" aria-live="polite"></div>
+</section>
+<p>未校准基线只是对原始SVM分数直接取sigmoid，没有拟合校准参数，不能称为SVM自带概率。另两种方法将完整Pipeline交给训练集内五折校准器，以避免预处理泄漏；它们同时使用交叉验证集成，比较包含这部分实现差异。固定分类器参数，测试集不参与选择校准方法。本例不能证明isotonic总是更好。参考<a href="https://scikit-learn.org/1.6/auto_examples/calibration/plot_calibration_curve.html">官方可靠性曲线实验</a>。</p>
+</section>
+</section>
+<section id="练习与解答" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">8.7</span> 练习与解答</h2>
+<ol type="1">
+<li>为什么先在全数据上标准化，再交叉验证，会泄漏？</li>
+<li>一个 99% 阴性数据集，总预测阴性的 accuracy 是多少？它的阳性召回率呢？</li>
+<li>为什么决策分数可以用于 ROC，却不能直接当风险概率？</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled" title="参考解答">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">提示</span>参考解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>验证折影响了变换参数，训练过程间接使用了它的信息。</li>
+<li>accuracy 为 99%，阳性召回为 0%。</li>
+<li>ROC 需要阈值排序，不需要概率尺度；概率还要求与事件频率一致的校准含义。</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script>
+document.addEventListener('shown.bs.tab',function(){
+  document.querySelectorAll('.js-plotly-plot').forEach(function(p){if(p.offsetWidth) Plotly.Plots.resize(p);});
+});
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "已复制");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "已复制");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/05-multiclass.html" class="pagination-link" aria-label="多分类：分数、投票与联合学习">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">多分类：分数、投票与联合学习</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/07-cases.html" class="pagination-link" aria-label="案例：从 Iris 到高维基因表达">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">案例：从 Iris 到高维基因表达</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,5 @@
+<script>
+document.addEventListener('shown.bs.tab',function(){
+  document.querySelectorAll('.js-plotly-plot').forEach(function(p){if(p.offsetWidth) Plotly.Plots.resize(p);});
+});
+</script>
