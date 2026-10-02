@@ -1,0 +1,16 @@
+.tools/
+.R-library/
+.venv/
+.quarto/
+_book/
+*_files/
+*.knit.md
+__pycache__/
+.pytest_cache/
+.renv-cache/
+renv/library/
+renv/staging/
+reports/*.png
+
+/.quarto/
+**/*.quarto_ipynb

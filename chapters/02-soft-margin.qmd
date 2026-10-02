@@ -1,0 +1,139 @@
+---
+title: "软间隔、损失与正则化"
+---
+
+```{r}
+#| include: false
+source('scripts/setup-chapter.R', encoding='UTF-8')
+```
+
+本章目标：解释松弛变量，把几何约束转为 hinge loss，并正确理解参数 $C$。软间隔容许训练错误，目的是在训练拟合与函数复杂度之间作选择。
+
+## 松弛变量允许什么
+
+引入 $\xi_i\ge0$，把硬约束改为 $y_if(x_i)\ge1-\xi_i$：
+
+$$\min_{w,b,\xi}\frac12\|w\|^2+C\sum_{i=1}^n\xi_i,
+\quad y_if(x_i)\ge1-\xi_i,\quad\xi_i\ge0.$$ {#eq-soft-primal}
+
+在最优解处，$\xi_i=\max(0,1-y_if(x_i))$。按分数理解三种情况：
+
+- $y_if(x_i)\ge1$：在间隔之外或边界上，松弛为 0。
+- $0<y_if(x_i)<1$：分类正确，但进入间隔，$0<\xi_i<1$。
+- $y_if(x_i)<0$：分类错误，$\xi_i>1$。$y_if(x_i)=0$ 位于决策边界。
+
+这不是把每个错误点直接“丢掉”。错误越深，hinge 损失越大。软间隔仍可能受到异常值和错误标签的影响。
+
+## 操作 $C$，观察折中
+
+::: {#fig-soft-lab}
+```{=html}
+<section class="lab" data-svm-lab="linear" aria-label="软间隔参数探索">
+<p class="lab-title">软间隔实验：训练损失与间隔</p>
+<p class="lab-hint">深蓝粗实线是决策边界，绿/橙虚线是两侧间隔线；空心圈为支持向量。可点击图例分别隐藏线条。模型先标准化再训练，图显示原始坐标。</p>
+<div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats" aria-live="polite"></div>
+</section>
+```
+软间隔线性 SVM 的参数探索。
+:::
+
+在 @fig-soft-lab 中，$C$ 越大，训练损失相对于范数惩罚越重要；$C$ 越小，模型更愿意接受损失。线性固定数据下，这会影响间隔，但不能断言每个数据集的错误数、支持向量数或测试精度都严格单调。
+
+::: {.callout-warning title="两个 C 不要混淆"}
+ISL 的某些几何推导采用 $\sum_i\xi_i\le C$ 的**松弛预算**，预算越大允许的违约越多。本教程和 scikit-learn/e1071 使用的是损失项前的**惩罚系数**，大 $C$ 更重视拟合。两者的方向相反。
+:::
+
+## Hinge loss 与逻辑损失
+
+消去 $\xi$，@eq-soft-primal 等价于
+
+$$\min_{w,b}\frac12\|w\|^2+C\sum_i\max(0,1-y_if(x_i)).$$
+
+若另一篇文献写成 $\frac\lambda2\|w\|^2+\frac1n\sum_i\ell_i$，则在相同模型、相同损失下 $\lambda=1/(nC)$。如果正则项没有 $1/2$，常数还会改变。必须比较完整目标，而不只是参数名。
+
+```{python}
+#| results: asis
+print(lab.figure_html(lab.loss_plot(), 'loss-comparison'))
+```
+
+逻辑损失为 $\log(1+e^{-yf})$，在所有有限分数处均有梯度；hinge 在 $yf>1$ 后为 0，导数也为 0。两者都鼓励正确的带符号分数，但 hinge 在 $yf=1$ 不可微，需要次梯度或专门求解器。逻辑回归提供概率模型，SVM 的原始分数没有概率含义。
+
+### 从松弛变量消去到次梯度
+
+固定 $w,b$，两个约束等价于 $\xi_i\ge\max(0,1-y_if(x_i))$。因为 $C>0$，目标随每个 $\xi_i$ 单调增加，最优时必取这个下界；代回才得到 hinge 形式。若 $C=0$，这一步关于唯一最小松弛的结论就不能照搬。
+
+记 $m=yf(x)$，hinge 的次微分为
+
+$$\partial_m\max(0,1-m)=\begin{cases}\{-1\},&m<1,\\{[-1,0]},&m=1,\\\{0\},&m>1.\end{cases}$$
+
+令 $s_i=1$（$m_i<1$）、$s_i=0$（$m_i>1$），在 $m_i=1$ 时选 $s_i\in[0,1]$，则原始目标的最优次梯度条件为
+
+$$w=C\sum_i s_i y_ix_i,\qquad\sum_i s_i y_i=0.$$
+
+令 $\alpha_i=Cs_i$ 就对应下一章的 $0\le\alpha_i\le C$ 与三类 KKT 状态。这也解释了为何间隔之外的点不再贡献 hinge 梯度，而处在拐点的样本可以有不同对偶系数。
+
+### 正则参数转换与 0–1 图的边界约定
+
+将 $\frac12\|w\|^2+C\sum_i\ell_i$ 整体除以正数 $nC$，最优点不变，得到 $\frac{1}{2nC}\|w\|^2+\frac1n\sum_i\ell_i$，因而 $\lambda=1/(nC)$。总损失、平均损失和正则项的常数必须一起核对。
+
+本图约定零分数也计作错误，$\ell_{01}(m)=\mathbf1\{m\le0\}$。因此零点左侧为1、右侧为0，不能在两个采样点之间画斜坡。阶跃图的竖线仅连接两侧极限，**不表示零点的损失能取0到1之间的任意值**；实心点表示 $\ell_{01}(0)=1$，空心点表示右极限0。它的断点在0，hinge 的拐点在1，二者不要混淆。
+
+对 $m\le0$，$\max(0,1-m)\ge1$；对 $m>0$，0–1为0而hinge非负。因此 hinge 是该0–1损失的凸上界。逻辑损失在0处为 $\log2<1$，本图未缩放的逻辑损失不是同样的逐点上界；除以 $\log2$ 后才满足这一上界比较。
+
+
+## R 对应实验
+
+下面的核心二分类实验在两种语言中使用相同 CSV 和保存的训练折；R 使用 `e1071`，Python 使用 `SVC`，二者都基于 LIBSVM。你可以检查同样的参数设置产生何种结果。
+
+::: {.panel-tabset group="language"}
+### Python
+
+```{python}
+df = lab.load_data('linear')
+train = df[df.split == 'train']
+test = df[df.split == 'test']
+model = lab.Pipeline([
+    ('scale', lab.StandardScaler()),
+    ('svm', lab.SVC(C=1, kernel='linear'))
+]).fit(train[['x1', 'x2']], train.target)
+prediction = model.predict(test[['x1', 'x2']])
+print('测试 accuracy:', lab.accuracy_score(test.target, prediction))
+print('支持向量数:', model.named_steps['svm'].n_support_.sum())
+```
+
+```{python}
+#| results: asis
+print(lab.figure_html(lab.binary_plot(), 'linear-python'))
+```
+
+### R
+
+```{r}
+df <- read.csv('data/linear.csv')
+train <- df[df$split=='train', ]; test <- df[df$split=='test', ]
+features <- c('x1','x2')
+state <- fit_preprocessor(train[features])
+model <- e1071::svm(x=transform_features(train[features],state),
+  y=factor(train$target), kernel='linear', cost=1, scale=FALSE)
+prediction <- predict(model,transform_features(test[features],state))
+cat('测试 accuracy:',mean(as.character(prediction)==test$target), '\n')
+cat('支持向量数:',nrow(model$SV), '\n')
+```
+
+```{r}
+#| results: asis
+cat(binary_html_r(id='linear-r'))
+```
+:::
+
+## 练习与解答
+
+1. $yf=-0.3$ 时，最优松弛和 hinge loss 是多少？
+2. 在同一个 $C$ 下扩大训练样本数，为什么总损失和平均损失目标不能直接视为一样？
+3. 操作上图，寻找一个支持向量数量变化、测试 accuracy 却不变的参数组合。
+
+::: {.callout-tip collapse="true" title="参考解答"}
+1. 均为 1.3。
+2. 本教程损失是求和，样本数增大改变它相对于范数项的尺度；平均损失形式需要相应转换正则参数。
+3. 支持向量数是模型结构信息，不是测试精度的充分统计量。根据图中实际结果解释，不要求固定答案。
+:::

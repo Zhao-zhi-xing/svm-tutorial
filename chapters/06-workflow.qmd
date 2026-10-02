@@ -1,0 +1,179 @@
+---
+title: "建立可信的建模流程"
+---
+
+```{r}
+#| include: false
+source('scripts/setup-chapter.R', encoding='UTF-8')
+```
+
+本章目标：把“能跑出一个模型”升级成可复现、无信息泄漏的实验。真正决定结果可信度的，往往是数据划分和预处理位置。
+
+## 先划分，再学习任何变换
+
+正确顺序是保存测试集、在训练集内交叉验证，并在每个训练折内拟合缺失值填补、编码、标准化和模型。若在全数据上先求均值/标准差，验证折的信息已经进入训练。监督特征筛选更不能在全数据上先做。
+
+Python 使用 `Pipeline` 将这些步骤放在一起；R 示例的 `fit_preprocessor()` 每次只读取当前训练折。数值缺失用训练折中位数填补，类别缺失用训练折众数填补，类别编码字典也只从训练折学习。未知类别映射成全零 one-hot，需在真实任务中检查它是否合理。
+
+实验数据含 `id`、`split`、`fold` 和 `target`；前三者是实验元数据，不能混入特征。随机分层划分适合这里的独立样本演示；同一受试者多条记录需要按组划分，时间预测需要按时间划分。
+
+### 标准化怎样改变图中的法向量
+
+训练折均值为 $\mu$、各特征标准差为 $s_r>0$，令 $A=\operatorname{diag}(1/s_r)$。标准化变量 $z=A(x-\mu)$，在此空间学习 $f=v^Tz+c$，展开为
+
+$$f(x)=(A^Tv)^Tx+c-v^TA\mu=w_{\rm raw}^Tx+b_{\rm raw},\quad
+w_{\rm raw}=A^Tv,\quad b_{\rm raw}=c-w_{\rm raw}^T\mu.$$
+
+因此原始坐标的两条 $f=\pm1$ 线之间距离是 $2/\|w_{\rm raw}\|$，标准化空间的是 $2/\|v\|$。模型优化的是**标准化空间**中的范数，二者通常不同。本教程线性图卡片显示原始坐标的线间距离，避免混用两个量。常数特征需要专门处理；示例由预处理器遵循既定缩放约定。
+
+
+## 调参不能看测试集
+
+```{python}
+from sklearn.model_selection import GridSearchCV
+import numpy as np
+df = lab.load_data('moons')
+tr = df[df.split == 'train']
+folds = [(np.flatnonzero(tr.fold.values != f),
+          np.flatnonzero(tr.fold.values == f)) for f in range(5)]
+pipeline = lab.Pipeline([('scale', lab.StandardScaler()), ('svm', lab.SVC())])
+search = GridSearchCV(pipeline,
+    {'svm__C':[0.1,1,10,100], 'svm__gamma':[0.03,0.1,1,10]},
+    cv=folds, scoring='f1_macro').fit(tr[['x1','x2']], tr.target)
+print('训练集内最佳参数:', search.best_params_)
+print('CV macro-F1:', search.best_score_)
+```
+
+```{=html}
+<section class="lab" data-svm-lab="tuning" aria-label="交叉验证网格">
+<p class="lab-title">读懂 C–γ 热图</p><p class="lab-hint">悬停查看训练集内验证分数。参数在对数尺度上取离散值。</p>
+<div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats"></div>
+</section>
+```
+
+选择最大验证分数会带来“选优偏差”；这个最大值不等于无偏的泛化估计。如果需要同时选模型并估计表现，可用嵌套交叉验证：外层评估、内层选择。报告参数网格、划分方法、随机性、计算预算以及不确定性，而不是只写一个最高精度。
+
+## 指标回答不同问题
+
+accuracy 统计总体正确比例，在不平衡数据中容易掩盖少数类错误。macro-F1 先分别计算每类 F1 再平均，让各类权重相同；weighted-F1 按样本数加权，micro 指标汇总所有样本。多分类一定要同时看混淆矩阵及每类召回率。
+
+二分类 ROC 绘制阈值变化下的 TPR 与 FPR；PR 绘制 precision 与 recall。ROC-AUC 衡量排序，AP 是不同召回增量对应 precision 的加权和，不等于任意梯形积分 PR-AUC。严重不平衡时，PR 及少数类召回通常更直观。阈值应按训练/验证信息与业务成本选择。
+
+### 把评估指标写成可核对的公式
+
+对某个正类，$\mathrm{Precision}=TP/(TP+FP)$、$\mathrm{Recall}=TP/(TP+FN)$，从调和平均得到
+
+$$F_1=\frac{2\,\mathrm{Precision}\,\mathrm{Recall}}{\mathrm{Precision}+\mathrm{Recall}}=\frac{2TP}{2TP+FP+FN},\qquad
+\mathrm{macro\text{-}}F_1=\frac1K\sum_{k=1}^K F_{1,k}.$$
+
+多分类的每个 $F_{1,k}$ 按“类别 $k$ 对其余类别”计数；分母为零时需要固定约定，代码按0处理。macro-F1不是先平均precision/recall再计算F1。
+
+给定阈值 $t$，按 $f(x)\ge t$ 判正类，ROC 的横纵轴为 $FP/(FP+TN)$、$TP/(TP+FN)$，PR 的横纵轴为recall、precision。阈值降低会同时纳入更多样本，曲线由排序而非单个分类阈值决定。
+
+AUC可解释为随机正样本分数超过随机负样本的概率，平分计半：
+
+$$\mathrm{AUC}=\frac1{n_+n_-}\sum_{i:y_i=1}\sum_{j:y_j=0}\left[\mathbf1\{f_i>f_j\}+\frac12\mathbf1\{f_i=f_j\}\right].$$
+
+Average Precision 按recall的增量加权precision，$\mathrm{AP}=\sum_l(R_l-R_{l-1})P_l$（按recall递增排列）。它不等于任意线性插值后的PR梯形面积。排序指标不能替代概率校准检查。
+
+
+::: {.panel-tabset group="language"}
+### Python
+
+```{python}
+#| results: asis
+fig, ranking_metrics = lab.evaluation_plot('heart')
+print(lab.figure_html(fig, 'heart-ranking-python'))
+```
+
+### R
+
+```{r}
+#| results: asis
+cat(evaluation_html_r())
+```
+:::
+
+这组图使用测试集决策分数、正类为 `AHD=Yes`。图例默认显示 ROC，点击 PR 可显示 PR 曲线；两者轴含义不同，最好一次查看一条。这里不将训练 ROC 当成泛化证据。
+
+## 概率校准与分数
+
+$f(x)$ 不是 $P(y=1\mid x)$。如果需要风险概率，可以用训练集内的交叉验证校准。Platt scaling 对分数拟合 sigmoid；isotonic 是更灵活的单调映射，但小校准集容易过拟合。
+
+下面显式把整个预处理和分类 Pipeline 交给校准器，避免在校准折外提前拟合标准化：
+
+```{python}
+from sklearn.calibration import CalibratedClassifierCV
+from sklearn.metrics import brier_score_loss
+df = lab.load_data('moons')
+tr = df[df.split == 'train']; te = df[df.split == 'test']
+base = lab.Pipeline([('scale',lab.StandardScaler()),
+                     ('svm',lab.SVC(C=1,gamma=1))])
+calibrated = CalibratedClassifierCV(base, method='sigmoid', cv=5)
+calibrated.fit(tr[['x1','x2']],tr.target)
+probabilities = calibrated.predict_proba(te[['x1','x2']])[:,1]
+print('测试 Brier score:', brier_score_loss(te.target,probabilities))
+```
+
+这里参数预先固定，避免一边看测试概率一边改模型。多分类需要说明采用何种校准/归一化策略。概率质量应检查 Brier/log loss 和可靠性图，单看 accuracy 无法判断概率是否可信。不同 scikit-learn 版本的概率接口可能变化，本教程固定依赖为 1.6.1，升级时应重新核对 [官方校准文档](https://scikit-learn.org/1.6/modules/calibration.html)。
+
+## 类别不平衡与部署成本
+
+类权重相当于让不同样本使用不同惩罚 $C_i$。`class_weight='balanced'` 是一个可比较的基线，不是保证少数类表现更好的规则。重采样必须在训练折内进行，否则重复样本可能跨越训练/验证边界。若概率将用于决策，还要考虑真实类别先验与部署分布。
+
+实际模型选择还包括训练时间、峰值内存、预测延迟、支持向量数量和特征计算成本。机器不同，单次耗时缺乏可比性；需要重复测量和说明硬件。小数据案例不用于推断大规模部署性能。
+
+## 从原则到对照实验
+
+下面三组实验分别隔离一个问题。数据都是固定随机种子的模拟样本，并保存训练/测试ID；模型参数预先规定。它们用来观察机制，不代表调参后的最佳性能。模型训练在生成脚本中完成，浏览器只切换预计算结果。
+
+### 特征尺度会怎样改变 RBF 边界
+
+同一份双月牙数据，将第一维人为乘1000。对比“未标准化”与“只用训练集拟合StandardScaler”，两种模型都设置 $C=1,\gamma=\text{scale}$。注意 `scale` 是按输入方差计算γ的规则，不是同一个数值；卡片给出实际γ。图形始终使用原始坐标，避免把变换后坐标与原始距离混用。
+
+```{=html}
+<section class="lab" data-experiment="scaling" aria-label="标准化前后：同一原始坐标下的边界">
+<p class="lab-title">标准化前后：同一原始坐标下的边界</p><p class="lab-hint">切换处理方式，查看测试指标、实际γ和支持向量。空心菱形为测试样本。</p>
+<div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats" aria-live="polite"></div>
+</section>
+```
+
+先解释边界为何改变，再比较测试表现。不要从单次固定配置得出“标准化必然提高所有数据集精度”。参考[LIBSVM实践指南](https://www.csie.ntu.edu.tw/~cjlin/papers/guide/guide.pdf)。
+
+### 类别加权改变的是不同类别的代价
+
+模拟数据使用每类两个簇、重叠分布和4%的随机标签扰动，使少数类识别具有挑战；类别1为少数类，对比同样参数下普通SVM与 `class_weight='balanced'`。权重只由训练标签计算，不读取测试比例。检查少数类precision、recall、F1，不能只看accuracy。
+
+```{=html}
+<section class="lab" data-experiment="imbalance" aria-label="普通与加权 SVM：少数类的代价">
+<p class="lab-title">普通与加权 SVM：少数类的代价</p><p class="lab-hint">切换模型，观察边界及少数类precision/recall的权衡。</p>
+<div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats" aria-live="polite"></div>
+</section>
+```
+
+加权改变训练代价，阈值选择改变预测规则，重采样改变训练样本分布；它们不是同一种操作。本实验只比较前者。若继续选权重或阈值，必须在训练/验证数据内完成。参考[官方类别权重示例](https://scikit-learn.org/1.6/auto_examples/svm/plot_separating_hyperplane_unbalanced.html)。
+
+### 校准前后：概率与真实频率是否一致
+
+可靠性曲线将预测值分为8个固定区间：横轴是区间内平均预测概率，纵轴是实际正类比例。悬停查看每箱样本数。空箱不画点。曲线接近对角线只是有限样本证据，还需要结合Brier与log loss及采样不确定性。
+
+```{=html}
+<section class="lab" data-experiment="calibration" aria-label="概率校准：sigmoid 与 isotonic">
+<p class="lab-title">概率校准：sigmoid 与 isotonic</p><p class="lab-hint">切换方法，查看可靠性曲线与测试Brier/log loss；悬停查看分箱样本数。</p>
+<div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats" aria-live="polite"></div>
+</section>
+```
+
+未校准基线只是对原始SVM分数直接取sigmoid，没有拟合校准参数，不能称为SVM自带概率。另两种方法将完整Pipeline交给训练集内五折校准器，以避免预处理泄漏；它们同时使用交叉验证集成，比较包含这部分实现差异。固定分类器参数，测试集不参与选择校准方法。本例不能证明isotonic总是更好。参考[官方可靠性曲线实验](https://scikit-learn.org/1.6/auto_examples/calibration/plot_calibration_curve.html)。
+
+## 练习与解答
+
+1. 为什么先在全数据上标准化，再交叉验证，会泄漏？
+2. 一个 99% 阴性数据集，总预测阴性的 accuracy 是多少？它的阳性召回率呢？
+3. 为什么决策分数可以用于 ROC，却不能直接当风险概率？
+
+::: {.callout-tip collapse="true" title="参考解答"}
+1. 验证折影响了变换参数，训练过程间接使用了它的信息。
+2. accuracy 为 99%，阳性召回为 0%。
+3. ROC 需要阈值排序，不需要概率尺度；概率还要求与事件频率一致的校准含义。
+:::

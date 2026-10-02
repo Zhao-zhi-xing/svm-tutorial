@@ -1,0 +1,62 @@
+[
+  {
+    "case": "iris",
+    "language": "R",
+    "train_n": 105,
+    "test_n": 45,
+    "parameters": {
+      "C": 10,
+      "gamma": 0.01
+    },
+    "cv_macro_f1": 0.98085470085,
+    "accuracy": 0.91111111111,
+    "macro_f1": 0.91071428571,
+    "labels": [0, 1, 2],
+    "confusion": [
+      [15, 0, 0],
+      [0, 14, 1],
+      [0, 3, 12]
+    ],
+    "support_vectors": 38
+  },
+  {
+    "case": "heart",
+    "language": "R",
+    "train_n": 212,
+    "test_n": 91,
+    "parameters": {
+      "C": 1,
+      "gamma": 0.01
+    },
+    "cv_macro_f1": 0.84015392511,
+    "accuracy": 0.87912087912,
+    "macro_f1": 0.87764331989,
+    "labels": [0, 1],
+    "confusion": [
+      [45, 4],
+      [7, 35]
+    ],
+    "support_vectors": 126
+  },
+  {
+    "case": "khan",
+    "language": "R",
+    "train_n": 63,
+    "test_n": 20,
+    "parameters": {
+      "C": 0.1,
+      "gamma": 0.1
+    },
+    "cv_macro_f1": 0.9873015873,
+    "accuracy": 0.9,
+    "macro_f1": 0.91428571429,
+    "labels": [1, 2, 3, 4],
+    "confusion": [
+      [3, 0, 0, 0],
+      [0, 6, 0, 0],
+      [0, 2, 4, 0],
+      [0, 0, 0, 5]
+    ],
+    "support_vectors": 58
+  }
+]

@@ -1,0 +1,82 @@
+project:
+  type: book
+  output-dir: _book
+  execute-dir: project
+  render:
+    - index.qmd
+    - chapters/*.qmd
+    - references.qmd
+  resources:
+    - /assets/**
+    - /data/**
+    - /notebooks/**
+    - requirements-notebook.txt
+    - requirements-notebook.lock.txt
+    - 使用VSCode制作与维护QuartoBook.md
+    - MIGRATION.md
+    - reports/validation.json
+    - '!/.R-library/**'
+    - '!/.tools/**'
+    - '!/.venv/**'
+
+book:
+  title: "支持向量机教程：从几何到现代学习"
+  subtitle: "Python / R 实验与交互式探索"
+  author: "赵知行"
+  date: "2026-10-02"
+  language: zh
+  search: true
+  sidebar:
+    style: docked
+    collapse-level: 2
+  chapters:
+    - index.qmd
+    - chapters/00-python-start.qmd
+    - part: "理解间隔"
+      chapters:
+        - chapters/01-geometry.qmd
+        - chapters/02-soft-margin.qmd
+        - chapters/03-duality-smo.qmd
+    - part: "从二分类到多分类"
+      chapters:
+        - chapters/04-kernels.qmd
+        - chapters/05-multiclass.qmd
+    - part: "建立可信的实验"
+      chapters:
+        - chapters/06-workflow.qmd
+        - chapters/07-cases.qmd
+        - chapters/08-modern.qmd
+    - part: "写作与继续学习"
+      chapters:
+        - chapters/09-authoring.qmd
+        - references.qmd
+
+lang: zh
+bibliography: references.bib
+engine: knitr
+execute:
+  echo: true
+  warning: false
+  error: false
+  cache: false
+format:
+  html:
+    theme: cosmo
+    css: assets/book.css
+    page-layout: full
+    grid:
+      sidebar-width: 230px
+      body-width: 1160px
+      margin-width: 170px
+      gutter-width: 1.25rem
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-copy: true
+    code-fold: false
+    code-overflow: wrap
+    html-math-method: mathjax
+    include-in-header: assets/header.html
+    include-after-body: assets/footer.html
+    link-external-newwindow: true
+    fig-responsive: true

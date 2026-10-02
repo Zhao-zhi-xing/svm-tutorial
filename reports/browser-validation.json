@@ -1,0 +1,21 @@
+{
+  "pages": 12,
+  "passed": [
+    "geometry metric cards, desktop plot width, angle/bias endpoints and reset",
+    "linear: all precomputed states, reset, Python/R plot resize",
+    "rbf: all precomputed states, reset, Python/R plot resize",
+    "WebGL 3D rotation and reset",
+    "multiclass rules, coordinate endpoints, step, reset",
+    "ROC/PR and all case charts present",
+    "scaling, class weights, calibration and repeated evaluation: every state, metrics and reset",
+    "SMO: every real update, every sample, alpha agreement, direct point click and reset",
+    "standalone Python notebook download and introductory chapter",
+    "Plotly PR legend toggle",
+    "expanded derivations: MathJax renders without formula errors",
+    "desktop-first layout; narrow-screen acceptance retired by user request",
+    "book search"
+  ],
+  "page_errors": [],
+  "local_http_errors": [],
+  "deployment_test": "served under /_book/ prefix"
+}

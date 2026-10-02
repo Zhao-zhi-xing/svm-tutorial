@@ -1,0 +1,40 @@
+:root { --ink:#17324d; --blue:#245e91; --teal:#137d80; --muted:#586777; --line:#d5e1e9; }
+body { color:var(--ink); font-family:'Segoe UI','Microsoft YaHei','PingFang SC',sans-serif; font-size:17px; }
+main { line-height:1.85; }
+h1,h2,h3 { font-family:'Georgia','Noto Serif CJK SC','SimSun',serif; color:var(--ink); line-height:1.4; }
+h1 { font-weight:700; letter-spacing:-.02em; }
+h2 { margin-top:2.5rem; padding-bottom:.5rem; border-bottom:1px solid var(--line); }
+a { color:var(--blue); text-underline-offset:.2em; }
+.sidebar { background:#f2f6fa; }
+.sidebar-title { font-weight:700; font-size:1.2rem; }
+.book-intro { border-left:4px solid var(--teal); padding:.7rem 1.3rem; margin:1.5rem 0; background:#f3faf9; }
+.book-intro p:last-child { margin-bottom:0; }
+.lab { margin:1.7rem 0; padding:1rem; border:1px solid var(--line); border-top:3px solid var(--teal); background:#fff; }
+.lab-title { font-size:1.05rem; font-weight:700; margin:0 0 .35rem; }
+.lab-hint { font-size:.87rem; color:var(--muted); line-height:1.65; }
+.lab-controls { display:flex; flex-wrap:wrap; align-items:center; gap:.8rem 1.2rem; margin:.8rem 0; }
+.lab-controls label { display:flex; align-items:center; gap:.45rem; font-size:.9rem; }
+.lab-controls input[type=range] { width:130px; accent-color:var(--teal); }
+.lab-controls select,.lab-controls button { font:inherit; padding:.3rem .6rem; background:#f4f8fb; border:1px solid #9daebb; border-radius:4px; color:var(--ink); }
+.lab-controls button:hover { background:#e4eff6; }
+.lab-controls :focus-visible { outline:3px solid #eea948; outline-offset:3px; }
+/* 指标沿用用户提供的三列卡片样式，说明与数值分开。 */
+.lab-stats { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:1rem; background:transparent; text-align:left; }
+.stat-card { padding:12px 15px; border:1px solid #dce5f1; border-radius:11px; background:#f9fbfe; }
+.stat-label { display:block; font-size:.82rem; color:#637c99; line-height:1.45; }
+.stat-value { display:block; margin-top:3px; font-size:1.3rem; font-weight:700; color:#10253f; line-height:1.35; font-variant-numeric:tabular-nums; }
+.stat-wide,.stat-note { grid-column:1 / -1; }
+.stat-note { margin:.3rem 0 0; font-size:.85rem; color:var(--muted); line-height:1.75; }
+.lab-plot,.plotly-output { width:100%; min-width:820px; min-height:560px; }
+.lab { min-width:855px; }
+main .cell-output-display { width:100%; }
+.lab-table { font-size:.85rem; margin-top:.8rem; }
+.lab-table th,.lab-table td { padding:.3rem .6rem; border-bottom:1px solid var(--line); }
+.nav-tabs .nav-link { font-weight:600; }
+.nav-tabs .nav-link.active { color:var(--teal); border-top:3px solid var(--teal); }
+pre,code { font-family:'Cascadia Code','Consolas',monospace; }
+pre { font-size:.83rem; }
+.callout { line-height:1.75; }
+.chapter-number { color:var(--teal); }
+
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; } }

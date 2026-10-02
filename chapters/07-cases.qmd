@@ -1,0 +1,142 @@
+---
+title: "案例：从 Iris 到高维基因表达"
+---
+
+```{r}
+#| include: false
+source('scripts/setup-chapter.R', encoding='UTF-8')
+```
+
+本章目标：把原笔记中的模拟、Iris、Heart 和 Khan 案例整理成独立实验，理解任务之间的差异。完整 Python 实现在 `scripts/svm_lab.py`，R 实现在 `scripts/lab.R`；每次调用都重新读取该实验自己的数据。
+
+## 模拟数据提供可控问题
+
+前面软间隔实验使用两个重叠高斯簇，核实验使用带噪双月牙。它们分别用于观察线性折中和非线性表示。模拟数据的好处是能控制噪声与结构；局限是它不包含真实采样偏差、缺失机制和领域约束。
+
+生成脚本保存随机种子、每行 ID、训练/测试和五折编号。不要只保存图：重新绘图需要模型参数、预处理和数据。模型交互网格来自 `scripts/prepare.py`，每个参数组合都按同一评估规则计算。
+
+## Iris：多分类与二维投影
+
+Iris 有 150 个样本、四个数值特征、三个类别。本教程保存 105 个训练样本和 45 个测试样本，五折内选择 RBF 参数。多分类章节已经给出双语言混淆矩阵。
+
+在四维上训练的模型不能用随意选取两维的散点图完整解释。若画二维决策切片，必须说明另外两个特征固定为多少；若重新训练二维模型，则必须明确它与四维模型不同。原笔记中的预测散点可以用来标出错误，但不能单独证明四维边界。
+
+## Heart：混合类型与缺失值
+
+原 `Heart.csv` 有数值、类别和缺失值。本教程删除行号列，将 `AHD=Yes` 作为正类。缺失填补、one-hot 和标准化都只拟合训练折；不把 `ChestPain` 和 `Thal` 强行当成连续数字。
+
+旧代码 `Heart <- na.omit(train)` 会误用前一个实验的 `train`。新版直接从 Heart 数据建立完整 Pipeline，不依赖已有变量；填补保留全部 303 行，而不是悄悄改变样本集。
+
+::: {.panel-tabset group="language"}
+### Python
+
+```{python}
+#| results: asis
+fig, heart_result = lab.case_plot('heart')
+print(lab.figure_html(fig, 'heart-python'))
+```
+
+```{python}
+print(heart_result)
+```
+
+### R
+
+```{r}
+#| results: asis
+heart_r <- fit_case_r('heart')
+cat(figure_html_r(heart_r, 'heart-r'))
+```
+
+```{r}
+heart_r[c('train_n','test_n','parameters','cv_macro_f1','accuracy','macro_f1')]
+```
+:::
+
+这是历史教学数据上的分类实验，不是可用于临床的风险模型。真实应用还需要采样、外部验证、校准和时间/人群迁移方面的证据。这里关心的是正确的数据流程。
+
+## Khan：样本少、维度高
+
+Khan 来自 `ISLR2`：训练集 63 个样本、测试集 20 个样本，2308 个表达特征，四个类别。保留原始规定的训练/测试划分，训练集按类别轮流分入五折；这与其他案例随机分层划分不同。
+
+当 $p\gg n$，线性模型也可以有很强的表达能力，RBF 并非必需。这里只在训练集内比较线性核 $C\in\{0.1,1,10\}$。如果增加基因筛选，必须放入每个训练折，不能先用所有标签挑基因。
+
+::: {.panel-tabset group="language"}
+### Python
+
+```{python}
+#| results: asis
+fig, khan_result = lab.case_plot('khan')
+print(lab.figure_html(fig, 'khan-python'))
+```
+
+```{python}
+print(khan_result)
+```
+
+### R
+
+```{r}
+#| results: asis
+khan_r <- fit_case_r('khan')
+cat(figure_html_r(khan_r, 'khan-r'))
+```
+
+```{r}
+khan_r[c('train_n','test_n','parameters','cv_macro_f1','accuracy','macro_f1')]
+```
+:::
+
+20 个测试样本中，一个错误就改变 5 个百分点的 accuracy。某次高分不证明在新医院、不同平台或批次上同样有效。批次效应和特征选择是高维小样本研究不可忽略的问题。
+
+## 同一协议比较不同模型
+
+以下 Iris 比较在相同训练/测试划分和五个训练折上，分别选择 SVM、逻辑回归、随机森林和小型 MLP 的有限参数网格。各模型网格规模不完全相同，因此这里只是教学对照，不能称为等算力竞赛或普遍模型排名。
+
+```{python}
+#| results: asis
+fig, comparison = lab.compare_models()
+print(lab.figure_html(fig, 'model-comparison'))
+```
+
+```{python}
+for row in comparison:
+    print(row)
+```
+
+数据太小，测试波动往往比模型差异更大。若需要稳健结论，应在预先规定的重复划分或外层 CV 上报告分布，并加入时间与内存测量。Transformer 或基础模型的比较还应明确预训练数据、许可证、外部资源和特征工程预算。
+
+## 重复评估：一次分数不足以决定模型
+
+新增模拟数据包含240个样本、10维输入。使用8个固定种子作分层外层留出（训练70%、测试30%）；每次外层训练中再用相同的三折划分选参。比较线性SVM、RBF SVM与逻辑回归，标准化始终在训练折内拟合。
+
+线性SVM和逻辑回归搜索3种C，RBF搜索3种C×2种γ，所以搜索预算并非完全相等。这是明确协议下的教学比较，不是算法排名。箱线图叠加每次真实分数；配对差值使用同一次划分的RBF分数减线性SVM分数。
+
+```{=html}
+<section class="lab" data-experiment="repeated" aria-label="重复外层评估：分布与配对差值">
+<p class="lab-title">重复外层评估：分布与配对差值</p><p class="lab-hint">切换分数分布/配对差值。分数来自每轮重新执行内层调参后的外层测试。</p>
+<div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats" aria-live="polite"></div>
+</section>
+```
+
+卡片的均值±标准差描述划分敏感性。外层测试集重叠，各次结果不是独立样本，不能据此直接构造独立样本置信区间或宣称统计显著。也不能查看这些测试结果后继续修改网格并仍把它们当成未见评估。
+
+下载[逐次结果CSV](../data/repeated-evaluation.csv)和[外层ID与内层验证ID](../data/repeated-splits.json)。固定数据及全部划分记录可通过生成脚本重建。建议先解释配对差值的符号与变化，再决定是否需要更多数据、外部评估或更复杂的模型。
+
+## 数据与结果可追溯
+
+共享数据位于 `data/`，`manifest.json` 记录文件 SHA-256。自动验证结果见 [实验验证 JSON](../reports/validation.json)。复制案例时保留实验元数据，但将 `id/split/fold` 从模型输入中排除。
+
+Heart 文件来自旧笔记；Iris 来自 scikit-learn；Khan 从 `ISLR2` 包导出。具体来源和分享注意事项见 `data/README.md`。任何公开分享都不应把“教学实验成功”描述成真实场景性能承诺。
+
+## 练习与解答
+
+1. 加入一个“只使用两个花瓣特征”的 Iris 模型，与四特征模型比较，但不要混淆两种边界。
+2. 如果 Khan 的测试集只错两个样本，accuracy 是多少？为什么应同时报告每类指标？
+3. 将 Heart 的类别编码改为数字后直接标准化，可能引入什么错误假设？
+
+::: {.callout-tip collapse="true" title="参考解答"}
+1. 明确重新训练模型，沿用保存的划分，在训练集内调参；二维图只解释二维模型。
+2. 90%。类别样本数不同，总精度可能掩盖某一类完全未识别。
+3. 任意编码引入类别间顺序和距离；RBF 会将这些数值差当作真实几何距离。
+:::

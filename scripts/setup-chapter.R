@@ -1,0 +1,10 @@
+# 每个有计算的章节都显式调用此文件；不依赖其他章节会话。
+invisible(Sys.setlocale('LC_CTYPE',if (.Platform$OS.type=='windows') 'English_United States.utf8' else ''))
+.libPaths(c(normalizePath('.R-library',mustWork=FALSE),.libPaths()))
+knitr::opts_chunk$set(message=FALSE,warning=FALSE,error=FALSE)
+source('scripts/lab.R',encoding='UTF-8')
+default_python <- if (file.exists('.venv/Scripts/python.exe')) normalizePath('.venv/Scripts/python.exe') else if (file.exists(file.path(Sys.getenv('USERPROFILE'),'anaconda3/python.exe'))) file.path(Sys.getenv('USERPROFILE'),'anaconda3/python.exe') else Sys.which('python')
+py_executable <- Sys.getenv('RETICULATE_PYTHON',unset=default_python)
+if (!nzchar(py_executable)) stop('未找到 Python。请设置 RETICULATE_PYTHON。')
+reticulate::use_python(py_executable,required=TRUE)
+reticulate::py_run_string("import sys; from pathlib import Path; sys.path.insert(0, str(Path('scripts').resolve())); import svm_lab as lab")

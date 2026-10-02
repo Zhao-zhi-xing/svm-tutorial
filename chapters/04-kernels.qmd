@@ -1,0 +1,145 @@
+---
+title: "核技巧与非线性边界"
+---
+
+```{r}
+#| include: false
+source('scripts/setup-chapter.R', encoding='UTF-8')
+```
+
+本章目标：理解“核等于特征内积”，正确使用 RBF 参数，并认识核矩阵的计算代价。核方法不是任意画一条复杂曲线，而是在某个特征空间中保持线性模型的结构。
+
+## 先显式地改变特征
+
+原空间不能线性分离的数据，在新表示中可能变得可分。例如对圆环数据使用
+
+$$\phi(x)=(x_1,x_2,x_1^2+x_2^2)^T.$$
+
+下面的三维图显示内圈与外圈在第三维上的分离。绿色水平面是人为设置的教学平面，它在原空间对应圆形边界。
+
+::: {#fig-feature-map}
+```{=html}
+<section class="lab" data-svm-lab="mapping" aria-label="三维特征映射">
+<p class="lab-title">把半径平方放到第三维</p>
+<p class="lab-hint">拖动旋转三维视角，观察两类样本与分隔平面的关系。</p>
+<div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats"></div>
+</section>
+```
+有限维特征映射中的圆环分离。
+:::
+
+这个映射对应的核为 $K(x,z)=x^Tz+\|x\|^2\|z\|^2$。它既不是 RBF 核，也不是下面的标准二次多项式核；可视化必须说明实际画的是哪个映射。
+
+## 核技巧如何出现
+
+对偶目标和预测都只依赖内积。如果 $K(x,z)=\langle\phi(x),\phi(z)\rangle$，就可以使用
+
+$$f(x)=\sum_{i=1}^n\alpha_i y_i K(x_i,x)+b$$ {#eq-kernel-score}
+
+而不必显式构造 $\phi$。例如二维的 $K(x,z)=(x^Tz)^2$ 对应
+
+$$\phi(x)=(x_1^2,\sqrt2x_1x_2,x_2^2)^T.$$
+
+展开内积会得到 $x_1^2z_1^2+2x_1x_2z_1z_2+x_2^2z_2^2$，恰好等于 $(x^Tz)^2$。这里的 $\sqrt2$ 不能遗漏；也可使用包含重复交叉项的更长映射，但它不是最紧凑的表示。
+
+## 合法核与 RKHS 的入口
+
+一个实值对称核合法的关键条件是：对任意有限样本集，Gram 矩阵 $G_{ij}=K(x_i,x_j)$ 均为半正定，即对任意 $a$ 有 $a^TGa\ge0$。仅对一个数据集检查通过并不能证明对所有输入都合法。
+
+合法核诱导再生核希尔伯特空间（RKHS）。在这个空间里，核函数同时描述相似性和函数正则化；$\|f\|_{\mathcal H}^2$ 惩罚的是表示空间中的复杂度。表示定理说明许多带范数正则化的最优函数可以写成有限个 $K(x_i,\cdot)$ 的线性组合。SVM 的稀疏性还来自 hinge 损失和 KKT，不是所有核方法都稀疏。
+
+常见选择：线性核 $x^Tz$；整数次数、非负系数的多项式核 $(\gamma x^Tz+r)^d$；RBF 核 $e^{-\gamma\|x-z\|^2}$。sigmoid 形式 $\tanh(\eta x^Tz+\theta)$ **不是对任意参数和数据域都合法**，不能与线性和 RBF 一样无条件推荐。
+
+### 为什么特征内积保证半正定
+
+若 $G_{ij}=\langle\phi(x_i),\phi(x_j)\rangle$，则
+
+$$a^TGa=\sum_{i,j}a_i a_j\langle\phi(x_i),\phi(x_j)\rangle=\left\|\sum_i a_i\phi(x_i)\right\|^2\ge0.$$
+
+这个证明同时说明核对偶的凸性来源。将 $x_i$ 换为 $\phi(x_i)$，驻点仍是 $w=\sum_i\alpha_i y_i\phi(x_i)$，所以
+
+$$\|w\|_{\mathcal H}^2=\sum_{i,j}\alpha_i\alpha_jy_i y_jK(x_i,x_j).$$
+
+规范化后的特征空间间隔宽度为 $2/\|w\|_{\mathcal H}$。输入平面上的分数等值线通常弯曲，不能据其视觉宽度估计上述范数。
+
+### 表示定理的几何理由
+
+将候选函数写成训练核函数张成空间中的部分 $f_\parallel$ 与正交部分 $f_\perp$。由再生性质，$f_\perp(x_i)=\langle f_\perp,K(x_i,\cdot)\rangle=0$，删除它不改变任何训练分数；但 $\|f\|_{\mathcal H}^2=\|f_\parallel\|^2+\|f_\perp\|^2$。带正范数惩罚的最优解因此可以取 $f_\perp=0$，得到有限核展开。截距作为单独参数处理。这解释“有限展开”，但没有证明每个系数都稀疏；SVM的稀疏性需要KKT与损失结构。
+
+### 展开 RBF，看到无限维映射
+
+先分解平方距离：
+
+$$e^{-\gamma\|x-z\|^2}=e^{-\gamma\|x\|^2}e^{-\gamma\|z\|^2}e^{2\gamma x^Tz}.$$
+
+对 $p$ 维输入，设多重指标 $k=(k_1,\ldots,k_p)$，$|k|=\sum_rk_r$、$k!=\prod_rk_r!$、$x^k=\prod_rx_r^{k_r}$。展开各坐标的指数函数，
+
+$$K(x,z)=\sum_{k\in\mathbb N_0^p}\phi_k(x)\phi_k(z),\qquad
+\phi_k(x)=e^{-\gamma\|x\|^2}\sqrt{\frac{(2\gamma)^{|k|}}{k!}}x^k.$$
+
+$\gamma>0$ 时有无穷多个坐标，而且 $\sum_k\phi_k(x)^2=K(x,x)=1$。核技巧计算一个指数就获得这个内积，避免显式枚举无限坐标；前面的三维圆环图只展示它自己的有限维映射。
+
+
+## RBF 的两个旋钮
+
+RBF 中 $\gamma=1/(2\sigma^2)$。小 $\gamma$ 表示相似性随距离缓慢衰减；大 $\gamma$ 表示影响更局部。$C$ 控制损失与正则化的折中，两者需要联合选择。
+
+::: {#fig-rbf-lab}
+```{=html}
+<section class="lab" data-svm-lab="rbf" aria-label="RBF参数探索">
+<p class="lab-title">同一份数据，改变 C 和 γ</p>
+<p class="lab-hint">16个预计算组合：深蓝粗实线为 f=0，绿/橙虚线为 f=+1 / −1。点击图例可单独隐藏线条；空心圈为支持向量，菱形为测试样本。</p>
+<div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats" aria-live="polite"></div>
+</section>
+```
+预计算 RBF SVM 的参数探索。
+:::
+
+在 @fig-rbf-lab 中观察过于平滑与局部碎片化的边界，再看验证分数。测试分数不一定随视觉上“更复杂”而下降；有限样本波动也会影响它。不要反复查看测试集后继续调参，否则测试集就变成了验证集。
+
+::: {.callout-note}
+RBF 图中的 $f(x)=\pm1$ 是分数等值线，不是输入空间中距边界固定距离的曲线。最大间隔发生在特征空间，不能把二维核图的宽度直接当成 RKHS 间隔。
+:::
+
+## 核方法的代价与近似
+
+下面在相同数据上固定 $C=1,\gamma=1$，分别用 Python/R 训练并生成对应的 Plotly 图。它是复现对照，不是在测试集上重新选参。
+
+::: {.panel-tabset group="language"}
+### Python
+
+```{python}
+#| results: asis
+print(lab.figure_html(lab.binary_plot('moons','rbf',1,1), 'rbf-python'))
+```
+
+### R
+
+```{r}
+#| results: asis
+cat(binary_html_r('moons','radial',1,1,id='rbf-r'))
+```
+:::
+
+显式 $n\times n$ 的 float64 Gram 矩阵需要约 $8n^2$ 字节：$n=10\,000$ 约 0.8 GB，$n=100\,000$ 约 80 GB，尚未包括其他开销。LIBSVM 使用缓存，不必总是一次存下整个矩阵，但核训练仍可能很昂贵。预测需计算与支持向量的核，支持向量多会增加延迟。
+
+大样本线性问题可以使用 `LinearSVC` 或基于随机梯度的 hinge 模型。非线性问题可考虑 Nyström 或随机 Fourier 特征：先用有限维 $z(x)$ 近似核，再训练线性模型。近似次数、随机性和正则化一起影响结果。
+
+```{python}
+#| results: asis
+print(lab.figure_html(lab.approximate_kernel_experiment(), 'nystrom-experiment'))
+```
+
+上图固定配置，只演示特征数与效果的关系。它不是证明 Nyström 优于精确核，也没有用测试集选择最佳特征数。真正比较时，应将特征数纳入训练集内的验证，并报告时间和内存。
+
+## 练习与解答
+
+1. 计算 $x=(1,2),z=(2,1)$ 的二次核，并验证显式映射内积相等。
+2. 将所有数值特征放大 10 倍，RBF 的相同 $\gamma$ 还表示同样的模型吗？
+3. 为什么三维图不能宣称展示了 RBF 的特征空间？
+
+::: {.callout-tip collapse="true" title="参考解答"}
+1. $x^Tz=4$，核为 16；映射内积为 $4+8+4=16$。
+2. 不同，平方距离扩大 100 倍，等效于把 $\gamma$ 放大 100 倍。特征尺度因此必须与核参数一起考虑。
+3. 该图展示明确的三维映射；一般 RBF 具有无限维特征表示，三维投影不能完整代表它。
+:::

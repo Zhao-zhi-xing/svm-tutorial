@@ -1,0 +1,6 @@
+source('scripts/r-profile.R')
+Sys.setenv(RETICULATE_PYTHON=normalizePath('.venv/Scripts/python.exe'),PYTHONIOENCODING='utf-8')
+reticulate::use_python(Sys.getenv('RETICULATE_PYTHON'),required=TRUE)
+print(reticulate::py_config())
+reticulate::py_run_string('import numpy as np; print(np.__version__)')
+cat('SMOKE-END\n')

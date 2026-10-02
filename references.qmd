@@ -1,0 +1,19 @@
+---
+title: "参考文献"
+---
+
+正文引用优先使用教材、原始论文与官方文档。预印本身份和检索截止时间见研究章节。
+
+::: {#refs}
+:::
+
+## 出版工具的官方入口
+
+- [Quarto Book](https://quarto.org/docs/books/)
+- [Quarto 与 R Markdown 的关系](https://quarto.org/docs/faq/rmarkdown.html)
+- [VS Code 与 Quarto](https://quarto.org/docs/tools/vscode/index.html)
+- [Plotly Python](https://plotly.com/python/)
+- [Quarto HTML 标签页](https://quarto.org/docs/output-formats/html-basics.html#tabsets)
+- [Quarto 交互内容](https://quarto.org/docs/interactive/)
+
+旧笔记的三份主要参考 PDF 保留在上级目录的参考资料中；HTML 不附带书籍 PDF。新图注明对应思想来源，旧附件另存于源码的 `docs/original-attachments/` 供追溯。

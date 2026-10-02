@@ -1,0 +1,37 @@
+---
+title: "用 VS Code 维护本教程"
+---
+
+Quarto Book 将 Markdown、计算代码、图表和引用组织成一套可构建的教程源码。这个项目本身就是学习样例：你可以从修改一句话开始，再添加一个实验和一个章节。
+
+## 第一次操作
+
+1. VS Code 打开 `SVM/quarto-book` 文件夹。
+2. 菜单「终端 → 运行任务 → Quarto：预览完整教程」。
+3. 浏览器打开 `http://localhost:4317`。
+4. 修改一份 `.qmd` 并保存，观察预览更新。
+5. `Ctrl+Shift+B` 完整构建；结果在 `_book/`。
+
+项目任务会配置 R 库和 Python 解释器。编辑器的 Python 解释器选择与 reticulate 的运行解释器是两件事；需要时用构建脚本的路径参数明确指定。
+
+## Quarto 与 bookdown
+
+Quarto Book 是本教程选择的路线；bookdown 仍是可用的 R Markdown 工具。新建 Python/R 教程时，Quarto 的统一配置和多语言支持更自然。传统 bookdown 项目可以继续维护，迁移时需要逐一处理目录、引用和输出配置，不能只改扩展名。
+
+Posit 的 [官方 FAQ](https://quarto.org/docs/faq/rmarkdown.html) 说明 R Markdown 的维护安排；[bookdown.org 的托管公告](https://posit.co/blog/bookdown-org-sunset) 涉及托管服务，不能理解为 bookdown 包停用。
+
+## 从代码到交互页面
+
+Python/R 在构建时计算数据和结果；Plotly 在浏览器中显示这些结果。超平面滑块直接计算几何，C/γ 下拉框则选择已计算模型。读者无需安装语言内核，也无需连接训练服务器。
+
+本教程将交互辅助代码封装在 `assets/tutorial.js`。正文作者通常只需要调用现有函数或插入现有组件；若要创建全新交互行为，再编辑对应模块。
+
+## 完整 Markdown 教程
+
+下载 [《使用 VS Code 制作与维护 Quarto Book》](../使用VSCode制作与维护QuartoBook.md)。它包含环境恢复、添加章节、双语言标签页、Plotly、交互数据更新、缓存、常见报错和发布步骤。
+
+原笔记如何被迁移、哪些公式和代码被纠正，见 [迁移说明](../MIGRATION.md)。
+
+## 练习
+
+在不修改生成 HTML 的情况下，把首页的一段文字改成自己的说明，添加一个带引用的公式，再插入一个 Python Plotly 图。完整构建后确认编号、引用、悬停和桌面图形尺寸正确。
