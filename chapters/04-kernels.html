@@ -481,6 +481,22 @@ document.addEventListener('DOMContentLoaded',function(){
 
   });
 
+  document.querySelectorAll('.page-navigation .pagination-link').forEach(function(link){
+
+    var previous=!!link.closest('.nav-page-previous'),text=link.querySelector('.nav-page-text'),icon=link.querySelector('i');
+
+    if(!text)return;
+
+    var direction=document.createElement('span');direction.className='nav-page-label';direction.textContent=previous?'上一章':'下一章';
+
+    var copy=document.createElement('span');copy.className='nav-page-copy';copy.append(direction,text);
+
+    link.setAttribute('aria-label',direction.textContent+'：'+(link.getAttribute('aria-label')||text.textContent.trim()));
+
+    if(previous)link.replaceChildren(icon,copy);else link.replaceChildren(copy,icon);
+
+  });
+
   document.querySelectorAll('details.result-details').forEach(function(el){el.addEventListener('toggle',resizeTutorialPlots);});
 
 });

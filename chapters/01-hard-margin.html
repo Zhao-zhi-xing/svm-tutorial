@@ -371,7 +371,7 @@ x_\perp=x-\frac{f(x)}{\|w\|^2}w,\qquad
 <p><span class="math display">\[x_\perp=(1,1)-\frac{2}{25}(3,4)=(0.76,0.68).\]</span></p>
 <p>验证它满足 <span class="math inline">\(3(0.76)+4(0.68)-5=0\)</span>；连线向量 <span class="math inline">\((0.24,0.32)\)</span> 长度为 <span class="math inline">\(0.4\)</span>，方向与 <span class="math inline">\(w\)</span> 平行。</p>
 <section class="lab" data-teaching="projection" aria-label="垂足与几何间隔手算">
-<p class="lab-title">图上的垂线与式子中的距离</p><p class="lab-hint">改变整体缩放，检查垂足与距离是否移动；悬停查看坐标。</p>
+<p class="lab-title">图上的垂线与式子中的距离</p><p class="lab-hint">将 w 和 b 同时乘 s；先看控件下方的当前分数与范数。图形故意保持不变，用来验证几何距离不随参数尺度改变。</p>
 <div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats" aria-live="polite"></div>
 </section>
 <p>当 <span class="math inline">\(w,b\)</span> 同时乘2，<span class="math inline">\(f\)</span> 变成4、范数变成10，<span class="math inline">\(\rho\)</span> 仍为0.4。几何间隔消除了参数表示的任意尺度。</p>
@@ -496,6 +496,22 @@ document.addEventListener('DOMContentLoaded',function(){
     var label=document.createElement('span');label.className='code-language';label.textContent=language==='r'?'R':language==='python'?'Python':language;
 
     code.closest('div.sourceCode').appendChild(label);
+
+  });
+
+  document.querySelectorAll('.page-navigation .pagination-link').forEach(function(link){
+
+    var previous=!!link.closest('.nav-page-previous'),text=link.querySelector('.nav-page-text'),icon=link.querySelector('i');
+
+    if(!text)return;
+
+    var direction=document.createElement('span');direction.className='nav-page-label';direction.textContent=previous?'上一章':'下一章';
+
+    var copy=document.createElement('span');copy.className='nav-page-copy';copy.append(direction,text);
+
+    link.setAttribute('aria-label',direction.textContent+'：'+(link.getAttribute('aria-label')||text.textContent.trim()));
+
+    if(previous)link.replaceChildren(icon,copy);else link.replaceChildren(copy,icon);
 
   });
 

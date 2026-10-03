@@ -663,7 +663,62 @@ FN_{\mathrm{all}}=\sum_kFN_k=5.\]</span></p>
 <p class="lab-title">一个特征放大1000倍之后</p><p class="lab-hint">先预测边界是否改变，再比较处理方式；图始终保留原始坐标。</p>
 <div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats" aria-live="polite"></div>
 </section>
-<p>两种固定配置均使用 <span class="math inline">\(C=1,\gamma=\text{scale}\)</span>；scale 是按输入方差求参数的规则，实际数值不同，卡片列出实际值。标准化只拟合训练集。这是机制对照，不证明每个任务标准化都会提高精度。</p>
+</section>
+<section id="为什么一张近似直线另一张是曲线" class="level3" data-number="10.7.2">
+<h3 data-number="10.7.2" class="anchored" data-anchor-id="为什么一张近似直线另一张是曲线"><span class="header-section-number">10.7.2</span> 为什么一张近似直线，另一张是曲线？</h3>
+<p><strong>两者使用同一种模型：RBF 核 SVM，惩罚参数都是 <span class="math inline">\(C=1\)</span>。</strong> 代码里明确写的是 <code>SVC(kernel='rbf', C=1, gamma='scale')</code>。对照改变的是进入模型之前是否标准化；没有把未标准化版本换成线性 SVM。图中圆点是训练样本，空心菱形是测试样本，两种状态使用相同的300个样本和保存的划分。</p>
+<p>RBF 核根据两个点之间的平方距离计算相似度：</p>
+<p><span class="math display">\[K(x,x')=\exp\!\left[-\gamma\big((x_1-x'_1)^2+(x_2-x'_2)^2\big)\right].\]</span></p>
+<p>它可以产生非线性边界，但不要求每条边界都明显弯曲。输入尺度不合适时，它也可能得到看起来近似直线的边界。</p>
+<p>这个实验把第一个特征乘了1000：图上横轴跨度为几千，纵轴跨度只有几单位。假设两对点分别只在横轴相差1000、只在纵轴相差1，那么平方距离贡献分别为 <span class="math inline">\(1000^2=10^6\)</span> 和 <span class="math inline">\(1^2=1\)</span>。<strong>纵向差异被横向差异淹没</strong>。在未标准化的 RBF 中，两个横坐标相近、纵坐标不同的点仍会被视为几乎相同，模型难以利用双月牙的上下结构，边界便接近竖直的线。</p>
+</section>
+<section id="标准化让两个方向都能影响相似度" class="level3" data-number="10.7.3">
+<h3 data-number="10.7.3" class="anchored" data-anchor-id="标准化让两个方向都能影响相似度"><span class="header-section-number">10.7.3</span> 标准化让两个方向都能影响相似度</h3>
+<p>只用训练集估计每个特征的均值 <span class="math inline">\(\mu_j\)</span> 和标准差 <span class="math inline">\(s_j\)</span>，然后对训练、测试及绘图网格都应用同一变换：</p>
+<p><span class="math display">\[z_j=\frac{x_j-\mu_j}{s_j}.\]</span></p>
+<p>在 <span class="math inline">\(z\)</span> 空间中使用 RBF，再写回原始坐标，相似度为</p>
+<p><span class="math display">\[K_{\rm standardized}(x,x')=
+\exp\!\left[-\gamma_z\left(
+\frac{(x_1-x'_1)^2}{s_1^2}+
+\frac{(x_2-x'_2)^2}{s_2^2}\right)\right].\]</span></p>
+<p>训练集实际标准差约为 <span class="math inline">\(s_1=884.64\)</span>、<span class="math inline">\(s_2=0.558\)</span>。现在横轴差1000对应约1.13个标准差，纵轴差1对应约1.79个标准差，两者都足以影响相似度。模型于是可以利用两个方向识别双月牙结构，拟合出明显弯曲的边界。</p>
+<p>页面始终在<strong>原始坐标</strong>上画点：标准化模型接收原坐标网格后，先用训练集的变换，再计算分数。曲线是重新训练的 RBF 模型在原空间中的零分数边界；不是用坐标变换把某一条已有直线扭成了曲线。如果模型真的使用线性核，标准化这种仿射变换再映回原坐标，边界仍然是直线。</p>
+</section>
+<section id="相同的-gamma-规则不等于相同的数值" class="level3" data-number="10.7.4">
+<h3 data-number="10.7.4" class="anchored" data-anchor-id="相同的-gamma-规则不等于相同的数值"><span class="header-section-number">10.7.4</span> 相同的 gamma 规则不等于相同的数值</h3>
+<p><code>gamma='scale'</code> 按<strong>模型实际收到的训练矩阵</strong>自动计算：</p>
+<p><span class="math display">\[\gamma=\frac1{p\,\operatorname{Var}(T_{\rm train})},\]</span></p>
+<p>其中 <span class="math inline">\(p=2\)</span>，<span class="math inline">\(\operatorname{Var}\)</span> 是训练矩阵所有元素的总体方差，<span class="math inline">\(T\)</span> 是经过当前预处理后的输入。未标准化时 <span class="math inline">\(T=X\)</span>；标准化时 <span class="math inline">\(T=Z\)</span>。本例得到</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>配置</th>
+<th>核函数</th>
+<th><span class="math inline">\(C\)</span></th>
+<th>实际 <span class="math inline">\(\gamma\)</span></th>
+<th>模型计算距离的输入</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>未标准化</td>
+<td>RBF</td>
+<td>1</td>
+<td>约 <span class="math inline">\(1.13\times10^{-6}\)</span></td>
+<td>原始 <span class="math inline">\(X\)</span></td>
+</tr>
+<tr class="even">
+<td>训练集标准化</td>
+<td>RBF</td>
+<td>1</td>
+<td>0.5</td>
+<td>标准化 <span class="math inline">\(Z\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>单一 <span class="math inline">\(\gamma\)</span> 只能整体调节距离的影响，无法替代逐特征缩放；因此自动采用 scale 规则，也不能修正横、纵两个方向的尺度悬殊。这个对照展示的是“预处理 + 同一 gamma 规则”形成的两个完整流程，既改变了距离度量，也改变了该规则的实际数值。</p>
+<p><strong>自测</strong>：若看到近似直线的边界，能否断定模型使用线性核？不能，需检查模型配置。若两种配置都写 <code>gamma='scale'</code>，能否断定实际 <span class="math inline">\(\gamma\)</span> 相同？也不能，需查看模型收到的训练输入和计算出的参数。</p>
+<p>这里展示固定配置下的机制，不把一个划分上的结果当作标准化对所有任务都更好的证明；正式模型选择仍在训练集内部完成。</p>
 </section>
 </section>
 <section id="类别加权阈值与重采样" class="level2" data-number="10.8">
@@ -744,6 +799,22 @@ document.addEventListener('DOMContentLoaded',function(){
     var label=document.createElement('span');label.className='code-language';label.textContent=language==='r'?'R':language==='python'?'Python':language;
 
     code.closest('div.sourceCode').appendChild(label);
+
+  });
+
+  document.querySelectorAll('.page-navigation .pagination-link').forEach(function(link){
+
+    var previous=!!link.closest('.nav-page-previous'),text=link.querySelector('.nav-page-text'),icon=link.querySelector('i');
+
+    if(!text)return;
+
+    var direction=document.createElement('span');direction.className='nav-page-label';direction.textContent=previous?'上一章':'下一章';
+
+    var copy=document.createElement('span');copy.className='nav-page-copy';copy.append(direction,text);
+
+    link.setAttribute('aria-label',direction.textContent+'：'+(link.getAttribute('aria-label')||text.textContent.trim()));
+
+    if(previous)link.replaceChildren(icon,copy);else link.replaceChildren(copy,icon);
 
   });
 

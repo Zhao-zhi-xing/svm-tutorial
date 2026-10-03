@@ -18,9 +18,13 @@ function geometry(el){const angle=range(el,'angle','法向量角度',-80,80,1,0)
  cards(el,[['正确分类',correct+' / 6'],['分数 f(x)',fmt(score)],['函数间隔 yf',fmt(margin)],['‖w‖',fmt(n)],['几何间隔 yf/‖w‖',fmt(margin/n)],['无符号距离',fmt(Math.abs(score)/n)]],'手动几何，未求最优模型。实际参数为 s·(w₀,b₀)，整体缩放不改变边界与垂足；参考 f=±1 线会随尺度变化。');el.dataset.scale=s;
  };[angle,bias,p,scale,band].forEach(v=>v.addEventListener(v.type==='range'?'input':'change',update));reset(el,[angle,bias,scale,p,band],[0,0,1,3,0],update);update();}
 function projection(el){
- const scale=choice(el,'scale','参数整体缩放',[.5,1,2,5],1);
+ const scale=choice(el,'scale','整体缩放 s',[.5,1,2,5],1);
+ const feedback=document.createElement('p');feedback.className='lab-feedback';feedback.setAttribute('role','status');feedback.setAttribute('aria-live','polite');
+ el.querySelector('.lab-controls').after(feedback);
  const update=()=>{
   const s=[.5,1,2,5][scale.value],w=[3*s,4*s],b=-5*s,foot=[.76,.68],unit=[.6,.8],tangent=[-.8,.6];
+  feedback.textContent=`当前 s=${s}：w=(${fmt(w[0])}, ${fmt(w[1])})，b=${fmt(b)}；f(x)=${fmt(2*s)}，‖w‖=${fmt(5*s)}。距离仍为0.400，图形位置保持不变。`;
+  el.dataset.currentScale=s;
   const q=foot.map((v,i)=>v+.12*unit[i]),r=q.map((v,i)=>v+.12*tangent[i]),u=foot.map((v,i)=>v+.12*tangent[i]);
   const label=(x,y,text,ax,ay)=>({x,y,text,ax,ay,xref:'x',yref:'y',showarrow:true,arrowhead:0,arrowwidth:1,arrowcolor:'#8a7d70',bgcolor:'rgba(255,253,249,.96)',borderpad:5,font:{size:14,color:'#352f2a'}});
   draw(el,[line(w,b,0,'超平面 3x₁+4x₂−5=0','#17324d'),
