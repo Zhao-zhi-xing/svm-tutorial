@@ -38,11 +38,11 @@ def boundary_fig(X,y,tr,te,model,title):
 def scaling(save):
     X,y=make_moons(n_samples=300,noise=.23,random_state=14);X[:,0]*=1000
     tr,te,meta=split(X,y,'scaling',save);states=[]
-    for scaled,label in [(False,'未标准化'),(True,'训练折标准化')]:
-        m=Pipeline([('scale',StandardScaler() if scaled else 'passthrough'),('svm',SVC(C=1,gamma='scale'))]).fit(X[tr],y[tr])
+    for scaled,label in [(False,'未标准化'),(True,'训练集标准化')]:
+        m=Pipeline([('scale',StandardScaler() if scaled else 'passthrough'),('svm',SVC(kernel='rbf',C=1,gamma='scale'))]).fit(X[tr],y[tr])
         pred=m.predict(X[te]);clf=m.named_steps['svm']
-        states.append({'label':label,'figure':boundary_fig(X,y,tr,te,m,label),'cards':[['测试 accuracy',accuracy_score(y[te],pred)],['测试 macro-F1',f1_score(y[te],pred,average='macro')],['支持向量',int(clf.n_support_.sum())],['实际 γ',float(clf._gamma)]]})
-    return {**meta,'states':states,'note':'同一原始数据、同一划分、C=1，γ均采用scale规则。该规则依输入方差自动计算，因此实际γ不同；标准化只拟合训练集。横轴被人为放大1000倍，背景显示模型分数，菱形是测试样本。固定配置演示，不是调参后的模型排名。'}
+        states.append({'label':label,'figure':boundary_fig(X,y,tr,te,m,label),'model':{'kernel':clf.kernel,'C':float(clf.C),'gamma_rule':'scale','gamma':float(clf._gamma)},'cards':[['核函数','RBF'],['惩罚 C',float(clf.C)],['测试 accuracy',accuracy_score(y[te],pred)],['测试 macro-F1',f1_score(y[te],pred,average='macro')],['支持向量',int(clf.n_support_.sum())],['实际 γ',float(clf._gamma)]]})
+    return {**meta,'training_original_std':np.std(X[tr],axis=0).tolist(),'states':states,'note':'两者都是RBF SVM，同一原始数据、同一划分、C=1，γ均采用scale规则。未标准化的近直线外观不代表使用线性核。该规则依输入方差自动计算，因此实际γ不同；标准化只拟合训练集。横轴被人为放大1000倍，背景显示模型分数，菱形是测试样本。固定配置演示，不是调参后的模型排名。'}
 
 def imbalance(save):
     X,y=make_classification(n_samples=600,n_features=2,n_redundant=0,n_clusters_per_class=2,weights=[.94,.06],class_sep=.7,flip_y=.04,random_state=42)

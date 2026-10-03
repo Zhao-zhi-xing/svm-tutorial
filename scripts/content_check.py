@@ -56,7 +56,8 @@ def main():
   for name in ['chapters/01-geometry.html','chapters/03-duality-smo.html','chapters/07-cases.html']:
    visit(name)
    for width in [1280,1440,1920,2560]:
-    page.set_viewport_size({'width':width,'height':1000});page.wait_for_timeout(150)
+    page.set_viewport_size({'width':width,'height':1000})
+    page.wait_for_function('document.documentElement.scrollWidth<=innerWidth+1',timeout=5000)
     measured=page.evaluate("()=>{const r=document.querySelector('main').getBoundingClientRect();return {center:r.x+r.width/2,overflow:document.documentElement.scrollWidth};}")
     assert abs(measured['center']-width/2)<2,measured
     assert measured['overflow']<=width+1,(name,width,measured)
@@ -93,7 +94,12 @@ def main():
   projection=page.locator('[data-teaching=projection]')
   for i in range(4):
    projection.locator('select[name=scale]').select_option(str(i))
-   assert '0.400' in projection.inner_text()
+   factor=[.5,1,2,5][i]
+   assert float(projection.get_attribute('data-current-scale'))==factor
+   assert f'f(x)={2*factor:.3f}' in projection.locator('.lab-feedback').inner_text()
+   assert f'‖w‖={5*factor:.3f}' in projection.locator('.lab-feedback').inner_text()
+   assert '距离仍为0.400' in projection.locator('.lab-feedback').inner_text()
+  projection.locator('button').click();assert projection.get_attribute('data-current-scale')=='1'
   annotations=projection.locator('.annotation-text').evaluate_all("nodes=>nodes.filter(n=>n.textContent.trim()).map(n=>{const r=n.getBoundingClientRect();return {x:r.x,y:r.y,right:r.right,bottom:r.bottom};})")
   assert len(annotations)==4,annotations
   for i,a in enumerate(annotations):
@@ -165,7 +171,26 @@ def main():
   for old,target in [('chapters/01-geometry.html#eq-hard-primal','01-hard-margin.html'),('chapters/03-duality-smo.html#eq-general-kkt','03-optimization.html'),('chapters/04-kernels.html#展开-rbf看到无限维映射','04-rkhs.html')]:
    visit(old);page.wait_for_url('**/'+target+'**');assert target in page.url
   checks.append('moved equation and section anchor compatibility')
+  visit('chapters/06-workflow.html');scaling=page.locator('[data-experiment=scaling]')
+  scale_data=json.loads((ROOT/'assets/experiments.json').read_text(encoding='utf-8'))['scaling']
+  for i,state in enumerate(scale_data['states']):
+   scaling.locator('select').select_option(str(i))
+   assert state['model']['kernel']=='rbf' and state['model']['C']==1
+   cards=scaling.locator('.stat-card').all_text_contents()
+   assert any('核函数' in c and 'RBF' in c for c in cards)
+   assert any('实际 γ' in c and ('e-6' in c if i==0 else '0.5000' in c) for c in cards),cards
+  checks.append('same RBF/C standardization comparison; gamma displayed without rounding to zero')
+  visit('chapters/01-geometry.html')
+  next_link=page.locator('.nav-page-next .pagination-link');previous_link=page.locator('.nav-page-previous .pagination-link')
+  assert '下一章' in next_link.inner_text() and '上一章' in previous_link.inner_text()
+  assert next_link.bounding_box()['height']>=96
+  next_link.focus();assert next_link.evaluate('e=>getComputedStyle(e).outlineWidth')=='3px'
+  page.locator('.page-navigation').screenshot(path=str(ROOT/'reports/reading-pagination-cards.png'))
+  next_link.click();page.wait_for_url('**/01-hard-margin.html')
+  page.locator('.nav-page-previous .pagination-link').click();page.wait_for_url('**/01-geometry.html')
+  checks.append('visible chapter cards, keyboard focus and real forward/back navigation')
   visit('references.html')
+  assert '文献按正文首次引用顺序编号' not in page.locator('main').inner_text()
   numbers=page.locator('#refs .csl-left-margin').all_text_contents()
   assert len(numbers)>10 and all(str(i+1) in v for i,v in enumerate(numbers)),numbers
   assert '吴恩达' in page.locator('#refs').inner_text()

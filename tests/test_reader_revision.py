@@ -33,3 +33,12 @@ def test_fbeta_and_multiclass_hand_calculations():
  assert abs(f1_score(t,p,average='macro')-fs.mean())<1e-12
  assert abs(f1_score(t,p,average='weighted')-support@fs/17)<1e-12
  assert abs(f1_score(t,p,average='micro')-12/17)<1e-12
+
+
+def test_scaling_comparison_keeps_same_rbf_configuration():
+ from experiments import scaling
+ result=scaling(False);a,b=[s['model'] for s in result['states']]
+ assert a['kernel']==b['kernel']=='rbf' and a['C']==b['C']==1
+ assert a['gamma_rule']==b['gamma_rule']=='scale'
+ assert a['gamma']<1e-5 and abs(b['gamma']-.5)<1e-12
+ assert result['training_original_std'][0]/result['training_original_std'][1]>1000

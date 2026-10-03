@@ -25,6 +25,8 @@
     "Python/R practice outputs, resize and code copy",
     "all three dual-language case outputs, folded records and compact comparison",
     "moved equation and section anchor compatibility",
+    "same RBF/C standardization comparison; gamma displayed without rounding to zero",
+    "visible chapter cards, keyboard focus and real forward/back navigation",
     "numeric references, explicit CS229 author, centered three-rule tables, floating sidebar",
     "native search finds rewritten material"
   ],

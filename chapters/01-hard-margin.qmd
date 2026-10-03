@@ -58,7 +58,7 @@ $$x_\perp=(1,1)-\frac{2}{25}(3,4)=(0.76,0.68).$$
 
 ```{=html}
 <section class="lab" data-teaching="projection" aria-label="垂足与几何间隔手算">
-<p class="lab-title">图上的垂线与式子中的距离</p><p class="lab-hint">改变整体缩放，检查垂足与距离是否移动；悬停查看坐标。</p>
+<p class="lab-title">图上的垂线与式子中的距离</p><p class="lab-hint">将 w 和 b 同时乘 s；先看控件下方的当前分数与范数。图形故意保持不变，用来验证几何距离不随参数尺度改变。</p>
 <div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats" aria-live="polite"></div>
 </section>
 ```
