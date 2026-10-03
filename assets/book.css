@@ -140,3 +140,7 @@ body:has(.tutorial-meta) .quarto-title-meta { display:none!important; }
 body:has(.tutorial-meta) main > section.level1 > h1 { display:none; }
 body:has(.tutorial-meta) #TOC > ul > li > a { display:none; }
 body:has(.tutorial-meta) #TOC > ul > li > ul { padding-left:0; }
+
+.tutorial-hero { max-width:800px; margin:1.2rem auto 2rem; }
+.tutorial-start { display:inline-block; padding:9px 18px; background:var(--blue); color:white; border-radius:6px; text-decoration:none; }
+[data-teaching="loss"] .lab-plot { min-height:480px; }

@@ -3,71 +3,85 @@ project:
   output-dir: _book
   execute-dir: project
   render:
-    - index.qmd
-    - chapters/*.qmd
-    - references.qmd
+  - index.qmd
+  - chapters/01-geometry.qmd
+  - chapters/01-hard-margin.qmd
+  - chapters/02-soft-margin.qmd
+  - chapters/03-optimization.qmd
+  - chapters/03-duality-smo.qmd
+  - chapters/04-kernels.qmd
+  - chapters/04-rkhs.qmd
+  - chapters/03-smo.qmd
+  - chapters/05-multiclass.qmd
+  - chapters/06-workflow.qmd
+  - chapters/00-python-start.qmd
+  - chapters/07-cases.qmd
+  - chapters/08-modern.qmd
+  - references.qmd
   resources:
-    - /assets/**
-    - /data/**
-    - /notebooks/**
-    - requirements-notebook.txt
-    - requirements-notebook.lock.txt
-    - 使用VSCode制作与维护QuartoBook.md
-    - MIGRATION.md
-    - reports/validation.json
-    - '!/.R-library/**'
-    - '!/.tools/**'
-    - '!/.venv/**'
-
+  - /assets/**
+  - /data/**
+  - /notebooks/**
+  - requirements-notebook.txt
+  - requirements-notebook.lock.txt
+  - reports/validation.json
+  - '!/.R-library/**'
+  - '!/.tools/**'
+  - '!/.venv/**'
 book:
-  title: "支持向量机教程：从几何到现代学习"
-  subtitle: "Python / R 实验与交互式探索"
-  author: "赵知行"
-  date: "2026-10-03"
+  title: 支持向量机教程：从几何到现代学习
+  subtitle: Python / R 实验与交互式探索
+  author: 赵知行
+  date: '2026-10-03'
   language: zh
   search: true
   navbar:
     title: false
     background: white
     right:
-      - text: "首页"
-        href: index.qmd
-      - text: "教程"
-        href: chapters/00-python-start.qmd
-      - icon: github
-        href: https://github.com/Zhao-zhi-xing/svm-tutorial
-        aria-label: "GitHub 源码"
+    - text: 首页
+      href: index.qmd
+    - text: 教程
+      href: chapters/01-geometry.qmd
+    - icon: github
+      href: https://github.com/Zhao-zhi-xing/svm-tutorial
+      aria-label: GitHub 源码
   sidebar:
-    title: "支持向量机教程"
+    title: 支持向量机教程
     style: docked
-    header: "<div class='tutorial-brand'>支持向量机教程</div><div class='tutorial-directory-label'>目录</div>"
+    header: <div class='tutorial-brand'>支持向量机教程</div><div class='tutorial-directory-label'>目录</div>
     collapse-level: 1
   chapters:
-    - href: index.qmd
-      text: "导读与学习路线"
-    - href: chapters/00-python-start.qmd
-      text: "纯 Python 入门"
-    - href: chapters/01-geometry.qmd
-      text: "超平面与间隔"
-    - href: chapters/02-soft-margin.qmd
-      text: "软间隔与损失"
-    - href: chapters/03-duality-smo.qmd
-      text: "对偶、KKT 与 SMO"
-    - href: chapters/04-kernels.qmd
-      text: "核方法"
-    - href: chapters/05-multiclass.qmd
-      text: "多分类"
-    - href: chapters/06-workflow.qmd
-      text: "可靠建模流程"
-    - href: chapters/07-cases.qmd
-      text: "真实数据案例"
-    - href: chapters/08-modern.qmd
-      text: "现代研究导读"
-    - href: chapters/09-authoring.qmd
-      text: "维护本教程"
-    - href: references.qmd
-      text: "参考文献"
-
+  - href: index.qmd
+    text: 导读与学习路线
+  - href: chapters/01-geometry.qmd
+    text: 分类与超平面
+  - href: chapters/01-hard-margin.qmd
+    text: 间隔与硬间隔
+  - href: chapters/02-soft-margin.qmd
+    text: 软间隔与正则化
+  - href: chapters/03-optimization.qmd
+    text: 约束优化与 KKT
+  - href: chapters/03-duality-smo.qmd
+    text: SVM 对偶与解
+  - href: chapters/04-kernels.qmd
+    text: 映射与核技巧
+  - href: chapters/04-rkhs.qmd
+    text: 核的函数空间
+  - href: chapters/03-smo.qmd
+    text: SMO 求解
+  - href: chapters/05-multiclass.qmd
+    text: 多分类
+  - href: chapters/06-workflow.qmd
+    text: 评估与模型选择
+  - href: chapters/00-python-start.qmd
+    text: Python / R 实践
+  - href: chapters/07-cases.qmd
+    text: 案例与模型比较
+  - href: chapters/08-modern.qmd
+    text: 现代研究导读
+  - href: references.qmd
+    text: 参考文献
 lang: zh
 bibliography: references.bib
 engine: knitr
@@ -87,7 +101,7 @@ format:
       margin-width: 270px
       gutter-width: 2rem
     toc: true
-    toc-title: "本章目录"
+    toc-title: 本章目录
     toc-depth: 2
     number-sections: true
     code-copy: true

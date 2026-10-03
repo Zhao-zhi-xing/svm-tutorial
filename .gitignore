@@ -14,3 +14,5 @@ reports/*.png
 
 /.quarto/
 **/*.quarto_ipynb
+
+.superpowers/

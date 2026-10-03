@@ -6,7 +6,7 @@
  function reset(parent,fn){const button=document.createElement('button');button.textContent='重置';button.type='button';button.addEventListener('click',fn);parent.append(button);}
  function experiment(el,kind){const d=window.SVM_EXPERIMENTS[kind];const choice=select(el.querySelector('.lab-controls'),'experiment','选择对照',d.states.map(s=>s.label));const update=()=>{const s=d.states[Number(choice.value)],f=s.figure;Plotly.react(el.querySelector('.lab-plot'),f.data,{...f.layout,font:{family:'Segoe UI,Microsoft YaHei',color:'#17324d',size:14}},cfg);cards(el,s.cards,d.note);el.dataset.currentState=choice.value;};choice.addEventListener('change',update);reset(el.querySelector('.lab-controls'),()=>{choice.value=0;update();});update();}
  function smo(el){const d=window.SVM_EXPERIMENTS.smo,controls=el.querySelector('.lab-controls');
-  const label=document.createElement('label');label.textContent='更新步骤 ';const step=document.createElement('input');Object.assign(step,{type:'range',min:0,max:d.states.length-1,step:1,value:d.states.length-1,name:'smo-step'});step.setAttribute('aria-label','SMO更新步骤');const output=document.createElement('output');label.append(step,output);controls.append(label);
+  const label=document.createElement('label');label.textContent='更新步骤 ';const step=document.createElement('input');Object.assign(step,{type:'range',min:0,max:d.states.length-1,step:1,value:0,name:'smo-step'});step.setAttribute('aria-label','SMO更新步骤');const output=document.createElement('output');label.append(step,output);controls.append(label);
   const point=select(controls,'smo-point','观察样本',d.points.map((_,i)=>'样本 '+i));
   const table=document.createElement('table');table.className='lab-table';table.setAttribute('aria-label','逐样本KKT数据');el.querySelector('.lab-stats').after(table);
   const update=()=>{const index=Number(step.value),s=d.states[index],id=Number(point.value);output.textContent=index+' / '+(d.states.length-1);const traces=[];
@@ -20,7 +20,7 @@
    table.replaceChildren();const header=document.createElement('tr');for(const title of ['样本','y','α','yf','ξ','KKT残差']){const th=document.createElement('th');th.textContent=title;header.append(th);}table.append(header);
    d.points.forEach((_,i)=>{const row=document.createElement('tr');if(i===id)row.style.fontWeight='bold';[i,d.labels[i],s.alpha[i],s.margins[i],s.slack[i],s.residuals[i]].forEach(value=>{const cell=document.createElement('td');cell.textContent=Number.isInteger(value)?value:value.toFixed(4);row.append(cell);});table.append(row);});el.dataset.currentStep=index;el.dataset.currentPoint=id;
   };
-  step.addEventListener('input',update);point.addEventListener('change',update);reset(controls,()=>{step.value=d.states.length-1;point.value=0;update();});update();
+  step.addEventListener('input',update);point.addEventListener('change',update);reset(controls,()=>{step.value=0;point.value=0;update();});update();
   el.querySelector('.lab-plot').on('plotly_click',ev=>{const p=ev.points[0];const i=d.points.findIndex(x=>Math.abs(x[0]-p.x)<1e-8&&Math.abs(x[1]-p.y)<1e-8);if(i>=0){point.value=i;update();}});
  }
  function init(){if(!window.SVM_EXPERIMENTS||!window.Plotly)return;document.querySelectorAll('[data-experiment]').forEach(el=>{if(el.dataset.initialized)return;el.dataset.initialized='true';if(el.dataset.experiment==='smo')smo(el);else experiment(el,el.dataset.experiment);});}

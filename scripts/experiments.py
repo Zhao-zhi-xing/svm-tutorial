@@ -98,8 +98,8 @@ def repeated(save):
     return {'rows':rows,'splits':splits,'states':states,'note':'同一模拟数据上的8次分层留出，三个模型共享每次外层划分和内层3折。测试集未参与该轮选参。RBF搜索6种配置，其余3种，预算并非完全相同。不同划分样本重叠，8个分数不是独立样本；标准差描述划分敏感性，不是置信区间，也不支持显著性宣称。所有划分与逐次选参结果已保存。'}
 
 def smo():
-    X=np.array([[-2,-1],[-1,-2],[-1,0],[1,0],[1,2],[2,1],[-.25,.1],[.2,-.2]],float)
-    y=np.array([-1,-1,-1,1,1,1,1,-1]);model=LinearSMO(C=.7,tol=1e-5,record_history=True).fit(X,y)
+    X=np.array([[-2,-1],[-2,1],[-1,0],[-1.5,0],[2,-1],[2,1]],float)
+    y=np.array([-1,-1,-1,1,1,1]);model=LinearSMO(C=.7,tol=1e-5,record_history=True).fit(X,y)
     assert model.converged_,model.kkt_residual_
     return {'points':X.tolist(),'labels':y.tolist(),'C':model.C,'states':model.history_,'note':'真实教学SMO的预计算更新，包含初始状态。每次成功更新一对系数，未在浏览器实时训练。中间步骤通常未满足KKT；间隙与残差应在最终收敛状态解读。所选样本的KKT状态使用数值容差。'}
 

@@ -360,3 +360,24 @@ Python 混淆矩阵由 `scripts/svm_lab.py` 的 `confusion_plot()` 绘制，R �
 `assets/footer.html` 为代码增加语言标识，并在 Python/R 标签切换与结果折叠展开后调用 Plotly resize。复制按钮由 Quarto 提供，不要删除其 HTML 标记。
 
 完整构建后运行 `scripts/layout_check.py`、`scripts/chart_check.py` 和 `scripts/browser_check.py` 检查居中、目录、交互与图表；`scripts/reading_check.py` 专门检查普通阅读宽度、首页编号和折叠结果。浏览器检查使用安装了 Playwright 的 Python 与本机 Chrome，不属于读者运行教程的依赖。发布后若仍看到旧样式，可用 Ctrl+F5 刷新。
+
+
+## 自学内容结构与教学图维护（2026-10-03）
+
+章节顺序由 `_quarto.yml` 的 `book.chapters` 决定，不由文件编号决定。`00-python-start.qmd` 保留旧URL但位于理论之后。新增硬间隔、约束优化、RKHS、SMO四章；核心公式保持编号交叉引用。`project.render` 显式列出读者页面。
+
+作者说明放在 `docs/内容审查与改写说明.md`。本制作指南、MIGRATION和docs不随HTML资源发布；09-authoring已归档为本地Markdown。正文避免改稿历史、错误修复过程与实现沟通。
+
+连续六点教学数据由 `python scripts/teaching.py` 生成，产物为 `assets/teaching.json`、`assets/teaching-data.js` 和 `data/teaching-six-points.json`。它们使用原始坐标，无标准化或泛化评估。更新后运行 `pytest tests/test_teaching.py -q`，核对垂足、尺度不变、线性可行性、盒约束、KKT与目标间隙。
+
+`assets/teaching-ui.js` 实现几何、投影、硬/软间隔、映射与损失；页面用 `data-teaching` 指定实验。手动几何在浏览器计算，软间隔只切换离散预计算模型。SMO轨迹来自 `scripts/experiments.py` 的同一组六点不可分例，初始化显示第0步。
+
+Python/R实践展示完整拟合步骤，案例的可独立调用实现存于 `scripts/learner_experiments.py` 与 `.R`。修改时同步更新章节代码。Notebook内嵌Iris共享数据与划分，独立运行不依赖项目helper。
+
+`assets/legacy-links.js` 为拆分后移动的旧锚点提供兼容定位。新增或更改兼容条目后，运行 `scripts/content_check.py`。该检查还验证完整构建、作者资源隔离、新控件与旧案例图，并保存 `reports/content-validation.json`。
+
+发布前清理旧构建输出中的作者资源；发布脚本显式同步当前产物并移除已退役资源。这样仅改导航时，旧维护页不会继续留在Pages上。避免删除未确认属于本项目的路径。
+
+本项目也提供 `python scripts/publish_site.py` 预览当前产物与gh-pages的差异，核对后运行 `python scripts/publish_site.py --publish`。脚本要求content-validation已通过，使用gh登录，以普通新提交更新Pages并清理明确退役的作者资源；不强制覆盖分支。发布前先提交并推送源码。
+
+运行 `python scripts/check_visible_code.py` 可以仅执行网页可见代码，并比较Python/R的入门与三个案例。每章Python命名空间、每个R进程独立；验证不调用隐藏setup单元。结果写入reports/content-execution.json。

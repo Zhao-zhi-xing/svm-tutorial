@@ -1,8 +1,10 @@
-# 支持向量机：从几何到现代学习
+# 支持向量机自学教程
 
-赵知行原SVM笔记的交互教程重构。Python为主、核心R对照，Plotly交互与教学控件。
+从分类问题、间隔与软间隔，到对偶/KKT、核与RKHS、SMO、多分类及评估；理论之后提供完整Python/R实践、真实数据案例与研究导读。共13个学习章节，加不编号导读和参考文献。交互图使用本地Plotly和离散预计算模型，无模型服务器。
 
-在VS Code打开本目录，用「终端 → 运行任务」选择预览或构建；完整说明见[使用指南](使用VSCode制作与维护QuartoBook.md)。
+在线阅读：[SVM教程](https://zhao-zhi-xing.github.io/svm-tutorial/)。
+
+在VS Code打开本目录，使用终端运行项目任务：
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts/book.ps1 preview
@@ -11,8 +13,10 @@ powershell -ExecutionPolicy Bypass -File scripts/book.ps1 validate
 powershell -ExecutionPolicy Bypass -File scripts/book.ps1 serve
 ```
 
-本地阅读地址：http://localhost:4317。源码修改`.qmd`，产出`_book/`。
+预览/本地阅读地址：`http://localhost:4317`。完整操作见[制作与维护指南](使用VSCode制作与维护QuartoBook.md)，内容审查见[作者记录](docs/内容审查与改写说明.md)。这些作者Markdown保留于源码，不随Pages发布。
 
-工具：Quarto1.9.38（英文路径）、R4.5.3、项目`.R-library`、Python3.12 `.venv`及requirements版本。迁移说明见[MIGRATION.md](MIGRATION.md)。
+数值测试：`python -m pytest tests -q`。教学图更新：`python scripts/teaching.py`。网页可见代码独立执行：`python scripts/check_visible_code.py`。站点验收：`python scripts/content_check.py`，紧凑图验收：`python scripts/chart_check.py`。浏览器检查需要可选Playwright与本机Chrome。
 
-交付验收见[reports/QA.md](reports/QA.md)：6项数值测试、三个Python/R案例一致、11页构建及浏览器交互检查。图表资源本地交付；默认MathJax公式资源需要网络。
+独立Notebook位于 `notebooks/python-svm-start.ipynb`，内嵌同一份Iris数据与固定划分。站点产物位于 `_book/`，由Quarto生成，不手工修改。公式继续使用Quarto的MathJax网络资源。
+
+通过验收后，先提交并推送源码，运行 `python scripts/publish_site.py` 预览差异，`python scripts/publish_site.py --publish` 更新现有gh-pages。部署不会强制覆盖分支，会清理明确退役的作者资源。

@@ -1,0 +1,103 @@
+{
+  "execution": "visible code only; independent Python namespaces and R processes",
+  "cross_language": [
+    {
+      "chapter": "00-python-start",
+      "case": "iris",
+      "confusion": [
+        [
+          15,
+          0,
+          0
+        ],
+        [
+          0,
+          14,
+          1
+        ],
+        [
+          0,
+          3,
+          12
+        ]
+      ],
+      "accuracy": 0.9111111111111111,
+      "macro_f1": 0.9107142857142857,
+      "match": true
+    },
+    {
+      "chapter": "07-cases",
+      "case": "iris",
+      "confusion": [
+        [
+          15,
+          0,
+          0
+        ],
+        [
+          0,
+          14,
+          1
+        ],
+        [
+          0,
+          3,
+          12
+        ]
+      ],
+      "accuracy": 0.9111111111111111,
+      "macro_f1": 0.9107142857142857,
+      "match": true
+    },
+    {
+      "chapter": "07-cases",
+      "case": "heart",
+      "confusion": [
+        [
+          45,
+          4
+        ],
+        [
+          7,
+          35
+        ]
+      ],
+      "accuracy": 0.8791208791208791,
+      "macro_f1": 0.8776433198875443,
+      "match": true
+    },
+    {
+      "chapter": "07-cases",
+      "case": "khan",
+      "confusion": [
+        [
+          3,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          6,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          4,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          5
+        ]
+      ],
+      "accuracy": 0.9,
+      "macro_f1": 0.9142857142857144,
+      "match": true
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 ---
-title: "案例：从 Iris 到高维基因表达"
+title: "案例与模型比较：从 Iris 到高维数据"
 ---
 
 ```{r}
@@ -8,127 +8,367 @@ source('scripts/setup-chapter.R', encoding='UTF-8')
 ```
 
 ::: {.chapter-intro}
-**学习目标**：把原笔记中的模拟、Iris、Heart 和 Khan 案例整理成独立实验，理解任务之间的差异。完整 Python 实现在 `scripts/svm_lab.py`，R 实现在 `scripts/lab.R`；每次调用都重新读取该实验自己的数据。
+**本章要回答**：同一个 SVM 流程遇到混合类型、缺失值与高维小样本时，哪些步骤必须调整？
 
-**前置知识**：预处理 Pipeline、交叉验证与评价指标。
+**前置知识**：上一章完整代码。每个案例依次检查任务、数据、方案、验证结果与局限。
 :::
 
-## 模拟数据提供可控问题
+## 一套完整、可检查的共享流程
 
-前面软间隔实验使用两个重叠高斯簇，核实验使用带噪双月牙。它们分别用于观察线性折中和非线性表示。模拟数据的好处是能控制噪声与结构；局限是它不包含真实采样偏差、缺失机制和领域约束。
+Iris全是数值；Heart还包含类别与缺失；Khan的特征数远大于样本数。统一保留同一类流程，但按特征类型学习变换，按问题选择核与候选网格。
 
-生成脚本保存随机种子、每行 ID、训练/测试和五折编号。不要只保存图：重新绘图需要模型参数、预处理和数据。模型交互网格来自 `scripts/prepare.py`，每个参数组合都按同一评估规则计算。
+下面直接展示并执行公共训练函数。Python在ColumnTransformer中分别处理数值和类别，所有步骤随Pipeline在每折重新拟合；R明确保存每折的中位数、类别字典和缩放状态，再应用到验证数据。辅助绘图只接收已经得到的混淆计数。
 
-## Iris：多分类与二维投影
+::: {.panel-tabset group="language"}
+### Python
 
-Iris 有 150 个样本、四个数值特征、三个类别。本教程保存 105 个训练样本和 45 个测试样本，五折内选择 RBF 参数。多分类章节已经给出双语言混淆矩阵。
+```{python}
+import sys
+sys.path.insert(0, "scripts")
+import svm_lab as lab  # 仅将现成计数与图转换为HTML
+import numpy as np
+import pandas as pd
+from sklearn.svm import SVC
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.impute import SimpleImputer
+from sklearn.compose import ColumnTransformer
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import accuracy_score, f1_score, confusion_matrix
 
-在四维上训练的模型不能用随意选取两维的散点图完整解释。若画二维决策切片，必须说明另外两个特征固定为多少；若重新训练二维模型，则必须明确它与四维模型不同。原笔记中的预测散点可以用来标出错误，但不能单独证明四维边界。
+def train_case(name='iris'):
 
-## Heart：混合类型与缺失值
+    df = pd.read_csv('data/' + name + '.csv')
+    train, test = df[df.split=='train'], df[df.split=='test']
+    columns = [c for c in df if c not in ['id','split','target','fold']]
+    X, y = train[columns], train.target
+    numeric = X.select_dtypes(include='number').columns.tolist()
+    categorical = [c for c in columns if c not in numeric]
+    pre = ColumnTransformer([
+        ('num',Pipeline([('impute',SimpleImputer(strategy='median')),('scale',StandardScaler())]),numeric),
+        ('cat',Pipeline([('impute',SimpleImputer(strategy='most_frequent')),('encode',OneHotEncoder(handle_unknown='ignore',sparse_output=False))]),categorical)])
+    pipeline = Pipeline([('pre',pre),('svm',SVC())])
+    cv = [(np.flatnonzero(train.fold.values!=f),np.flatnonzero(train.fold.values==f)) for f in range(5)]
+    # Khan 为 p >> n，不使用 RBF 大网格。
+    param = {'svm__C':[.1,1,10], 'svm__kernel':['linear']} if name=='khan' else {'svm__C':[.1,1,10],'svm__gamma':[.01,.1,1],'svm__kernel':['rbf']}
+    search = GridSearchCV(pipeline,param,cv=cv,scoring='f1_macro',n_jobs=1).fit(X,y)
+    pred = search.predict(test[columns])
+    labels = sorted(df.target.unique().tolist())
+    result = {'case':name,'language':'Python','train_n':len(train),'test_n':len(test),
+        'parameters':search.best_params_,'cv_macro_f1':float(search.best_score_),
+        'accuracy':float(accuracy_score(test.target,pred)), 'macro_f1':float(f1_score(test.target,pred,average='macro')),
+        'labels':labels,'confusion':confusion_matrix(test.target,pred,labels=labels).tolist(),
+        'support_vectors':int(search.best_estimator_.named_steps['svm'].n_support_.sum())}
+    return search, test, columns, result
 
-原 `Heart.csv` 有数值、类别和缺失值。本教程删除行号列，将 `AHD=Yes` 作为正类。缺失填补、one-hot 和标准化都只拟合训练折；不把 `ChestPain` 和 `Thal` 强行当成连续数字。
 
-旧代码 `Heart <- na.omit(train)` 会误用前一个实验的 `train`。新版直接从 Heart 数据建立完整 Pipeline，不依赖已有变量；填补保留全部 303 行，而不是悄悄改变样本集。
+```
+
+### R
+
+```{r}
+source("scripts/lab.R", encoding="UTF-8") # 展示结果的函数
+# 项目根目录下 source('scripts/lab.R')；每个实验重新读取自己的数据。
+macro_f1 <- function(truth, pred, labels) {
+  mean(vapply(labels, function(k) {
+    tp <- sum(truth == k & pred == k)
+    denominator <- sum(truth == k) + sum(pred == k)
+    if (denominator == 0) 0 else 2 * tp / denominator
+  }, numeric(1)))
+}
+
+fit_preprocessor <- function(data) {
+  numeric <- names(data)[vapply(data, is.numeric, logical(1))]
+  categorical <- setdiff(names(data), numeric)
+  medians <- vapply(data[numeric], median, numeric(1), na.rm=TRUE)
+  modes <- lapply(data[categorical], function(x) names(sort(table(x), decreasing=TRUE))[1])
+  levels <- lapply(data[categorical], function(x) sort(unique(x[!is.na(x)])))
+  state <- list(numeric=numeric, categorical=categorical, medians=medians, modes=modes, levels=levels)
+  raw <- transform_features(data, state, scale=FALSE)
+  state$mean <- colMeans(raw)
+  state$sd <- apply(raw, 2, sd) * sqrt((nrow(raw)-1)/nrow(raw)) # 对齐 StandardScaler ddof=0
+  state$sd[state$sd == 0] <- 1
+  # 只标准化数值列；one-hot 的 0/1 与 Python 保持一致。
+  state$mean[!colnames(raw) %in% numeric] <- 0
+  state$sd[!colnames(raw) %in% numeric] <- 1
+  state
+}
+
+transform_features <- function(data, state, scale=TRUE) {
+  output <- list()
+  for (name in state$numeric) {
+    x <- data[[name]]; x[is.na(x)] <- state$medians[[name]]; output[[name]] <- x
+  }
+  for (name in state$categorical) {
+    x <- as.character(data[[name]]); x[is.na(x)] <- state$modes[[name]]
+    for (level in state$levels[[name]]) output[[paste(name,level,sep='_')]] <- as.numeric(x==level)
+  }
+  result <- do.call(cbind, output)
+  if (scale) result <- sweep(sweep(result,2,state$mean,'-'),2,state$sd,'/')
+  result
+}
+
+train_case_r <- function(name='iris') {
+  data <- read.csv(file.path('data', paste0(name,'.csv')), check.names=FALSE, stringsAsFactors=FALSE, na.strings=c('NA',''))
+  train <- data[data$split=='train', ]; test <- data[data$split=='test', ]
+  features <- setdiff(names(data),c('id','split','target','fold'))
+  labels <- sort(unique(data$target))
+  candidates <- if (name=='khan') expand.grid(C=c(.1,1,10),gamma=.1) else expand.grid(C=c(.1,1,10),gamma=c(.01,.1,1))
+  # Python ParameterGrid 按 C 然后 gamma 排序，使平分时的规则一致。
+  candidates <- candidates[order(candidates$C,candidates$gamma), ]
+  scores <- numeric(nrow(candidates))
+  kernel <- if (name=='khan') 'linear' else 'radial'
+  for (i in seq_len(nrow(candidates))) {
+    fold_scores <- numeric(5)
+    for (f in 0:4) {
+      a <- train[train$fold!=f, ]; b <- train[train$fold==f, ]
+      state <- fit_preprocessor(a[features])
+      model <- e1071::svm(x=transform_features(a[features],state),y=factor(a$target,levels=labels),kernel=kernel,cost=candidates$C[i],gamma=candidates$gamma[i],scale=FALSE)
+      pred <- as.numeric(as.character(predict(model,transform_features(b[features],state))))
+      fold_scores[f+1] <- macro_f1(b$target,pred,labels)
+    }
+    scores[i] <- mean(fold_scores)
+  }
+  best <- which.max(scores)
+  state <- fit_preprocessor(train[features])
+  model <- e1071::svm(x=transform_features(train[features],state),y=factor(train$target,levels=labels),kernel=kernel,cost=candidates$C[best],gamma=candidates$gamma[best],scale=FALSE)
+  prediction <- predict(model,transform_features(test[features],state),decision.values=TRUE)
+  pred <- as.numeric(as.character(prediction))
+  score <- NULL
+  if (length(labels)==2) {
+    values <- attr(prediction,'decision.values')
+    positive <- strsplit(colnames(values)[1], '/',fixed=TRUE)[[1]][1]
+    score <- as.numeric(values[,1]) * if (positive==as.character(labels[2])) 1 else -1
+  }
+  confusion <- unclass(table(factor(test$target,levels=labels),factor(pred,levels=labels)))
+  list(case=name, language='R', train_n=nrow(train),test_n=nrow(test), parameters=as.list(candidates[best,]),cv_macro_f1=scores[best],accuracy=mean(pred==test$target),macro_f1=macro_f1(test$target,pred,labels),labels=labels,confusion=confusion,support_vectors=nrow(model$SV),score=score,truth=test$target)
+}
+
+
+```
+:::
+
+### 先检查代码里的四条边界
+
+1. `features` 排除了实验元数据和标签。
+2. 每次训练折各自学习填补、编码和尺度；验证折只变换。
+3. 参数选择只看训练集内五折的macro-F1。
+4. 测试数据只在参数确定、全训练集重拟合后用于评价。
+
+两套流程数值列用中位数填补并标准化，类别用众数填补并one-hot；未知类别采用全零编码。是否适合部署中的未知类别，需要根据实际任务另行判断。
+
+## Iris：先完成一个容易核对的多分类任务
+
+**任务**：4个测量特征预测3类花，150个样本，训练105、测试45。所有特征数值型，无需类别编码；选择RBF的3×3参数网格。
+
+**先预测**：如果一类被完全混淆，总accuracy仍可能较高吗？读矩阵时逐行看每类召回，再看macro-F1。
 
 ::: {.panel-tabset group="language"}
 ### Python
 
 ```{python}
 #| results: asis
-fig, heart_result = lab.case_plot('heart')
-print(lab.figure_html(fig, 'heart-python'))
+search_iris, test_iris, columns_iris, result_iris = train_case('iris')
+print(lab.figure_html(lab.confusion_plot(result_iris), 'iris-python'))
 ```
-
-<details class="result-details">
-<summary>查看完整实验记录（参数与指标）</summary>
-
-```{python}
-print(heart_result)
-```
-
-</details>
 
 ### R
 
 ```{r}
 #| results: asis
-heart_r <- fit_case_r('heart')
-cat(figure_html_r(heart_r, 'heart-r'))
+result_iris_r <- train_case_r('iris')
+cat(figure_html_r(result_iris_r, 'iris-r'))
 ```
-
-<details class="result-details">
-<summary>查看完整实验记录（参数与指标）</summary>
-
-```{r}
-heart_r[c('train_n','test_n','parameters','cv_macro_f1','accuracy','macro_f1')]
-```
-
-</details>
 :::
 
-混淆矩阵的行是真实类别、列是预测类别，类别按从上到下排列。格内第一行是样本数，第二行是该真实类别中的占比；颜色仍表示样本数，方便同时看错误数量与各类识别情况。
+<details class="result-details">
+<summary>查看所选参数与验证、测试指标</summary>
 
-这是历史教学数据上的分类实验，不是可用于临床的风险模型。真实应用还需要采样、外部验证、校准和时间/人群迁移方面的证据。这里关心的是正确的数据流程。
 
-## Khan：样本少、维度高
+::: {.panel-tabset group="language"}
+### Python
 
-Khan 来自 `ISLR2`：训练集 63 个样本、测试集 20 个样本，2308 个表达特征，四个类别。保留原始规定的训练/测试划分，训练集按类别轮流分入五折；这与其他案例随机分层划分不同。
+```{python}
+print({k: result_iris[k] for k in ['parameters', 'cv_macro_f1', 'accuracy', 'macro_f1']})
+```
 
-当 $p\gg n$，线性模型也可以有很强的表达能力，RBF 并非必需。这里只在训练集内比较线性核 $C\in\{0.1,1,10\}$。如果增加基因筛选，必须放入每个训练折，不能先用所有标签挑基因。
+### R
+
+```{r}
+result_iris_r[c('parameters','cv_macro_f1','accuracy','macro_f1')]
+```
+:::
+
+</details>
+
+矩阵中的错误集中在哪两个类别？用格内比例解释，再与总分比较。本模型使用全部4个特征；二维散点只会投影一部分信息，不能完整展示四维边界。若另训练二维模型，需明确它是另一项实验。
+
+Iris样本小、任务相对简单，接近满分不证明模型在其他问题上同样强。它适合检查代码与多分类规则。
+
+## Heart：混合特征与缺失值
+
+**任务**：历史教学数据303行，以 `AHD=Yes` 为正类。输入包含数值测量和类别，如ChestPain与Thal；训练212、测试91。类别编号不能直接当成连续距离。
+
+**方案**：数值折内填补与标准化，类别折内填补与one-hot，再使用RBF。全部样本保留，填补参数从当前训练部分学习。
 
 ::: {.panel-tabset group="language"}
 ### Python
 
 ```{python}
 #| results: asis
-fig, khan_result = lab.case_plot('khan')
-print(lab.figure_html(fig, 'khan-python'))
+search_heart, test_heart, columns_heart, result_heart = train_case('heart')
+print(lab.figure_html(lab.confusion_plot(result_heart), 'heart-python'))
 ```
-
-<details class="result-details">
-<summary>查看完整实验记录（参数与指标）</summary>
-
-```{python}
-print(khan_result)
-```
-
-</details>
 
 ### R
 
 ```{r}
 #| results: asis
-khan_r <- fit_case_r('khan')
-cat(figure_html_r(khan_r, 'khan-r'))
+result_heart_r <- train_case_r('heart')
+cat(figure_html_r(result_heart_r, 'heart-r'))
 ```
-
-<details class="result-details">
-<summary>查看完整实验记录（参数与指标）</summary>
-
-```{r}
-khan_r[c('train_n','test_n','parameters','cv_macro_f1','accuracy','macro_f1')]
-```
-
-</details>
 :::
 
-20 个测试样本中，一个错误就改变 5 个百分点的 accuracy。某次高分不证明在新医院、不同平台或批次上同样有效。批次效应和特征选择是高维小样本研究不可忽略的问题。
+<details class="result-details">
+<summary>查看所选参数与验证、测试指标</summary>
+
+
+::: {.panel-tabset group="language"}
+### Python
+
+```{python}
+print({k: result_heart[k] for k in ['parameters', 'cv_macro_f1', 'accuracy', 'macro_f1']})
+```
+
+### R
+
+```{r}
+result_heart_r[c('parameters','cv_macro_f1','accuracy','macro_f1')]
+```
+:::
+
+</details>
+
+读取矩阵时，正类行的漏报位于“预测No”列，负类行的误报位于“预测Yes”列。比较两种错误数量和每类比例，不只阅读标题分数。
+
+这是历史数据的教学分类任务。要建立实际风险预测，还需明确采样人群、时间、外部验证与概率校准；本例的混淆矩阵只支持当前划分的判断。
+
+### 决策分数与 ROC/PR
+
+下面直接使用已训练的Heart模型，不再次隐藏拟合。正分数方向统一为正类；分别画ROC与PR，轴不混用。
+
+```{python}
+#| results: asis
+import plotly.graph_objects as go
+from sklearn.metrics import roc_curve, precision_recall_curve, roc_auc_score, average_precision_score
+score = search_heart.decision_function(test_heart[columns_heart])
+fpr, tpr, _ = roc_curve(test_heart.target, score)
+precision, recall, _ = precision_recall_curve(test_heart.target, score)
+for tag, x, y, xtitle, ytitle, value in [
+    ('ROC', fpr, tpr, 'FPR', 'TPR', roc_auc_score(test_heart.target, score)),
+    ('PR', recall, precision, 'Recall', 'Precision', average_precision_score(test_heart.target, score))]:
+    fig = go.Figure(go.Scatter(x=x, y=y, mode='lines', name=tag,
+                             line=dict(color='#245e91', width=3)))
+    fig.update_layout(title=f'Heart · {tag} ({value:.3f})', height=480,
+                      xaxis_title=xtitle, yaxis_title=ytitle)
+    print(lab.figure_html(fig, 'heart-' + tag.lower()))
+```
+
+曲线反映排序质量；是否需要更高召回、怎样确定阈值或校准，需在训练验证里先确定。不能根据这两条测试曲线继续选择参数，然后重复宣称未见评估。
+
+## Khan：样本少，维度高
+
+**任务**：2308个基因表达特征预测4类，原始规定训练63、测试20。这里保留规定划分，不随机重新分配测试集。
+
+**方案**：数值折内标准化，线性核，$C\in\{0.1,1,10\}$。当 $p\gg n$，线性模型已有很强的拟合能力，先检查简单模型而不默认RBF更好。
+
+::: {.panel-tabset group="language"}
+### Python
+
+```{python}
+#| results: asis
+search_khan, test_khan, columns_khan, result_khan = train_case('khan')
+print(lab.figure_html(lab.confusion_plot(result_khan), 'khan-python'))
+```
+
+### R
+
+```{r}
+#| results: asis
+result_khan_r <- train_case_r('khan')
+cat(figure_html_r(result_khan_r, 'khan-r'))
+```
+:::
+
+<details class="result-details">
+<summary>查看所选参数与验证、测试指标</summary>
+
+
+::: {.panel-tabset group="language"}
+### Python
+
+```{python}
+print({k: result_khan[k] for k in ['parameters', 'cv_macro_f1', 'accuracy', 'macro_f1']})
+```
+
+### R
+
+```{r}
+result_khan_r[c('parameters','cv_macro_f1','accuracy','macro_f1')]
+```
+:::
+
+</details>
+
+20个测试样本中一个错误就让accuracy改变5个百分点。逐类样本数也很少，必须一起读计数。若增加基因筛选，筛选也须放进训练折；先用全体标签筛基因会泄漏。
+
+高维数据可能含批次效应、平台差异与采样偏差。当前测试结果不能直接推断在新平台上的识别效果。
 
 ## 同一协议比较不同模型
 
-图中浅色柱为选参时的训练集五折验证分数，深色柱为独立测试分数；两者使用同一个 0–1 指标尺度。模型按固定顺序显示，验证分数是从网格中选出的分数，不是无偏的泛化估计。
+先固定问题和指标，再比较模型。下面使用Iris相同训练/测试和五折编号，分别选择SVM、逻辑回归、随机森林与小型MLP。完整选择循环如下。
 
-以下 Iris 比较在相同训练/测试划分和五个训练折上，分别选择 SVM、逻辑回归、随机森林和小型 MLP 的有限参数网格。各模型网格规模不完全相同，因此这里只是教学对照，不能称为等算力竞赛或普遍模型排名。
+```{python}
+def compare_visible():
+    from sklearn.linear_model import LogisticRegression
+    from sklearn.ensemble import RandomForestClassifier
+    from sklearn.neural_network import MLPClassifier
+    df=pd.read_csv('data/iris.csv'); tr=df[df.split=='train']; te=df[df.split=='test']
+    features=[c for c in df if c not in ['id','split','target','fold']]
+    models={
+      'RBF SVM':(SVC(),{'model__C':[.1,1,10],'model__gamma':[.01,.1,1]}),
+      '逻辑回归':(LogisticRegression(max_iter=2000),{'model__C':[.1,1,10]}),
+      '随机森林':(RandomForestClassifier(n_estimators=150,random_state=42),{'model__max_depth':[2,4,None]}),
+      '小型 MLP':(MLPClassifier(random_state=42,max_iter=3000,solver='lbfgs'),{'model__hidden_layer_sizes':[(8,),(16,)],'model__alpha':[.01,1]})}
+    rows=[]
+    for name,(model,params) in models.items():
+        pipeline=Pipeline([('scale',StandardScaler()),('model',model)])
+        folds=[(np.flatnonzero(tr.fold.values!=f),np.flatnonzero(tr.fold.values==f)) for f in range(5)]
+        fit=GridSearchCV(pipeline,params,scoring='f1_macro',cv=folds).fit(tr[features],tr.target)
+        rows.append({'model':name,'cv_macro_f1':fit.best_score_,'test_macro_f1':f1_score(te.target,fit.predict(te[features]),average='macro'),'params':str(fit.best_params_)})
+    fig=go.Figure()
+    for field,label,color in [('cv_macro_f1','五折验证（选参分数）','#a9bfd8'),('test_macro_f1','独立测试集','#245e91')]:
+        fig.add_bar(y=[r['model'] for r in rows],x=[r[field] for r in rows],orientation='h',name=label,
+            marker=dict(color=color,line=dict(width=0)),text=[r[field] for r in rows],texttemplate='%{text:.3f}',textposition='outside',cliponaxis=False,
+            customdata=[r['params'] for r in rows],hovertemplate='%{y}<br>'+label+' macro-F1=%{x:.4f}<br>%{customdata}<extra></extra>')
+    fig.update_layout(title=dict(text='Iris · 同一协议下的模型比较',x=.02,xanchor='left',font=dict(size=18)),
+        height=410,meta=dict(tutorial_kind='comparison'),barmode='group',bargap=.32,bargroupgap=.12,
+        paper_bgcolor='white',plot_bgcolor='white',font=dict(family='Segoe UI, Microsoft YaHei, sans-serif',size=13,color='#30323b'),
+        margin=dict(l=100,r=60,t=100,b=65),legend=dict(orientation='h',x=0,y=1.16,font=dict(size=12)),
+        xaxis=dict(title='Macro-F1',range=[0,1.08],tickvals=[0,.2,.4,.6,.8,1],tickformat='.1f',gridcolor='#edf0f4',zeroline=False),
+        yaxis=dict(autorange='reversed',categoryorder='array',categoryarray=[r['model'] for r in rows],showgrid=False,zeroline=False))
+    return fig,rows
+
+```
 
 ```{python}
 #| results: asis
-fig, comparison = lab.compare_models()
+fig, comparison = compare_visible()
 print(lab.figure_html(fig, 'model-comparison'))
 ```
 
 <details class="result-details">
-<summary>查看完整实验记录（参数与指标）</summary>
+<summary>查看全部候选选择结果</summary>
 
 ```{python}
 for row in comparison:
@@ -137,39 +377,62 @@ for row in comparison:
 
 </details>
 
-数据太小，测试波动往往比模型差异更大。若需要稳健结论，应在预先规定的重复划分或外层 CV 上报告分布，并加入时间与内存测量。Transformer 或基础模型的比较还应明确预训练数据、许可证、外部资源和特征工程预算。
+浅色柱是选参时的验证分数，深色柱是独立测试分数。搜索网格大小不同，此处是教学对照，不是等算力排名；一次小测试集的差异可能只是划分波动。
 
-## 重复评估：一次分数不足以决定模型
+## 重复外层评估：比较差异是否稳定
 
-新增模拟数据包含240个样本、10维输入。使用8个固定种子作分层外层留出（训练70%、测试30%）；每次外层训练中再用相同的三折划分选参。比较线性SVM、RBF SVM与逻辑回归，标准化始终在训练折内拟合。
+改用固定模拟数据240个样本、10维特征。8次分层外层留出，每次在其训练部分用相同三折重新选参；三个模型共享该轮划分，标准化在折内拟合。
 
-线性SVM和逻辑回归搜索3种C，RBF搜索3种C×2种γ，所以搜索预算并非完全相等。这是明确协议下的教学比较，不是算法排名。箱线图叠加每次真实分数；配对差值使用同一次划分的RBF分数减线性SVM分数。
+**先预测**：平均分更高的模型是否每次都赢？切换到配对差值，按同一划分比较RBF与线性SVM。
 
 ```{=html}
-<section class="lab" data-experiment="repeated" aria-label="重复外层评估：分布与配对差值">
-<p class="lab-title">重复外层评估：分布与配对差值</p><p class="lab-hint">切换分数分布/配对差值。分数来自每轮重新执行内层调参后的外层测试。</p>
+<section class="lab" data-experiment="repeated" aria-label="重复外层评估">
+<p class="lab-title">一次比较变成八次配对比较</p><p class="lab-hint">查看分数分布与RBF减线性SVM的配对差值；零线区分该轮谁更高。</p>
 <div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats" aria-live="polite"></div>
 </section>
 ```
 
-卡片的均值±标准差描述划分敏感性。外层测试集重叠，各次结果不是独立样本，不能据此直接构造独立样本置信区间或宣称统计显著。也不能查看这些测试结果后继续修改网格并仍把它们当成未见评估。
+RBF搜索6组，其余3组，预算不同。多次测试样本重叠，分数并非独立观测；标准差描述划分敏感性，不能直接当独立样本置信区间。
 
-下载[逐次结果CSV](../data/repeated-evaluation.csv)和[外层ID与内层验证ID](../data/repeated-splits.json)。固定数据及全部划分记录可通过生成脚本重建。建议先解释配对差值的符号与变化，再决定是否需要更多数据、外部评估或更复杂的模型。
+下载[逐次结果](../data/repeated-evaluation.csv)和[划分记录](../data/repeated-splits.json)。先解释配对变化，再判断是否需要更多数据或外部评估。
 
-## 数据与结果可追溯
+## 把核近似落实为完整实验
 
-共享数据位于 `data/`，`manifest.json` 记录文件 SHA-256。自动验证结果见 [实验验证 JSON](../reports/validation.json)。复制案例时保留实验元数据，但将 `id/split/fold` 从模型输入中排除。
+用双月牙数据，在训练集内选择Nyström近似维数、核尺度与线性分类器惩罚，最后评估一次测试。`LinearSVC`默认squared hinge，因此这是近似核特征上的线性分类实验，不宣称与普通hinge的核SVC完全相同。
 
-Heart 文件来自旧笔记；Iris 来自 scikit-learn；Khan 从 `ISLR2` 包导出。具体来源和分享注意事项见 `data/README.md`。任何公开分享都不应把“教学实验成功”描述成真实场景性能承诺。
+```{python}
+from sklearn.kernel_approximation import Nystroem
+from sklearn.svm import LinearSVC
+moons = pd.read_csv('data/moons.csv')
+a = moons[moons.split == 'train']; b = moons[moons.split == 'test']
+folds = [(np.flatnonzero(a.fold.to_numpy() != f),
+          np.flatnonzero(a.fold.to_numpy() == f)) for f in range(5)]
+approx = Pipeline([('scale', StandardScaler()),
+                   ('map', Nystroem(random_state=42)),
+                   ('model', LinearSVC(dual=False, max_iter=10000))])
+search_approx = GridSearchCV(approx,
+    {'map__n_components': [10, 30, 60], 'map__gamma': [.1, 1],
+     'model__C': [.1, 1, 10]}, cv=folds, scoring='f1_macro')
+search_approx.fit(a[['x1','x2']], a.target)
+print(search_approx.best_params_)
+print('独立测试macro-F1:', f1_score(b.target,
+      search_approx.predict(b[['x1','x2']]), average='macro'))
+```
+
+若比较速度，应另记录硬件、重复耗时、内存和相同精度要求；一次分数不能回答成本收益问题。
 
 ## 练习与解答
 
-1. 加入一个“只使用两个花瓣特征”的 Iris 模型，与四特征模型比较，但不要混淆两种边界。
-2. 如果 Khan 的测试集只错两个样本，accuracy 是多少？为什么应同时报告每类指标？
-3. 将 Heart 的类别编码改为数字后直接标准化，可能引入什么错误假设？
+1. 将Heart类别字符串任意编码为1、2、3后直接进入RBF距离，有何隐含假设？
+2. Khan测试集错2个样本，accuracy是多少？缺少什么信息？
+3. 多个模型共用划分为何更容易解释差异？
 
 ::: {.callout-tip collapse="true" title="参考解答"}
-1. 明确重新训练模型，沿用保存的划分，在训练集内调参；二维图只解释二维模型。
-2. 90%。类别样本数不同，总精度可能掩盖某一类完全未识别。
-3. 任意编码引入类别间顺序和距离；RBF 会将这些数值差当作真实几何距离。
+1. 强行定义类别顺序与数值距离，例如1与3的距离大于1与2。通常缺乏领域依据，one-hot避免这种人为几何。
+2. 90%。仍需真实类别分布、错误落在哪类及不确定性；总分可能掩盖小类别。
+3. 排除了模型间划分不同这一混杂来源，可以配对比较。但搜索预算、损失和预处理仍需注明。
 :::
+
+## 下一步
+
+实验已说明模型选择受数据、表示、评估与成本共同影响。最后一章从这些具体限制出发，理解现代核方法、稳健学习和深度表示为何仍与最大间隔思想有关。

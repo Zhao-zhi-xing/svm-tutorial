@@ -1,0 +1,145 @@
+---
+title: "核的函数空间：RKHS、表示定理与近似"
+---
+
+::: {.chapter-intro}
+**本章要回答**：不写出特征坐标时，怎样知道核是否合法，并理解模型正在正则化什么？
+
+**前置知识**：核内积、对偶表示、向量投影与矩阵特征分解。由有限矩阵进入函数空间，再解释 RBF 与核近似。
+:::
+
+## 从 Gram 矩阵检查核的必要性质
+
+对任意有限样本 $x_1,\ldots,x_n$，定义 Gram 矩阵 $G_{ij}=k(x_i,x_j)$。如果它来自内积，就必须对称，且任意系数 $c$ 满足
+
+$$c^TGc=\sum_{i,j}c_ic_j\langle\phi(x_i),\phi(x_j)\rangle
+=\left\|\sum_i c_i\phi(x_i)\right\|^2\ge0.$$ {#eq-psd}
+
+因此合法实值核必须在任意有限点集上产生半正定矩阵。反过来，对称函数若具有这一性质，就可构造一个内积空间，使它成为特征内积。
+
+一个有限数据集通过半正定检查，只能证明该矩阵可用，不能证明函数在所有输入上合法。例如
+
+$$G=\begin{pmatrix}1&2\\2&1\end{pmatrix},\quad c=(1,-1),\quad c^TGc=-2,$$
+
+已足以证明它不是内积 Gram 矩阵。非负的每个矩阵元素并不保证半正定。
+
+## 从向量到核生成的函数
+
+把以点 $x$ 为中心的函数记为 $k_x(\cdot)=k(x,\cdot)$。先考虑有限线性组合
+
+$$g(\cdot)=\sum_i c_i k_{x_i}(\cdot).$$
+
+对另一个函数 $h=\sum_j d_jk_{z_j}$，定义
+
+$$\langle g,h\rangle_{\mathcal H}=\sum_{i,j}c_i d_j k(x_i,z_j).$$
+
+于是 $\|g\|_{\mathcal H}^2=c^TGc\ge0$。半正定可能产生零范数表示，构造时先把零范数等价类识别，再完成空间，使极限也包含在其中。得到的 Hilbert 空间就是核对应的 RKHS。
+
+这里最有用的性质可以直接核对：
+
+$$\langle g,k_x\rangle_{\mathcal H}=\sum_i c_i k(x_i,x)=g(x).$$ {#eq-reproducing}
+
+内积“再现”了函数在 $x$ 的值，因此称**再生核 Hilbert 空间**。由 Cauchy–Schwarz，$|g(x)|\le\|g\|_{\mathcal H}\sqrt{k(x,x)}$，点值评价是连续的。它把函数复杂度与预测值联系起来。
+
+### 与有限维映射有什么联系
+
+若 $g(x)=\langle w,\phi(x)\rangle$，核为 $\langle\phi(x),\phi(z)\rangle$，RKHS 范数对应实现此函数的最小权重范数；多余、始终正交于所有 $\phi(x)$ 的权重不会改变函数。
+
+线性核对应线性函数，二次核对应指定二次特征的线性组合。RKHS 不要求我们给每个坐标命名，却仍为“函数的大小”提供精确含义。
+
+## 表示定理为何使无限维问题有限化
+
+考虑不正则化截距 $b$、正则化函数 $g$ 的目标
+
+$$\min_{g\in\mathcal H,b}\frac12\|g\|_{\mathcal H}^2+C\sum_i\ell_{\rm hinge}(y_i[g(x_i)+b]).$$
+
+令 $V=\operatorname{span}\{k_{x_1},\ldots,k_{x_n}\}$，将函数正交分解为 $g=g_\parallel+g_\perp$。由再生性质，
+
+$$g_\perp(x_i)=\langle g_\perp,k_{x_i}\rangle=0.$$
+
+所以去掉 $g_\perp$ 不改变任何训练点的损失；而
+
+$$\|g\|^2=\|g_\parallel\|^2+\|g_\perp\|^2$$
+
+只会减少或保持正则项。因而最优解可取为
+
+$$g^*(x)=\sum_i c_i k(x_i,x).$$ {#eq-representer}
+
+即使空间无限维，最优函数也在至多 $n$ 维的训练核函数张成空间中。对 SVM，KKT 进一步给出 $c_i=\alpha_i y_i$；表示定理本身不保证大量系数为0，稀疏性来自具体损失和最优条件。
+
+范数由 $c^TGc$ 给出。若 $G$ 奇异，不同系数可能表示同一个函数，这解释了为什么函数可以确定而系数不唯一。
+
+## RBF 为什么可以有无限维表示
+
+先看一维：
+
+$$\begin{aligned}
+k_\gamma(x,z)&=e^{-\gamma(x-z)^2}\\
+&=e^{-\gamma x^2}e^{-\gamma z^2}e^{2\gamma xz}\\
+&=\sum_{r=0}^{\infty}\left[e^{-\gamma x^2}\sqrt{\frac{(2\gamma)^r}{r!}}x^r\right]
+\left[e^{-\gamma z^2}\sqrt{\frac{(2\gamma)^r}{r!}}z^r\right].
+\end{aligned}$$ {#eq-rbf-expansion}
+
+方括号各自只依赖一个输入，可作为第 $r$ 个特征坐标。指数函数的 Taylor 级数产生所有阶幂，因此一般不止有限几个坐标。
+
+这个无限向量有有限范数：代入 $z=x$ 得 $\sum_r\phi_r(x)^2=k(x,x)=1$。所以无限维并不等于范数无穷大。
+
+多维时利用 $e^{2\gamma x^Tz}=\prod_{j=1}^p e^{2\gamma x_jz_j}$。令多重指标 $a=(a_1,\ldots,a_p)$，记 $|a|=\sum_j a_j,a!=\prod_j a_j!,x^a=\prod_j x_j^{a_j}$，得到
+
+$$\phi_a(x)=e^{-\gamma\|x\|^2}\sqrt{\frac{(2\gamma)^{|a|}}{a!}}x^a,\qquad
+k(x,z)=\sum_{a\in\mathbb N^p}\phi_a(x)\phi_a(z).$$
+
+先理解一维展开，再看多重指标只是给多个坐标的幂组合编号。三维演示不能容纳这些全部坐标。
+
+## 特征空间的间隔如何计算
+
+对于 $g(x)=\sum_i\alpha_i y_i k(x_i,x)$，有
+
+$$\|g\|_{\mathcal H}^2=\sum_{i,j}\alpha_i\alpha_jy_iy_jk(x_i,x_j).$$
+
+非零权重时，特征空间中的样本几何间隔为 $y_i[g(x_i)+b]/\|g\|_{\mathcal H}$。核定义了距离和范数的几何。输入图上的曲线只是这个分类规则映回输入空间的结果。
+
+## Nyström：把核表示压缩到少量代表点
+
+选取 $m$ 个代表点 $z_1,\ldots,z_m$，定义 $W_{ab}=k(z_a,z_b)$，以及 $v(x)=(k(z_1,x),\ldots,k(z_m,x))^T$。
+
+设正特征值部分为 $W=U_r\Lambda_rU_r^T$，构造
+
+$$\widetilde\phi(x)=\Lambda_r^{-1/2}U_r^Tv(x).$$
+
+那么近似内积为
+
+$$\widetilde k(x,z)=v(x)^TW^\dagger v(z),\quad
+\widetilde G=AW^\dagger A^T,\quad A_{ia}=k(x_i,z_a).$$
+
+$W^\dagger$ 表示伪逆：只对保留的正特征值求倒数。直观上，我们把全部核函数投影到代表点张成的空间。模型可在至多 $m$ 维的显式特征上训练线性分类器（这里保留 $r$ 维） [@nystrom]。
+
+$m$ 越大，通常能表达更多方向，但增加计算和存储；代表点选择与小特征值处理也影响误差。近似维数必须纳入训练集内验证，不能根据测试曲线选择。
+
+## 随机 Fourier 特征：用随机坐标近似相似度
+
+对于 RBF，抽取 $\omega\sim N(0,2\gamma I)$、$b\sim\operatorname{Uniform}(0,2\pi)$，定义
+
+$$z_j(x)=\sqrt{\frac2m}\cos(\omega_j^Tx+b_j).$$
+
+先对随机相位求期望，有 $\mathbb E_b[2\cos(a+b)\cos(c+b)]=\cos(a-c)$；再对 Gaussian 频率求期望，有 $\mathbb E_\omega\cos(\omega^T(x-z))=e^{-\gamma\|x-z\|^2}$。因此
+
+$$\mathbb E[z(x)^Tz(z)]=k_\gamma(x,z).$$
+
+有限 $m$ 给出随机近似，增加坐标数量可减少近似波动；它与 Nyström 利用代表样本构造坐标不同 [@rff]。这不是把每个样本随机映射一次就自动保留所有分类性质。
+
+## 练习与解答
+
+1. 为什么 RKHS 范数不是预测值 $|g(x)|$ 本身？
+2. 表示定理为什么不能直接证明“只有最近的两个点参与预测”？
+3. Nyström 有 $m$ 个代表点，保留 $r$ 个正特征值，映射维数是多少？
+
+::: {.callout-tip collapse="true" title="参考解答"}
+1. 范数描述整个函数在指定空间中的大小；点值随输入变化。再生性质提供两者的界，不使它们相等。
+2. 定理只限制函数在训练核函数的张成空间。哪些系数为0还取决于损失、约束与KKT；软间隔和复杂数据可能有很多支持向量。
+3. $r\le m$。$U_r^Tv(x)$ 得到 $r$ 维，再由特征值缩放，维数不变。
+:::
+
+## 下一步
+
+合法核、函数范数和有限系数表示已经明确。下一章利用对偶的等式与盒约束，推导 SMO 的成对更新，解释模型如何实际求出。

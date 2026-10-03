@@ -1,264 +1,159 @@
 ---
-title: "对偶、KKT 与 SMO"
+title: "SVM 的对偶问题与解的恢复"
 ---
 
-```{r}
-#| include: false
-source('scripts/setup-chapter.R', encoding='UTF-8')
-```
-
 ::: {.chapter-intro}
-**学习目标**：推导软间隔对偶、解释三类对偶系数，并运行一个可读的 SMO。先理解约束如何产生支持向量，再阅读程序会更容易。
+**本章要回答**：样本约束如何变成系数？为什么最后只有一部分样本参与预测？
 
-**前置知识**：软间隔原始问题、偏导数与约束优化。
+**前置知识**：硬/软间隔原始问题、拉格朗日函数与 KKT。以六点例核对每一步。
 :::
 
-## 从约束优化到拉格朗日函数
+## 为什么换一个变量来求解
 
-这里恢复原笔记中“原始问题 → 对偶问题 → KKT 点 → 恢复参数”的完整推导，并同时讨论硬间隔与软间隔。统一用 $\mu_i$ 表示松弛非负约束的乘子，避免与几何间隔 $\gamma$ 混淆。
+原始模型的变量是 $w,b$ 和松弛；对偶模型的变量是每个样本对应的 $\alpha_i$。转换后，数据只通过样本内积出现，这为下一章的核技巧提供入口；同时 KKT 可以说明哪些样本决定模型。
 
-### 为什么给约束配一个乘子
+这不意味着对偶总比原始求解更快：原始维度与特征数相关，对偶维度与样本数相关。先理解等价的优化问题，再根据规模选择算法。
 
-先看一般问题，记全部原始变量为 $u$：
+## 硬间隔：写出拉格朗日函数 {#hard-kkt}
 
-$$\min_u f_0(u),\qquad g_i(u)\le0,\quad h_j(u)=0.$$
-
-定义
-
-$$L(u,\alpha,\beta)=f_0(u)+\sum_i\alpha_i g_i(u)+\sum_j\beta_jh_j(u),\qquad \alpha_i\ge0,\quad\beta_j\in\mathbb R.$$
-
-不等式乘子限制非负，等式乘子没有符号限制。固定 $u$，考虑 $\theta_P(u)=\sup_{\alpha\ge0,\beta}L(u,\alpha,\beta)$。若某个 $g_i(u)>0$，让其乘子趋于 $+\infty$；若某个 $h_j(u)\ne0$，让 $\beta_j$ 沿对应符号发散。因此
-
-$$\theta_P(u)=\begin{cases}f_0(u),&u\text{ 可行},\\+\infty,&u\text{ 不可行}.\end{cases}$$
-
-于是原始问题可写为 $p^*=\inf_u\sup_{\alpha\ge0,\beta}L$。使用 inf/sup 而非始终使用 min/max，是为了不预先假设最优值能够取到。
-
-### 弱对偶与强对偶是怎样得到的
-
-对偶函数是 $q(\alpha,\beta)=\inf_uL(u,\alpha,\beta)$。任意原始可行 $u$ 与对偶可行乘子满足
-
-$$q(\alpha,\beta)\le L(u,\alpha,\beta)\le f_0(u),$$
-
-所以 $d^*=\sup_{\alpha\ge0,\beta}q(\alpha,\beta)\le p^*$。这就是弱对偶；并不要求凸性。**不能把交换 inf/sup 当成普通的代数变形。**
-
-若 $f_0,g_i$ 凸、等式约束仿射，并满足适当约束资格条件，才可进一步得到强对偶。Slater 条件提供一个常用保证：存在满足等式且所有不等式严格成立的点。软间隔可直接取 $w=0,b=0,\xi_i=2$，使 $1-\xi_i-y_if(x_i)=-1<0$ 与 $-\xi_i=-2<0$。硬间隔则要求数据可分：将一个严格分隔解放大，便能令所有 $y_if(x_i)>1$。此时 $d^*=p^*$ [@boyd]。
-
-## 什么是 KKT 点
-
-KKT 点包括**原始变量和乘子**，而不只是一个梯度为零的 $w$。对可微问题，四组条件为
-
-$$\begin{aligned}
-&\text{原始可行：}&&g_i(u^*)\le0,\quad h_j(u^*)=0,\\
-&\text{对偶可行：}&&\alpha_i^*\ge0,\\
-&\text{驻点：}&&\nabla f_0(u^*)+\sum_i\alpha_i^*\nabla g_i(u^*)+\sum_j\beta_j^*\nabla h_j(u^*)=0,\\
-&\text{互补松弛：}&&\alpha_i^*g_i(u^*)=0.
-\end{aligned}$$ {#eq-general-kkt}
-
-互补松弛说明：约束若严格松弛，乘子必须为零；乘子若为正，约束必须活跃。反方向“约束活跃就必有正乘子”不成立，可能存在退化。
-
-### 为什么凸问题中的 KKT 能证明全局最优
-
-在凸性与仿射等式假设下，固定可行乘子后的 $L$ 对 $u$ 凸。驻点意味着 $u^*$ 是 $L$ 的全局最小点；互补松弛给出 $L(u^*,\alpha^*,\beta^*)=f_0(u^*)$。对任意原始可行 $u$，
-
-$$f_0(u^*)=L(u^*,\alpha^*,\beta^*)\le L(u,\alpha^*,\beta^*)\le f_0(u).$$
-
-这证明 KKT 的**充分性**。要保证最优点存在对应 KKT 乘子，即讨论**必要性**，还需要约束资格条件等假设；本教程的 SVM 使用前述 Slater 保证。非凸问题的 KKT 通常只有必要条件的意义，驻点可能是局部极大或鞍点，不能照搬这个全局最优证明。
-
-## 硬间隔：完整的 KKT 与对偶推导
-
-把 @eq-hard-primal 约束写成 $g_i=1-y_i(w^Tx_i+b)\le0$：
+将 @eq-hard-primal 的约束写成 $1-y_i(w^Tx_i+b)\le0$，引入 $\alpha_i\ge0$：
 
 $$L_H=\frac12\|w\|^2+\sum_i\alpha_i[1-y_i(w^Tx_i+b)].$$
 
-硬间隔的 KKT 条件是
+令 $S=\sum_i\alpha_i y_ix_i$，把项按原始变量整理：
 
 $$\begin{aligned}
-&w-\sum_i\alpha_iy_ix_i=0,\qquad -\sum_i\alpha_i y_i=0,\\
-&y_i(w^Tx_i+b)\ge1,\qquad \alpha_i\ge0,\\
-&\alpha_i[y_i(w^Tx_i+b)-1]=0\quad(\forall i).
-\end{aligned}$$ {#eq-hard-kkt}
-
-记 $S=\sum_i\alpha_i y_ix_i$，先整理再求下确界：
-
-$$\begin{aligned}
-L_H
-&=\frac12\|w\|^2-w^TS-b\sum_i\alpha_i y_i+\sum_i\alpha_i\\
+L_H&=\frac12\|w\|^2-w^TS-b\sum_i\alpha_i y_i+\sum_i\alpha_i\\
 &=\frac12\|w-S\|^2-\frac12\|S\|^2-b\sum_i\alpha_i y_i+\sum_i\alpha_i.
 \end{aligned}$$
 
-若 $\sum_i\alpha_i y_i\ne0$，可以改变 $b$ 使 $L_H\to-\infty$；若该和为零，$w$ 的最小点为 $S$。因此
+这一步配方同时解释了两个结果：$w$ 的最小值在 $w=S$；若 $\sum_i\alpha_i y_i\ne0$，可让 $b$ 朝某一方向发散，使下确界为 $-\infty$。因此有限的对偶值必须满足
 
-$$q_H(\alpha)=\begin{cases}\displaystyle\sum_i\alpha_i-\frac12\sum_{i,j}\alpha_i\alpha_jy_iy_jx_i^Tx_j,&\sum_i\alpha_i y_i=0,\\-\infty,&\text{否则}.\end{cases}$$
+$$w=\sum_i\alpha_i y_i x_i,\qquad\sum_i\alpha_i y_i=0.$$ {#eq-dual-recovery}
 
-最终对偶是最大化上式的有限分支，约束为 $\alpha_i\ge0$ 和 $\sum_i\alpha_i y_i=0$。**硬间隔没有 $\alpha_i\le C$ 这个上界。** 由互补松弛，$\alpha_i>0\Rightarrow y_if(x_i)=1$；边界上的点仍可能有 $\alpha_i=0$，所以原笔记中的“当且仅当”需改为单向蕴含。
+消去 $w,b$ 后，得到
 
-### 如何恢复硬间隔的截距
+$$\max_\alpha D(\alpha)=\sum_i\alpha_i-\frac12\sum_{i,j}\alpha_i\alpha_jy_iy_jx_i^Tx_j,
+\quad\alpha_i\ge0,\quad\sum_i\alpha_i y_i=0.$$ {#eq-hard-dual}
 
-令 $\mathcal S=\{i:\alpha_i>0\}$，对任意 $i\in\mathcal S$，$y_if(x_i)=1$，由于 $y_i^2=1$，
+对偶最大化凹二次函数。令 $Q_{ij}=y_iy_jx_i^Tx_j$，则 $v^TQv=\|\sum_i v_iy_ix_i\|^2\ge0$，所以 Hessian $-Q$ 为半负定。硬间隔中不存在 $C$ 上界。
 
-$$b_i=y_i-w^Tx_i,\qquad b=\frac1{|\mathcal S|}\sum_{i\in\mathcal S}b_i.$$
+### KKT 把系数与位置联系起来
 
-平均可减轻数值容差影响。在非退化、两类均出现的可分情形，等式约束要求两侧都有正系数，因而
+$$\begin{aligned}
+&w=\sum_i\alpha_i y_ix_i,\quad\sum_i\alpha_i y_i=0,\\
+&y_if(x_i)\ge1,\quad\alpha_i\ge0,\\
+&\alpha_i[1-y_if(x_i)]=0.
+\end{aligned}$$ {#eq-hard-kkt}
 
-$$\min_{y_i=+1}w^Tx_i=1-b,\qquad \max_{y_i=-1}w^Tx_i=-1-b,$$
+若 $\alpha_i>0$，最后一行要求 $y_if(x_i)=1$。若样本严格位于间隔之外，$y_if>1$，则必须 $\alpha_i=0$。我们将非零系数样本称为支持向量；边界上也可能有零系数，不把等号位置与正系数无条件等同。
 
-两式相加得到原笔记的另一种形式：
+## 六点例：核对原始值与对偶值
+
+原始解为 $w=(1,0),b=0$。取 $\alpha_2=\alpha_3=1/2$，其余为0：
+
+$$\sum_i\alpha_i y_i=-1/2+1/2=0,$$
+
+$$S=\tfrac12(-1)(-1,0)+\tfrac12(+1)(1,0)=(1,0).$$
+
+两个正系数样本的函数间隔都是1，其余点为2；所有 KKT 条件成立。目标值
+
+$$P=\tfrac12\|w\|^2=\tfrac12,
+\qquad D=\sum_i\alpha_i-\tfrac12\|S\|^2=1-\tfrac12=\tfrac12.$$
+
+弱对偶保证任意可行原始值不小于这个对偶值；两者相等便证明最优。这个计算把“最优直线”与“样本系数”连接起来。
+
+### 恢复截距
+
+对任一 $\alpha_i>0$ 的硬间隔样本，$y_i(w^Tx_i+b)=1$。因为 $y_i^2=1$，得到
+
+$$b_i=y_i-w^Tx_i.$$
+
+样本2给出 $-1-(-1)=0$，样本3给出 $1-1=0$。数值计算可对这些值求平均。规范化的硬间隔最优解还可以写成
 
 $$b=-\frac{\max_{y_i=-1}w^Tx_i+\min_{y_i=+1}w^Tx_i}{2}.$$
 
-这依赖硬间隔最优解及其归一化，不能直接套用到有间隔违约的软间隔。
+它依赖可分、最优且规范化的条件；不能直接用于带违例的软间隔。
 
-## 软间隔：松弛变量怎样产生盒约束
+## 软间隔：C 如何成为系数上界
 
-对 @eq-soft-primal 的两组不等式 $1-\xi_i-y_if(x_i)\le0$、$-\xi_i\le0$ 引入 $\alpha_i\ge0$、$\mu_i\ge0$：
+对 @eq-soft-primal 的约束 $1-\xi_i-y_if(x_i)\le0$ 与 $-\xi_i\le0$，分别引入 $\alpha_i,\mu_i\ge0$：
 
-$$L_S=\frac12\|w\|^2+C\sum_i\xi_i+\sum_i\alpha_i(1-\xi_i-y_if(x_i))-\sum_i\mu_i\xi_i.$$
+$$L_S=\frac12\|w\|^2+C\sum_i\xi_i+\sum_i\alpha_i[1-\xi_i-y_if(x_i)]-\sum_i\mu_i\xi_i.$$
 
-分别求导：
+对三个原始变量求驻点：
 
-$$\nabla_w L_S=w-S=0,\quad \partial_bL_S=-\sum_i\alpha_i y_i=0,\quad\partial_{\xi_i}L_S=C-\alpha_i-\mu_i=0.$$
+$$\nabla_wL_S=w-S=0,\quad\partial_bL_S=-\sum_i\alpha_i y_i=0,
+\quad\partial_{\xi_i}L_S=C-\alpha_i-\mu_i=0.$$
 
-从最后一式得到 $\mu_i=C-\alpha_i\ge0$，所以 **$\alpha_i\le C$**。结合 $\alpha_i\ge0$ 才是 $0\le\alpha_i\le C$；原笔记中间写成 $\alpha_i\ge C$ 的方向错误已纠正。
+最后一式说明 $\mu_i=C-\alpha_i$。结合 $\mu_i\ge0$ 与 $\alpha_i\ge0$，得到 $0\le\alpha_i\le C$。所以 $C$ 限制了每个样本在对偶表示中能承担的系数。
 
-将所有项按变量重组：
+也可通过配方看到消元过程：
 
 $$L_S=\frac12\|w-S\|^2-\frac12\|S\|^2+\sum_i\alpha_i-b\sum_i\alpha_i y_i+\sum_i(C-\alpha_i-\mu_i)\xi_i.$$
 
-构造对偶时，对已用乘子表示约束的原始变量在全空间求下确界；若 $b$ 或某个 $\xi_i$ 的线性系数不为零，下确界就是 $-\infty$。系数为零时得到
+为了使对 $b,\xi$ 在全空间的下确界有限，所有线性系数必须为0。得到与硬间隔相同的目标、但多出盒约束：
 
-$$\max_\alpha D(\alpha)=\sum_i\alpha_i-\frac12\sum_{i,j}\alpha_i\alpha_jy_iy_jx_i^Tx_j,\qquad
-0\le\alpha_i\le C,\quad \sum_i\alpha_i y_i=0.$$ {#eq-soft-dual}
+$$\max_\alpha D(\alpha)=\sum_i\alpha_i-\frac12\sum_{i,j}\alpha_i\alpha_jy_iy_jx_i^Tx_j,
+\quad0\le\alpha_i\le C,\quad\sum_i\alpha_i y_i=0.$$ {#eq-soft-dual}
 
-这里 $-b\sum_i\alpha_i y_i$ 的符号应为负号，随后因等式约束消失；不要因为最后结果相同而跳过中间符号。令 $Q_{ij}=y_iy_jx_i^Tx_j$，则 $v^TQv=\|\sum_i v_i y_ix_i\|^2\ge0$，所以对偶目标的 Hessian 为 $-Q\preceq0$，确实是凹二次规划。
+## 三种系数状态必须从 KKT 推出来
 
-## 软间隔的完整 KKT 条件
+软间隔完整条件为
 
 $$\begin{aligned}
-&\text{驻点：}&&w=\sum_i\alpha_i y_ix_i,\quad\sum_i\alpha_i y_i=0,\quad C-\alpha_i-\mu_i=0,\\
-&\text{原始可行：}&&y_if(x_i)\ge1-\xi_i,\quad\xi_i\ge0,\\
-&\text{对偶可行：}&&\alpha_i\ge0,\quad\mu_i\ge0,\\
-&\text{互补松弛：}&&\alpha_i[1-\xi_i-y_if(x_i)]=0,\quad\mu_i\xi_i=0.
+& w=\sum_i\alpha_i y_ix_i,\quad\sum_i\alpha_i y_i=0,\quad C-\alpha_i-\mu_i=0,\\
+&m_i\ge1-\xi_i,\quad\xi_i\ge0,\quad\alpha_i,\mu_i\ge0,\\
+&\alpha_i(1-\xi_i-m_i)=0,\quad\mu_i\xi_i=0.
 \end{aligned}$$ {#eq-soft-kkt}
 
-### 三类系数逐步推出来
+逐种分析，而不是直接背表格：
 
-**$\alpha_i=0$。** $\mu_i=C>0$，于是 $\mu_i\xi_i=0\Rightarrow\xi_i=0$。再用原始可行性，得到 $y_if(x_i)\ge1$。通常是间隔外点，也可能恰好在边界上。
+- **$\alpha_i=0$**：$\mu_i=C>0$，因此 $\xi_i=0$；原始可行性给出 $m_i\ge1$。
+- **$0<\alpha_i<C$**：$\mu_i>0$ 给出 $\xi_i=0$，$\alpha_i>0$ 又给出 $m_i=1-\xi_i=1$。这些是自由支持向量。
+- **$\alpha_i=C$**：$\mu_i=0$；$\alpha_i>0$ 给出 $m_i=1-\xi_i\le1$。它可以在带内、在边界或被误分类。
 
-**$0<\alpha_i<C$。** $\mu_i>0\Rightarrow\xi_i=0$；$\alpha_i>0$ 又要求第一个约束取等号，所以 $y_if(x_i)=1$，是自由支持向量。
+因此 $m_i>1\Rightarrow\alpha_i=0$，$m_i<1\Rightarrow\alpha_i=C$；但 $m_i=1$ 的系数需由整组约束共同确定。
 
-**$\alpha_i=C$。** $\mu_i=0$ 不能单独推出 $\xi_i$ 的数值；但 $\alpha_i>0$ 的互补松弛给出 **等式** $y_if(x_i)=1-\xi_i\le1$。原笔记直接由 $y_if\ge1-\xi_i$ 推出 $y_if\le1$ 并不成立，必须补上这一步等式。
+### 没有自由支持向量，截距怎么办
 
-反过来，$y_if>1\Rightarrow\alpha_i=0$；$y_if<1\Rightarrow\alpha_i=C$；$y_if=1$ 时系数可以取盒内任何允许值。边界等号是退化和数值容差最容易影响判断的地方。支持向量按非零系数定义，不是简单按“离线最近”定义。
+若存在 $0<\alpha_i<C$，仍用 $b=y_i-h_i$，其中 $h_i=\sum_j\alpha_j y_j x_j^Tx_i$。只对自由支持向量平均；达到上界的样本可能有非零松弛。
 
-### 没有自由支持向量时，怎样求 b
+若没有自由支持向量，通过不等式恢复截距区间：
 
-记 $h_i=\sum_j\alpha_jy_jK(x_j,x_i)$。若 $0<\alpha_i<C$，则 $b=y_i-h_i$，可对这些样本求平均；不能对所有达到上界的支持向量都使用此式。
+|系数与标签|对 $b$ 的限制|
+|---|---|
+|$\alpha_i=0,y_i=+1$|$b\ge1-h_i$|
+|$\alpha_i=0,y_i=-1$|$b\le-1-h_i$|
+|$\alpha_i=C,y_i=+1$|$b\le1-h_i$|
+|$\alpha_i=C,y_i=-1$|$b\ge-1-h_i$|
 
-若没有自由支持向量，用两种间隔不等式分别推导截距上下界：
+取全部下界的最大值为 $b_{\rm low}$，全部上界的最小值为 $b_{\rm high}$；合适的截距位于这个区间，有限时可取中点。区间倒置说明残差或容差还需要检查。
 
-$$\begin{array}{ll}
-\alpha_i=0,\ y_i=+1:&b\ge1-h_i,\\
-\alpha_i=0,\ y_i=-1:&b\le-1-h_i,\\
-\alpha_i=C,\ y_i=+1:&b\le1-h_i,\\
-\alpha_i=C,\ y_i=-1:&b\ge-1-h_i.
-\end{array}$$
+## 用原始—对偶间隙检查求解
 
-汇总所有下界的最大值为 $b_{\rm low}$、所有上界的最小值为 $b_{\rm high}$。KKT 要求 $b\in[b_{\rm low},b_{\rm high}]$；有限区间可取中点。若数值上区间倒置，应检查容差和优化残差，不应任意平均违约点。
-
-### 原始—对偶间隙给出可检查的证书
-
-对原始与对偶可行的变量，记 $m_i=y_if(x_i)$、$S=\sum_i\alpha_i y_ix_i$：
+对原始、对偶均可行的变量，利用 $\sum_i\alpha_i y_i=0$，有 $\sum_i\alpha_i m_i=w^TS$。于是
 
 $$\begin{aligned}
-P-D&=\frac12\|w\|^2+C\sum_i\xi_i-\sum_i\alpha_i+\frac12\|S\|^2\\
+P-D
+&=\frac12\|w\|^2+C\sum_i\xi_i-\sum_i\alpha_i+\frac12\|S\|^2\\
 &=\frac12\|w-S\|^2+\sum_i\alpha_i(m_i-1+\xi_i)+\sum_i(C-\alpha_i)\xi_i\ge0.
 \end{aligned}$$ {#eq-duality-gap}
 
-每项均非负；驻点与互补松弛成立时恰好为零。这个分解把抽象 KKT 与实际检查联系起来：不但要看预测是否相同，还应看可行性、KKT 残差与原始—对偶间隙。
-
-## 两个变量足够进行一次更新
-
-若只改变一个 $\alpha_i$，通常会破坏 $\sum_i\alpha_iy_i=0$；SMO 同时改变两个变量。令旧值为 $\alpha_i,\alpha_j$，更新后的关系为
-
-$$\alpha_i'=\alpha_i+y_iy_j(\alpha_j-\alpha_j').$$
-
-计算盒约束允许的 $[L,H]$，再沿可行方向优化并截断。如果 $y_i\ne y_j$，
-
-$$L=\max(0,\alpha_j-\alpha_i),\quad H=\min(C,C+\alpha_j-\alpha_i).$$
-
-若 $y_i=y_j$，
-
-$$L=\max(0,\alpha_i+\alpha_j-C),\quad H=\min(C,\alpha_i+\alpha_j).$$
-
-记 $E_i=f(x_i)-y_i$ 和 $\eta=K_{ii}+K_{jj}-2K_{ij}>0$，则
-
-$$\alpha_j'=\operatorname{clip}\!\left(\alpha_j+\frac{y_j(E_i-E_j)}\eta,L,H\right).$$
-
-更新 $\alpha_i$ 和截距，然后继续扫描违反 KKT 的点。这里的 $\eta$ 使用正曲率约定，某些教材定义为其负值，公式符号也相应变化。
-
-### 为什么这个更新就是一维二次函数的最优点
-
-设 $t=\alpha_j'$，用等式约束消去 $\alpha_i'$，把对偶目标限制到这条可行直线上，记为 $\psi(t)$。在旧点 $t_0=\alpha_j$，
-
-$$\psi'(t_0)=y_j(E_i-E_j),\qquad
-\psi''(t)=-\eta,\qquad\eta=K_{ii}+K_{jj}-2K_{ij}=\|\phi(x_i)-\phi(x_j)\|^2\ge0.$$
-
-$\eta>0$ 时，令导数为零得到 $t=t_0+y_j(E_i-E_j)/\eta$，再投影到盒约束区间 $[L,H]$。若 $\eta=0$，目标沿该方向为线性或常数，应比较端点；本教程的简化代码跳过这个退化分支，不能据此宣称对任意重复样本都收敛。
-
-截距更新也由边界条件推出来。令 $\Delta\alpha_i=\alpha_i'-\alpha_i$、$\Delta\alpha_j=\alpha_j'-\alpha_j$，若更新后第 $i$ 个样本是自由支持向量，就要求 $f'(x_i)=y_i$，因此
-
-$$b_1=b-E_i-y_i\Delta\alpha_iK_{ii}-y_j\Delta\alpha_jK_{ij}.$$
-
-同理 $b_2=b-E_j-y_i\Delta\alpha_iK_{ij}-y_j\Delta\alpha_jK_{jj}$。代码在 $i$ 自由时用 $b_1$，否则在 $j$ 自由时用 $b_2$，两者都不自由时取平均作为本次阈值更新；最终仍需用残差检查是否达到容差。
-
-
-```{python}
-import numpy as np
-X = np.array([[-2,-1],[-1,-2],[-1,0],[1,0],[1,2],[2,1]], float)
-y = np.array([-1,-1,-1,1,1,1])
-model = lab.LinearSMO(C=2, tol=1e-5).fit(X, y)
-print('alpha =', model.alpha_.round(4))
-print('w =', model.coef_, 'b =', model.intercept_)
-print('等式残差 =', abs(model.alpha_ @ y))
-print('最大 KKT 残差 =', model.kkt_residual_)
-print('是否达到本实现容差 =', model.converged_)
-```
-
-```{python}
-slack = np.maximum(0, 1-y*model.decision_function(X))
-primal = 0.5*np.dot(model.coef_,model.coef_) + model.C*slack.sum()
-dual = model.alpha_.sum() - 0.5*np.dot(model.coef_,model.coef_)
-print('原始目标 P =', primal)
-print('对偶目标 D =', dual)
-print('原始—对偶间隙 P-D =', primal-dual)
-```
-
-
-完整代码位于 `scripts/svm_lab.py` 的 `LinearSMO`。这个教学实现有迭代上限和收敛报告，跳过零曲率的变量对，不处理所有重复点退化问题。成熟 LIBSVM 还有工作集选择、缓存、shrinking、退化分支与更严谨的停止条件；实际建模使用成熟求解器 [@platt; @libsvm]。
-
-## 点击样本，检查 KKT；拖动步骤，回放 SMO
-
-下面使用8个二维教学样本，包含间隔内样本，固定 $C=0.7$。图中数字是样本编号，空心圈表示当前非零系数。点击一个样本（或使用下拉框），将图、所选样本指标和逐样本数据表对应起来。步骤滑块从初始零系数开始，记录求解器每次实际成功的成对更新；默认展示最终收敛结果。
-
-```{=html}
-<section class="lab" data-experiment="smo" aria-label="KKT 与 SMO：从系数更新到分类边界">
-<p class="lab-title">KKT 与 SMO：从系数更新到分类边界</p><p class="lab-hint">深蓝粗实线为f=0，绿/橙虚线为f=±1。点击样本观察α、松弛ξ、yf和KKT残差；拖动步骤回放。</p>
-<div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats" aria-live="polite"></div>
-</section>
-```
-
-每一步都保持 $0\le\alpha_i\le C$ 和 $\sum_i\alpha_i y_i=0$。但中间的截距、间隔和互补松弛通常尚未满足KKT：观察 $P-D$ 与最大残差如何变化，不要把每一次局部更新都当成最优解。对偶目标应随成功更新不下降，间隙不一定逐步单调。初始 $w=0$ 时没有可定义的分隔超平面，因此不绘制边界。
-
-图表中的松弛按当前预测计算为 $\max(0,1-y_if)$，使原始变量可行；这里检查的是当前线性目标与对偶的间隙。表格依据系数在0、盒内、上界的位置选择不同KKT残差公式，数值计算使用容差。本演示不改变前述教学求解器对重复样本退化分支的限制。
+第一项检查驻点关系，后两项检查互补松弛；可行性使它们非负。全部为0便得到最优性证书。预测全对不能替代这些检查，因为很多不同的可行直线也能分对。
 
 ## 练习与解答
 
-1. 为什么软间隔多出 $\alpha_i\le C$？
-2. 为什么不能把所有支持向量的 $y_if(x_i)$ 都设为 1？
-3. 运行 `python -m pytest tests/test_smo.py -q`，检查可分与非可分情形。
+1. 六点硬间隔例中，把两个非零系数都改成1，仍满足等式约束，是否仍最优？
+2. 软间隔中某点 $m_i=0.6$，$C=2$，求最小松弛和最优系数必须满足的状态。
+3. 某正类点 $\alpha_i=0,h_i=0.3$，给截距什么下界？
 
-::: {.callout-tip collapse="true" title="参考解答"}
-1. 对松弛变量求驻点得到 $C-\alpha_i-\mu_i=0$，而 $\mu_i\ge0$。
-2. 达到上界 $\alpha_i=C$ 时，可以有 $\xi_i>0$，对应 $y_if(x_i)<1$。
-3. 测试检查盒约束、等式约束、KKT 残差和与 LIBSVM 的预测一致性；这不构成对所有输入的收敛证明。
+::: {.callout-tip collapse="true" title="推导过程"}
+1. $S=(2,0),D=2-\tfrac12\cdot4=0<0.5$。等式可行不等于最优；它不能与原始最优值相等。
+2. $\xi_i=0.4$。由于 $m_i<1$，KKT 要求 $\alpha_i=C=2$；不是所有支持向量都在参考线上。
+3. $m_i=h_i+b\ge1$，因此 $b\ge0.7$。先看标签与系数状态，再确定不等式方向。
 :::
+
+## 下一步
+
+预测函数现在写为 $f(x)=\sum_i\alpha_i y_i x_i^Tx+b$。数据只通过内积进入对偶和预测。下一章利用这个结构，把直线无法表达的非线性分类转化为特征空间中的超平面。

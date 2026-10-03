@@ -1,0 +1,1 @@
+{"case":"iris","language":"R","test_n":45,"labels":[0,1,2],"accuracy":0.9111111111111,"macro_f1":0.9107142857143,"confusion":[[15,0,0],[0,14,1],[0,3,12]]}

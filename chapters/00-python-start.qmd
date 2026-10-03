@@ -1,43 +1,229 @@
 ---
-title: "第一次独立训练 SVM：纯 Python 入门"
+title: "Python / R 完整入门实验"
 ---
 
-::: {.chapter-intro}
-**学习目标**：独立运行 Iris 实验，理解数据划分、调参与评估之间的顺序。
-
-**前置知识**：基本 Python 语法；可从配套 Notebook 开始。
-:::
-
-本章适合第一次上手。配套Notebook只使用Python、scikit-learn、NumPy、pandas与Plotly，不导入本项目的 `lab` 辅助模块，不读取其他章节状态，不需要R，也不下载外部数据。Iris从scikit-learn内置数据加载。
-
-## 下载并运行
-
-下载[完整入门Notebook](../notebooks/python-svm-start.ipynb)。在VS Code打开它，选择项目 `.venv` 的Python内核，点击“全部运行”。也可以复制到任意目录，在自己安装好依赖的Python环境中运行。
-
-```powershell
-python -m pip install -r requirements.txt
-python -m pip install -r requirements-notebook.txt
+```{r}
+#| include: false
+source('scripts/setup-chapter.R', encoding='UTF-8')
 ```
 
-Notebook目录同时交付[依赖清单](../notebooks/requirements.txt)，单独下载Notebook后可按该清单安装。VS Code需要Python和Jupyter扩展；Quarto扩展用于编辑教程源码。生成HTML教程本身的双语言构建仍采用knitr+reticulate，纯Python Notebook的运行不依赖它。
+::: {.chapter-intro}
+**本章要回答**：怎样把已经理解的模型与评估原则落实成一段可独立复现的程序？
 
-## 实验完整展开的流程
+**前置知识**：前面理论与基本 Python 或 R 语法。完整展示数据、折内标准化、选参、重拟合和测试。
+:::
 
-1. 载入150个Iris样本及4个数值特征，保留原始行ID。
-2. 分层划分105个训练样本、45个测试样本，验证ID互不重叠。
-3. 使用 `Pipeline(StandardScaler, SVC)`，每个训练折独立标准化。
-4. 训练集内五折交叉验证选择C与γ，共9种配置。
-5. 参数确定后才计算测试accuracy、macro-F1、混淆矩阵与错误样本。
-6. 用Plotly显示混淆矩阵、CV参数热图；保留每个参数的均值与标准差。
+## 准备与实验目标
 
-Notebook中的导入、数据、模型、搜索、评估和绘图均完整展开。它在干净Python内核中从头执行并保留结果，方便核对。
+在教程项目根目录运行代码。Python 安装 `requirements-notebook.txt` 中的依赖；R 需要 `e1071`。网页用 Python/R 标签切换两套完整步骤，图形无需保持运行中的语言会话。
 
-## 先读懂三个输出
+用 Iris 的4个测量特征预测3类花。数据已保存相同训练/测试与五折编号，两种语言不重新随机划分。训练105个、测试45个；选择指标为 macro-F1，候选为3种C×3种γ。
 
-最佳CV分数来自训练集内部，测试分数来自未参与选参的45个样本。两者对应不同问题；不要在查看测试表现后继续改参数，再把同一测试集称为最终评估。
+[下载可独立运行的 Python Notebook](../notebooks/python-svm-start.ipynb)。Notebook 内嵌同一份 Iris 数据与划分，下载后不依赖本项目辅助函数。
 
-混淆矩阵的行是真实类别，列是预测类别。训练模型使用全部4个特征；本例没有用二维散点冒充四维决策边界。支持向量数量是模型结构信息，不能替代测试指标。
+## 读取数据，明确输入与标签
 
-## 修改练习
+`id/split/fold` 描述实验记录，不能当成模型特征；`target` 是待预测标签。先检查特征数与样本数，再训练。
 
-先预测增大C可能造成什么变化，再改变一个预先规定的网格，完整重新执行。记录选参结果，说明实验协议的改变。若反复尝试导致测试集参与决策，应另设最终评估数据。继续阅读软间隔、核方法和重复评估章节，将程序与原理对应起来。
+::: {.panel-tabset group="language"}
+### Python
+
+```{python}
+import sys
+sys.path.insert(0, "scripts")
+import svm_lab as lab  # 仅用于排版现成的图与查看教学类源码
+import numpy as np
+import pandas as pd
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import accuracy_score, f1_score, confusion_matrix
+
+df = pd.read_csv("data/iris.csv")
+train = df.loc[df["split"] == "train"].copy()
+test = df.loc[df["split"] == "test"].copy()
+features = [c for c in df.columns if c not in ["id", "split", "fold", "target"]]
+X_train, y_train = train[features], train["target"]
+X_test, y_test = test[features], test["target"]
+print("样本与特征数：", len(train), len(test), len(features))
+```
+
+### R
+
+```{r}
+source("scripts/lab.R", encoding="UTF-8") # 仅调用结果绘图；拟合循环在下方完整展开
+d <- read.csv("data/iris.csv", check.names=FALSE)
+train <- d[d$split == "train", ]; test <- d[d$split == "test", ]
+features <- setdiff(names(d), c("id", "split", "fold", "target"))
+labels <- sort(unique(d$target))
+X_train <- as.matrix(train[features]); X_test <- as.matrix(test[features])
+y_train <- factor(train$target, levels=labels)
+# 标准化参数只从当前拟合数据学习；总体标准差对齐Python。
+learn_scale <- function(X) {
+  mu <- colMeans(X)
+  sd <- sqrt(colMeans(sweep(X, 2, mu, "-")^2))
+  sd[sd == 0] <- 1
+  list(mu=mu, sd=sd)
+}
+apply_scale <- function(X, state) sweep(sweep(X, 2, state$mu, "-"), 2, state$sd, "/")
+f1_macro <- function(truth, pred, labels) mean(vapply(labels, function(k) {
+  tp <- sum(truth == k & pred == k)
+  denominator <- sum(truth == k) + sum(pred == k)
+  if (denominator == 0) 0 else 2 * tp / denominator
+}, numeric(1)))
+cat("训练/测试/特征数：", nrow(train), nrow(test), length(features), "\n")
+```
+:::
+
+## 在训练集内部选择参数
+
+Python Pipeline 把标准化放进每次拟合；GridSearchCV 每折只在该折训练部分学习均值与标准差。R 显式写出两个循环：外层遍历参数，内层遍历验证折；每一折重新学习标准化。
+
+R 的 `scale=FALSE` 防止 e1071 再做一次自动缩放。这里用总体标准差与 Python 一致。两种语言的核参数相同，平分时都选参数排序中的第一项。
+
+::: {.panel-tabset group="language"}
+### Python
+
+```{python}
+folds = [(np.flatnonzero(train["fold"].to_numpy() != f),
+          np.flatnonzero(train["fold"].to_numpy() == f)) for f in range(5)]
+model = Pipeline([("scale", StandardScaler()), ("svm", SVC(kernel="rbf"))])
+grid = {"svm__C": [0.1, 1, 10], "svm__gamma": [0.01, 0.1, 1]}
+search = GridSearchCV(model, grid, cv=folds, scoring="f1_macro", n_jobs=1)
+search.fit(X_train, y_train)
+print("最佳参数：", search.best_params_)
+print("选参时五折 macro-F1：", round(search.best_score_, 4))
+```
+
+### R
+
+```{r}
+grid <- expand.grid(C=c(.1, 1, 10), gamma=c(.01, .1, 1))
+grid <- grid[order(grid$C, grid$gamma), ]
+scores <- numeric(nrow(grid))
+for (g in seq_len(nrow(grid))) {
+  fold_score <- numeric(5)
+  for (f in 0:4) {
+    a <- which(train$fold != f); v <- which(train$fold == f)
+    state <- learn_scale(X_train[a, , drop=FALSE])
+    model <- e1071::svm(x=apply_scale(X_train[a, , drop=FALSE], state),
+      y=y_train[a], kernel="radial", cost=grid$C[g],
+      gamma=grid$gamma[g], scale=FALSE)
+    pred <- predict(model, apply_scale(X_train[v, , drop=FALSE], state))
+    fold_score[f+1] <- f1_macro(train$target[v], as.numeric(as.character(pred)), labels)
+  }
+  scores[g] <- mean(fold_score)
+}
+best <- which.max(scores)
+state <- learn_scale(X_train)
+model <- e1071::svm(x=apply_scale(X_train, state), y=y_train,
+  kernel="radial", cost=grid$C[best], gamma=grid$gamma[best], scale=FALSE)
+print(grid[best, ]); cat("选参时五折 macro-F1：", scores[best], "\n")
+```
+:::
+
+## 重拟合后评估独立测试集
+
+Python 的 GridSearchCV 默认按最佳参数自动在全部训练集重拟合；R 在循环后显式完成同一步。直到这一步才使用测试标签计算指标。
+
+::: {.panel-tabset group="language"}
+### Python
+
+```{python}
+prediction = search.predict(X_test)
+labels = sorted(df["target"].unique().tolist())
+result = {"case": "iris", "language": "Python", "test_n": len(test),
+          "accuracy": float(accuracy_score(y_test, prediction)),
+          "macro_f1": float(f1_score(y_test, prediction, average="macro")),
+          "labels": labels,
+          "confusion": confusion_matrix(y_test, prediction, labels=labels).tolist()}
+print("测试 accuracy：", round(result["accuracy"], 4))
+print("测试 macro-F1：", round(result["macro_f1"], 4))
+print("各类支持向量数：", search.best_estimator_.named_steps["svm"].n_support_)
+```
+
+### R
+
+```{r}
+pred <- as.numeric(as.character(predict(model, apply_scale(X_test, state))))
+result_r <- list(case="iris", language="R", test_n=nrow(test),
+  labels=labels, accuracy=mean(pred == test$target),
+  macro_f1=f1_macro(test$target, pred, labels),
+  confusion=unclass(table(factor(test$target, levels=labels), factor(pred, levels=labels))))
+cat("测试accuracy / macro-F1：", result_r$accuracy, result_r$macro_f1, "\n")
+```
+:::
+
+## 看懂模型的错误
+
+混淆矩阵按真实类别作行、预测类别作列。格内显示计数和该真实类别的比例。模型使用4个特征；这幅矩阵不假装展示四维决策边界。
+
+::: {.panel-tabset group="language"}
+### Python
+
+```{python}
+#| results: asis
+print(lab.figure_html(lab.confusion_plot(result), 'iris-practice-python'))
+```
+
+### R
+
+```{r}
+#| results: asis
+cat(figure_html_r(result_r, 'iris-practice-r'))
+```
+:::
+
+两套代码的训练步骤都在正文中，绘图函数仅把现成计数排成图。小的求解容差差异可能影响平分参数选择或边界样本，实际运行后应核对分数与混淆计数。
+
+## 将程序与理论逐项对应
+
+- `SVC(kernel="rbf")` 对应核软间隔；`C` 是违例惩罚，`gamma` 定义标准化坐标中的相似度。
+- 多分类 `SVC` 内部使用 OvO；`decision_function_shape="ovr"` 只改变输出分数形状，不能把训练改成 OvR。
+- `LinearSVC` 常用 squared hinge，与本教程推导的普通 hinge 不同；对比时需注明损失、截距处理和多分类目标。
+- 需要显式 OvR 训练时，可用 `OneVsRestClassifier` 包装二分类器。不要根据分数数组列数猜测训练策略。
+
+## 检查教学 SMO，而不只比较标签
+
+下面显示前面成对更新逻辑的完整教学实现。读每个分支时对应可行区间、曲率与截距公式；它跳过零曲率对，适用范围已在 SMO 章说明。
+
+```{python}
+#| echo: false
+#| results: asis
+import inspect
+print('```python\n' + inspect.getsource(lab.LinearSMO) + '\n```')
+```
+
+```{python}
+X = np.array([[-2,-1],[-2,1],[-1,0],[1,0],[2,-1],[2,1]], float)
+y = np.array([-1,-1,-1,1,1,1])
+from svm_lab import LinearSMO
+smo = LinearSMO(C=2, tol=1e-5).fit(X, y)
+m = y * smo.decision_function(X)
+slack = np.maximum(0, 1-m)
+P = .5 * (smo.coef_ @ smo.coef_) + smo.C * slack.sum()
+D = smo.alpha_.sum() - .5 * (smo.coef_ @ smo.coef_)
+print('w, b:', smo.coef_, smo.intercept_)
+print('alpha:', smo.alpha_.round(5))
+print('等式残差、KKT残差、间隙:', abs(smo.alpha_ @ y), smo.kkt_residual_, P-D)
+print('达到容差:', smo.converged_)
+```
+
+把输出与六点解析解比较。若标签相同但间隙较大，不能宣称求到最优；先检查约束和停止条件。
+
+## 练习与解答
+
+1. 找到代码中“只从当前训练折学习标准化”的具体位置。
+2. 若把 `fold` 加入特征，模型在学什么？
+3. 重新设计网格前，应记录什么，怎样保持评估可信？
+
+::: {.callout-tip collapse="true" title="参考解答"}
+1. Python在Pipeline的fit内；R在每折的 `learn_scale(X_train[a,])`。验证数据只经过apply/transform。
+2. 学到人为分配的实验编号，输入含义不再是花的测量，部署时也没有相同编号机制。
+3. 预先记录候选、指标、划分和变更理由；在训练验证内比较。如果不断依据测试结果改网格，这份测试集已参与选择，需要另设最终评估。
+:::
+
+## 下一步
+
+一个数值型多分类实验已经完整运行。下一章逐步加入缺失值、类别特征和高维小样本，检查数据特点怎样改变预处理与模型选择。

@@ -1,0 +1,31 @@
+{
+  "pages": 15,
+  "checks": [
+    "00-python-start.html loaded; 2 figure containers",
+    "01-geometry.html loaded; 1 figure containers",
+    "01-hard-margin.html loaded; 2 figure containers",
+    "02-soft-margin.html loaded; 2 figure containers",
+    "03-duality-smo.html loaded; 0 figure containers",
+    "03-optimization.html loaded; 0 figure containers",
+    "03-smo.html loaded; 1 figure containers",
+    "04-kernels.html loaded; 2 figure containers",
+    "04-rkhs.html loaded; 0 figure containers",
+    "05-multiclass.html loaded; 1 figure containers",
+    "06-workflow.html loaded; 4 figure containers",
+    "07-cases.html loaded; 10 figure containers",
+    "08-modern.html loaded; 0 figure containers",
+    "15 pages; author materials excluded; 4 desktop widths centered with no document overflow",
+    "geometry endpoints, scaling invariance, reference-line stage, reset",
+    "hard separability states and projection scales",
+    "all 12 soft states and table; discontinuous 0–1 endpoints",
+    "paired 2D/3D mapping, rotation/reset; all original RBF states",
+    "every actual six-point SMO update and reset",
+    "multiclass strategy switching",
+    "Python/R practice outputs, resize and code copy",
+    "all three dual-language case outputs, folded records and compact comparison",
+    "moved equation and section anchor compatibility",
+    "native search finds rewritten material"
+  ],
+  "page_errors": [],
+  "failed_local_requests": []
+}

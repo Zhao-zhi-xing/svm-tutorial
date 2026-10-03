@@ -12,3 +12,5 @@
 源码与教学文字许可不替代外部数据许可。参考数据说明：[ISLR2 CRAN](https://cran.r-project.org/package=ISLR2)、[Iris](https://scikit-learn.org/1.6/datasets/toy_dataset.html#iris-dataset)。
 
 `manifest.json` 由生成/验证脚本更新，记录所有CSV的SHA-256，便于确认是否使用同一版本。
+
+`teaching-six-points.json` 是六点连续教学例：三个可行性状态、12个未标准化线性C-SVM模型。不用于泛化指标，与既有训练/测试数据分开。
