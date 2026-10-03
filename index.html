@@ -24,26 +24,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -53,7 +34,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./chapters/00-python-start.html" rel="next">
+<link href="./chapters/01-geometry.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -104,35 +85,16 @@ div.csl-indent {
 <script defer="" src="./assets/experiments-ui.js"></script>
 
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
+<script src="./assets/teaching-data.js"></script>
+
+<script defer="" src="./assets/teaching-ui.js"></script>
+
+
+
+<script src="./assets/legacy-links.js"></script>
+
+
 
 <link rel="stylesheet" href="assets/book.css">
 </head>
@@ -154,7 +116,7 @@ window.Quarto = {
 <span class="menu-text">首页</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./chapters/00-python-start.html"> 
+    <a class="nav-link" href="./chapters/01-geometry.html"> 
 <span class="menu-text">教程</span></a>
   </li>  
   <li class="nav-item compact">
@@ -200,68 +162,86 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/00-python-start.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">纯 Python 入门</span></span></a>
+  <a href="./chapters/01-geometry.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">分类与超平面</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/01-geometry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">超平面与间隔</span></span></a>
+  <a href="./chapters/01-hard-margin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">间隔与硬间隔</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/02-soft-margin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔与损失</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔与正则化</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/03-optimization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">约束优化与 KKT</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/03-duality-smo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">SVM 对偶与解</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/04-kernels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">核方法</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">映射与核技巧</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/04-rkhs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">核的函数空间</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/03-smo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">SMO 求解</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/05-multiclass.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">多分类</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">多分类</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/06-workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">可靠建模流程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">评估与模型选择</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/00-python-start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python / R 实践</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/07-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">真实数据案例</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">案例与模型比较</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/08-modern.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">现代研究导读</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./chapters/09-authoring.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">维护本教程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">现代研究导读</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">参考文献</span></span></a>
+ <span class="menu-text">参考文献</span></a>
   </div>
 </li>
     </ul>
@@ -276,10 +256,10 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#支持向量机教程" id="toc-支持向量机教程" class="nav-link active" data-scroll-target="#支持向量机教程">支持向量机教程</a>
   <ul class="collapse">
-  <li><a href="#先观察再推导" id="toc-先观察再推导" class="nav-link" data-scroll-target="#先观察再推导">先观察，再推导</a></li>
-  <li><a href="#怎样读本教程" id="toc-怎样读本教程" class="nav-link" data-scroll-target="#怎样读本教程">怎样读本教程</a></li>
-  <li><a href="#统一符号与实验约定" id="toc-统一符号与实验约定" class="nav-link" data-scroll-target="#统一符号与实验约定">统一符号与实验约定</a></li>
-  <li><a href="#svm-还值得学吗" id="toc-svm-还值得学吗" class="nav-link" data-scroll-target="#svm-还值得学吗">SVM 还值得学吗？</a></li>
+  <li><a href="#你会学到什么" id="toc-你会学到什么" class="nav-link" data-scroll-target="#你会学到什么">你会学到什么</a></li>
+  <li><a href="#先备知识" id="toc-先备知识" class="nav-link" data-scroll-target="#先备知识">先备知识</a></li>
+  <li><a href="#教程结构" id="toc-教程结构" class="nav-link" data-scroll-target="#教程结构">教程结构</a></li>
+  <li><a href="#如何阅读图与公式" id="toc-如何阅读图与公式" class="nav-link" data-scroll-target="#如何阅读图与公式">如何阅读图与公式</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -290,7 +270,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">支持向量机教程：从几何到现代学习</h1>
-<p class="subtitle lead">从几何直觉到可靠实验</p>
+<p class="subtitle lead">从一个分类问题，走到几何、优化与核方法</p>
 </div>
 
 
@@ -321,60 +301,38 @@ window.Quarto = {
 
 <section id="支持向量机教程" class="level1 unnumbered">
 <h1 class="unnumbered">支持向量机教程</h1>
+<div class="tutorial-hero">
+<p>用同一组样本理解分类边界为什么要留出间隔，再从模型的限制出发学习软间隔、对偶、核方法与多分类。每一章回答上一章留下的问题，推导与交互图共同帮助你检验理解。</p>
+<p><a href="./chapters/01-geometry.html" class="tutorial-start">开始学习：分类问题与超平面</a></p>
+</div>
 <p class="tutorial-meta">
-赵知行 · 更新于 2026 年 10 月 3 日
+赵知行 · 更新于2026年10月3日
 </p>
-<div class="book-intro">
-<p>支持向量机把一个直观问题变成了可求解的优化问题：<strong>在允许犯错的前提下，怎样让分类边界离训练样本尽可能远？</strong> 本教程从几何直觉出发，走到对偶、核方法、多分类和可靠实验，最后讨论这些思想在现代机器学习中的位置。</p>
-</div>
-<div class="home-actions">
-<p><a href="./chapters/00-python-start.html" class="start-learning">开始学习 →</a></p>
-</div>
-<p>本教程由赵知行 2024 年的 SVM 学习笔记重构。旧版以 R 和 ISL 为主线；新版补写 Python 实验，统一符号和推导，强化多分类与实验方法，并加入可操作的交互图。基础参考为 ISL、CS229 和 <em>Support Vector Machines Succinctly</em> <span class="citation" data-cites="islp cs229 succinctly">(<a href="references.html#ref-islp" role="doc-biblioref">James 等 2023年</a>; <a href="references.html#ref-cs229" role="doc-biblioref">Ng, 不详</a>; <a href="references.html#ref-succinctly" role="doc-biblioref">Kowalczyk 2017年</a>)</span>。</p>
-<section id="先观察再推导" class="level2">
-<h2 class="anchored" data-anchor-id="先观察再推导">先观察，再推导</h2>
-<p>试着调整下面的法向量角度和截距。选择一个样本，观察它与超平面的距离。你现在操作的是一条<strong>手动设置的直线</strong>；学完后，我们会用优化算法找到符合约束的最大间隔解。</p>
-<section class="lab" data-svm-lab="geometry" aria-label="超平面探索">
-<p class="lab-title">超平面探索</p>
-<p class="lab-hint">调整滑块；虚线表示 f(x)=±1。图右上角可缩放、复位和导出图片。</p>
-<div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats" aria-live="polite"></div>
+<section id="你会学到什么" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="你会学到什么">你会学到什么</h2>
+<p>分类正确的直线往往不止一条，SVM 如何作出选择？数据重叠后为什么仍能训练？一条输入空间中的曲线为什么能对应另一个空间的超平面？求解器如何得到模型，预测与评估又怎样衔接？</p>
+<p>学完后，你应能够解释这些问题，独立推导线性 SVM 的原始问题与对偶问题，检查 KKT 条件，完成一次 SMO 更新，并使用 Python 或 R 建立可复现的实验。</p>
 </section>
+<section id="先备知识" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="先备知识">先备知识</h2>
+<p>默认你理解向量内积、范数、矩阵运算、偏导数与基本概率。涉及 SVM 的优化条件、核函数和评价指标时，会从例子开始解释。推导中的每个新符号都在出现处定义。</p>
 </section>
-<section id="怎样读本教程" class="level2">
-<h2 class="anchored" data-anchor-id="怎样读本教程">怎样读本教程</h2>
-<div class="learning-paths">
+<section id="教程结构" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="教程结构">教程结构</h2>
 <ul>
-<li><strong>首次学习</strong>：先运行<a href="./chapters/00-python-start.html">纯Python入门Notebook</a>，再按目录顺序读到多分类，每章先操作图，再看公式，最后做练习。</li>
-<li><strong>编程实践</strong>：重点读建模流程和案例。语言标签页可以切换代码与结果；数据划分在两种语言之间共享。</li>
-<li><strong>深入研究</strong>：读现代学习章节，先理解经典核近似与最大间隔，再查看近期文献的假设和局限。</li>
+<li><strong>从问题到模型</strong>：分类问题与超平面 → 间隔与硬间隔 → 软间隔与正则化。</li>
+<li><strong>理解模型如何求解</strong>：约束优化与 KKT → SVM 对偶与参数恢复 → 特征映射与核 → 核的函数空间 → SMO。</li>
+<li><strong>建立完整分类任务</strong>：多分类 → 可靠评估与模型选择。</li>
+<li><strong>动手与继续研究</strong>：Python/R 完整实验 → Iris、Heart、Khan 案例 → 现代研究导读。</li>
 </ul>
-</div>
-<p>想学习 Quarto：阅读<a href="./chapters/09-authoring.html">维护本教程</a>，并下载 <a href="使用VSCode制作与维护QuartoBook.md">完整 Markdown 制作指南</a>。</p>
-<p>需要的先修知识是向量内积、范数、基本微积分，以及训练集/测试集的概念。拉格朗日对偶和 KKT 会在本教程中重新解释。</p>
+<p>首次学习建议顺序阅读。先在图上预测结果，再操作控件，最后对照推导；练习的参考答案可以展开查看。编程实践安排在理论之后，你也可以完成一个理论主题后，回到实践篇检查相应代码。</p>
 </section>
-<section id="统一符号与实验约定" class="level2">
-<h2 class="anchored" data-anchor-id="统一符号与实验约定">统一符号与实验约定</h2>
-<p>样本为 <span class="math inline">\(x_i\in\mathbb R^p\)</span>，二分类标签为 <span class="math inline">\(y_i\in\{-1,+1\}\)</span>，训练样本数为 <span class="math inline">\(n\)</span>。线性分数函数为 <span class="math inline">\(f(x)=w^Tx+b\)</span>，预测按分数符号决定；多分类案例另用整数类别编号。</p>
-<p>公式中的 <span class="math inline">\(C\)</span> 表示<strong>误差惩罚系数</strong>，数值越大意味着相对于范数惩罚更重视训练损失。它与一些 ISL 图示中“松弛预算”的 <span class="math inline">\(C\)</span> 含义不同，不能直接比较大小。</p>
-<p>默认实验固定随机种子为 42，将数据行、训练/测试划分和训练集的五折编号保存为 CSV。预计算交互图展示有限的参数组合，不在浏览器中实时训练模型。测试集的指标用于解释泛化表现；调参只依据训练集交叉验证。</p>
-</section>
-<section id="svm-还值得学吗" class="level2">
-<h2 class="anchored" data-anchor-id="svm-还值得学吗">SVM 还值得学吗？</h2>
-<p>值得。它提供了一条可以从几何一直追到优化、统计学习和算法实现的完整路径。SVM 是否适合某个实际任务，则取决于数据规模、特征表示、预算和评价协议。现代深度模型扩大了可学习表示的能力；小数据也出现 TabPFN 等基础模型。我们会通过实验和文献讨论这些变化，不预设某种方法总能胜出。</p>
-<p>本教程研究资料检索截至 <strong>2026 年 10 月 2 日</strong>。研究章节是有代表性的导读，不是覆盖所有 SVM 变体的系统综述。原笔记的迁移、纠错和图片处理见 <a href="MIGRATION.md">迁移说明</a>。</p>
+<section id="如何阅读图与公式" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="如何阅读图与公式">如何阅读图与公式</h2>
+<p>二维二分类图使用蓝色表示负类、橙色表示正类；深色实线表示决策边界，虚线表示规范化后的参考间隔线。手动调整的直线与训练得到的最优模型会分别注明。需要训练的交互使用预先计算的模型，切换选项即可比较结果。</p>
+<p>主要参考 ISL、CS229、Support Vector Machines Succinctly，以及《神经网络与深度学习》的多分类讲解。正文提供引用，完整条目见<a href="./references.html">参考文献</a>。</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-islp" class="csl-entry" role="listitem">
-James, Gareth, Daniela Witten, Trevor Hastie, Robert Tibshirani, 和 Jonathan Taylor. 2023年. <em>An Introduction to Statistical Learning with Applications in Python</em>. Springer. <a href="https://doi.org/10.1007/978-3-031-38747-0">https://doi.org/10.1007/978-3-031-38747-0</a>.
-</div>
-<div id="ref-succinctly" class="csl-entry" role="listitem">
-Kowalczyk, Alexandre. 2017年. <em>Support Vector Machines Succinctly</em>. Syncfusion. <a href="https://www.syncfusion.com/succinctly-free-ebooks/support-vector-machines-succinctly">https://www.syncfusion.com/succinctly-free-ebooks/support-vector-machines-succinctly</a>.
-</div>
-<div id="ref-cs229" class="csl-entry" role="listitem">
-Ng, Andrew. 不详. <em>CS229 Lecture Notes: Support Vector Machines</em>. Stanford University. <a href="https://cs229.stanford.edu/notes/cs229-notes3.pdf">https://cs229.stanford.edu/notes/cs229-notes3.pdf</a>.
-</div>
-</div>
 </section>
 </section>
 
@@ -820,8 +778,8 @@ document.addEventListener('DOMContentLoaded',function(){
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapters/00-python-start.html" class="pagination-link" aria-label="纯 Python 入门">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">纯 Python 入门</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./chapters/01-geometry.html" class="pagination-link" aria-label="分类与超平面">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">分类与超平面</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

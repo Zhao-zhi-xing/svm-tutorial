@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; 第一次独立训练 SVM：纯 Python 入门 – 支持向量机教程：从几何到现代学习</title>
+<title>11&nbsp; Python / R 完整入门实验 – 支持向量机教程：从几何到现代学习</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -68,8 +68,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/01-geometry.html" rel="next">
-<link href="../index.html" rel="prev">
+<link href="../chapters/07-cases.html" rel="next">
+<link href="../chapters/06-workflow.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -121,6 +121,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+<script src="../assets/teaching-data.js"></script>
+
+<script defer="" src="../assets/teaching-ui.js"></script>
+
+
+
+<script src="../assets/legacy-links.js"></script>
+
+
+
 <link rel="stylesheet" href="../assets/book.css">
 </head>
 
@@ -141,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">首页</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../chapters/00-python-start.html"> 
+    <a class="nav-link" href="../chapters/01-geometry.html"> 
 <span class="menu-text">教程</span></a>
   </li>  
   <li class="nav-item compact">
@@ -160,7 +170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/00-python-start.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">纯 Python 入门</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/00-python-start.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python / R 实践</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -187,68 +197,86 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/00-python-start.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">纯 Python 入门</span></span></a>
+  <a href="../chapters/01-geometry.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">分类与超平面</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/01-geometry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">超平面与间隔</span></span></a>
+  <a href="../chapters/01-hard-margin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">间隔与硬间隔</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/02-soft-margin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔与损失</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔与正则化</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-optimization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">约束优化与 KKT</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/03-duality-smo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">SVM 对偶与解</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/04-kernels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">核方法</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">映射与核技巧</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-rkhs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">核的函数空间</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-smo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">SMO 求解</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/05-multiclass.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">多分类</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">多分类</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/06-workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">可靠建模流程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">评估与模型选择</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/00-python-start.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python / R 实践</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/07-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">真实数据案例</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">案例与模型比较</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/08-modern.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">现代研究导读</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/09-authoring.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">维护本教程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">现代研究导读</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">参考文献</span></span></a>
+ <span class="menu-text">参考文献</span></a>
   </div>
 </li>
     </ul>
@@ -261,10 +289,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">本章目录</h2>
    
   <ul class="collapse">
-  <li><a href="#下载并运行" id="toc-下载并运行" class="nav-link active" data-scroll-target="#下载并运行"><span class="header-section-number">1.1</span> 下载并运行</a></li>
-  <li><a href="#实验完整展开的流程" id="toc-实验完整展开的流程" class="nav-link" data-scroll-target="#实验完整展开的流程"><span class="header-section-number">1.2</span> 实验完整展开的流程</a></li>
-  <li><a href="#先读懂三个输出" id="toc-先读懂三个输出" class="nav-link" data-scroll-target="#先读懂三个输出"><span class="header-section-number">1.3</span> 先读懂三个输出</a></li>
-  <li><a href="#修改练习" id="toc-修改练习" class="nav-link" data-scroll-target="#修改练习"><span class="header-section-number">1.4</span> 修改练习</a></li>
+  <li><a href="#准备与实验目标" id="toc-准备与实验目标" class="nav-link active" data-scroll-target="#准备与实验目标"><span class="header-section-number">11.1</span> 准备与实验目标</a></li>
+  <li><a href="#读取数据明确输入与标签" id="toc-读取数据明确输入与标签" class="nav-link" data-scroll-target="#读取数据明确输入与标签"><span class="header-section-number">11.2</span> 读取数据，明确输入与标签</a></li>
+  <li><a href="#在训练集内部选择参数" id="toc-在训练集内部选择参数" class="nav-link" data-scroll-target="#在训练集内部选择参数"><span class="header-section-number">11.3</span> 在训练集内部选择参数</a></li>
+  <li><a href="#重拟合后评估独立测试集" id="toc-重拟合后评估独立测试集" class="nav-link" data-scroll-target="#重拟合后评估独立测试集"><span class="header-section-number">11.4</span> 重拟合后评估独立测试集</a></li>
+  <li><a href="#看懂模型的错误" id="toc-看懂模型的错误" class="nav-link" data-scroll-target="#看懂模型的错误"><span class="header-section-number">11.5</span> 看懂模型的错误</a></li>
+  <li><a href="#将程序与理论逐项对应" id="toc-将程序与理论逐项对应" class="nav-link" data-scroll-target="#将程序与理论逐项对应"><span class="header-section-number">11.6</span> 将程序与理论逐项对应</a></li>
+  <li><a href="#检查教学-smo而不只比较标签" id="toc-检查教学-smo而不只比较标签" class="nav-link" data-scroll-target="#检查教学-smo而不只比较标签"><span class="header-section-number">11.7</span> 检查教学 SMO，而不只比较标签</a></li>
+  <li><a href="#练习与解答" id="toc-练习与解答" class="nav-link" data-scroll-target="#练习与解答"><span class="header-section-number">11.8</span> 练习与解答</a></li>
+  <li><a href="#下一步" id="toc-下一步" class="nav-link" data-scroll-target="#下一步"><span class="header-section-number">11.9</span> 下一步</a></li>
   </ul>
 </nav>
     </div>
@@ -273,7 +306,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">第一次独立训练 SVM：纯 Python 入门</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python / R 完整入门实验</span></h1>
 </div>
 
 
@@ -291,37 +324,805 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="chapter-intro">
-<p><strong>学习目标</strong>：独立运行 Iris 实验，理解数据划分、调参与评估之间的顺序。</p>
-<p><strong>前置知识</strong>：基本 Python 语法；可从配套 Notebook 开始。</p>
+<p><strong>本章要回答</strong>：怎样把已经理解的模型与评估原则落实成一段可独立复现的程序？</p>
+<p><strong>前置知识</strong>：前面理论与基本 Python 或 R 语法。完整展示数据、折内标准化、选参、重拟合和测试。</p>
 </div>
-<p>本章适合第一次上手。配套Notebook只使用Python、scikit-learn、NumPy、pandas与Plotly，不导入本项目的 <code>lab</code> 辅助模块，不读取其他章节状态，不需要R，也不下载外部数据。Iris从scikit-learn内置数据加载。</p>
-<section id="下载并运行" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="下载并运行"><span class="header-section-number">1.1</span> 下载并运行</h2>
-<p>下载<a href="../notebooks/python-svm-start.ipynb">完整入门Notebook</a>。在VS Code打开它，选择项目 <code>.venv</code> 的Python内核，点击“全部运行”。也可以复制到任意目录，在自己安装好依赖的Python环境中运行。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode powershell code-with-copy"><code class="sourceCode powershell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>python <span class="op">-</span>m pip install <span class="op">-</span>r requirements<span class="op">.</span><span class="fu">txt</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>python <span class="op">-</span>m pip install <span class="op">-</span>r requirements-notebook<span class="op">.</span><span class="fu">txt</span></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Notebook目录同时交付<a href="../notebooks/requirements.txt">依赖清单</a>，单独下载Notebook后可按该清单安装。VS Code需要Python和Jupyter扩展；Quarto扩展用于编辑教程源码。生成HTML教程本身的双语言构建仍采用knitr+reticulate，纯Python Notebook的运行不依赖它。</p>
+<section id="准备与实验目标" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="准备与实验目标"><span class="header-section-number">11.1</span> 准备与实验目标</h2>
+<p>在教程项目根目录运行代码。Python 安装 <code>requirements-notebook.txt</code> 中的依赖；R 需要 <code>e1071</code>。网页用 Python/R 标签切换两套完整步骤，图形无需保持运行中的语言会话。</p>
+<p>用 Iris 的4个测量特征预测3类花。数据已保存相同训练/测试与五折编号，两种语言不重新随机划分。训练105个、测试45个；选择指标为 macro-F1，候选为3种C×3种γ。</p>
+<p><a href="../notebooks/python-svm-start.ipynb">下载可独立运行的 Python Notebook</a>。Notebook 内嵌同一份 Iris 数据与划分，下载后不依赖本项目辅助函数。</p>
 </section>
-<section id="实验完整展开的流程" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="实验完整展开的流程"><span class="header-section-number">1.2</span> 实验完整展开的流程</h2>
+<section id="读取数据明确输入与标签" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="读取数据明确输入与标签"><span class="header-section-number">11.2</span> 读取数据，明确输入与标签</h2>
+<p><code>id/split/fold</code> 描述实验记录，不能当成模型特征；<code>target</code> 是待预测标签。先检查特征数与样本数，再训练。</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">R</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="st">"scripts"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> svm_lab <span class="im">as</span> lab  <span class="co"># 仅用于排版现成的图与查看教学类源码</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score, f1_score, confusion_matrix</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"data/iris.csv"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>train <span class="op">=</span> df.loc[df[<span class="st">"split"</span>] <span class="op">==</span> <span class="st">"train"</span>].copy()</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>test <span class="op">=</span> df.loc[df[<span class="st">"split"</span>] <span class="op">==</span> <span class="st">"test"</span>].copy()</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>features <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> df.columns <span class="cf">if</span> c <span class="kw">not</span> <span class="kw">in</span> [<span class="st">"id"</span>, <span class="st">"split"</span>, <span class="st">"fold"</span>, <span class="st">"target"</span>]]</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>X_train, y_train <span class="op">=</span> train[features], train[<span class="st">"target"</span>]</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>X_test, y_test <span class="op">=</span> test[features], test[<span class="st">"target"</span>]</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"样本与特征数："</span>, <span class="bu">len</span>(train), <span class="bu">len</span>(test), <span class="bu">len</span>(features))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>样本与特征数： 105 45 4</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/lab.R"</span>, <span class="at">encoding=</span><span class="st">"UTF-8"</span>) <span class="co"># 仅调用结果绘图；拟合循环在下方完整展开</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/iris.csv"</span>, <span class="at">check.names=</span><span class="cn">FALSE</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> d[d<span class="sc">$</span>split <span class="sc">==</span> <span class="st">"train"</span>, ]; test <span class="ot">&lt;-</span> d[d<span class="sc">$</span>split <span class="sc">==</span> <span class="st">"test"</span>, ]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>features <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="fu">names</span>(d), <span class="fu">c</span>(<span class="st">"id"</span>, <span class="st">"split"</span>, <span class="st">"fold"</span>, <span class="st">"target"</span>))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>labels <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(d<span class="sc">$</span>target))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>X_train <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(train[features]); X_test <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(test[features])</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>y_train <span class="ot">&lt;-</span> <span class="fu">factor</span>(train<span class="sc">$</span>target, <span class="at">levels=</span>labels)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 标准化参数只从当前拟合数据学习；总体标准差对齐Python。</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>learn_scale <span class="ot">&lt;-</span> <span class="cf">function</span>(X) {</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  mu <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(X)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  sd <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">colMeans</span>(<span class="fu">sweep</span>(X, <span class="dv">2</span>, mu, <span class="st">"-"</span>)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  sd[sd <span class="sc">==</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">mu=</span>mu, <span class="at">sd=</span>sd)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>apply_scale <span class="ot">&lt;-</span> <span class="cf">function</span>(X, state) <span class="fu">sweep</span>(<span class="fu">sweep</span>(X, <span class="dv">2</span>, state<span class="sc">$</span>mu, <span class="st">"-"</span>), <span class="dv">2</span>, state<span class="sc">$</span>sd, <span class="st">"/"</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>f1_macro <span class="ot">&lt;-</span> <span class="cf">function</span>(truth, pred, labels) <span class="fu">mean</span>(<span class="fu">vapply</span>(labels, <span class="cf">function</span>(k) {</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  tp <span class="ot">&lt;-</span> <span class="fu">sum</span>(truth <span class="sc">==</span> k <span class="sc">&amp;</span> pred <span class="sc">==</span> k)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  denominator <span class="ot">&lt;-</span> <span class="fu">sum</span>(truth <span class="sc">==</span> k) <span class="sc">+</span> <span class="fu">sum</span>(pred <span class="sc">==</span> k)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (denominator <span class="sc">==</span> <span class="dv">0</span>) <span class="dv">0</span> <span class="cf">else</span> <span class="dv">2</span> <span class="sc">*</span> tp <span class="sc">/</span> denominator</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>}, <span class="fu">numeric</span>(<span class="dv">1</span>)))</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"训练/测试/特征数："</span>, <span class="fu">nrow</span>(train), <span class="fu">nrow</span>(test), <span class="fu">length</span>(features), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>训练/测试/特征数： 105 45 4 </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="在训练集内部选择参数" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="在训练集内部选择参数"><span class="header-section-number">11.3</span> 在训练集内部选择参数</h2>
+<p>Python Pipeline 把标准化放进每次拟合；GridSearchCV 每折只在该折训练部分学习均值与标准差。R 显式写出两个循环：外层遍历参数，内层遍历验证折；每一折重新学习标准化。</p>
+<p>R 的 <code>scale=FALSE</code> 防止 e1071 再做一次自动缩放。这里用总体标准差与 Python 一致。两种语言的核参数相同，平分时都选参数排序中的第一项。</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">R</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>folds <span class="op">=</span> [(np.flatnonzero(train[<span class="st">"fold"</span>].to_numpy() <span class="op">!=</span> f),</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>          np.flatnonzero(train[<span class="st">"fold"</span>].to_numpy() <span class="op">==</span> f)) <span class="cf">for</span> f <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Pipeline([(<span class="st">"scale"</span>, StandardScaler()), (<span class="st">"svm"</span>, SVC(kernel<span class="op">=</span><span class="st">"rbf"</span>))])</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>grid <span class="op">=</span> {<span class="st">"svm__C"</span>: [<span class="fl">0.1</span>, <span class="dv">1</span>, <span class="dv">10</span>], <span class="st">"svm__gamma"</span>: [<span class="fl">0.01</span>, <span class="fl">0.1</span>, <span class="dv">1</span>]}</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>search <span class="op">=</span> GridSearchCV(model, grid, cv<span class="op">=</span>folds, scoring<span class="op">=</span><span class="st">"f1_macro"</span>, n_jobs<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>search.fit(X_train, y_train)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+#sk-container-id-1 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=[(array([  0,   1,   5,   6,   7,   8,   9,  10,  11,  12,  14,  15,  16,
+        17,  18,  19,  21,  22,  23,  25,  26,  27,  28,  29,  30,  31,
+        33,  34,  36,  37,  38,  39,  40,  42,  43,  44,  45,  46,  48,
+        49,  50,  52,  53,  54,  55,  56,  59,  60,  61,  62,  64,  65,
+        66,  67,  68,  69,  70,  71,  73,  74,  75,  76,  77,  78,  79,
+        80,  81,  82,  84,  85,  86,  87,  88,  90,  91,  92,  93,  95,
+        96,  97,  98, 102, 103, 104]),
+                  array([  2,   3,   4,  13,  20,  24,  32,  35,  41,  47,  51,  57,  58,
+        63,  72,  83,  89,  94,  99, 100, 101])),
+                 (ar...
+        51,  52,  53,  54,  55,  56,  57,  58,  59,  61,  62,  63,  64,
+        66,  67,  68,  69,  70,  71,  72,  73,  75,  77,  78,  79,  80,
+        82,  83,  85,  86,  89,  90,  91,  92,  93,  94,  95,  97,  98,
+        99, 100, 101, 102, 103, 104]),
+                  array([11, 16, 19, 21, 23, 25, 31, 38, 40, 43, 46, 50, 60, 65, 74, 76, 81,
+       84, 87, 88, 96]))],
+             estimator=Pipeline(steps=[('scale', StandardScaler()),
+                                       ('svm', SVC())]),
+             n_jobs=1,
+             param_grid={'svm__C': [0.1, 1, 10], 'svm__gamma': [0.01, 0.1, 1]},
+             scoring='f1_macro')</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox"><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>GridSearchCV</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.model_selection.GridSearchCV.html">?<span>Documentation for GridSearchCV</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>GridSearchCV(cv=[(array([  0,   1,   5,   6,   7,   8,   9,  10,  11,  12,  14,  15,  16,
+        17,  18,  19,  21,  22,  23,  25,  26,  27,  28,  29,  30,  31,
+        33,  34,  36,  37,  38,  39,  40,  42,  43,  44,  45,  46,  48,
+        49,  50,  52,  53,  54,  55,  56,  59,  60,  61,  62,  64,  65,
+        66,  67,  68,  69,  70,  71,  73,  74,  75,  76,  77,  78,  79,
+        80,  81,  82,  84,  85,  86,  87,  88,  90,  91,  92,  93,  95,
+        96,  97,  98, 102, 103, 104]),
+                  array([  2,   3,   4,  13,  20,  24,  32,  35,  41,  47,  51,  57,  58,
+        63,  72,  83,  89,  94,  99, 100, 101])),
+                 (ar...
+        51,  52,  53,  54,  55,  56,  57,  58,  59,  61,  62,  63,  64,
+        66,  67,  68,  69,  70,  71,  72,  73,  75,  77,  78,  79,  80,
+        82,  83,  85,  86,  89,  90,  91,  92,  93,  94,  95,  97,  98,
+        99, 100, 101, 102, 103, 104]),
+                  array([11, 16, 19, 21, 23, 25, 31, 38, 40, 43, 46, 50, 60, 65, 74, 76, 81,
+       84, 87, 88, 96]))],
+             estimator=Pipeline(steps=[('scale', StandardScaler()),
+                                       ('svm', SVC())]),
+             n_jobs=1,
+             param_grid={'svm__C': [0.1, 1, 10], 'svm__gamma': [0.01, 0.1, 1]},
+             scoring='f1_macro')</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox"><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>best_estimator_: Pipeline</div></div></label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[('scale', StandardScaler()), ('svm', SVC(C=10, gamma=0.01))])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox"><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>StandardScaler</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></div></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox"><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>SVC</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.svm.SVC.html">?<span>Documentation for SVC</span></a></div></label><div class="sk-toggleable__content fitted"><pre>SVC(C=10, gamma=0.01)</pre></div> </div></div></div></div></div></div></div></div></div></div></div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"最佳参数："</span>, search.best_params_)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>最佳参数： {'svm__C': 10, 'svm__gamma': 0.01}</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"选参时五折 macro-F1："</span>, <span class="bu">round</span>(search.best_score_, <span class="dv">4</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>选参时五折 macro-F1： 0.9809</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">C=</span><span class="fu">c</span>(.<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">10</span>), <span class="at">gamma=</span><span class="fu">c</span>(.<span class="dv">01</span>, .<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> grid[<span class="fu">order</span>(grid<span class="sc">$</span>C, grid<span class="sc">$</span>gamma), ]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">nrow</span>(grid))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (g <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(grid))) {</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  fold_score <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">5</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (f <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>) {</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    a <span class="ot">&lt;-</span> <span class="fu">which</span>(train<span class="sc">$</span>fold <span class="sc">!=</span> f); v <span class="ot">&lt;-</span> <span class="fu">which</span>(train<span class="sc">$</span>fold <span class="sc">==</span> f)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    state <span class="ot">&lt;-</span> <span class="fu">learn_scale</span>(X_train[a, , <span class="at">drop=</span><span class="cn">FALSE</span>])</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    model <span class="ot">&lt;-</span> e1071<span class="sc">::</span><span class="fu">svm</span>(<span class="at">x=</span><span class="fu">apply_scale</span>(X_train[a, , <span class="at">drop=</span><span class="cn">FALSE</span>], state),</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">y=</span>y_train[a], <span class="at">kernel=</span><span class="st">"radial"</span>, <span class="at">cost=</span>grid<span class="sc">$</span>C[g],</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">gamma=</span>grid<span class="sc">$</span>gamma[g], <span class="at">scale=</span><span class="cn">FALSE</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="fu">apply_scale</span>(X_train[v, , <span class="at">drop=</span><span class="cn">FALSE</span>], state))</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    fold_score[f<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">f1_macro</span>(train<span class="sc">$</span>target[v], <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(pred)), labels)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  scores[g] <span class="ot">&lt;-</span> <span class="fu">mean</span>(fold_score)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>best <span class="ot">&lt;-</span> <span class="fu">which.max</span>(scores)</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>state <span class="ot">&lt;-</span> <span class="fu">learn_scale</span>(X_train)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> e1071<span class="sc">::</span><span class="fu">svm</span>(<span class="at">x=</span><span class="fu">apply_scale</span>(X_train, state), <span class="at">y=</span>y_train,</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">kernel=</span><span class="st">"radial"</span>, <span class="at">cost=</span>grid<span class="sc">$</span>C[best], <span class="at">gamma=</span>grid<span class="sc">$</span>gamma[best], <span class="at">scale=</span><span class="cn">FALSE</span>)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(grid[best, ]); <span class="fu">cat</span>(<span class="st">"选参时五折 macro-F1："</span>, scores[best], <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   C gamma
+3 10  0.01</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>选参时五折 macro-F1： 0.9808547 </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="重拟合后评估独立测试集" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="重拟合后评估独立测试集"><span class="header-section-number">11.4</span> 重拟合后评估独立测试集</h2>
+<p>Python 的 GridSearchCV 默认按最佳参数自动在全部训练集重拟合；R 在循环后显式完成同一步。直到这一步才使用测试标签计算指标。</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">R</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>prediction <span class="op">=</span> search.predict(X_test)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> <span class="bu">sorted</span>(df[<span class="st">"target"</span>].unique().tolist())</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> {<span class="st">"case"</span>: <span class="st">"iris"</span>, <span class="st">"language"</span>: <span class="st">"Python"</span>, <span class="st">"test_n"</span>: <span class="bu">len</span>(test),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">"accuracy"</span>: <span class="bu">float</span>(accuracy_score(y_test, prediction)),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>          <span class="st">"macro_f1"</span>: <span class="bu">float</span>(f1_score(y_test, prediction, average<span class="op">=</span><span class="st">"macro"</span>)),</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>          <span class="st">"labels"</span>: labels,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>          <span class="st">"confusion"</span>: confusion_matrix(y_test, prediction, labels<span class="op">=</span>labels).tolist()}</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"测试 accuracy："</span>, <span class="bu">round</span>(result[<span class="st">"accuracy"</span>], <span class="dv">4</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>测试 accuracy： 0.9111</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"测试 macro-F1："</span>, <span class="bu">round</span>(result[<span class="st">"macro_f1"</span>], <span class="dv">4</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>测试 macro-F1： 0.9107</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"各类支持向量数："</span>, search.best_estimator_.named_steps[<span class="st">"svm"</span>].n_support_)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>各类支持向量数： [ 3 19 16]</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(<span class="fu">predict</span>(model, <span class="fu">apply_scale</span>(X_test, state))))</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>result_r <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">case=</span><span class="st">"iris"</span>, <span class="at">language=</span><span class="st">"R"</span>, <span class="at">test_n=</span><span class="fu">nrow</span>(test),</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels=</span>labels, <span class="at">accuracy=</span><span class="fu">mean</span>(pred <span class="sc">==</span> test<span class="sc">$</span>target),</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">macro_f1=</span><span class="fu">f1_macro</span>(test<span class="sc">$</span>target, pred, labels),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">confusion=</span><span class="fu">unclass</span>(<span class="fu">table</span>(<span class="fu">factor</span>(test<span class="sc">$</span>target, <span class="at">levels=</span>labels), <span class="fu">factor</span>(pred, <span class="at">levels=</span>labels))))</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"测试accuracy / macro-F1："</span>, result_r<span class="sc">$</span>accuracy, result_r<span class="sc">$</span>macro_f1, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>测试accuracy / macro-F1： 0.9111111 0.9107143 </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="看懂模型的错误" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="看懂模型的错误"><span class="header-section-number">11.5</span> 看懂模型的错误</h2>
+<p>混淆矩阵按真实类别作行、预测类别作列。格内显示计数和该真实类别的比例。模型使用4个特征；这幅矩阵不假装展示四维决策边界。</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">R</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lab.figure_html(lab.confusion_plot(result), <span class="st">'iris-practice-python'</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="iris-practice-python" class="plotly-output" data-plotly-source="iris-practice-python-json">
+
+</div>
+<script type="application/json" id="iris-practice-python-json">{"data":[{"colorbar":{"len":0.8,"outlinewidth":0,"thickness":12,"tickfont":{"size":11},"title":{"side":"top","text":"\u6837\u672c\u6570"}},"colorscale":[[0,"#f1f5fa"],[0.35,"#b5cde6"],[0.7,"#5487b9"],[1,"#244f7d"]],"customdata":[[1.0,0.0,0.0],[0.0,0.9333333333333333,0.06666666666666667],[0.0,0.2,0.8]],"hovertemplate":"\u771f\u5b9e\u7c7b\u522b %{y}\u003cbr\u003e\u9884\u6d4b\u7c7b\u522b %{x}\u003cbr\u003e\u6837\u672c\u6570 %{z:.0f}\u003cbr\u003e\u8be5\u771f\u5b9e\u7c7b\u522b\u5360\u6bd4 %{customdata:.1%}\u003cextra\u003e\u003c\u002fextra\u003e","text":[["15\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e100%\u003c\u002fspan\u003e","0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e","0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e"],["0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e","14\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e93%\u003c\u002fspan\u003e","1\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e7%\u003c\u002fspan\u003e"],["0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e","3\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e20%\u003c\u002fspan\u003e","12\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e80%\u003c\u002fspan\u003e"]],"textfont":{"size":20},"texttemplate":"%{text}","x":["0","1","2"],"xgap":6,"y":["0","1","2"],"ygap":6,"z":[[15.0,0.0,0.0],[0.0,14.0,1.0],[0.0,3.0,12.0]],"zmin":0,"type":"heatmap"}],"layout":{"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"font":{"size":17},"text":"Iris \u00b7 Python \u6d4b\u8bd5\u96c6\u6df7\u6dc6\u77e9\u9635","x":0.5,"xanchor":"center"},"font":{"family":"Segoe UI, Microsoft YaHei, sans-serif","size":13,"color":"#30323b"},"margin":{"l":100,"r":85,"t":90,"b":90},"xaxis":{"title":{"text":"\u9884\u6d4b\u7c7b\u522b"},"type":"category","tickvals":["0","1","2"],"ticktext":["0","1","2"],"showgrid":false,"zeroline":false,"constrain":"domain"},"yaxis":{"title":{"text":"\u771f\u5b9e\u7c7b\u522b"},"type":"category","tickvals":["0","1","2"],"ticktext":["0","1","2"],"autorange":"reversed","scaleanchor":"x","scaleratio":1,"constrain":"domain","showgrid":false,"zeroline":false},"height":490,"meta":{"tutorial_kind":"confusion"},"paper_bgcolor":"white","plot_bgcolor":"white","annotations":[{"font":{"color":"#60636e","size":12},"showarrow":false,"text":"Accuracy 0.911  \u00b7  Macro-F1 0.911  \u00b7  n = 45","x":0.5,"xref":"paper","y":1.1,"yref":"paper"},{"font":{"color":"#60636e","size":12},"showarrow":false,"text":"\u683c\u5185\uff1a\u6837\u672c\u6570 \u002f \u8be5\u771f\u5b9e\u7c7b\u522b\u5360\u6bd4","x":0.5,"xref":"paper","y":-0.24,"yref":"paper"}]}}</script>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">figure_html_r</span>(result_r, <span class="st">'iris-practice-r'</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="iris-practice-r" class="plotly-output" data-plotly-source="iris-practice-r-json">
+
+</div>
+<script type="application/json" id="iris-practice-r-json">{"data":[{"type":"heatmap","z":[[15,0,0],[0,14,1],[0,3,12]],"x":["0","1","2"],"y":["0","1","2"],"zmin":0,"colorscale":[[0,"#f1f5fa"],[0.35,"#b5cde6"],[0.7,"#5487b9"],[1,"#244f7d"]],"xgap":6,"ygap":6,"text":[["15<br><span style=\"font-size:12px\">100%<\/span>","0<br><span style=\"font-size:12px\">0%<\/span>","0<br><span style=\"font-size:12px\">0%<\/span>"],["0<br><span style=\"font-size:12px\">0%<\/span>","14<br><span style=\"font-size:12px\">93%<\/span>","1<br><span style=\"font-size:12px\">7%<\/span>"],["0<br><span style=\"font-size:12px\">0%<\/span>","3<br><span style=\"font-size:12px\">20%<\/span>","12<br><span style=\"font-size:12px\">80%<\/span>"]],"customdata":[[1,0,0],[0,0.93333333,0.06666667],[0,0.2,0.8]],"texttemplate":"%{text}","textfont":{"size":20},"colorbar":{"title":{"text":"样本数","side":"top"},"thickness":12,"len":0.8,"outlinewidth":0,"tickfont":{"size":11}},"hovertemplate":"真实类别 %{y}<br>预测类别 %{x}<br>样本数 %{z:.0f}<br>该真实类别占比 %{customdata:.1%}<extra><\/extra>"}],"layout":{"title":{"text":"Iris · R 测试集混淆矩阵","x":0.5,"xanchor":"center","font":{"size":17}},"height":490,"meta":{"tutorial_kind":"confusion"},"paper_bgcolor":"white","plot_bgcolor":"white","font":{"family":"Segoe UI, Microsoft YaHei, sans-serif","size":13,"color":"#30323b"},"margin":{"l":100,"r":85,"t":90,"b":90},"xaxis":{"title":"预测类别","type":"category","tickvals":["0","1","2"],"ticktext":["0","1","2"],"showgrid":false,"zeroline":false,"constrain":"domain"},"yaxis":{"title":"真实类别","type":"category","tickvals":["0","1","2"],"ticktext":["0","1","2"],"autorange":"reversed","scaleanchor":"x","scaleratio":1,"constrain":"domain","showgrid":false,"zeroline":false},"annotations":[{"x":0.5,"y":1.1,"xref":"paper","yref":"paper","showarrow":false,"text":"Accuracy 0.911  ·  Macro-F1 0.911  ·  n = 45","font":{"size":12,"color":"#60636e"}},{"x":0.5,"y":-0.24,"xref":"paper","yref":"paper","showarrow":false,"text":"格内：样本数 / 该真实类别占比","font":{"size":12,"color":"#60636e"}}]}}</script>
+</div>
+</div>
+</div>
+<p>两套代码的训练步骤都在正文中，绘图函数仅把现成计数排成图。小的求解容差差异可能影响平分参数选择或边界样本，实际运行后应核对分数与混淆计数。</p>
+</section>
+<section id="将程序与理论逐项对应" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="将程序与理论逐项对应"><span class="header-section-number">11.6</span> 将程序与理论逐项对应</h2>
+<ul>
+<li><code>SVC(kernel="rbf")</code> 对应核软间隔；<code>C</code> 是违例惩罚，<code>gamma</code> 定义标准化坐标中的相似度。</li>
+<li>多分类 <code>SVC</code> 内部使用 OvO；<code>decision_function_shape="ovr"</code> 只改变输出分数形状，不能把训练改成 OvR。</li>
+<li><code>LinearSVC</code> 常用 squared hinge，与本教程推导的普通 hinge 不同；对比时需注明损失、截距处理和多分类目标。</li>
+<li>需要显式 OvR 训练时，可用 <code>OneVsRestClassifier</code> 包装二分类器。不要根据分数数组列数猜测训练策略。</li>
+</ul>
+</section>
+<section id="检查教学-smo而不只比较标签" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="检查教学-smo而不只比较标签"><span class="header-section-number">11.7</span> 检查教学 SMO，而不只比较标签</h2>
+<p>下面显示前面成对更新逻辑的完整教学实现。读每个分支时对应可行区间、曲率与截距公式；它跳过零曲率对，适用范围已在 SMO 章说明。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> LinearSMO:</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""教学版线性 C-SVM：成对更新，完整扫描；不含缓存或 shrinking。"""</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, C<span class="op">=</span><span class="fl">1.0</span>, tol<span class="op">=</span><span class="fl">1e-4</span>, max_iter<span class="op">=</span><span class="dv">3000</span>, record_history<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.C, <span class="va">self</span>.tol, <span class="va">self</span>.max_iter <span class="op">=</span> <span class="bu">float</span>(C), <span class="bu">float</span>(tol), <span class="bu">int</span>(max_iter)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.record_history <span class="op">=</span> record_history</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> fit(<span class="va">self</span>, X, y):</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>        X, y <span class="op">=</span> np.asarray(X, <span class="bu">float</span>), np.asarray(y, <span class="bu">float</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> X.ndim <span class="op">!=</span> <span class="dv">2</span> <span class="kw">or</span> <span class="bu">len</span>(y) <span class="op">!=</span> <span class="bu">len</span>(X) <span class="kw">or</span> <span class="bu">set</span>(np.unique(y)) <span class="op">!=</span> {<span class="op">-</span><span class="fl">1.</span>, <span class="fl">1.</span>}:</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">'X 必须为二维，y 必须包含 -1 和 +1 两类'</span>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.C <span class="op">&lt;=</span> <span class="dv">0</span> <span class="kw">or</span> <span class="kw">not</span> np.isfinite(X).<span class="bu">all</span>():</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">'C 必须为正，X 必须有限'</span>)</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>        n <span class="op">=</span> <span class="bu">len</span>(y)</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>        K <span class="op">=</span> X <span class="op">@</span> X.T</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>        a, b <span class="op">=</span> np.zeros(n), <span class="fl">0.0</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.history_ <span class="op">=</span> []</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> snapshot(pair<span class="op">=</span><span class="va">None</span>, bounds<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="kw">not</span> <span class="va">self</span>.record_history:<span class="cf">return</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>            w<span class="op">=</span>(a<span class="op">*</span>y)<span class="op">@</span>X<span class="op">;</span> margins<span class="op">=</span>y<span class="op">*</span>(X<span class="op">@</span>w<span class="op">+</span>b)<span class="op">;</span> slack<span class="op">=</span>np.maximum(<span class="dv">0</span>,<span class="dv">1</span><span class="op">-</span>margins)</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>            residual<span class="op">=</span>np.where(a<span class="op">&lt;</span><span class="fl">1e-8</span>,np.maximum(<span class="dv">0</span>,<span class="dv">1</span><span class="op">-</span>margins),np.where(a<span class="op">&gt;</span><span class="va">self</span>.C<span class="op">-</span><span class="fl">1e-8</span>,np.maximum(<span class="dv">0</span>,margins<span class="op">-</span><span class="dv">1</span>),<span class="bu">abs</span>(margins<span class="op">-</span><span class="dv">1</span>)))</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>            primal<span class="op">=</span><span class="bu">float</span>(<span class="fl">.5</span><span class="op">*</span>w<span class="op">@</span>w<span class="op">+</span><span class="va">self</span>.C<span class="op">*</span>slack.<span class="bu">sum</span>())<span class="op">;</span>dual<span class="op">=</span><span class="bu">float</span>(a.<span class="bu">sum</span>()<span class="op">-</span><span class="fl">.5</span><span class="op">*</span>w<span class="op">@</span>w)</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.history_.append({<span class="st">'alpha'</span>:a.tolist(),<span class="st">'w'</span>:w.tolist(),<span class="st">'b'</span>:<span class="bu">float</span>(b),<span class="st">'margins'</span>:margins.tolist(),<span class="st">'slack'</span>:slack.tolist(),<span class="st">'residuals'</span>:residual.tolist(),<span class="st">'primal'</span>:primal,<span class="st">'dual'</span>:dual,<span class="st">'gap'</span>:primal<span class="op">-</span>dual,<span class="st">'kkt'</span>:<span class="bu">float</span>(residual.<span class="bu">max</span>()),<span class="st">'equality'</span>:<span class="bu">float</span>(<span class="bu">abs</span>(a<span class="op">@</span>y)),<span class="st">'pair'</span>:pair,<span class="st">'bounds'</span>:bounds})</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>        snapshot()</span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> iteration <span class="kw">in</span> <span class="bu">range</span>(<span class="va">self</span>.max_iter):</span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>            changed <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>                E <span class="op">=</span> K <span class="op">@</span> (a<span class="op">*</span>y) <span class="op">+</span> b <span class="op">-</span> y</span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>                r <span class="op">=</span> E[i]<span class="op">*</span>y[i]</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="kw">not</span> ((r <span class="op">&lt;</span> <span class="op">-</span><span class="va">self</span>.tol <span class="kw">and</span> a[i] <span class="op">&lt;</span> <span class="va">self</span>.C<span class="op">-</span><span class="fl">1e-9</span>) <span class="kw">or</span> (r <span class="op">&gt;</span> <span class="va">self</span>.tol <span class="kw">and</span> a[i] <span class="op">&gt;</span> <span class="fl">1e-9</span>)):</span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">continue</span></span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>                <span class="co"># 最大误差差值优先；若该对受盒约束阻塞，尝试其他 j。</span></span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> j <span class="kw">in</span> np.argsort(<span class="op">-</span><span class="bu">abs</span>(E[i]<span class="op">-</span>E)):</span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> i <span class="op">==</span> j:</span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">continue</span></span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>                    ai, aj <span class="op">=</span> a[i], a[j]</span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> y[i] <span class="op">!=</span> y[j]:</span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a>                        L, H <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, aj<span class="op">-</span>ai), <span class="bu">min</span>(<span class="va">self</span>.C, <span class="va">self</span>.C<span class="op">+</span>aj<span class="op">-</span>ai)</span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">else</span>:</span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a>                        L, H <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, ai<span class="op">+</span>aj<span class="op">-</span><span class="va">self</span>.C), <span class="bu">min</span>(<span class="va">self</span>.C, ai<span class="op">+</span>aj)</span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a>                    eta <span class="op">=</span> K[i,i]<span class="op">+</span>K[j,j]<span class="op">-</span><span class="dv">2</span><span class="op">*</span>K[i,j]</span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> H<span class="op">-</span>L <span class="op">&lt;</span> <span class="fl">1e-12</span> <span class="kw">or</span> eta <span class="op">&lt;=</span> <span class="fl">1e-12</span>:</span>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">continue</span></span>
+<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a>                    newj <span class="op">=</span> np.clip(aj <span class="op">+</span> y[j]<span class="op">*</span>(E[i]<span class="op">-</span>E[j])<span class="op">/</span>eta, L, H)</span>
+<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span> <span class="bu">abs</span>(newj<span class="op">-</span>aj) <span class="op">&lt;</span> <span class="fl">1e-10</span>:</span>
+<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">continue</span></span>
+<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a>                    newi <span class="op">=</span> ai <span class="op">+</span> y[i]<span class="op">*</span>y[j]<span class="op">*</span>(aj<span class="op">-</span>newj)</span>
+<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a>                    b1 <span class="op">=</span> b<span class="op">-</span>E[i]<span class="op">-</span>y[i]<span class="op">*</span>(newi<span class="op">-</span>ai)<span class="op">*</span>K[i,i]<span class="op">-</span>y[j]<span class="op">*</span>(newj<span class="op">-</span>aj)<span class="op">*</span>K[i,j]</span>
+<span id="cb23-48"><a href="#cb23-48" aria-hidden="true" tabindex="-1"></a>                    b2 <span class="op">=</span> b<span class="op">-</span>E[j]<span class="op">-</span>y[i]<span class="op">*</span>(newi<span class="op">-</span>ai)<span class="op">*</span>K[i,j]<span class="op">-</span>y[j]<span class="op">*</span>(newj<span class="op">-</span>aj)<span class="op">*</span>K[j,j]</span>
+<span id="cb23-49"><a href="#cb23-49" aria-hidden="true" tabindex="-1"></a>                    b <span class="op">=</span> b1 <span class="cf">if</span> <span class="fl">1e-9</span> <span class="op">&lt;</span> newi <span class="op">&lt;</span> <span class="va">self</span>.C<span class="op">-</span><span class="fl">1e-9</span> <span class="cf">else</span> b2 <span class="cf">if</span> <span class="fl">1e-9</span> <span class="op">&lt;</span> newj <span class="op">&lt;</span> <span class="va">self</span>.C<span class="op">-</span><span class="fl">1e-9</span> <span class="cf">else</span> (b1<span class="op">+</span>b2)<span class="op">/</span><span class="dv">2</span></span>
+<span id="cb23-50"><a href="#cb23-50" aria-hidden="true" tabindex="-1"></a>                    a[i], a[j] <span class="op">=</span> newi, newj</span>
+<span id="cb23-51"><a href="#cb23-51" aria-hidden="true" tabindex="-1"></a>                    snapshot([<span class="bu">int</span>(i),<span class="bu">int</span>(j)],{<span class="st">'L'</span>:<span class="bu">float</span>(L),<span class="st">'H'</span>:<span class="bu">float</span>(H),<span class="st">'eta'</span>:<span class="bu">float</span>(eta)})</span>
+<span id="cb23-52"><a href="#cb23-52" aria-hidden="true" tabindex="-1"></a>                    changed <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb23-53"><a href="#cb23-53" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">break</span></span>
+<span id="cb23-54"><a href="#cb23-54" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> changed <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb23-55"><a href="#cb23-55" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span>
+<span id="cb23-56"><a href="#cb23-56" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.alpha_, <span class="va">self</span>.coef_, <span class="va">self</span>.intercept_ <span class="op">=</span> a, (a<span class="op">*</span>y) <span class="op">@</span> X, b</span>
+<span id="cb23-57"><a href="#cb23-57" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.n_iter_ <span class="op">=</span> iteration<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb23-58"><a href="#cb23-58" aria-hidden="true" tabindex="-1"></a>        margins <span class="op">=</span> y<span class="op">*</span><span class="va">self</span>.decision_function(X)</span>
+<span id="cb23-59"><a href="#cb23-59" aria-hidden="true" tabindex="-1"></a>        residuals <span class="op">=</span> np.where(a <span class="op">&lt;</span> <span class="fl">1e-8</span>, np.maximum(<span class="dv">0</span>,<span class="dv">1</span><span class="op">-</span>margins),</span>
+<span id="cb23-60"><a href="#cb23-60" aria-hidden="true" tabindex="-1"></a>                    np.where(a <span class="op">&gt;</span> <span class="va">self</span>.C<span class="op">-</span><span class="fl">1e-8</span>,np.maximum(<span class="dv">0</span>,margins<span class="op">-</span><span class="dv">1</span>),<span class="bu">abs</span>(margins<span class="op">-</span><span class="dv">1</span>)))</span>
+<span id="cb23-61"><a href="#cb23-61" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.kkt_residual_ <span class="op">=</span> <span class="bu">float</span>(residuals.<span class="bu">max</span>())</span>
+<span id="cb23-62"><a href="#cb23-62" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.converged_ <span class="op">=</span> <span class="va">self</span>.kkt_residual_ <span class="op">&lt;=</span> <span class="bu">max</span>(<span class="dv">10</span><span class="op">*</span><span class="va">self</span>.tol,<span class="fl">1e-3</span>)</span>
+<span id="cb23-63"><a href="#cb23-63" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.support_ <span class="op">=</span> np.flatnonzero(a<span class="op">&gt;</span><span class="fl">1e-8</span>)</span>
+<span id="cb23-64"><a href="#cb23-64" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span></span>
+<span id="cb23-65"><a href="#cb23-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-66"><a href="#cb23-66" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> decision_function(<span class="va">self</span>, X):</span>
+<span id="cb23-67"><a href="#cb23-67" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.asarray(X) <span class="op">@</span> <span class="va">self</span>.coef_ <span class="op">+</span> <span class="va">self</span>.intercept_</span>
+<span id="cb23-68"><a href="#cb23-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-69"><a href="#cb23-69" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> predict(<span class="va">self</span>, X):</span>
+<span id="cb23-70"><a href="#cb23-70" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.where(<span class="va">self</span>.decision_function(X)<span class="op">&gt;=</span><span class="dv">0</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([[<span class="op">-</span><span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>],[<span class="op">-</span><span class="dv">2</span>,<span class="dv">1</span>],[<span class="op">-</span><span class="dv">1</span>,<span class="dv">0</span>],[<span class="dv">1</span>,<span class="dv">0</span>],[<span class="dv">2</span>,<span class="op">-</span><span class="dv">1</span>],[<span class="dv">2</span>,<span class="dv">1</span>]], <span class="bu">float</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>])</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> svm_lab <span class="im">import</span> LinearSMO</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>smo <span class="op">=</span> LinearSMO(C<span class="op">=</span><span class="dv">2</span>, tol<span class="op">=</span><span class="fl">1e-5</span>).fit(X, y)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> y <span class="op">*</span> smo.decision_function(X)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>slack <span class="op">=</span> np.maximum(<span class="dv">0</span>, <span class="dv">1</span><span class="op">-</span>m)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> <span class="fl">.5</span> <span class="op">*</span> (smo.coef_ <span class="op">@</span> smo.coef_) <span class="op">+</span> smo.C <span class="op">*</span> slack.<span class="bu">sum</span>()</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> smo.alpha_.<span class="bu">sum</span>() <span class="op">-</span> <span class="fl">.5</span> <span class="op">*</span> (smo.coef_ <span class="op">@</span> smo.coef_)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'w, b:'</span>, smo.coef_, smo.intercept_)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>w, b: [1.00000000e+00 2.77555756e-17] -8.326672684688674e-17</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'alpha:'</span>, smo.alpha_.<span class="bu">round</span>(<span class="dv">5</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>alpha: [ 0.  -0.   0.5  0.5  0.   0. ]</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'等式残差、KKT残差、间隙:'</span>, <span class="bu">abs</span>(smo.alpha_ <span class="op">@</span> y), smo.kkt_residual_, P<span class="op">-</span>D)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>等式残差、KKT残差、间隙: 0.0 1.1102230246251565e-16 2.220446049250313e-16</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'达到容差:'</span>, smo.converged_)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>达到容差: True</code></pre>
+</div>
+</div>
+<p>把输出与六点解析解比较。若标签相同但间隙较大，不能宣称求到最优；先检查约束和停止条件。</p>
+</section>
+<section id="练习与解答" class="level2" data-number="11.8">
+<h2 data-number="11.8" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">11.8</span> 练习与解答</h2>
 <ol type="1">
-<li>载入150个Iris样本及4个数值特征，保留原始行ID。</li>
-<li>分层划分105个训练样本、45个测试样本，验证ID互不重叠。</li>
-<li>使用 <code>Pipeline(StandardScaler, SVC)</code>，每个训练折独立标准化。</li>
-<li>训练集内五折交叉验证选择C与γ，共9种配置。</li>
-<li>参数确定后才计算测试accuracy、macro-F1、混淆矩阵与错误样本。</li>
-<li>用Plotly显示混淆矩阵、CV参数热图；保留每个参数的均值与标准差。</li>
+<li>找到代码中“只从当前训练折学习标准化”的具体位置。</li>
+<li>若把 <code>fold</code> 加入特征，模型在学什么？</li>
+<li>重新设计网格前，应记录什么，怎样保持评估可信？</li>
 </ol>
-<p>Notebook中的导入、数据、模型、搜索、评估和绘图均完整展开。它在干净Python内核中从头执行并保留结果，方便核对。</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="参考解答">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">提示</span>参考解答
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Python在Pipeline的fit内；R在每折的 <code>learn_scale(X_train[a,])</code>。验证数据只经过apply/transform。</li>
+<li>学到人为分配的实验编号，输入含义不再是花的测量，部署时也没有相同编号机制。</li>
+<li>预先记录候选、指标、划分和变更理由；在训练验证内比较。如果不断依据测试结果改网格，这份测试集已参与选择，需要另设最终评估。</li>
+</ol>
+</div>
+</div>
+</div>
 </section>
-<section id="先读懂三个输出" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="先读懂三个输出"><span class="header-section-number">1.3</span> 先读懂三个输出</h2>
-<p>最佳CV分数来自训练集内部，测试分数来自未参与选参的45个样本。两者对应不同问题；不要在查看测试表现后继续改参数，再把同一测试集称为最终评估。</p>
-<p>混淆矩阵的行是真实类别，列是预测类别。训练模型使用全部4个特征；本例没有用二维散点冒充四维决策边界。支持向量数量是模型结构信息，不能替代测试指标。</p>
-</section>
-<section id="修改练习" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="修改练习"><span class="header-section-number">1.4</span> 修改练习</h2>
-<p>先预测增大C可能造成什么变化，再改变一个预先规定的网格，完整重新执行。记录选参结果，说明实验协议的改变。若反复尝试导致测试集参与决策，应另设最终评估数据。继续阅读软间隔、核方法和重复评估章节，将程序与原理对应起来。</p>
+<section id="下一步" class="level2" data-number="11.9">
+<h2 data-number="11.9" class="anchored" data-anchor-id="下一步"><span class="header-section-number">11.9</span> 下一步</h2>
+<p>一个数值型多分类实验已经完整运行。下一章逐步加入缺失值、类别特征和高维小样本，检查数据特点怎样改变预处理与模型选择。</p>
 
 
 </section>
@@ -766,13 +1567,13 @@ document.addEventListener('DOMContentLoaded',function(){
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../index.html" class="pagination-link" aria-label="导读与学习路线">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">导读与学习路线</span>
+      <a href="../chapters/06-workflow.html" class="pagination-link" aria-label="评估与模型选择">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">评估与模型选择</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/01-geometry.html" class="pagination-link" aria-label="超平面与间隔">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">超平面与间隔</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/07-cases.html" class="pagination-link" aria-label="案例与模型比较">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">案例与模型比较</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

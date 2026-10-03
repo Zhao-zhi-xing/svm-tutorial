@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; SVM 与现代学习：继续研究什么 – 支持向量机教程：从几何到现代学习</title>
+<title>13&nbsp; 现代研究导读：从模型限制寻找改进 – 支持向量机教程：从几何到现代学习</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -52,7 +52,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/09-authoring.html" rel="next">
+<link href="../references.html" rel="next">
 <link href="../chapters/07-cases.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -102,6 +102,16 @@ div.csl-indent {
 <script src="../assets/experiments.js"></script>
 
 <script defer="" src="../assets/experiments-ui.js"></script>
+
+
+
+<script src="../assets/teaching-data.js"></script>
+
+<script defer="" src="../assets/teaching-ui.js"></script>
+
+
+
+<script src="../assets/legacy-links.js"></script>
 
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
@@ -154,7 +164,7 @@ window.Quarto = {
 <span class="menu-text">首页</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../chapters/00-python-start.html"> 
+    <a class="nav-link" href="../chapters/01-geometry.html"> 
 <span class="menu-text">教程</span></a>
   </li>  
   <li class="nav-item compact">
@@ -173,7 +183,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/08-modern.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">现代研究导读</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/08-modern.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">现代研究导读</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -200,68 +210,86 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/00-python-start.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">纯 Python 入门</span></span></a>
+  <a href="../chapters/01-geometry.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">分类与超平面</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/01-geometry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">超平面与间隔</span></span></a>
+  <a href="../chapters/01-hard-margin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">间隔与硬间隔</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/02-soft-margin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔与损失</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔与正则化</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-optimization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">约束优化与 KKT</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/03-duality-smo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">SVM 对偶与解</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/04-kernels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">核方法</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">映射与核技巧</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-rkhs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">核的函数空间</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-smo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">SMO 求解</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/05-multiclass.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">多分类</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">多分类</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/06-workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">可靠建模流程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">评估与模型选择</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/00-python-start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python / R 实践</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/07-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">真实数据案例</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">案例与模型比较</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/08-modern.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">现代研究导读</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/09-authoring.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">维护本教程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">现代研究导读</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">参考文献</span></span></a>
+ <span class="menu-text">参考文献</span></a>
   </div>
 </li>
     </ul>
@@ -274,13 +302,14 @@ window.Quarto = {
     <h2 id="toc-title">本章目录</h2>
    
   <ul class="collapse">
-  <li><a href="#被-transformer-淘汰不是一个完整问题" id="toc-被-transformer-淘汰不是一个完整问题" class="nav-link active" data-scroll-target="#被-transformer-淘汰不是一个完整问题"><span class="header-section-number">9.1</span> “被 Transformer 淘汰”不是一个完整问题</a></li>
-  <li><a href="#方向一让核方法扩展到更大规模" id="toc-方向一让核方法扩展到更大规模" class="nav-link" data-scroll-target="#方向一让核方法扩展到更大规模"><span class="header-section-number">9.2</span> 方向一：让核方法扩展到更大规模</a></li>
-  <li><a href="#方向二从软间隔到稳健学习" id="toc-方向二从软间隔到稳健学习" class="nav-link" data-scroll-target="#方向二从软间隔到稳健学习"><span class="header-section-number">9.3</span> 方向二：从软间隔到稳健学习</a></li>
-  <li><a href="#方向三现代表示与间隔目标结合" id="toc-方向三现代表示与间隔目标结合" class="nav-link" data-scroll-target="#方向三现代表示与间隔目标结合"><span class="header-section-number">9.4</span> 方向三：现代表示与间隔目标结合</a></li>
-  <li><a href="#方向四最大间隔解释深度学习的优化" id="toc-方向四最大间隔解释深度学习的优化" class="nav-link" data-scroll-target="#方向四最大间隔解释深度学习的优化"><span class="header-section-number">9.5</span> 方向四：最大间隔解释深度学习的优化</a></li>
-  <li><a href="#怎样判断一个-svm-改进值得研究" id="toc-怎样判断一个-svm-改进值得研究" class="nav-link" data-scroll-target="#怎样判断一个-svm-改进值得研究"><span class="header-section-number">9.6</span> 怎样判断一个 SVM 改进值得研究</a></li>
-  <li><a href="#练习与论文阅读任务" id="toc-练习与论文阅读任务" class="nav-link" data-scroll-target="#练习与论文阅读任务"><span class="header-section-number">9.7</span> 练习与论文阅读任务</a></li>
+  <li><a href="#先明确表示再讨论分类器" id="toc-先明确表示再讨论分类器" class="nav-link active" data-scroll-target="#先明确表示再讨论分类器"><span class="header-section-number">13.1</span> 先明确表示，再讨论分类器</a></li>
+  <li><a href="#方向一核模型如何突破样本规模限制" id="toc-方向一核模型如何突破样本规模限制" class="nav-link" data-scroll-target="#方向一核模型如何突破样本规模限制"><span class="header-section-number">13.2</span> 方向一：核模型如何突破样本规模限制</a></li>
+  <li><a href="#方向二从容忍违例走向明确的稳健性" id="toc-方向二从容忍违例走向明确的稳健性" class="nav-link" data-scroll-target="#方向二从容忍违例走向明确的稳健性"><span class="header-section-number">13.3</span> 方向二：从容忍违例走向明确的稳健性</a></li>
+  <li><a href="#方向三固定表示与联合表示学习" id="toc-方向三固定表示与联合表示学习" class="nav-link" data-scroll-target="#方向三固定表示与联合表示学习"><span class="header-section-number">13.4</span> 方向三：固定表示与联合表示学习</a></li>
+  <li><a href="#方向四为什么没有显式正则也可能出现最大间隔" id="toc-方向四为什么没有显式正则也可能出现最大间隔" class="nav-link" data-scroll-target="#方向四为什么没有显式正则也可能出现最大间隔"><span class="header-section-number">13.5</span> 方向四：为什么没有显式正则也可能出现最大间隔</a></li>
+  <li><a href="#怎样把研究兴趣变成可检验的问题" id="toc-怎样把研究兴趣变成可检验的问题" class="nav-link" data-scroll-target="#怎样把研究兴趣变成可检验的问题"><span class="header-section-number">13.6</span> 怎样把研究兴趣变成可检验的问题</a></li>
+  <li><a href="#练习与讨论" id="toc-练习与讨论" class="nav-link" data-scroll-target="#练习与讨论"><span class="header-section-number">13.7</span> 练习与讨论</a></li>
+  <li><a href="#完成教程后" id="toc-完成教程后" class="nav-link" data-scroll-target="#完成教程后"><span class="header-section-number">13.8</span> 完成教程后</a></li>
   </ul>
 </nav>
     </div>
@@ -289,7 +318,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">SVM 与现代学习：继续研究什么</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">现代研究导读：从模型限制寻找改进</span></h1>
 </div>
 
 
@@ -307,68 +336,130 @@ window.Quarto = {
 
 
 <div class="chapter-intro">
-<p><strong>学习目标</strong>：建立可追踪的研究地图，理解经典模型、核方法和深度学习之间的联系。资料检索截至 <strong>2026 年 10 月 2 日</strong>。下面选取代表性研究，不以几篇论文推断整个学界的热度，也不把应用中的参数改造全部称为新理论。</p>
-<p><strong>前置知识</strong>：核方法、最大间隔与可靠模型评估。</p>
+<p><strong>本章要回答</strong>：掌握经典 SVM 后，哪些真实限制仍值得研究，它们与现代学习有什么联系？</p>
+<p><strong>前置知识</strong>：前面几何、RKHS、优化和评估。资料检索截止 <strong>2026年10月2日</strong>；经典结果、同行评审论文和预印本分别标明。</p>
 </div>
-<section id="被-transformer-淘汰不是一个完整问题" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="被-transformer-淘汰不是一个完整问题"><span class="header-section-number">9.1</span> “被 Transformer 淘汰”不是一个完整问题</h2>
-<p>比较需要先规定任务和输入表示。直接把像素或长文本送给传统 SVM，与使用大规模预训练表示的 Transformer 对照，并不是相同特征和资源条件。SVM 常使用固定表示，深度学习可以联合学习表示；两者优势来源不同。</p>
-<p>学习 SVM 的价值包括理解凸优化、间隔、正则化与核相似度。选择 SVM 的理由则应来自实际验证：有限数据、合适的固定特征、可接受的核计算成本，或者需要一个强线性基线。树模型、逻辑回归、神经网络和表格基础模型也必须纳入候选。</p>
-<p><strong>小数据并不自动归属于 SVM。</strong> Hollmann 等 2025 年的 TabPFN 研究在小到中型表格数据中展示了基础模型的潜力 <span class="citation" data-cites="tabpfn">(<a href="../references.html#ref-tabpfn" role="doc-biblioref">Hollmann 等 2025年</a>)</span>。它引入预训练和先验，比较时要看数据范围、模型版本、资源与协议，而不能把论文结论外推到任意业务数据。本教程不下载预训练权重，也不声称这里的 Iris 实验能验证 TabPFN 的研究结果。</p>
+<section id="先明确表示再讨论分类器" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="先明确表示再讨论分类器"><span class="header-section-number">13.1</span> 先明确表示，再讨论分类器</h2>
+<p>同一原始文本可以用词频向量表示，也可以用预训练编码器得到向量。SVM在固定向量上学习分类规则；深度模型还可能学习表示本身。若一个模型使用大规模预训练、另一个只用原始特征，性能差异不只来自输出分类器。</p>
+<p>因此把问题写成两步：<span class="math inline">\(x\mapsto z(x)\)</span> 决定信息表示，<span class="math inline">\(z\mapsto\widehat y\)</span> 决定分类。实验时可以固定 <span class="math inline">\(z\)</span>，比较线性SVM与逻辑回归；也可固定分类流程，比较表示。这样能解释收益来自哪里。</p>
+<p>小数据也不意味着SVM必然最好。TabPFN的2025年同行评审研究展示了表格基础模型在所研究数据范围中的潜力 <span class="citation" data-cites="tabpfn">(<a href="../references.html#ref-tabpfn" role="doc-biblioref">Hollmann 等 2025年</a>)</span>。比较时仍需交代数据范围、预训练资源和协议。前面的Iris比较只回答自己的实验问题。</p>
 </section>
-<section id="方向一让核方法扩展到更大规模" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="方向一让核方法扩展到更大规模"><span class="header-section-number">9.2</span> 方向一：让核方法扩展到更大规模</h2>
-<section id="已成熟的入口" class="level3" data-number="9.2.1">
-<h3 data-number="9.2.1" class="anchored" data-anchor-id="已成熟的入口"><span class="header-section-number">9.2.1</span> 已成熟的入口</h3>
-<p>经典瓶颈来自样本两两相似度及大量支持向量。Nyström 用若干代表点近似核矩阵；随机 Fourier 特征近似平移不变核；分块、迭代解法和预条件减少计算负担。它们是成熟研究基础，不是 2025 年才出现的发明。</p>
-<p>FALKON 将 Nyström 与预条件共轭梯度结合，用于大规模核岭回归 <span class="citation" data-cites="falkon">(<a href="../references.html#ref-falkon" role="doc-biblioref">Rudi 等 2017年</a>)</span>。它是<strong>核方法扩展性</strong>的重要例子，但目标不是 hinge-SVM，不能直接称为一个新 SVM 求解器。“核方法”章中的 Nyström + LinearSVC 则是本教程可运行的 SVM 相关入口。</p>
+<section id="方向一核模型如何突破样本规模限制" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="方向一核模型如何突破样本规模限制"><span class="header-section-number">13.2</span> 方向一：核模型如何突破样本规模限制</h2>
+<section id="从已学内容识别瓶颈" class="level3" data-number="13.2.1">
+<h3 data-number="13.2.1" class="anchored" data-anchor-id="从已学内容识别瓶颈"><span class="header-section-number">13.2.1</span> 从已学内容识别瓶颈</h3>
+<p>核SVM通过支持向量预测；训练涉及样本两两核值。样本量增大时，Gram矩阵、缓存与优化成本上升；支持向量很多时，预测也变贵。</p>
+<p>RKHS章已经给出Nyström与随机Fourier特征。它们把“每个训练样本生成一个方向”改为“使用有限近似坐标”，随后训练线性模型。研究问题变成：有限坐标引入多少误差，怎样用更少坐标保留有用分类方向？</p>
 </section>
-<section id="近期延伸与问题" class="level3" data-number="9.2.2">
-<h3 data-number="9.2.2" class="anchored" data-anchor-id="近期延伸与问题"><span class="header-section-number">9.2.2</span> 近期延伸与问题</h3>
-<p>2025 年的 <em>Towards Unified Native Spaces in Kernel Methods</em> 研究统一参数化核及其函数空间关系 <span class="citation" data-cites="native">(<a href="../references.html#ref-native" role="doc-biblioref">Emery 等 2025年</a>)</span>。这是核设计/理论方向，不能仅因文中提到 SVM 就说它直接改进了 SVM 的分类性能。</p>
-<p>进一步可研究：如何选择代表点、近似误差如何影响间隔和泛化、预测是否满足延迟预算、核尺度变动时低秩近似是否仍有效。一次近似模型更快并不意味着在相同精度要求下总更优。</p>
-</section>
-</section>
-<section id="方向二从软间隔到稳健学习" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="方向二从软间隔到稳健学习"><span class="header-section-number">9.3</span> 方向二：从软间隔到稳健学习</h2>
-<p>软间隔允许个别样本违约，但普通经验风险并没有明确控制分布变化。稳健优化考虑输入扰动集合，分布鲁棒优化考虑可能的数据分布集合，两者需要区分。</p>
-<p>一个概念性分布鲁棒目标是</p>
-<p><span class="math display">\[\min_f\ \sup_{Q\in\mathcal U(P_n)}\mathbb E_Q[\ell(y,f(x))]+\lambda\|f\|^2.\]</span></p>
-<p><span class="math inline">\(\mathcal U(P_n)\)</span> 如何定义决定了鲁棒含义和保守程度；集合太大可能牺牲名义准确率。Wasserstein 球、矩约束和机会约束属于不同建模选择。</p>
-<p>2024 年预印本 <em>Wasserstein Distributionally Robust Multiclass Support Vector Machine</em> 以 Crammer–Singer 损失建立多分类鲁棒模型，并讨论核版本的可处理上界 <span class="citation" data-cites="wasserstein">(<a href="../references.html#ref-wasserstein" role="doc-biblioref">Ibrahim 等 2024年</a>)</span>。2025 年预印本 <em>Globalized distributionally robust chance-constrained support vector machine based on core sets</em> 研究面向群体不确定性的机会约束 SVM <span class="citation" data-cites="gdrc">(<a href="../references.html#ref-gdrc" role="doc-biblioref">Li 等 2025年</a>)</span>。这里按核实的 arXiv 记录将二者标为<strong>预印本</strong>，不假定已有同行评审结论。</p>
-<p>可继续追问：不确定集合能否由领域知识支持？鲁棒参数是否只在训练集内选择？跨域、标签噪声和对抗扰动各自的评价集是什么？“鲁棒”必须对应明确威胁模型，不能只是另一个精度形容词。</p>
-</section>
-<section id="方向三现代表示与间隔目标结合" class="level2" data-number="9.4">
-<h2 data-number="9.4" class="anchored" data-anchor-id="方向三现代表示与间隔目标结合"><span class="header-section-number">9.4</span> 方向三：现代表示与间隔目标结合</h2>
-<section id="实用入口固定表示上的-svm" class="level3" data-number="9.4.1">
-<h3 data-number="9.4.1" class="anchored" data-anchor-id="实用入口固定表示上的-svm"><span class="header-section-number">9.4.1</span> 实用入口：固定表示上的 SVM</h3>
-<p>先用预训练编码器提取 <span class="math inline">\(z(x)\)</span>，再在表示上训练线性 SVM，可以将表示学习与分类决策分开。它便于研究不同表示和标签量下的基线；也有预训练成本、数据重叠及领域迁移问题。标准化、特征选择和调参仍必须在训练流程内完成。</p>
-</section>
-<section id="联合学习不是简单换一个输出层" class="level3" data-number="9.4.2">
-<h3 data-number="9.4.2" class="anchored" data-anchor-id="联合学习不是简单换一个输出层"><span class="header-section-number">9.4.2</span> 联合学习不是简单换一个输出层</h3>
-<p>将编码器与 hinge 目标联合优化会使整体问题非凸，失去原始线性/核 SVM 的全局凸性保证。若核本身由网络学习，需重新分析表示、正则化和优化，而不是复用所有经典 SVM 结论。</p>
-<p>ICML 2025 的 <em>Deep Principal Support Vector Machines for Nonlinear Sufficient Dimension Reduction</em> 用神经网络函数类推广 principal SVM 的非线性充分降维框架 <span class="citation" data-cites="deepprincipal">(<a href="../references.html#ref-deepprincipal" role="doc-biblioref">Chen 等 2025年</a>)</span>。它关注的是降维，不是普通“深度特征加 SVM”分类管线。阅读时先搞清响应变量、充分性目标与学习的子空间，再看实验。</p>
-<p>本方向的可运行扩展练习是：将同一批固定特征分别交给线性 SVM 和逻辑回归，固定训练划分、调参预算和指标，分析收益来自表示还是分类头。大规模编码器实验留给有相应算力和数据授权的后续项目。</p>
+<section id="怎样设计一个可回答的实验" class="level3" data-number="13.2.2">
+<h3 data-number="13.2.2" class="anchored" data-anchor-id="怎样设计一个可回答的实验"><span class="header-section-number">13.2.2</span> 怎样设计一个可回答的实验</h3>
+<p>固定数据、指标和精度要求；在内层验证选择代表点数或随机特征数、核尺度与分类惩罚；外层记录误差、训练时间、内存与预测成本。比较多个随机种子，避免把一次随机近似的好运当成规律。</p>
+<p>FALKON（2017，同行评审）将Nyström与预条件迭代结合用于大规模核岭回归 <span class="citation" data-cites="falkon">(<a href="../references.html#ref-falkon" role="doc-biblioref">Rudi 等 2017年</a>)</span>。岭回归使用平方损失，与hinge-SVM目标不同；它提供扩展核计算的思想入口，不能直接当作SVM求解器。</p>
+<p>2025年同行评审的 <em>Towards Unified Native Spaces in Kernel Methods</em> 研究核参数族及相应函数空间之间的关系 <span class="citation" data-cites="native">(<a href="../references.html#ref-native" role="doc-biblioref">Emery 等 2025年</a>)</span>。它承接“核定义函数空间”这个概念：改变核不只是调整图形，还会改变平滑性、局部作用与正则化含义。</p>
+<p><strong>阅读任务</strong>：分别写下论文的损失、近似空间和成本指标；若它研究核岭回归，不把结论直接转成SVM分类提升。</p>
 </section>
 </section>
-<section id="方向四最大间隔解释深度学习的优化" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="方向四最大间隔解释深度学习的优化"><span class="header-section-number">9.5</span> 方向四：最大间隔解释深度学习的优化</h2>
-<p>Soudry 等的经典结果说明，在特定的线性可分条件、损失和梯度下降设置下，逻辑回归参数的范数可能持续增大，但其<strong>方向</strong>趋向硬间隔 SVM 解 <span class="citation" data-cites="soudry">(<a href="../references.html#ref-soudry" role="doc-biblioref">Soudry 等 2018年</a>)</span>。这是隐式偏置：优化算法会偏向某类解，即使目标没有显式范数正则项。</p>
-<p>这不是说逻辑回归输出的每个有限迭代点都等于 SVM，也不是所有非凸神经网络都收敛到同一个间隔解。模型参数化、优化几何、损失尾部和初始化会改变结论。</p>
-<p>2026 年 JMLR 的 <em>Optimizing Attention with Mirror Descent: Generalized Max-Margin Token Selection</em> 分析特定 softmax 注意力分类模型中的镜像下降，建立向广义 <span class="math inline">\(\ell_p\)</span> 硬间隔问题方向收敛的结论 <span class="citation" data-cites="attention">(<a href="../references.html#ref-attention" role="doc-biblioref">Julistiono 等 2026年</a>)</span>。它提供了最大间隔思想与注意力优化之间的联系；条件覆盖的模型远小于完整的大语言模型，不能据此断言“Transformer 本质上就是 SVM”。</p>
-<p>建议的理论阅读顺序是：本教程 KKT → 线性可分逻辑回归的隐式偏置 → 优化几何 → 注意力模型。读每篇论文时分别记录“模型”“损失”“优化器”“数据假设”“收敛对象”和“哪些结论未被证明”。</p>
+<section id="方向二从容忍违例走向明确的稳健性" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="方向二从容忍违例走向明确的稳健性"><span class="header-section-number">13.3</span> 方向二：从容忍违例走向明确的稳健性</h2>
+<section id="软间隔没有规定什么扰动需要防御" class="level3" data-number="13.3.1">
+<h3 data-number="13.3.1" class="anchored" data-anchor-id="软间隔没有规定什么扰动需要防御"><span class="header-section-number">13.3.1</span> 软间隔没有规定什么扰动需要防御</h3>
+<p>普通hinge损失容忍训练违例，却没有直接承诺输入扰动后仍正确。设输入可能变为 <span class="math inline">\(x+\delta\)</span>，且 <span class="math inline">\(\|\delta\|_2\le\varepsilon\)</span>。对于线性分数：</p>
+<p><span class="math display">\[y f(x+\delta)=y f(x)+y w^T\delta.\]</span></p>
+<p>由Cauchy–Schwarz，最坏变化为 <span class="math inline">\(-\varepsilon\|w\|\)</span>，在 <span class="math inline">\(w\ne0\)</span> 时取 <span class="math inline">\(\delta=-\varepsilon y w/\|w\|\)</span> 即可达到。因此</p>
+<p><span class="math display">\[\min_{\|\delta\|\le\varepsilon}y f(x+\delta)=y f(x)-\varepsilon\|w\|.\]</span></p>
+<p>若要所有允许扰动后仍保持单位间隔，应要求</p>
+<p><span class="math display">\[y f(x)\ge1+\varepsilon\|w\|.\]</span></p>
+<p>这说明稳健约束直接联系几何间隔，但前提是这个扰动球真能代表任务中的变化；任意选择半径并不能自动获得有意义的可靠性。</p>
 </section>
-<section id="怎样判断一个-svm-改进值得研究" class="level2" data-number="9.6">
-<h2 data-number="9.6" class="anchored" data-anchor-id="怎样判断一个-svm-改进值得研究"><span class="header-section-number">9.6</span> 怎样判断一个 SVM 改进值得研究</h2>
-<p>先问它解决什么问题，而不是先挑一个新名称。若只在几个小数据集上调核函数获得更高分，至少还需要对照强基线、重复划分、相同选参预算、消融和统计不确定性。若声称理论改进，需要明确证明对象和假设。若声称更快，需要相同精度要求下的时间、内存和推理成本。</p>
-<p>Twin SVM、模糊 SVM、多任务和量子核等可以作为进一步检索关键词，但本教程不将它们直接归为“当前主流”。研究方向的选择应与数据问题、可验证假设和可复现实验匹配。</p>
+<section id="分布鲁棒与单点扰动不同" class="level3" data-number="13.3.2">
+<h3 data-number="13.3.2" class="anchored" data-anchor-id="分布鲁棒与单点扰动不同"><span class="header-section-number">13.3.2</span> 分布鲁棒与单点扰动不同</h3>
+<p>分布鲁棒优化不是只移动单个输入，而是考虑经验分布 <span class="math inline">\(P_n\)</span> 附近的一组可能分布 <span class="math inline">\(\mathcal U(P_n)\)</span>：</p>
+<p><span class="math display">\[\min_g\sup_{Q\in\mathcal U(P_n)}\mathbb E_Q[\ell(y,g(x))]+\frac\lambda2\|g\|_{\mathcal H}^2.\]</span></p>
+<p>普通经验风险只用 <span class="math inline">\(P_n\)</span> 的平均损失；这里先找集合中的最坏平均损失，再选择函数。集合可以限制迁移成本、矩或群体变化；越宽可能越保守。</p>
+<p>2024年 <em>Wasserstein Distributionally Robust Multiclass Support Vector Machine</em> 使用Crammer–Singer损失并讨论核版本上界 <span class="citation" data-cites="wasserstein">(<a href="../references.html#ref-wasserstein" role="doc-biblioref">Ibrahim 等 2024年</a>)</span>；2025年 <em>Globalized distributionally robust chance-constrained support vector machine based on core sets</em> 研究机会约束与核心集合 <span class="citation" data-cites="gdrc">(<a href="../references.html#ref-gdrc" role="doc-biblioref">Li 等 2025年</a>)</span>。此处二者按核实记录标为<strong>预印本</strong>。</p>
+<p><strong>阅读任务</strong>：说明不确定集合允许改变输入、标签还是群体比例；找出参数选择是否使用独立验证，以及声称的稳健性由什么测试支持。</p>
 </section>
-<section id="练习与论文阅读任务" class="level2" data-number="9.7">
-<h2 data-number="9.7" class="anchored" data-anchor-id="练习与论文阅读任务"><span class="header-section-number">9.7</span> 练习与论文阅读任务</h2>
+</section>
+<section id="方向三固定表示与联合表示学习" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="方向三固定表示与联合表示学习"><span class="header-section-number">13.4</span> 方向三：固定表示与联合表示学习</h2>
+<section id="固定编码器上的分类头" class="level3" data-number="13.4.1">
+<h3 data-number="13.4.1" class="anchored" data-anchor-id="固定编码器上的分类头"><span class="header-section-number">13.4.1</span> 固定编码器上的分类头</h3>
+<p>取预训练表示 <span class="math inline">\(z(x)\)</span>，线性SVM使用 <span class="math inline">\(w^Tz(x)+b\)</span>。对固定的 <span class="math inline">\(z\)</span>，训练仍是经典凸问题；可以沿用最大间隔、KKT和折内评估。编码器来源、预训练数据重叠和特征提取成本则需要单独记录。</p>
+<p>同一标签预算下，先比较固定表示上的SVM与逻辑回归，再决定是否微调表示。否则无法确定提升来自分类头还是表示学习。</p>
+</section>
+<section id="一旦表示参与训练凸性可能消失" class="level3" data-number="13.4.2">
+<h3 data-number="13.4.2" class="anchored" data-anchor-id="一旦表示参与训练凸性可能消失"><span class="header-section-number">13.4.2</span> 一旦表示参与训练，凸性可能消失</h3>
+<p>设 <span class="math inline">\(z=z_\theta(x)\)</span> 是网络，联合优化</p>
+<p><span class="math display">\[\min_{\theta,w,b}\frac12\|w\|^2+C\sum_i\ell_{\rm hinge}(y_i[w^Tz_\theta(x_i)+b])\]</span></p>
+<p>通常对所有参数不再凸。固定 <span class="math inline">\(\theta\)</span> 的SVM子问题仍可凸，但整体最优性不能由原来的线性KKT证明直接保证。还需定义网络的正则、尺度与优化方法。</p>
+<p>ICML2025同行评审论文 <em>Deep Principal Support Vector Machines for Nonlinear Sufficient Dimension Reduction</em> 把principal SVM相关的充分降维扩展到神经网络函数类 <span class="citation" data-cites="deepprincipal">(<a href="../references.html#ref-deepprincipal" role="doc-biblioref">Chen 等 2025年</a>)</span>。降维问题问“能否用较低维表示保留响应相关信息”，与单纯预测类别的目标不同。</p>
+<p><strong>阅读任务</strong>：写清论文学习的是分类器、特征表示还是充分降维结构，再找对应的理论保证。</p>
+</section>
+</section>
+<section id="方向四为什么没有显式正则也可能出现最大间隔" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="方向四为什么没有显式正则也可能出现最大间隔"><span class="header-section-number">13.5</span> 方向四：为什么没有显式正则也可能出现最大间隔</h2>
+<section id="先观察线性可分的-logistic-目标" class="level3" data-number="13.5.1">
+<h3 data-number="13.5.1" class="anchored" data-anchor-id="先观察线性可分的-logistic-目标"><span class="header-section-number">13.5.1</span> 先观察线性可分的 logistic 目标</h3>
+<p>先限定无截距 <span class="math inline">\(b=0\)</span> 的线性模型，假设数据可被过原点的超平面分开。对可分方向 <span class="math inline">\(w_0\)</span>，取 <span class="math inline">\(w=t w_0\)</span>，所有训练间隔随 <span class="math inline">\(t\)</span> 增大。logistic损失</p>
+<p><span class="math display">\[\sum_i\log(1+e^{-t m_i})\]</span></p>
+<p>趋于0，范数却趋于无穷。无正则的这种目标没有有限参数能达到零损失。于是应问的是<strong>方向</strong>趋向何处，而非参数是否收敛到某个有限向量。</p>
+<p>Soudry等（2018，同行评审）证明，在特定线性可分、损失与梯度下降条件下，归一化参数方向趋向硬间隔SVM方向 <span class="citation" data-cites="soudry">(<a href="../references.html#ref-soudry" role="doc-biblioref">Soudry 等 2018年</a>)</span>。这叫隐式偏置：优化过程偏向某种解，即使没有显式写入范数正则。</p>
+<p>它与前面参数整体缩放例子紧密相连：范数可以增长，而边界方向逐渐稳定。有限步逻辑回归参数不因此等于SVM参数。若截距也通过梯度下降更新，可将其作为增广向量 <span class="math inline">\((w,b)\)</span> 的坐标；相应隐式范数可能包含截距，与前面只正则化 <span class="math inline">\(w\)</span> 的模型不同，不能直接等同。</p>
+</section>
+<section id="与注意力优化的联系" class="level3" data-number="13.5.2">
+<h3 data-number="13.5.2" class="anchored" data-anchor-id="与注意力优化的联系"><span class="header-section-number">13.5.2</span> 与注意力优化的联系</h3>
+<p>2026年JMLR论文 <em>Optimizing Attention with Mirror Descent: Generalized Max-Margin Token Selection</em> 分析指定softmax注意力分类模型与镜像下降，在条件下建立朝广义硬间隔目标方向收敛的结果 <span class="citation" data-cites="attention">(<a href="../references.html#ref-attention" role="doc-biblioref">Julistiono 等 2026年</a>)</span>。</p>
+<p>镜像下降改变优化几何，广义间隔目标可使用 <span class="math inline">\(\ell_p\)</span> 范数。这里“优化几何选择哪种方向”的问题比“是否都在做分类”更关键。论文的特定模型与假设不能直接覆盖完整大语言模型。</p>
+<p><strong>阅读任务</strong>：列出模型、损失、优化器、数据假设、收敛对象；逐项对照自己想研究的网络是否满足。</p>
+</section>
+</section>
+<section id="怎样把研究兴趣变成可检验的问题" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="怎样把研究兴趣变成可检验的问题"><span class="header-section-number">13.6</span> 怎样把研究兴趣变成可检验的问题</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>看到的限制</th>
+<th>可能改进</th>
+<th>必须检查的证据</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>核训练与预测太慢</td>
+<td>近似特征、工作集、预算模型</td>
+<td>相同精度条件下的时间、内存与延迟</td>
+</tr>
+<tr class="even">
+<td>噪声或迁移使模型失效</td>
+<td>稳健损失、扰动/分布集合</td>
+<td>明确变化类型、独立外部评估</td>
+</tr>
+<tr class="odd">
+<td>固定特征表达不足</td>
+<td>预训练表示、联合学习</td>
+<td>表示来源、消融、标签和计算预算</td>
+</tr>
+<tr class="even">
+<td>非凸模型难解释</td>
+<td>最大间隔与隐式偏置分析</td>
+<td>参数化、优化器和理论假设</td>
+</tr>
+</tbody>
+</table>
+<p>Twin SVM、模糊SVM、多任务、量子核等是可以检索的主题，但名称本身不能证明它是当前主流或适合你的问题。先说明解决什么限制，再选方法。</p>
+</section>
+<section id="练习与讨论" class="level2" data-number="13.7">
+<h2 data-number="13.7" class="anchored" data-anchor-id="练习与讨论"><span class="header-section-number">13.7</span> 练习与讨论</h2>
 <ol type="1">
-<li>阅读 Soudry 论文摘要与设定：写出它关于“方向”而非“参数收敛”的区别。</li>
-<li>阅读一个分布鲁棒 SVM 预印本：指出其不确定集合，以及你所在领域能否解释该集合。</li>
-<li>为 Nyström + LinearSVC 设计一个实验：在训练集内选近似维数，同时记录时间、内存和外层验证表现。</li>
+<li><span class="math inline">\(\|w\|=5,m=2,\varepsilon=0.1\)</span>，最坏扰动后的间隔是多少？是否仍达到单位间隔？</li>
+<li>预训练表示+SVM更好，如何区分表示收益与分类头收益？</li>
+<li>参数范数增大但方向收敛，为什么不与“参数没有有限极小值”矛盾？</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled" title="参考讨论">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -383,13 +474,17 @@ window.Quarto = {
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>范数可以发散而归一化方向收敛；条件是理论结论的一部分，不能省略。</li>
-<li>没有与实际分布变化相对应的集合，鲁棒优化只会变成额外参数化。</li>
-<li>将近似维数纳入内层 CV；外层验证只用于评估。保留不同随机种子下的误差及成本分布。</li>
+<li><span class="math inline">\(2-0.1\cdot5=1.5\)</span>，仍至少为1。这依赖所定义的欧氏扰动集合。</li>
+<li>固定同一表示、划分与预算比较不同头；再固定头比较表示，记录预训练资源。</li>
+<li>方向在单位球上可以收敛，长度同时发散；这是两个不同量。与分数缩放改变范数却不必改变边界的例子一致。</li>
 </ol>
 </div>
 </div>
 </div>
+</section>
+<section id="完成教程后" class="level2" data-number="13.8">
+<h2 data-number="13.8" class="anchored" data-anchor-id="完成教程后"><span class="header-section-number">13.8</span> 完成教程后</h2>
+<p>你已从分类问题走到模型目标、对偶系数、核空间、求解算法和可靠实践。继续学习时，使用同一个习惯：先写清问题，再对应图形与公式，最后用可复现的实验或明确假设下的证明检验结论。</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
@@ -860,13 +955,13 @@ document.addEventListener('DOMContentLoaded',function(){
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/07-cases.html" class="pagination-link" aria-label="真实数据案例">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">真实数据案例</span></span>
+      <a href="../chapters/07-cases.html" class="pagination-link" aria-label="案例与模型比较">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">案例与模型比较</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/09-authoring.html" class="pagination-link" aria-label="维护本教程">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">维护本教程</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../references.html" class="pagination-link" aria-label="参考文献">
+        <span class="nav-page-text">参考文献</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

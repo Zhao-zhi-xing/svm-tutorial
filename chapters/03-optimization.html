@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>参考文献 – 支持向量机教程：从几何到现代学习</title>
+<title>4&nbsp; 约束优化、对偶与 KKT – 支持向量机教程：从几何到现代学习</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -45,24 +45,25 @@ div.csl-indent {
 }</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./chapters/08-modern.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fe1b2164e170bcee65568756051c19de.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/03-duality-smo.html" rel="next">
+<link href="../chapters/02-soft-margin.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-fe1b2164e170bcee65568756051c19de.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -90,31 +91,60 @@ div.csl-indent {
     "search-label": "搜索"
   }
 }</script>
-<script src="./assets/plotly.min.js"></script>
+<script src="../assets/plotly.min.js"></script>
 
-<script src="./assets/models.js"></script>
+<script src="../assets/models.js"></script>
 
-<script defer="" src="./assets/tutorial.js"></script>
-
-
-
-<script src="./assets/experiments.js"></script>
-
-<script defer="" src="./assets/experiments-ui.js"></script>
+<script defer="" src="../assets/tutorial.js"></script>
 
 
 
-<script src="./assets/teaching-data.js"></script>
+<script src="../assets/experiments.js"></script>
 
-<script defer="" src="./assets/teaching-ui.js"></script>
-
-
-
-<script src="./assets/legacy-links.js"></script>
+<script defer="" src="../assets/experiments-ui.js"></script>
 
 
 
-<link rel="stylesheet" href="assets/book.css">
+<script src="../assets/teaching-data.js"></script>
+
+<script defer="" src="../assets/teaching-ui.js"></script>
+
+
+
+<script src="../assets/legacy-links.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../assets/book.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -130,11 +160,11 @@ div.csl-indent {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
 <span class="menu-text">首页</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./chapters/01-geometry.html"> 
+    <a class="nav-link" href="../chapters/01-geometry.html"> 
 <span class="menu-text">教程</span></a>
   </li>  
   <li class="nav-item compact">
@@ -153,7 +183,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">参考文献</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/03-optimization.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">约束优化与 KKT</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -174,91 +204,91 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">导读与学习路线</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/01-geometry.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/01-geometry.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">分类与超平面</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/01-hard-margin.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/01-hard-margin.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">间隔与硬间隔</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/02-soft-margin.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/02-soft-margin.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔与正则化</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/03-optimization.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/03-optimization.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">约束优化与 KKT</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/03-duality-smo.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/03-duality-smo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">SVM 对偶与解</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/04-kernels.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/04-kernels.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">映射与核技巧</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/04-rkhs.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/04-rkhs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">核的函数空间</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/03-smo.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/03-smo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">SMO 求解</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/05-multiclass.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/05-multiclass.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">多分类</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/06-workflow.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/06-workflow.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">评估与模型选择</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/00-python-start.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/00-python-start.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python / R 实践</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/07-cases.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/07-cases.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">案例与模型比较</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/08-modern.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/08-modern.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">现代研究导读</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">参考文献</span></a>
   </div>
 </li>
@@ -267,15 +297,27 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">本章目录</h2>
+   
+  <ul class="collapse">
+  <li><a href="#一个梯度不为零的最优点" id="toc-一个梯度不为零的最优点" class="nav-link active" data-scroll-target="#一个梯度不为零的最优点"><span class="header-section-number">4.1</span> 一个梯度不为零的最优点</a></li>
+  <li><a href="#给约束一个非负乘子" id="toc-给约束一个非负乘子" class="nav-link" data-scroll-target="#给约束一个非负乘子"><span class="header-section-number">4.2</span> 给约束一个非负乘子</a></li>
+  <li><a href="#从例子到一般拉格朗日函数" id="toc-从例子到一般拉格朗日函数" class="nav-link" data-scroll-target="#从例子到一般拉格朗日函数"><span class="header-section-number">4.3</span> 从例子到一般拉格朗日函数</a></li>
+  <li><a href="#四组-kkt-条件怎样协同" id="toc-四组-kkt-条件怎样协同" class="nav-link" data-scroll-target="#四组-kkt-条件怎样协同"><span class="header-section-number">4.4</span> 四组 KKT 条件怎样协同</a></li>
+  <li><a href="#为什么它们能够证明最优" id="toc-为什么它们能够证明最优" class="nav-link" data-scroll-target="#为什么它们能够证明最优"><span class="header-section-number">4.5</span> 为什么它们能够证明最优</a></li>
+  <li><a href="#练习与解答" id="toc-练习与解答" class="nav-link" data-scroll-target="#练习与解答"><span class="header-section-number">4.6</span> 练习与解答</a></li>
+  <li><a href="#下一步" id="toc-下一步" class="nav-link" data-scroll-target="#下一步"><span class="header-section-number">4.7</span> 下一步</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">参考文献</h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">约束优化、对偶与 KKT</span></h1>
 </div>
 
 
@@ -292,104 +334,143 @@ div.csl-indent {
 </header>
 
 
-<p>正文引用教材、原始论文与官方文档。研究章节标明资料截止时间及预印本身份。多分类示意图根据《神经网络与深度学习》第3.1.2节图3.3的思想重绘。</p>
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div class="chapter-intro">
+<p><strong>本章要回答</strong>：有约束时，为什么仅令目标梯度为零不够？怎样证明求到的点是最优解？</p>
+<p><strong>前置知识</strong>：偏导数、凸函数。先完成一维例子，再把同样的逻辑用于一般约束问题。</p>
+</div>
+<section id="一个梯度不为零的最优点" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="一个梯度不为零的最优点"><span class="header-section-number">4.1</span> 一个梯度不为零的最优点</h2>
+<p>考虑</p>
+<p><span class="math display">\[\min_u\frac12u^2\quad\text{s.t. }u\ge a.\]</span></p>
+<p>无约束时最优点是0。若 <span class="math inline">\(a=1\)</span>，可行区间为 <span class="math inline">\([1,\infty)\)</span>，最优点却是1，此处目标导数为1。目标想继续向左下降，但约束挡住了它。因此约束优化的最优性需要考虑边界的作用。</p>
+<p>若 <span class="math inline">\(a=-1\)</span>，0在可行区间内部，仍是最优点。统一答案为 <span class="math inline">\(u^*=\max(a,0)\)</span>。下面要用一个方法同时解释这两种情况。</p>
+</section>
+<section id="给约束一个非负乘子" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="给约束一个非负乘子"><span class="header-section-number">4.2</span> 给约束一个非负乘子</h2>
+<p>统一将不等式写成 <span class="math inline">\(g(u)=a-u\le0\)</span>。拉格朗日函数为</p>
+<p><span class="math display">\[L(u,\lambda)=\frac12u^2+\lambda(a-u),\qquad\lambda\ge0.\]</span></p>
+<p>为何乘子非负？对于可行点，<span class="math inline">\(a-u\le0\)</span>，因此 <span class="math inline">\(L(u,\lambda)\le\tfrac12u^2\)</span>。这样的函数可以提供原目标的下界。若乘子取负，方向就不保证成立。</p>
+<p>固定 <span class="math inline">\(\lambda\)</span>，对 <span class="math inline">\(u\)</span> 最小化：</p>
+<p><span class="math display">\[\frac{\partial L}{\partial u}=u-\lambda=0\quad\Longrightarrow\quad u=\lambda.\]</span></p>
+<p>代回得到对偶函数</p>
+<p><span class="math display">\[q(\lambda)=\inf_u L(u,\lambda)=a\lambda-\frac12\lambda^2.\]</span></p>
+<p>原问题是在可行区间寻找最低目标值；对偶是在 <span class="math inline">\(\lambda\ge0\)</span> 中寻找最高的下界。最大化这个凹抛物线，得到 <span class="math inline">\(\lambda^*=\max(a,0)\)</span>。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(a\)</span></th>
+<th>原始解 <span class="math inline">\(u^*\)</span></th>
+<th>乘子 <span class="math inline">\(\lambda^*\)</span></th>
+<th>原始值</th>
+<th>对偶值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(1/2\)</span></td>
+<td><span class="math inline">\(1/2\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(-1\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+<td><span class="math inline">\(0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>当约束把解挡在边界，乘子为正；当约束不影响最优位置，乘子为0。这个例子原始值与最好的下界相等，接下来解释何时能够保证这种相等。</p>
+</section>
+<section id="从例子到一般拉格朗日函数" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="从例子到一般拉格朗日函数"><span class="header-section-number">4.3</span> 从例子到一般拉格朗日函数</h2>
+<p>把所有原始变量记为 <span class="math inline">\(u\)</span>，考虑</p>
+<p><span class="math display">\[\min_u f_0(u),\quad g_i(u)\le0,\quad h_j(u)=0.\]</span></p>
+<p>定义</p>
+<p><span class="math display">\[L(u,\alpha,\beta)=f_0(u)+\sum_i\alpha_i g_i(u)+\sum_j\beta_jh_j(u),
+\qquad\alpha_i\ge0,\quad\beta_j\in\mathbb R.\]</span></p>
+<p>等式乘子不限制符号，因为 <span class="math inline">\(h_j=0\)</span> 无论乘什么都为0。对偶函数是对原始变量取下确界：</p>
+<p><span class="math display">\[q(\alpha,\beta)=\inf_u L(u,\alpha,\beta).\]</span></p>
+<p>注意这里 <span class="math inline">\(u\)</span> 在全空间变化；原来的约束已经放入拉格朗日函数，而不再次限制极小化区域。对偶问题是最大化 <span class="math inline">\(q\)</span>，受乘子符号约束。</p>
+<section id="为什么对偶只能提供下界" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="为什么对偶只能提供下界"><span class="header-section-number">4.3.1</span> 为什么对偶只能提供下界</h3>
+<p>任取原始可行 <span class="math inline">\(u\)</span> 和对偶可行乘子：</p>
+<p><span class="math display">\[q(\alpha,\beta)\le L(u,\alpha,\beta)\le f_0(u).\]</span></p>
+<p>第一步来自下确界不大于任意函数值；第二步来自非负乘子乘非正约束，等式项为0。因此最优值满足 <span class="math inline">\(d^*\le p^*\)</span>，称为<strong>弱对偶</strong>。不需要凸性也成立。</p>
+<p>也可以把原问题写成</p>
+<p><span class="math display">\[p^*=\inf_u\sup_{\alpha\ge0,\beta}L(u,\alpha,\beta).\]</span></p>
+<p>可行点处的上确界等于 <span class="math inline">\(f_0(u)\)</span>；不可行时，可以让违反约束对应的乘子发散，使上确界为无穷。对偶则是先取下确界再取上确界。它们的顺序不能像加法一样随意交换。</p>
+</section>
+<section id="强对偶的条件" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="强对偶的条件"><span class="header-section-number">4.3.2</span> 强对偶的条件</h3>
+<p>若 <span class="math inline">\(f_0,g_i\)</span> 凸，等式约束仿射，且满足适当的约束资格条件，可以保证 <span class="math inline">\(d^*=p^*\)</span>。一个常用的充分条件是 <strong>Slater 条件</strong>：存在满足等式并使所有不等式严格成立的点 <span class="citation" data-cites="boyd">(<a href="../references.html#ref-boyd" role="doc-biblioref">Boyd 和 Vandenberghe 2004年, 第5章</a>)</span>。</p>
+<p>一维例子可取 <span class="math inline">\(u&gt;a\)</span>；软间隔可取 <span class="math inline">\(w=0,b=0,\xi_i=2\)</span>；可分的硬间隔可把一个严格分隔的参数放大，使所有 <span class="math inline">\(y_if(x_i)&gt;1\)</span>。这些例子的凸性与严格可行性允许我们利用强对偶。</p>
+<p>这里使用 inf/sup 是因为一般问题未必取到最优值；对于后面的 SVM，我们会讨论达到最优值时的变量与条件。</p>
+</section>
+</section>
+<section id="四组-kkt-条件怎样协同" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="四组-kkt-条件怎样协同"><span class="header-section-number">4.4</span> 四组 KKT 条件怎样协同</h2>
+<p>对于可微的约束问题，KKT 条件为</p>
+<p><span id="eq-general-kkt"><span class="math display">\[\begin{aligned}
+&amp;\text{原始可行：}&amp;&amp;g_i(u^*)\le0,\quad h_j(u^*)=0,\\
+&amp;\text{对偶可行：}&amp;&amp;\alpha_i^*\ge0,\\
+&amp;\text{驻点：}&amp;&amp;\nabla f_0(u^*)+\sum_i\alpha_i^*\nabla g_i(u^*)+\sum_j\beta_j^*\nabla h_j(u^*)=0,\\
+&amp;\text{互补松弛：}&amp;&amp;\alpha_i^*g_i(u^*)=0.
+\end{aligned} \tag{4.1}\]</span></span></p>
+<p>它们各司其职：可行性确保没有违反问题定义；驻点平衡目标梯度与约束梯度；互补松弛确保没有影响解的约束不承担作用。</p>
+<p>回到一维例子，条件为</p>
+<p><span class="math display">\[u\ge a,\quad\lambda\ge0,\quad u-\lambda=0,\quad\lambda(a-u)=0.\]</span></p>
+<p><span class="math inline">\(a=1\)</span> 时 <span class="math inline">\(u=1,\lambda=1\)</span>；<span class="math inline">\(a=-1\)</span> 时 <span class="math inline">\(u=0,\lambda=0\)</span>。可以逐项检查四个条件，而不只核对梯度。</p>
+<p><strong>活跃约束</strong>指 <span class="math inline">\(g_i(u)=0\)</span>。互补松弛说明 <span class="math inline">\(\alpha_i&gt;0\)</span> 必须活跃，严格松弛则必须 <span class="math inline">\(\alpha_i=0\)</span>。活跃约束不一定具有正乘子：<span class="math inline">\(a=0\)</span> 时 <span class="math inline">\(u=0,\lambda=0\)</span>，就是反例。</p>
+</section>
+<section id="为什么它们能够证明最优" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="为什么它们能够证明最优"><span class="header-section-number">4.5</span> 为什么它们能够证明最优</h2>
+<p>在上述凸性假设下，固定对偶可行乘子后，<span class="math inline">\(L\)</span> 对 <span class="math inline">\(u\)</span> 凸。驻点使 <span class="math inline">\(u^*\)</span> 成为这个函数的全局最小点；互补松弛给出 <span class="math inline">\(L(u^*,\alpha^*,\beta^*)=f_0(u^*)\)</span>。因此对任意原始可行 <span class="math inline">\(u\)</span>：</p>
+<p><span class="math display">\[f_0(u^*)=L(u^*,\alpha^*,\beta^*)\le L(u,\alpha^*,\beta^*)\le f_0(u).\]</span></p>
+<p>这证明了凸问题中 KKT 的<strong>充分性</strong>。要让每个最优解都能配上这样的乘子，即<strong>必要性</strong>，还需要适当约束资格条件；Slater 为后面的 SVM 提供保证。</p>
+<p>非凸问题中，满足 KKT 通常不能证明全局最优。例如无约束的 <span class="math inline">\(-u^2\)</span> 在0处梯度为0，却是极大点。不要脱离凸性使用这段证明。</p>
+</section>
+<section id="练习与解答" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">4.6</span> 练习与解答</h2>
+<ol type="1">
+<li>一维例子中 <span class="math inline">\(a=2\)</span>，求原始解、乘子和两个目标值。</li>
+<li><span class="math inline">\(a=-1\)</span> 时，提出 <span class="math inline">\(u=1,\lambda=1\)</span> 满足驻点。它为何不是 KKT 点？</li>
+<li>“所有活跃约束都必须有正乘子”是否成立？</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled" title="逐项检查">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">提示</span>逐项检查
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><span class="math inline">\(u=\lambda=2\)</span>，原始值为2，对偶值 <span class="math inline">\(2\cdot2-\tfrac12\cdot4=2\)</span>。</li>
+<li>互补松弛失败：<span class="math inline">\(\lambda(a-u)=1(-1-1)=-2\ne0\)</span>。驻点只是四组条件之一。</li>
+<li>不成立。<span class="math inline">\(a=0,u=0,\lambda=0\)</span> 时约束活跃但乘子为0。这一退化现象也可能出现在支持向量分析中。</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="下一步" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="下一步"><span class="header-section-number">4.7</span> 下一步</h2>
+<p>对偶提供可验证的目标下界，KKT 将最优性拆成可检查的条件。下一章把每个 SVM 样本的间隔约束配上乘子，推导训练和预测都依赖的系数表示。</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-boyd" class="csl-entry" role="listitem">
-Boyd, Stephen, and Lieven Vandenberghe. 2004. <em>Convex
-Optimization</em>. Cambridge University Press. <a href="https://web.stanford.edu/~boyd/cvxbook/">https://web.stanford.edu/~boyd/cvxbook/</a>.
-</div>
-<div id="ref-libsvm" class="csl-entry" role="listitem">
-Chang, Chih-Chung, and Chih-Jen Lin. 2011. <span>“LIBSVM: A Library for
-Support Vector Machines.”</span> <em>ACM Transactions on Intelligent
-Systems and Technology</em> 2 (3): 27:1–27. <a href="https://doi.org/10.1145/1961189.1961199">https://doi.org/10.1145/1961189.1961199</a>.
-</div>
-<div id="ref-deepprincipal" class="csl-entry" role="listitem">
-Chen, Yinfeng, Jin Liu, and Rui Qiu. 2025. <span>“Deep Principal Support
-Vector Machines for Nonlinear Sufficient Dimension Reduction.”</span>
-<em>Proceedings of the 42nd International Conference on Machine
-Learning</em> 267: 8574–93. <a href="https://proceedings.mlr.press/v267/chen25ap.html">https://proceedings.mlr.press/v267/chen25ap.html</a>.
-</div>
-<div id="ref-crammer" class="csl-entry" role="listitem">
-Crammer, Koby, and Yoram Singer. 2001. <span>“On the Algorithmic
-Implementation of Multiclass Kernel-Based Vector Machines.”</span>
-<em>Journal of Machine Learning Research</em> 2: 265–92. <a href="https://www.jmlr.org/papers/v2/crammer01a.html">https://www.jmlr.org/papers/v2/crammer01a.html</a>.
-</div>
-<div id="ref-native" class="csl-entry" role="listitem">
-Emery, Xavier, Emilio Porcu, and Moreno Bevilacqua. 2025. <span>“Towards
-Unified Native Spaces in Kernel Methods.”</span> <em>Journal of Machine
-Learning Research</em> 26 (267): 1–35. <a href="https://jmlr.org/papers/v26/25-0022.html">https://jmlr.org/papers/v26/25-0022.html</a>.
-</div>
-<div id="ref-tabpfn" class="csl-entry" role="listitem">
-Hollmann, Noah, Samuel Müller, Lennart Purucker, et al. 2025.
-<span>“Accurate Predictions on Small Data with a Tabular Foundation
-Model.”</span> <em>Nature</em> 637: 319–26. <a href="https://doi.org/10.1038/s41586-024-08328-6">https://doi.org/10.1038/s41586-024-08328-6</a>.
-</div>
-<div id="ref-wasserstein" class="csl-entry" role="listitem">
-Ibrahim, Michael, Heraldo Rozas, and Nagi Gebraeel. 2024.
-<em>Wasserstein Distributionally Robust Multiclass Support Vector
-Machine</em>. <a href="https://arxiv.org/abs/2409.08409">https://arxiv.org/abs/2409.08409</a>.
-</div>
-<div id="ref-islp" class="csl-entry" role="listitem">
-James, Gareth, Daniela Witten, Trevor Hastie, Robert Tibshirani, and
-Jonathan Taylor. 2023. <em>An Introduction to Statistical Learning with
-Applications in Python</em>. Springer. <a href="https://doi.org/10.1007/978-3-031-38747-0">https://doi.org/10.1007/978-3-031-38747-0</a>.
-</div>
-<div id="ref-attention" class="csl-entry" role="listitem">
-Julistiono, Addison Kristanto, Davoud Ataee Tarzanagh, and Navid Azizan.
-2026. <span>“Optimizing Attention with Mirror Descent: Generalized
-Max-Margin Token Selection.”</span> <em>Journal of Machine Learning
-Research</em> 27 (36): 1–61. <a href="https://jmlr.org/papers/v27/25-0549.html">https://jmlr.org/papers/v27/25-0549.html</a>.
-</div>
-<div id="ref-succinctly" class="csl-entry" role="listitem">
-Kowalczyk, Alexandre. 2017. <em>Support Vector Machines Succinctly</em>.
-Syncfusion. <a href="https://www.syncfusion.com/succinctly-free-ebooks/support-vector-machines-succinctly">https://www.syncfusion.com/succinctly-free-ebooks/support-vector-machines-succinctly</a>.
-</div>
-<div id="ref-gdrc" class="csl-entry" role="listitem">
-Li, Yueyao, Chenglong Bao, and Wenxun Xing. 2025. <em>Globalized
-Distributionally Robust Chance-Constrained Support Vector Machine Based
-on Core Sets</em>. <a href="https://arxiv.org/abs/2505.10024">https://arxiv.org/abs/2505.10024</a>.
-</div>
-<div id="ref-cs229" class="csl-entry" role="listitem">
-Ng, Andrew. n.d. <em>CS229 Lecture Notes: Support Vector Machines</em>.
-Stanford University. <a href="https://cs229.stanford.edu/notes/cs229-notes3.pdf">https://cs229.stanford.edu/notes/cs229-notes3.pdf</a>.
-</div>
-<div id="ref-platt" class="csl-entry" role="listitem">
-Platt, John. 1998. <em>Sequential Minimal Optimization: A Fast Algorithm
-for Training Support Vector Machines</em>. MSR-TR-98-14. Microsoft
-Research. <a href="https://www.microsoft.com/en-us/research/publication/sequential-minimal-optimization-a-fast-algorithm-for-training-support-vector-machines/">https://www.microsoft.com/en-us/research/publication/sequential-minimal-optimization-a-fast-algorithm-for-training-support-vector-machines/</a>.
-</div>
-<div id="ref-dagsvm" class="csl-entry" role="listitem">
-Platt, John, Nello Cristianini, and John Shawe-Taylor. 1999.
-<span>“Large Margin DAGs for Multiclass Classification.”</span>
-<em>Advances in Neural Information Processing Systems</em> 12. <a href="https://proceedings.neurips.cc/paper/1999/hash/4abe17a1c80cbdd2aa241b70840879de-Abstract.html">https://proceedings.neurips.cc/paper/1999/hash/4abe17a1c80cbdd2aa241b70840879de-Abstract.html</a>.
-</div>
-<div id="ref-rff" class="csl-entry" role="listitem">
-Rahimi, Ali, and Benjamin Recht. 2007. <span>“Random Features for
-Large-Scale Kernel Machines.”</span> <em>Advances in Neural Information
-Processing Systems</em> 20. <a href="https://papers.nips.cc/paper_files/paper/2007/hash/013a006f03dbc5392effeb8f18fda755-Abstract.html">https://papers.nips.cc/paper_files/paper/2007/hash/013a006f03dbc5392effeb8f18fda755-Abstract.html</a>.
-</div>
-<div id="ref-falkon" class="csl-entry" role="listitem">
-Rudi, Alessandro, Luigi Carratino, and Lorenzo Rosasco. 2017.
-<span>“FALKON: An Optimal Large Scale Kernel Method.”</span>
-<em>Advances in Neural Information Processing Systems</em>. <a href="https://papers.neurips.cc/paper/6978-falkon-an-optimal-large-scale-kernel-method.pdf">https://papers.neurips.cc/paper/6978-falkon-an-optimal-large-scale-kernel-method.pdf</a>.
-</div>
-<div id="ref-soudry" class="csl-entry" role="listitem">
-Soudry, Daniel, Elad Hoffer, Mor Shpigel Nacson, Suriya Gunasekar, and
-Nathan Srebro. 2018. <span>“The Implicit Bias of Gradient Descent on
-Separable Data.”</span> <em>Journal of Machine Learning Research</em> 19
-(70): 1–57. <a href="https://jmlr.org/papers/v19/18-188.html">https://jmlr.org/papers/v19/18-188.html</a>.
-</div>
-<div id="ref-nystrom" class="csl-entry" role="listitem">
-Williams, Christopher K. I., and Matthias Seeger. 2000. <span>“Using the
-Nyström Method to Speed up Kernel Machines.”</span> <em>Advances in
-Neural Information Processing Systems</em> 13. <a href="https://proceedings.neurips.cc/paper/2000/file/19de10adbaa1b2ee13f77f679fa1483a-Paper.pdf">https://proceedings.neurips.cc/paper/2000/file/19de10adbaa1b2ee13f77f679fa1483a-Paper.pdf</a>.
-</div>
-<div id="ref-nndl" class="csl-entry" role="listitem">
-邱锡鹏. 2020. <em>神经网络与深度学习</em>. 机械工业出版社. <a href="https://nndl.github.io/">https://nndl.github.io/</a>.
+Boyd, Stephen, 和 Lieven Vandenberghe. 2004年. <em>Convex Optimization</em>. Cambridge University Press. <a href="https://web.stanford.edu/~boyd/cvxbook/">https://web.stanford.edu/~boyd/cvxbook/</a>.
 </div>
 </div>
-
-
+</section>
 
 </main> <!-- /main -->
 <script>
@@ -831,11 +912,14 @@ document.addEventListener('DOMContentLoaded',function(){
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./chapters/08-modern.html" class="pagination-link" aria-label="现代研究导读">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">现代研究导读</span></span>
+      <a href="../chapters/02-soft-margin.html" class="pagination-link" aria-label="软间隔与正则化">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔与正则化</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../chapters/03-duality-smo.html" class="pagination-link" aria-label="SVM 对偶与解">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">SVM 对偶与解</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

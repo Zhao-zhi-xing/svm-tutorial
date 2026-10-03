@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; 案例：从 Iris 到高维基因表达 – 支持向量机教程：从几何到现代学习</title>
+<title>12&nbsp; 案例与模型比较：从 Iris 到高维数据 – 支持向量机教程：从几何到现代学习</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -69,7 +69,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../chapters/08-modern.html" rel="next">
-<link href="../chapters/06-workflow.html" rel="prev">
+<link href="../chapters/00-python-start.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -118,6 +118,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../assets/experiments.js"></script>
 
 <script defer="" src="../assets/experiments-ui.js"></script>
+
+
+
+<script src="../assets/teaching-data.js"></script>
+
+<script defer="" src="../assets/teaching-ui.js"></script>
+
+
+
+<script src="../assets/legacy-links.js"></script>
 
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
@@ -170,7 +180,7 @@ window.Quarto = {
 <span class="menu-text">首页</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../chapters/00-python-start.html"> 
+    <a class="nav-link" href="../chapters/01-geometry.html"> 
 <span class="menu-text">教程</span></a>
   </li>  
   <li class="nav-item compact">
@@ -189,7 +199,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/07-cases.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">真实数据案例</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/07-cases.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">案例与模型比较</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -216,68 +226,86 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/00-python-start.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">纯 Python 入门</span></span></a>
+  <a href="../chapters/01-geometry.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">分类与超平面</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/01-geometry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">超平面与间隔</span></span></a>
+  <a href="../chapters/01-hard-margin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">间隔与硬间隔</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/02-soft-margin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔与损失</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔与正则化</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-optimization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">约束优化与 KKT</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/03-duality-smo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">SVM 对偶与解</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/04-kernels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">核方法</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">映射与核技巧</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-rkhs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">核的函数空间</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-smo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">SMO 求解</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/05-multiclass.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">多分类</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">多分类</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/06-workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">可靠建模流程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">评估与模型选择</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/00-python-start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python / R 实践</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/07-cases.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">真实数据案例</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">案例与模型比较</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/08-modern.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">现代研究导读</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/09-authoring.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">维护本教程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">现代研究导读</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">参考文献</span></span></a>
+ <span class="menu-text">参考文献</span></a>
   </div>
 </li>
     </ul>
@@ -290,14 +318,15 @@ window.Quarto = {
     <h2 id="toc-title">本章目录</h2>
    
   <ul class="collapse">
-  <li><a href="#模拟数据提供可控问题" id="toc-模拟数据提供可控问题" class="nav-link active" data-scroll-target="#模拟数据提供可控问题"><span class="header-section-number">8.1</span> 模拟数据提供可控问题</a></li>
-  <li><a href="#iris多分类与二维投影" id="toc-iris多分类与二维投影" class="nav-link" data-scroll-target="#iris多分类与二维投影"><span class="header-section-number">8.2</span> Iris：多分类与二维投影</a></li>
-  <li><a href="#heart混合类型与缺失值" id="toc-heart混合类型与缺失值" class="nav-link" data-scroll-target="#heart混合类型与缺失值"><span class="header-section-number">8.3</span> Heart：混合类型与缺失值</a></li>
-  <li><a href="#khan样本少维度高" id="toc-khan样本少维度高" class="nav-link" data-scroll-target="#khan样本少维度高"><span class="header-section-number">8.4</span> Khan：样本少、维度高</a></li>
-  <li><a href="#同一协议比较不同模型" id="toc-同一协议比较不同模型" class="nav-link" data-scroll-target="#同一协议比较不同模型"><span class="header-section-number">8.5</span> 同一协议比较不同模型</a></li>
-  <li><a href="#重复评估一次分数不足以决定模型" id="toc-重复评估一次分数不足以决定模型" class="nav-link" data-scroll-target="#重复评估一次分数不足以决定模型"><span class="header-section-number">8.6</span> 重复评估：一次分数不足以决定模型</a></li>
-  <li><a href="#数据与结果可追溯" id="toc-数据与结果可追溯" class="nav-link" data-scroll-target="#数据与结果可追溯"><span class="header-section-number">8.7</span> 数据与结果可追溯</a></li>
-  <li><a href="#练习与解答" id="toc-练习与解答" class="nav-link" data-scroll-target="#练习与解答"><span class="header-section-number">8.8</span> 练习与解答</a></li>
+  <li><a href="#一套完整可检查的共享流程" id="toc-一套完整可检查的共享流程" class="nav-link active" data-scroll-target="#一套完整可检查的共享流程"><span class="header-section-number">12.1</span> 一套完整、可检查的共享流程</a></li>
+  <li><a href="#iris先完成一个容易核对的多分类任务" id="toc-iris先完成一个容易核对的多分类任务" class="nav-link" data-scroll-target="#iris先完成一个容易核对的多分类任务"><span class="header-section-number">12.2</span> Iris：先完成一个容易核对的多分类任务</a></li>
+  <li><a href="#heart混合特征与缺失值" id="toc-heart混合特征与缺失值" class="nav-link" data-scroll-target="#heart混合特征与缺失值"><span class="header-section-number">12.3</span> Heart：混合特征与缺失值</a></li>
+  <li><a href="#khan样本少维度高" id="toc-khan样本少维度高" class="nav-link" data-scroll-target="#khan样本少维度高"><span class="header-section-number">12.4</span> Khan：样本少，维度高</a></li>
+  <li><a href="#同一协议比较不同模型" id="toc-同一协议比较不同模型" class="nav-link" data-scroll-target="#同一协议比较不同模型"><span class="header-section-number">12.5</span> 同一协议比较不同模型</a></li>
+  <li><a href="#重复外层评估比较差异是否稳定" id="toc-重复外层评估比较差异是否稳定" class="nav-link" data-scroll-target="#重复外层评估比较差异是否稳定"><span class="header-section-number">12.6</span> 重复外层评估：比较差异是否稳定</a></li>
+  <li><a href="#把核近似落实为完整实验" id="toc-把核近似落实为完整实验" class="nav-link" data-scroll-target="#把核近似落实为完整实验"><span class="header-section-number">12.7</span> 把核近似落实为完整实验</a></li>
+  <li><a href="#练习与解答" id="toc-练习与解答" class="nav-link" data-scroll-target="#练习与解答"><span class="header-section-number">12.8</span> 练习与解答</a></li>
+  <li><a href="#下一步" id="toc-下一步" class="nav-link" data-scroll-target="#下一步"><span class="header-section-number">12.9</span> 下一步</a></li>
   </ul>
 </nav>
     </div>
@@ -306,7 +335,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">案例：从 Iris 到高维基因表达</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">案例与模型比较：从 Iris 到高维数据</span></h1>
 </div>
 
 
@@ -324,66 +353,277 @@ window.Quarto = {
 
 
 <div class="chapter-intro">
-<p><strong>学习目标</strong>：把原笔记中的模拟、Iris、Heart 和 Khan 案例整理成独立实验，理解任务之间的差异。完整 Python 实现在 <code>scripts/svm_lab.py</code>，R 实现在 <code>scripts/lab.R</code>；每次调用都重新读取该实验自己的数据。</p>
-<p><strong>前置知识</strong>：预处理 Pipeline、交叉验证与评价指标。</p>
+<p><strong>本章要回答</strong>：同一个 SVM 流程遇到混合类型、缺失值与高维小样本时，哪些步骤必须调整？</p>
+<p><strong>前置知识</strong>：上一章完整代码。每个案例依次检查任务、数据、方案、验证结果与局限。</p>
 </div>
-<section id="模拟数据提供可控问题" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="模拟数据提供可控问题"><span class="header-section-number">8.1</span> 模拟数据提供可控问题</h2>
-<p>前面软间隔实验使用两个重叠高斯簇，核实验使用带噪双月牙。它们分别用于观察线性折中和非线性表示。模拟数据的好处是能控制噪声与结构；局限是它不包含真实采样偏差、缺失机制和领域约束。</p>
-<p>生成脚本保存随机种子、每行 ID、训练/测试和五折编号。不要只保存图：重新绘图需要模型参数、预处理和数据。模型交互网格来自 <code>scripts/prepare.py</code>，每个参数组合都按同一评估规则计算。</p>
-</section>
-<section id="iris多分类与二维投影" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="iris多分类与二维投影"><span class="header-section-number">8.2</span> Iris：多分类与二维投影</h2>
-<p>Iris 有 150 个样本、四个数值特征、三个类别。本教程保存 105 个训练样本和 45 个测试样本，五折内选择 RBF 参数。多分类章节已经给出双语言混淆矩阵。</p>
-<p>在四维上训练的模型不能用随意选取两维的散点图完整解释。若画二维决策切片，必须说明另外两个特征固定为多少；若重新训练二维模型，则必须明确它与四维模型不同。原笔记中的预测散点可以用来标出错误，但不能单独证明四维边界。</p>
-</section>
-<section id="heart混合类型与缺失值" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="heart混合类型与缺失值"><span class="header-section-number">8.3</span> Heart：混合类型与缺失值</h2>
-<p>原 <code>Heart.csv</code> 有数值、类别和缺失值。本教程删除行号列，将 <code>AHD=Yes</code> 作为正类。缺失填补、one-hot 和标准化都只拟合训练折；不把 <code>ChestPain</code> 和 <code>Thal</code> 强行当成连续数字。</p>
-<p>旧代码 <code>Heart &lt;- na.omit(train)</code> 会误用前一个实验的 <code>train</code>。新版直接从 Heart 数据建立完整 Pipeline，不依赖已有变量；填补保留全部 303 行，而不是悄悄改变样本集。</p>
+<section id="一套完整可检查的共享流程" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="一套完整可检查的共享流程"><span class="header-section-number">12.1</span> 一套完整、可检查的共享流程</h2>
+<p>Iris全是数值；Heart还包含类别与缺失；Khan的特征数远大于样本数。统一保留同一类流程，但按特征类型学习变换，按问题选择核与候选网格。</p>
+<p>下面直接展示并执行公共训练函数。Python在ColumnTransformer中分别处理数值和类别，所有步骤随Pipeline在每折重新拟合；R明确保存每折的中位数、类别字典和缩放状态，再应用到验证数据。辅助绘图只接收已经得到的混淆计数。</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">R</a></li></ul>
 <div class="tab-content" data-group="language">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>fig, heart_result <span class="op">=</span> lab.case_plot(<span class="st">'heart'</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lab.figure_html(fig, <span class="st">'heart-python'</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sys.path.insert(<span class="dv">0</span>, <span class="st">"scripts"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> svm_lab <span class="im">as</span> lab  <span class="co"># 仅将现成计数与图转换为HTML</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler, OneHotEncoder</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.impute <span class="im">import</span> SimpleImputer</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.compose <span class="im">import</span> ColumnTransformer</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score, f1_score, confusion_matrix</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train_case(name<span class="op">=</span><span class="st">'iris'</span>):</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(<span class="st">'data/'</span> <span class="op">+</span> name <span class="op">+</span> <span class="st">'.csv'</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    train, test <span class="op">=</span> df[df.split<span class="op">==</span><span class="st">'train'</span>], df[df.split<span class="op">==</span><span class="st">'test'</span>]</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    columns <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> df <span class="cf">if</span> c <span class="kw">not</span> <span class="kw">in</span> [<span class="st">'id'</span>,<span class="st">'split'</span>,<span class="st">'target'</span>,<span class="st">'fold'</span>]]</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    X, y <span class="op">=</span> train[columns], train.target</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    numeric <span class="op">=</span> X.select_dtypes(include<span class="op">=</span><span class="st">'number'</span>).columns.tolist()</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    categorical <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> columns <span class="cf">if</span> c <span class="kw">not</span> <span class="kw">in</span> numeric]</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    pre <span class="op">=</span> ColumnTransformer([</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'num'</span>,Pipeline([(<span class="st">'impute'</span>,SimpleImputer(strategy<span class="op">=</span><span class="st">'median'</span>)),(<span class="st">'scale'</span>,StandardScaler())]),numeric),</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'cat'</span>,Pipeline([(<span class="st">'impute'</span>,SimpleImputer(strategy<span class="op">=</span><span class="st">'most_frequent'</span>)),(<span class="st">'encode'</span>,OneHotEncoder(handle_unknown<span class="op">=</span><span class="st">'ignore'</span>,sparse_output<span class="op">=</span><span class="va">False</span>))]),categorical)])</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    pipeline <span class="op">=</span> Pipeline([(<span class="st">'pre'</span>,pre),(<span class="st">'svm'</span>,SVC())])</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    cv <span class="op">=</span> [(np.flatnonzero(train.fold.values<span class="op">!=</span>f),np.flatnonzero(train.fold.values<span class="op">==</span>f)) <span class="cf">for</span> f <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)]</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Khan 为 p &gt;&gt; n，不使用 RBF 大网格。</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    param <span class="op">=</span> {<span class="st">'svm__C'</span>:[<span class="fl">.1</span>,<span class="dv">1</span>,<span class="dv">10</span>], <span class="st">'svm__kernel'</span>:[<span class="st">'linear'</span>]} <span class="cf">if</span> name<span class="op">==</span><span class="st">'khan'</span> <span class="cf">else</span> {<span class="st">'svm__C'</span>:[<span class="fl">.1</span>,<span class="dv">1</span>,<span class="dv">10</span>],<span class="st">'svm__gamma'</span>:[<span class="fl">.01</span>,<span class="fl">.1</span>,<span class="dv">1</span>],<span class="st">'svm__kernel'</span>:[<span class="st">'rbf'</span>]}</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    search <span class="op">=</span> GridSearchCV(pipeline,param,cv<span class="op">=</span>cv,scoring<span class="op">=</span><span class="st">'f1_macro'</span>,n_jobs<span class="op">=</span><span class="dv">1</span>).fit(X,y)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    pred <span class="op">=</span> search.predict(test[columns])</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    labels <span class="op">=</span> <span class="bu">sorted</span>(df.target.unique().tolist())</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> {<span class="st">'case'</span>:name,<span class="st">'language'</span>:<span class="st">'Python'</span>,<span class="st">'train_n'</span>:<span class="bu">len</span>(train),<span class="st">'test_n'</span>:<span class="bu">len</span>(test),</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="st">'parameters'</span>:search.best_params_,<span class="st">'cv_macro_f1'</span>:<span class="bu">float</span>(search.best_score_),</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="st">'accuracy'</span>:<span class="bu">float</span>(accuracy_score(test.target,pred)), <span class="st">'macro_f1'</span>:<span class="bu">float</span>(f1_score(test.target,pred,average<span class="op">=</span><span class="st">'macro'</span>)),</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="st">'labels'</span>:labels,<span class="st">'confusion'</span>:confusion_matrix(test.target,pred,labels<span class="op">=</span>labels).tolist(),</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        <span class="st">'support_vectors'</span>:<span class="bu">int</span>(search.best_estimator_.named_steps[<span class="st">'svm'</span>].n_support_.<span class="bu">sum</span>())}</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> search, test, columns, result</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/lab.R"</span>, <span class="at">encoding=</span><span class="st">"UTF-8"</span>) <span class="co"># 展示结果的函数</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 项目根目录下 source('scripts/lab.R')；每个实验重新读取自己的数据。</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>macro_f1 <span class="ot">&lt;-</span> <span class="cf">function</span>(truth, pred, labels) {</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="fu">vapply</span>(labels, <span class="cf">function</span>(k) {</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    tp <span class="ot">&lt;-</span> <span class="fu">sum</span>(truth <span class="sc">==</span> k <span class="sc">&amp;</span> pred <span class="sc">==</span> k)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    denominator <span class="ot">&lt;-</span> <span class="fu">sum</span>(truth <span class="sc">==</span> k) <span class="sc">+</span> <span class="fu">sum</span>(pred <span class="sc">==</span> k)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (denominator <span class="sc">==</span> <span class="dv">0</span>) <span class="dv">0</span> <span class="cf">else</span> <span class="dv">2</span> <span class="sc">*</span> tp <span class="sc">/</span> denominator</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  }, <span class="fu">numeric</span>(<span class="dv">1</span>)))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>fit_preprocessor <span class="ot">&lt;-</span> <span class="cf">function</span>(data) {</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  numeric <span class="ot">&lt;-</span> <span class="fu">names</span>(data)[<span class="fu">vapply</span>(data, is.numeric, <span class="fu">logical</span>(<span class="dv">1</span>))]</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  categorical <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="fu">names</span>(data), numeric)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  medians <span class="ot">&lt;-</span> <span class="fu">vapply</span>(data[numeric], median, <span class="fu">numeric</span>(<span class="dv">1</span>), <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  modes <span class="ot">&lt;-</span> <span class="fu">lapply</span>(data[categorical], <span class="cf">function</span>(x) <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">table</span>(x), <span class="at">decreasing=</span><span class="cn">TRUE</span>))[<span class="dv">1</span>])</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  levels <span class="ot">&lt;-</span> <span class="fu">lapply</span>(data[categorical], <span class="cf">function</span>(x) <span class="fu">sort</span>(<span class="fu">unique</span>(x[<span class="sc">!</span><span class="fu">is.na</span>(x)])))</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  state <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">numeric=</span>numeric, <span class="at">categorical=</span>categorical, <span class="at">medians=</span>medians, <span class="at">modes=</span>modes, <span class="at">levels=</span>levels)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  raw <span class="ot">&lt;-</span> <span class="fu">transform_features</span>(data, state, <span class="at">scale=</span><span class="cn">FALSE</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  state<span class="sc">$</span>mean <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(raw)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  state<span class="sc">$</span>sd <span class="ot">&lt;-</span> <span class="fu">apply</span>(raw, <span class="dv">2</span>, sd) <span class="sc">*</span> <span class="fu">sqrt</span>((<span class="fu">nrow</span>(raw)<span class="sc">-</span><span class="dv">1</span>)<span class="sc">/</span><span class="fu">nrow</span>(raw)) <span class="co"># 对齐 StandardScaler ddof=0</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  state<span class="sc">$</span>sd[state<span class="sc">$</span>sd <span class="sc">==</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 只标准化数值列；one-hot 的 0/1 与 Python 保持一致。</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  state<span class="sc">$</span>mean[<span class="sc">!</span><span class="fu">colnames</span>(raw) <span class="sc">%in%</span> numeric] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  state<span class="sc">$</span>sd[<span class="sc">!</span><span class="fu">colnames</span>(raw) <span class="sc">%in%</span> numeric] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  state</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>transform_features <span class="ot">&lt;-</span> <span class="cf">function</span>(data, state, <span class="at">scale=</span><span class="cn">TRUE</span>) {</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (name <span class="cf">in</span> state<span class="sc">$</span>numeric) {</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> data[[name]]; x[<span class="fu">is.na</span>(x)] <span class="ot">&lt;-</span> state<span class="sc">$</span>medians[[name]]; output[[name]] <span class="ot">&lt;-</span> x</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (name <span class="cf">in</span> state<span class="sc">$</span>categorical) {</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> <span class="fu">as.character</span>(data[[name]]); x[<span class="fu">is.na</span>(x)] <span class="ot">&lt;-</span> state<span class="sc">$</span>modes[[name]]</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (level <span class="cf">in</span> state<span class="sc">$</span>levels[[name]]) output[[<span class="fu">paste</span>(name,level,<span class="at">sep=</span><span class="st">'_'</span>)]] <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(x<span class="sc">==</span>level)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">do.call</span>(cbind, output)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (scale) result <span class="ot">&lt;-</span> <span class="fu">sweep</span>(<span class="fu">sweep</span>(result,<span class="dv">2</span>,state<span class="sc">$</span>mean,<span class="st">'-'</span>),<span class="dv">2</span>,state<span class="sc">$</span>sd,<span class="st">'/'</span>)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  result</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>train_case_r <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">name=</span><span class="st">'iris'</span>) {</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">file.path</span>(<span class="st">'data'</span>, <span class="fu">paste0</span>(name,<span class="st">'.csv'</span>)), <span class="at">check.names=</span><span class="cn">FALSE</span>, <span class="at">stringsAsFactors=</span><span class="cn">FALSE</span>, <span class="at">na.strings=</span><span class="fu">c</span>(<span class="st">'NA'</span>,<span class="st">''</span>))</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  train <span class="ot">&lt;-</span> data[data<span class="sc">$</span>split<span class="sc">==</span><span class="st">'train'</span>, ]; test <span class="ot">&lt;-</span> data[data<span class="sc">$</span>split<span class="sc">==</span><span class="st">'test'</span>, ]</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  features <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="fu">names</span>(data),<span class="fu">c</span>(<span class="st">'id'</span>,<span class="st">'split'</span>,<span class="st">'target'</span>,<span class="st">'fold'</span>))</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  labels <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(data<span class="sc">$</span>target))</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>  candidates <span class="ot">&lt;-</span> <span class="cf">if</span> (name<span class="sc">==</span><span class="st">'khan'</span>) <span class="fu">expand.grid</span>(<span class="at">C=</span><span class="fu">c</span>(.<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">10</span>),<span class="at">gamma=</span>.<span class="dv">1</span>) <span class="cf">else</span> <span class="fu">expand.grid</span>(<span class="at">C=</span><span class="fu">c</span>(.<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">10</span>),<span class="at">gamma=</span><span class="fu">c</span>(.<span class="dv">01</span>,.<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Python ParameterGrid 按 C 然后 gamma 排序，使平分时的规则一致。</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>  candidates <span class="ot">&lt;-</span> candidates[<span class="fu">order</span>(candidates<span class="sc">$</span>C,candidates<span class="sc">$</span>gamma), ]</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>  scores <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">nrow</span>(candidates))</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>  kernel <span class="ot">&lt;-</span> <span class="cf">if</span> (name<span class="sc">==</span><span class="st">'khan'</span>) <span class="st">'linear'</span> <span class="cf">else</span> <span class="st">'radial'</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(candidates))) {</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    fold_scores <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">5</span>)</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (f <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>) {</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>      a <span class="ot">&lt;-</span> train[train<span class="sc">$</span>fold<span class="sc">!=</span>f, ]; b <span class="ot">&lt;-</span> train[train<span class="sc">$</span>fold<span class="sc">==</span>f, ]</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>      state <span class="ot">&lt;-</span> <span class="fu">fit_preprocessor</span>(a[features])</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>      model <span class="ot">&lt;-</span> e1071<span class="sc">::</span><span class="fu">svm</span>(<span class="at">x=</span><span class="fu">transform_features</span>(a[features],state),<span class="at">y=</span><span class="fu">factor</span>(a<span class="sc">$</span>target,<span class="at">levels=</span>labels),<span class="at">kernel=</span>kernel,<span class="at">cost=</span>candidates<span class="sc">$</span>C[i],<span class="at">gamma=</span>candidates<span class="sc">$</span>gamma[i],<span class="at">scale=</span><span class="cn">FALSE</span>)</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>      pred <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(<span class="fu">predict</span>(model,<span class="fu">transform_features</span>(b[features],state))))</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>      fold_scores[f<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">macro_f1</span>(b<span class="sc">$</span>target,pred,labels)</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    scores[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(fold_scores)</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>  best <span class="ot">&lt;-</span> <span class="fu">which.max</span>(scores)</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>  state <span class="ot">&lt;-</span> <span class="fu">fit_preprocessor</span>(train[features])</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>  model <span class="ot">&lt;-</span> e1071<span class="sc">::</span><span class="fu">svm</span>(<span class="at">x=</span><span class="fu">transform_features</span>(train[features],state),<span class="at">y=</span><span class="fu">factor</span>(train<span class="sc">$</span>target,<span class="at">levels=</span>labels),<span class="at">kernel=</span>kernel,<span class="at">cost=</span>candidates<span class="sc">$</span>C[best],<span class="at">gamma=</span>candidates<span class="sc">$</span>gamma[best],<span class="at">scale=</span><span class="cn">FALSE</span>)</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>  prediction <span class="ot">&lt;-</span> <span class="fu">predict</span>(model,<span class="fu">transform_features</span>(test[features],state),<span class="at">decision.values=</span><span class="cn">TRUE</span>)</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>  pred <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(prediction))</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>  score <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(labels)<span class="sc">==</span><span class="dv">2</span>) {</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    values <span class="ot">&lt;-</span> <span class="fu">attr</span>(prediction,<span class="st">'decision.values'</span>)</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    positive <span class="ot">&lt;-</span> <span class="fu">strsplit</span>(<span class="fu">colnames</span>(values)[<span class="dv">1</span>], <span class="st">'/'</span>,<span class="at">fixed=</span><span class="cn">TRUE</span>)[[<span class="dv">1</span>]][<span class="dv">1</span>]</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    score <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(values[,<span class="dv">1</span>]) <span class="sc">*</span> <span class="cf">if</span> (positive<span class="sc">==</span><span class="fu">as.character</span>(labels[<span class="dv">2</span>])) <span class="dv">1</span> <span class="cf">else</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>  confusion <span class="ot">&lt;-</span> <span class="fu">unclass</span>(<span class="fu">table</span>(<span class="fu">factor</span>(test<span class="sc">$</span>target,<span class="at">levels=</span>labels),<span class="fu">factor</span>(pred,<span class="at">levels=</span>labels)))</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">case=</span>name, <span class="at">language=</span><span class="st">'R'</span>, <span class="at">train_n=</span><span class="fu">nrow</span>(train),<span class="at">test_n=</span><span class="fu">nrow</span>(test), <span class="at">parameters=</span><span class="fu">as.list</span>(candidates[best,]),<span class="at">cv_macro_f1=</span>scores[best],<span class="at">accuracy=</span><span class="fu">mean</span>(pred<span class="sc">==</span>test<span class="sc">$</span>target),<span class="at">macro_f1=</span><span class="fu">macro_f1</span>(test<span class="sc">$</span>target,pred,labels),<span class="at">labels=</span>labels,<span class="at">confusion=</span>confusion,<span class="at">support_vectors=</span><span class="fu">nrow</span>(model<span class="sc">$</span>SV),<span class="at">score=</span>score,<span class="at">truth=</span>test<span class="sc">$</span>target)</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+<section id="先检查代码里的四条边界" class="level3" data-number="12.1.1">
+<h3 data-number="12.1.1" class="anchored" data-anchor-id="先检查代码里的四条边界"><span class="header-section-number">12.1.1</span> 先检查代码里的四条边界</h3>
+<ol type="1">
+<li><code>features</code> 排除了实验元数据和标签。</li>
+<li>每次训练折各自学习填补、编码和尺度；验证折只变换。</li>
+<li>参数选择只看训练集内五折的macro-F1。</li>
+<li>测试数据只在参数确定、全训练集重拟合后用于评价。</li>
+</ol>
+<p>两套流程数值列用中位数填补并标准化，类别用众数填补并one-hot；未知类别采用全零编码。是否适合部署中的未知类别，需要根据实际任务另行判断。</p>
+</section>
+</section>
+<section id="iris先完成一个容易核对的多分类任务" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="iris先完成一个容易核对的多分类任务"><span class="header-section-number">12.2</span> Iris：先完成一个容易核对的多分类任务</h2>
+<p><strong>任务</strong>：4个测量特征预测3类花，150个样本，训练105、测试45。所有特征数值型，无需类别编码；选择RBF的3×3参数网格。</p>
+<p><strong>先预测</strong>：如果一类被完全混淆，总accuracy仍可能较高吗？读矩阵时逐行看每类召回，再看macro-F1。</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">R</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>search_iris, test_iris, columns_iris, result_iris <span class="op">=</span> train_case(<span class="st">'iris'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lab.figure_html(lab.confusion_plot(result_iris), <span class="st">'iris-python'</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="iris-python" class="plotly-output" data-plotly-source="iris-python-json">
+
+</div>
+<script type="application/json" id="iris-python-json">{"data":[{"colorbar":{"len":0.8,"outlinewidth":0,"thickness":12,"tickfont":{"size":11},"title":{"side":"top","text":"\u6837\u672c\u6570"}},"colorscale":[[0,"#f1f5fa"],[0.35,"#b5cde6"],[0.7,"#5487b9"],[1,"#244f7d"]],"customdata":[[1.0,0.0,0.0],[0.0,0.9333333333333333,0.06666666666666667],[0.0,0.2,0.8]],"hovertemplate":"\u771f\u5b9e\u7c7b\u522b %{y}\u003cbr\u003e\u9884\u6d4b\u7c7b\u522b %{x}\u003cbr\u003e\u6837\u672c\u6570 %{z:.0f}\u003cbr\u003e\u8be5\u771f\u5b9e\u7c7b\u522b\u5360\u6bd4 %{customdata:.1%}\u003cextra\u003e\u003c\u002fextra\u003e","text":[["15\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e100%\u003c\u002fspan\u003e","0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e","0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e"],["0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e","14\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e93%\u003c\u002fspan\u003e","1\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e7%\u003c\u002fspan\u003e"],["0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e","3\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e20%\u003c\u002fspan\u003e","12\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e80%\u003c\u002fspan\u003e"]],"textfont":{"size":20},"texttemplate":"%{text}","x":["0","1","2"],"xgap":6,"y":["0","1","2"],"ygap":6,"z":[[15.0,0.0,0.0],[0.0,14.0,1.0],[0.0,3.0,12.0]],"zmin":0,"type":"heatmap"}],"layout":{"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"font":{"size":17},"text":"Iris \u00b7 Python \u6d4b\u8bd5\u96c6\u6df7\u6dc6\u77e9\u9635","x":0.5,"xanchor":"center"},"font":{"family":"Segoe UI, Microsoft YaHei, sans-serif","size":13,"color":"#30323b"},"margin":{"l":100,"r":85,"t":90,"b":90},"xaxis":{"title":{"text":"\u9884\u6d4b\u7c7b\u522b"},"type":"category","tickvals":["0","1","2"],"ticktext":["0","1","2"],"showgrid":false,"zeroline":false,"constrain":"domain"},"yaxis":{"title":{"text":"\u771f\u5b9e\u7c7b\u522b"},"type":"category","tickvals":["0","1","2"],"ticktext":["0","1","2"],"autorange":"reversed","scaleanchor":"x","scaleratio":1,"constrain":"domain","showgrid":false,"zeroline":false},"height":490,"meta":{"tutorial_kind":"confusion"},"paper_bgcolor":"white","plot_bgcolor":"white","annotations":[{"font":{"color":"#60636e","size":12},"showarrow":false,"text":"Accuracy 0.911  \u00b7  Macro-F1 0.911  \u00b7  n = 45","x":0.5,"xref":"paper","y":1.1,"yref":"paper"},{"font":{"color":"#60636e","size":12},"showarrow":false,"text":"\u683c\u5185\uff1a\u6837\u672c\u6570 \u002f \u8be5\u771f\u5b9e\u7c7b\u522b\u5360\u6bd4","x":0.5,"xref":"paper","y":-0.24,"yref":"paper"}]}}</script>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>result_iris_r <span class="ot">&lt;-</span> <span class="fu">train_case_r</span>(<span class="st">'iris'</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">figure_html_r</span>(result_iris_r, <span class="st">'iris-r'</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="iris-r" class="plotly-output" data-plotly-source="iris-r-json">
+
+</div>
+<script type="application/json" id="iris-r-json">{"data":[{"type":"heatmap","z":[[15,0,0],[0,14,1],[0,3,12]],"x":["0","1","2"],"y":["0","1","2"],"zmin":0,"colorscale":[[0,"#f1f5fa"],[0.35,"#b5cde6"],[0.7,"#5487b9"],[1,"#244f7d"]],"xgap":6,"ygap":6,"text":[["15<br><span style=\"font-size:12px\">100%<\/span>","0<br><span style=\"font-size:12px\">0%<\/span>","0<br><span style=\"font-size:12px\">0%<\/span>"],["0<br><span style=\"font-size:12px\">0%<\/span>","14<br><span style=\"font-size:12px\">93%<\/span>","1<br><span style=\"font-size:12px\">7%<\/span>"],["0<br><span style=\"font-size:12px\">0%<\/span>","3<br><span style=\"font-size:12px\">20%<\/span>","12<br><span style=\"font-size:12px\">80%<\/span>"]],"customdata":[[1,0,0],[0,0.93333333,0.06666667],[0,0.2,0.8]],"texttemplate":"%{text}","textfont":{"size":20},"colorbar":{"title":{"text":"样本数","side":"top"},"thickness":12,"len":0.8,"outlinewidth":0,"tickfont":{"size":11}},"hovertemplate":"真实类别 %{y}<br>预测类别 %{x}<br>样本数 %{z:.0f}<br>该真实类别占比 %{customdata:.1%}<extra><\/extra>"}],"layout":{"title":{"text":"Iris · R 测试集混淆矩阵","x":0.5,"xanchor":"center","font":{"size":17}},"height":490,"meta":{"tutorial_kind":"confusion"},"paper_bgcolor":"white","plot_bgcolor":"white","font":{"family":"Segoe UI, Microsoft YaHei, sans-serif","size":13,"color":"#30323b"},"margin":{"l":100,"r":85,"t":90,"b":90},"xaxis":{"title":"预测类别","type":"category","tickvals":["0","1","2"],"ticktext":["0","1","2"],"showgrid":false,"zeroline":false,"constrain":"domain"},"yaxis":{"title":"真实类别","type":"category","tickvals":["0","1","2"],"ticktext":["0","1","2"],"autorange":"reversed","scaleanchor":"x","scaleratio":1,"constrain":"domain","showgrid":false,"zeroline":false},"annotations":[{"x":0.5,"y":1.1,"xref":"paper","yref":"paper","showarrow":false,"text":"Accuracy 0.911  ·  Macro-F1 0.911  ·  n = 45","font":{"size":12,"color":"#60636e"}},{"x":0.5,"y":-0.24,"xref":"paper","yref":"paper","showarrow":false,"text":"格内：样本数 / 该真实类别占比","font":{"size":12,"color":"#60636e"}}]}}</script>
+</div>
+</div>
+</div>
+<details class="result-details">
+<summary>
+查看所选参数与验证、测试指标
+</summary>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">R</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>({k: result_iris[k] <span class="cf">for</span> k <span class="kw">in</span> [<span class="st">'parameters'</span>, <span class="st">'cv_macro_f1'</span>, <span class="st">'accuracy'</span>, <span class="st">'macro_f1'</span>]})</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'parameters': {'svm__C': 10, 'svm__gamma': 0.01, 'svm__kernel': 'rbf'}, 'cv_macro_f1': 0.980854700854701, 'accuracy': 0.9111111111111111, 'macro_f1': 0.9107142857142857}</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>result_iris_r[<span class="fu">c</span>(<span class="st">'parameters'</span>,<span class="st">'cv_macro_f1'</span>,<span class="st">'accuracy'</span>,<span class="st">'macro_f1'</span>)]</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$parameters
+$parameters$C
+[1] 10
+
+$parameters$gamma
+[1] 0.01
+
+attr(,"out.attrs")
+attr(,"out.attrs")$dim
+    C gamma 
+    3     3 
+
+attr(,"out.attrs")$dimnames
+attr(,"out.attrs")$dimnames$C
+[1] "C= 0.1" "C= 1.0" "C=10.0"
+
+attr(,"out.attrs")$dimnames$gamma
+[1] "gamma=0.01" "gamma=0.10" "gamma=1.00"
+
+
+
+$cv_macro_f1
+[1] 0.9808547
+
+$accuracy
+[1] 0.9111111
+
+$macro_f1
+[1] 0.9107143</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</details>
+<p>矩阵中的错误集中在哪两个类别？用格内比例解释，再与总分比较。本模型使用全部4个特征；二维散点只会投影一部分信息，不能完整展示四维边界。若另训练二维模型，需明确它是另一项实验。</p>
+<p>Iris样本小、任务相对简单，接近满分不证明模型在其他问题上同样强。它适合检查代码与多分类规则。</p>
+</section>
+<section id="heart混合特征与缺失值" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="heart混合特征与缺失值"><span class="header-section-number">12.3</span> Heart：混合特征与缺失值</h2>
+<p><strong>任务</strong>：历史教学数据303行，以 <code>AHD=Yes</code> 为正类。输入包含数值测量和类别，如ChestPain与Thal；训练212、测试91。类别编号不能直接当成连续距离。</p>
+<p><strong>方案</strong>：数值折内填补与标准化，类别折内填补与one-hot，再使用RBF。全部样本保留，填补参数从当前训练部分学习。</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">R</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>search_heart, test_heart, columns_heart, result_heart <span class="op">=</span> train_case(<span class="st">'heart'</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lab.figure_html(lab.confusion_plot(result_heart), <span class="st">'heart-python'</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="heart-python" class="plotly-output" data-plotly-source="heart-python-json">
 
 </div>
 <script type="application/json" id="heart-python-json">{"data":[{"colorbar":{"len":0.8,"outlinewidth":0,"thickness":12,"tickfont":{"size":11},"title":{"side":"top","text":"\u6837\u672c\u6570"}},"colorscale":[[0,"#f1f5fa"],[0.35,"#b5cde6"],[0.7,"#5487b9"],[1,"#244f7d"]],"customdata":[[0.9183673469387755,0.08163265306122448],[0.16666666666666666,0.8333333333333334]],"hovertemplate":"\u771f\u5b9e\u7c7b\u522b %{y}\u003cbr\u003e\u9884\u6d4b\u7c7b\u522b %{x}\u003cbr\u003e\u6837\u672c\u6570 %{z:.0f}\u003cbr\u003e\u8be5\u771f\u5b9e\u7c7b\u522b\u5360\u6bd4 %{customdata:.1%}\u003cextra\u003e\u003c\u002fextra\u003e","text":[["45\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e92%\u003c\u002fspan\u003e","4\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e8%\u003c\u002fspan\u003e"],["7\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e17%\u003c\u002fspan\u003e","35\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e83%\u003c\u002fspan\u003e"]],"textfont":{"size":20},"texttemplate":"%{text}","x":["0","1"],"xgap":6,"y":["0","1"],"ygap":6,"z":[[45.0,4.0],[7.0,35.0]],"zmin":0,"type":"heatmap"}],"layout":{"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"font":{"size":17},"text":"Heart \u00b7 Python \u6d4b\u8bd5\u96c6\u6df7\u6dc6\u77e9\u9635","x":0.5,"xanchor":"center"},"font":{"family":"Segoe UI, Microsoft YaHei, sans-serif","size":13,"color":"#30323b"},"margin":{"l":100,"r":85,"t":90,"b":90},"xaxis":{"title":{"text":"\u9884\u6d4b\u7c7b\u522b"},"type":"category","tickvals":["0","1"],"ticktext":["AHD = No","AHD = Yes"],"showgrid":false,"zeroline":false,"constrain":"domain"},"yaxis":{"title":{"text":"\u771f\u5b9e\u7c7b\u522b"},"type":"category","tickvals":["0","1"],"ticktext":["AHD = No","AHD = Yes"],"autorange":"reversed","scaleanchor":"x","scaleratio":1,"constrain":"domain","showgrid":false,"zeroline":false},"height":490,"meta":{"tutorial_kind":"confusion"},"paper_bgcolor":"white","plot_bgcolor":"white","annotations":[{"font":{"color":"#60636e","size":12},"showarrow":false,"text":"Accuracy 0.879  \u00b7  Macro-F1 0.878  \u00b7  n = 91","x":0.5,"xref":"paper","y":1.1,"yref":"paper"},{"font":{"color":"#60636e","size":12},"showarrow":false,"text":"\u683c\u5185\uff1a\u6837\u672c\u6570 \u002f \u8be5\u771f\u5b9e\u7c7b\u522b\u5360\u6bd4","x":0.5,"xref":"paper","y":-0.24,"yref":"paper"}]}}</script>
-<details class="result-details">
-<summary>
-查看完整实验记录（参数与指标）
-</summary>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(heart_result)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>{'case': 'heart', 'language': 'Python', 'train_n': 212, 'test_n': 91, 'parameters': {'svm__C': 1, 'svm__gamma': 0.01, 'svm__kernel': 'rbf'}, 'cv_macro_f1': 0.8401539251105756, 'accuracy': 0.8791208791208791, 'macro_f1': 0.8776433198875443, 'labels': [0, 1], 'confusion': [[45, 4], [7, 35]], 'support_vectors': 126}</code></pre>
 </div>
-</div>
-</details>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>heart_r <span class="ot">&lt;-</span> <span class="fu">fit_case_r</span>(<span class="st">'heart'</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">figure_html_r</span>(heart_r, <span class="st">'heart-r'</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>result_heart_r <span class="ot">&lt;-</span> <span class="fu">train_case_r</span>(<span class="st">'heart'</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">figure_html_r</span>(result_heart_r, <span class="st">'heart-r'</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="heart-r" class="plotly-output" data-plotly-source="heart-r-json">
 
 </div>
 <script type="application/json" id="heart-r-json">{"data":[{"type":"heatmap","z":[[45,4],[7,35]],"x":["0","1"],"y":["0","1"],"zmin":0,"colorscale":[[0,"#f1f5fa"],[0.35,"#b5cde6"],[0.7,"#5487b9"],[1,"#244f7d"]],"xgap":6,"ygap":6,"text":[["45<br><span style=\"font-size:12px\">92%<\/span>","4<br><span style=\"font-size:12px\">8%<\/span>"],["7<br><span style=\"font-size:12px\">17%<\/span>","35<br><span style=\"font-size:12px\">83%<\/span>"]],"customdata":[[0.91836735,0.08163265],[0.16666667,0.83333333]],"texttemplate":"%{text}","textfont":{"size":20},"colorbar":{"title":{"text":"样本数","side":"top"},"thickness":12,"len":0.8,"outlinewidth":0,"tickfont":{"size":11}},"hovertemplate":"真实类别 %{y}<br>预测类别 %{x}<br>样本数 %{z:.0f}<br>该真实类别占比 %{customdata:.1%}<extra><\/extra>"}],"layout":{"title":{"text":"Heart · R 测试集混淆矩阵","x":0.5,"xanchor":"center","font":{"size":17}},"height":490,"meta":{"tutorial_kind":"confusion"},"paper_bgcolor":"white","plot_bgcolor":"white","font":{"family":"Segoe UI, Microsoft YaHei, sans-serif","size":13,"color":"#30323b"},"margin":{"l":100,"r":85,"t":90,"b":90},"xaxis":{"title":"预测类别","type":"category","tickvals":["0","1"],"ticktext":["AHD = No","AHD = Yes"],"showgrid":false,"zeroline":false,"constrain":"domain"},"yaxis":{"title":"真实类别","type":"category","tickvals":["0","1"],"ticktext":["AHD = No","AHD = Yes"],"autorange":"reversed","scaleanchor":"x","scaleratio":1,"constrain":"domain","showgrid":false,"zeroline":false},"annotations":[{"x":0.5,"y":1.1,"xref":"paper","yref":"paper","showarrow":false,"text":"Accuracy 0.879  ·  Macro-F1 0.878  ·  n = 91","font":{"size":12,"color":"#60636e"}},{"x":0.5,"y":-0.24,"xref":"paper","yref":"paper","showarrow":false,"text":"格内：样本数 / 该真实类别占比","font":{"size":12,"color":"#60636e"}}]}}</script>
+</div>
+</div>
+</div>
 <details class="result-details">
 <summary>
-查看完整实验记录（参数与指标）
+查看所选参数与验证、测试指标
 </summary>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">R</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>heart_r[<span class="fu">c</span>(<span class="st">'train_n'</span>,<span class="st">'test_n'</span>,<span class="st">'parameters'</span>,<span class="st">'cv_macro_f1'</span>,<span class="st">'accuracy'</span>,<span class="st">'macro_f1'</span>)]</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>({k: result_heart[k] <span class="cf">for</span> k <span class="kw">in</span> [<span class="st">'parameters'</span>, <span class="st">'cv_macro_f1'</span>, <span class="st">'accuracy'</span>, <span class="st">'macro_f1'</span>]})</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>$train_n
-[1] 212
-
-$test_n
-[1] 91
-
-$parameters
+<pre><code>{'parameters': {'svm__C': 1, 'svm__gamma': 0.01, 'svm__kernel': 'rbf'}, 'cv_macro_f1': 0.8401539251105756, 'accuracy': 0.8791208791208791, 'macro_f1': 0.8776433198875443}</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>result_heart_r[<span class="fu">c</span>(<span class="st">'parameters'</span>,<span class="st">'cv_macro_f1'</span>,<span class="st">'accuracy'</span>,<span class="st">'macro_f1'</span>)]</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$parameters
 $parameters$C
 [1] 1
 
@@ -414,60 +654,86 @@ $macro_f1
 [1] 0.8776433</code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
 </details>
+<p>读取矩阵时，正类行的漏报位于“预测No”列，负类行的误报位于“预测Yes”列。比较两种错误数量和每类比例，不只阅读标题分数。</p>
+<p>这是历史数据的教学分类任务。要建立实际风险预测，还需明确采样人群、时间、外部验证与概率校准；本例的混淆矩阵只支持当前划分的判断。</p>
+<section id="决策分数与-rocpr" class="level3" data-number="12.3.1">
+<h3 data-number="12.3.1" class="anchored" data-anchor-id="决策分数与-rocpr"><span class="header-section-number">12.3.1</span> 决策分数与 ROC/PR</h3>
+<p>下面直接使用已训练的Heart模型，不再次隐藏拟合。正分数方向统一为正类；分别画ROC与PR，轴不混用。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_curve, precision_recall_curve, roc_auc_score, average_precision_score</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> search_heart.decision_function(test_heart[columns_heart])</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>fpr, tpr, _ <span class="op">=</span> roc_curve(test_heart.target, score)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>precision, recall, _ <span class="op">=</span> precision_recall_curve(test_heart.target, score)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> tag, x, y, xtitle, ytitle, value <span class="kw">in</span> [</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'ROC'</span>, fpr, tpr, <span class="st">'FPR'</span>, <span class="st">'TPR'</span>, roc_auc_score(test_heart.target, score)),</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'PR'</span>, recall, precision, <span class="st">'Recall'</span>, <span class="st">'Precision'</span>, average_precision_score(test_heart.target, score))]:</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> go.Figure(go.Scatter(x<span class="op">=</span>x, y<span class="op">=</span>y, mode<span class="op">=</span><span class="st">'lines'</span>, name<span class="op">=</span>tag,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>                             line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'#245e91'</span>, width<span class="op">=</span><span class="dv">3</span>)))</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    fig.update_layout(title<span class="op">=</span><span class="ss">f'Heart · </span><span class="sc">{</span>tag<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>value<span class="sc">:.3f}</span><span class="ss">)'</span>, height<span class="op">=</span><span class="dv">480</span>,</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>                      xaxis_title<span class="op">=</span>xtitle, yaxis_title<span class="op">=</span>ytitle)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(lab.figure_html(fig, <span class="st">'heart-'</span> <span class="op">+</span> tag.lower()))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+Figure({ ‘data’: [{‘line’: {‘color’: ‘#245e91’, ‘width’: 3}, ‘mode’: ‘lines’, ‘name’: ‘ROC’, ‘type’: ‘scatter’, ‘x’: array([0. , 0. , 0. , 0.02040816, 0.02040816, 0.06122449, 0.06122449, 0.08163265, 0.08163265, 0.12244898, 0.12244898, 0.26530612, 0.26530612, 0.28571429, 0.28571429, 0.32653061, 0.32653061, 0.40816327, 0.40816327, 1. ]), ‘y’: array([0. , 0.02380952, 0.33333333, 0.33333333, 0.76190476, 0.76190476, 0.78571429, 0.78571429, 0.83333333, 0.83333333, 0.85714286, 0.85714286, 0.88095238, 0.88095238, 0.9047619 , 0.9047619 , 0.97619048, 0.97619048, 1. , 1. ])}], ‘layout’: {‘height’: 480, ‘template’: ‘…’, ‘title’: {‘text’: ‘Heart · ROC (0.937)’}, ‘xaxis’: {‘title’: {‘text’: ‘FPR’}}, ‘yaxis’: {‘title’: {‘text’: ‘TPR’}}} })
+<div id="heart-roc" class="plotly-output" data-plotly-source="heart-roc-json">
+
 </div>
+<script type="application/json" id="heart-roc-json">{"data":[{"line":{"color":"#245e91","width":3},"mode":"lines","name":"ROC","x":[0.0,0.0,0.0,0.02040816326530612,0.02040816326530612,0.061224489795918366,0.061224489795918366,0.08163265306122448,0.08163265306122448,0.12244897959183673,0.12244897959183673,0.2653061224489796,0.2653061224489796,0.2857142857142857,0.2857142857142857,0.32653061224489793,0.32653061224489793,0.40816326530612246,0.40816326530612246,1.0],"y":[0.0,0.023809523809523808,0.3333333333333333,0.3333333333333333,0.7619047619047619,0.7619047619047619,0.7857142857142857,0.7857142857142857,0.8333333333333334,0.8333333333333334,0.8571428571428571,0.8571428571428571,0.8809523809523809,0.8809523809523809,0.9047619047619048,0.9047619047619048,0.9761904761904762,0.9761904761904762,1.0,1.0],"type":"scatter"}],"layout":{"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"text":"Heart \u00b7 ROC (0.937)"},"height":480,"xaxis":{"title":{"text":"FPR"}},"yaxis":{"title":{"text":"TPR"}}}}</script>
+Figure({ ‘data’: [{‘line’: {‘color’: ‘#245e91’, ‘width’: 3}, ‘mode’: ‘lines’, ‘name’: ‘PR’, ‘type’: ‘scatter’, ‘x’: array([1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 0.97619048, 0.97619048, 0.97619048, 0.97619048, 0.97619048, 0.95238095, 0.92857143, 0.9047619 , 0.9047619 , 0.9047619 , 0.88095238, 0.88095238, 0.85714286, 0.85714286, 0.85714286, 0.85714286, 0.85714286, 0.85714286, 0.85714286, 0.85714286, 0.83333333, 0.83333333, 0.83333333, 0.80952381, 0.78571429, 0.78571429, 0.76190476, 0.76190476, 0.76190476, 0.73809524, 0.71428571, 0.69047619, 0.66666667, 0.64285714, 0.61904762, 0.5952381 , 0.57142857, 0.54761905, 0.52380952, 0.5 , 0.47619048, 0.45238095, 0.42857143, 0.4047619 , 0.38095238, 0.35714286, 0.33333333, 0.33333333, 0.30952381, 0.28571429, 0.26190476, 0.23809524, 0.21428571, 0.19047619, 0.16666667, 0.14285714, 0.11904762, 0.0952381 , 0.07142857, 0.04761905, 0.02380952, 0. ]), ‘y’: array([0.46153846, 0.46666667, 0.47191011, 0.47727273, 0.48275862, 0.48837209, 0.49411765, 0.5 , 0.5060241 , 0.51219512, 0.51851852, 0.525 , 0.53164557, 0.53846154, 0.54545455, 0.55263158, 0.56 , 0.56756757, 0.57534247, 0.58333333, 0.5915493 , 0.6 , 0.60869565, 0.61764706, 0.62686567, 0.63636364, 0.64615385, 0.65625 , 0.66666667, 0.67741935, 0.67213115, 0.68333333, 0.69491525, 0.70689655, 0.71929825, 0.71428571, 0.70909091, 0.7037037 , 0.71698113, 0.73076923, 0.7254902 , 0.74 , 0.73469388, 0.75 , 0.76595745, 0.7826087 , 0.8 , 0.81818182, 0.8372093 , 0.85714286, 0.85365854, 0.875 , 0.8974359 , 0.89473684, 0.89189189, 0.91666667, 0.91428571, 0.94117647, 0.96969697, 0.96875 , 0.96774194, 0.96666667, 0.96551724, 0.96428571, 0.96296296, 0.96153846, 0.96 , 0.95833333, 0.95652174, 0.95454545, 0.95238095, 0.95 , 0.94736842, 0.94444444, 0.94117647, 0.9375 , 0.93333333, 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. , 1. ])}], ‘layout’: {‘height’: 480, ‘template’: ‘…’, ‘title’: {‘text’: ‘Heart · PR (0.931)’}, ‘xaxis’: {‘title’: {‘text’: ‘Recall’}}, ‘yaxis’: {‘title’: {‘text’: ‘Precision’}}} })
+<div id="heart-pr" class="plotly-output" data-plotly-source="heart-pr-json">
+
 </div>
-</div>
-<p>混淆矩阵的行是真实类别、列是预测类别，类别按从上到下排列。格内第一行是样本数，第二行是该真实类别中的占比；颜色仍表示样本数，方便同时看错误数量与各类识别情况。</p>
-<p>这是历史教学数据上的分类实验，不是可用于临床的风险模型。真实应用还需要采样、外部验证、校准和时间/人群迁移方面的证据。这里关心的是正确的数据流程。</p>
+<script type="application/json" id="heart-pr-json">{"data":[{"line":{"color":"#245e91","width":3},"mode":"lines","name":"PR","x":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.9761904761904762,0.9761904761904762,0.9761904761904762,0.9761904761904762,0.9761904761904762,0.9523809523809523,0.9285714285714286,0.9047619047619048,0.9047619047619048,0.9047619047619048,0.8809523809523809,0.8809523809523809,0.8571428571428571,0.8571428571428571,0.8571428571428571,0.8571428571428571,0.8571428571428571,0.8571428571428571,0.8571428571428571,0.8571428571428571,0.8333333333333334,0.8333333333333334,0.8333333333333334,0.8095238095238095,0.7857142857142857,0.7857142857142857,0.7619047619047619,0.7619047619047619,0.7619047619047619,0.7380952380952381,0.7142857142857143,0.6904761904761905,0.6666666666666666,0.6428571428571429,0.6190476190476191,0.5952380952380952,0.5714285714285714,0.5476190476190477,0.5238095238095238,0.5,0.47619047619047616,0.4523809523809524,0.42857142857142855,0.40476190476190477,0.38095238095238093,0.35714285714285715,0.3333333333333333,0.3333333333333333,0.30952380952380953,0.2857142857142857,0.2619047619047619,0.23809523809523808,0.21428571428571427,0.19047619047619047,0.16666666666666666,0.14285714285714285,0.11904761904761904,0.09523809523809523,0.07142857142857142,0.047619047619047616,0.023809523809523808,0.0],"y":[0.46153846153846156,0.4666666666666667,0.47191011235955055,0.4772727272727273,0.4827586206896552,0.4883720930232558,0.49411764705882355,0.5,0.5060240963855421,0.5121951219512195,0.5185185185185185,0.525,0.5316455696202531,0.5384615384615384,0.5454545454545454,0.5526315789473685,0.56,0.5675675675675675,0.5753424657534246,0.5833333333333334,0.5915492957746479,0.6,0.6086956521739131,0.6176470588235294,0.6268656716417911,0.6363636363636364,0.6461538461538462,0.65625,0.6666666666666666,0.6774193548387096,0.6721311475409836,0.6833333333333333,0.6949152542372882,0.7068965517241379,0.7192982456140351,0.7142857142857143,0.7090909090909091,0.7037037037037037,0.7169811320754716,0.7307692307692307,0.7254901960784313,0.74,0.7346938775510204,0.75,0.7659574468085106,0.782608695652174,0.8,0.8181818181818182,0.8372093023255814,0.8571428571428571,0.8536585365853658,0.875,0.8974358974358975,0.8947368421052632,0.8918918918918919,0.9166666666666666,0.9142857142857143,0.9411764705882353,0.9696969696969697,0.96875,0.967741935483871,0.9666666666666667,0.9655172413793104,0.9642857142857143,0.9629629629629629,0.9615384615384616,0.96,0.9583333333333334,0.9565217391304348,0.9545454545454546,0.9523809523809523,0.95,0.9473684210526315,0.9444444444444444,0.9411764705882353,0.9375,0.9333333333333333,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"type":"scatter"}],"layout":{"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"text":"Heart \u00b7 PR (0.931)"},"height":480,"xaxis":{"title":{"text":"Recall"}},"yaxis":{"title":{"text":"Precision"}}}}</script>
+<p>曲线反映排序质量；是否需要更高召回、怎样确定阈值或校准，需在训练验证里先确定。不能根据这两条测试曲线继续选择参数，然后重复宣称未见评估。</p>
 </section>
-<section id="khan样本少维度高" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="khan样本少维度高"><span class="header-section-number">8.4</span> Khan：样本少、维度高</h2>
-<p>Khan 来自 <code>ISLR2</code>：训练集 63 个样本、测试集 20 个样本，2308 个表达特征，四个类别。保留原始规定的训练/测试划分，训练集按类别轮流分入五折；这与其他案例随机分层划分不同。</p>
-<p>当 <span class="math inline">\(p\gg n\)</span>，线性模型也可以有很强的表达能力，RBF 并非必需。这里只在训练集内比较线性核 <span class="math inline">\(C\in\{0.1,1,10\}\)</span>。如果增加基因筛选，必须放入每个训练折，不能先用所有标签挑基因。</p>
+</section>
+<section id="khan样本少维度高" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="khan样本少维度高"><span class="header-section-number">12.4</span> Khan：样本少，维度高</h2>
+<p><strong>任务</strong>：2308个基因表达特征预测4类，原始规定训练63、测试20。这里保留规定划分，不随机重新分配测试集。</p>
+<p><strong>方案</strong>：数值折内标准化，线性核，<span class="math inline">\(C\in\{0.1,1,10\}\)</span>。当 <span class="math inline">\(p\gg n\)</span>，线性模型已有很强的拟合能力，先检查简单模型而不默认RBF更好。</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">R</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">R</a></li></ul>
 <div class="tab-content" data-group="language">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, khan_result <span class="op">=</span> lab.case_plot(<span class="st">'khan'</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lab.figure_html(fig, <span class="st">'khan-python'</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>search_khan, test_khan, columns_khan, result_khan <span class="op">=</span> train_case(<span class="st">'khan'</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lab.figure_html(lab.confusion_plot(result_khan), <span class="st">'khan-python'</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="khan-python" class="plotly-output" data-plotly-source="khan-python-json">
 
 </div>
 <script type="application/json" id="khan-python-json">{"data":[{"colorbar":{"len":0.8,"outlinewidth":0,"thickness":12,"tickfont":{"size":11},"title":{"side":"top","text":"\u6837\u672c\u6570"}},"colorscale":[[0,"#f1f5fa"],[0.35,"#b5cde6"],[0.7,"#5487b9"],[1,"#244f7d"]],"customdata":[[1.0,0.0,0.0,0.0],[0.0,1.0,0.0,0.0],[0.0,0.3333333333333333,0.6666666666666666,0.0],[0.0,0.0,0.0,1.0]],"hovertemplate":"\u771f\u5b9e\u7c7b\u522b %{y}\u003cbr\u003e\u9884\u6d4b\u7c7b\u522b %{x}\u003cbr\u003e\u6837\u672c\u6570 %{z:.0f}\u003cbr\u003e\u8be5\u771f\u5b9e\u7c7b\u522b\u5360\u6bd4 %{customdata:.1%}\u003cextra\u003e\u003c\u002fextra\u003e","text":[["3\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e100%\u003c\u002fspan\u003e","0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e","0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e","0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e"],["0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e","6\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e100%\u003c\u002fspan\u003e","0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e","0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e"],["0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e","2\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e33%\u003c\u002fspan\u003e","4\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e67%\u003c\u002fspan\u003e","0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e"],["0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e","0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e","0\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e0%\u003c\u002fspan\u003e","5\u003cbr\u003e\u003cspan style=\"font-size:12px\"\u003e100%\u003c\u002fspan\u003e"]],"textfont":{"size":20},"texttemplate":"%{text}","x":["1","2","3","4"],"xgap":6,"y":["1","2","3","4"],"ygap":6,"z":[[3.0,0.0,0.0,0.0],[0.0,6.0,0.0,0.0],[0.0,2.0,4.0,0.0],[0.0,0.0,0.0,5.0]],"zmin":0,"type":"heatmap"}],"layout":{"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"font":{"size":17},"text":"Khan \u00b7 Python \u6d4b\u8bd5\u96c6\u6df7\u6dc6\u77e9\u9635","x":0.5,"xanchor":"center"},"font":{"family":"Segoe UI, Microsoft YaHei, sans-serif","size":13,"color":"#30323b"},"margin":{"l":100,"r":85,"t":90,"b":90},"xaxis":{"title":{"text":"\u9884\u6d4b\u7c7b\u522b"},"type":"category","tickvals":["1","2","3","4"],"ticktext":["1","2","3","4"],"showgrid":false,"zeroline":false,"constrain":"domain"},"yaxis":{"title":{"text":"\u771f\u5b9e\u7c7b\u522b"},"type":"category","tickvals":["1","2","3","4"],"ticktext":["1","2","3","4"],"autorange":"reversed","scaleanchor":"x","scaleratio":1,"constrain":"domain","showgrid":false,"zeroline":false},"height":490,"meta":{"tutorial_kind":"confusion"},"paper_bgcolor":"white","plot_bgcolor":"white","annotations":[{"font":{"color":"#60636e","size":12},"showarrow":false,"text":"Accuracy 0.900  \u00b7  Macro-F1 0.914  \u00b7  n = 20","x":0.5,"xref":"paper","y":1.1,"yref":"paper"},{"font":{"color":"#60636e","size":12},"showarrow":false,"text":"\u683c\u5185\uff1a\u6837\u672c\u6570 \u002f \u8be5\u771f\u5b9e\u7c7b\u522b\u5360\u6bd4","x":0.5,"xref":"paper","y":-0.24,"yref":"paper"}]}}</script>
-<details class="result-details">
-<summary>
-查看完整实验记录（参数与指标）
-</summary>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(khan_result)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>{'case': 'khan', 'language': 'Python', 'train_n': 63, 'test_n': 20, 'parameters': {'svm__C': 0.1, 'svm__kernel': 'linear'}, 'cv_macro_f1': 0.9873015873015873, 'accuracy': 0.9, 'macro_f1': 0.9142857142857144, 'labels': [1, 2, 3, 4], 'confusion': [[3, 0, 0, 0], [0, 6, 0, 0], [0, 2, 4, 0], [0, 0, 0, 5]], 'support_vectors': 58}</code></pre>
 </div>
-</div>
-</details>
-</div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>khan_r <span class="ot">&lt;-</span> <span class="fu">fit_case_r</span>(<span class="st">'khan'</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">figure_html_r</span>(khan_r, <span class="st">'khan-r'</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>result_khan_r <span class="ot">&lt;-</span> <span class="fu">train_case_r</span>(<span class="st">'khan'</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">figure_html_r</span>(result_khan_r, <span class="st">'khan-r'</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="khan-r" class="plotly-output" data-plotly-source="khan-r-json">
 
 </div>
 <script type="application/json" id="khan-r-json">{"data":[{"type":"heatmap","z":[[3,0,0,0],[0,6,0,0],[0,2,4,0],[0,0,0,5]],"x":["1","2","3","4"],"y":["1","2","3","4"],"zmin":0,"colorscale":[[0,"#f1f5fa"],[0.35,"#b5cde6"],[0.7,"#5487b9"],[1,"#244f7d"]],"xgap":6,"ygap":6,"text":[["3<br><span style=\"font-size:12px\">100%<\/span>","0<br><span style=\"font-size:12px\">0%<\/span>","0<br><span style=\"font-size:12px\">0%<\/span>","0<br><span style=\"font-size:12px\">0%<\/span>"],["0<br><span style=\"font-size:12px\">0%<\/span>","6<br><span style=\"font-size:12px\">100%<\/span>","0<br><span style=\"font-size:12px\">0%<\/span>","0<br><span style=\"font-size:12px\">0%<\/span>"],["0<br><span style=\"font-size:12px\">0%<\/span>","2<br><span style=\"font-size:12px\">33%<\/span>","4<br><span style=\"font-size:12px\">67%<\/span>","0<br><span style=\"font-size:12px\">0%<\/span>"],["0<br><span style=\"font-size:12px\">0%<\/span>","0<br><span style=\"font-size:12px\">0%<\/span>","0<br><span style=\"font-size:12px\">0%<\/span>","5<br><span style=\"font-size:12px\">100%<\/span>"]],"customdata":[[1,0,0,0],[0,1,0,0],[0,0.33333333,0.66666667,0],[0,0,0,1]],"texttemplate":"%{text}","textfont":{"size":20},"colorbar":{"title":{"text":"样本数","side":"top"},"thickness":12,"len":0.8,"outlinewidth":0,"tickfont":{"size":11}},"hovertemplate":"真实类别 %{y}<br>预测类别 %{x}<br>样本数 %{z:.0f}<br>该真实类别占比 %{customdata:.1%}<extra><\/extra>"}],"layout":{"title":{"text":"Khan · R 测试集混淆矩阵","x":0.5,"xanchor":"center","font":{"size":17}},"height":490,"meta":{"tutorial_kind":"confusion"},"paper_bgcolor":"white","plot_bgcolor":"white","font":{"family":"Segoe UI, Microsoft YaHei, sans-serif","size":13,"color":"#30323b"},"margin":{"l":100,"r":85,"t":90,"b":90},"xaxis":{"title":"预测类别","type":"category","tickvals":["1","2","3","4"],"ticktext":["1","2","3","4"],"showgrid":false,"zeroline":false,"constrain":"domain"},"yaxis":{"title":"真实类别","type":"category","tickvals":["1","2","3","4"],"ticktext":["1","2","3","4"],"autorange":"reversed","scaleanchor":"x","scaleratio":1,"constrain":"domain","showgrid":false,"zeroline":false},"annotations":[{"x":0.5,"y":1.1,"xref":"paper","yref":"paper","showarrow":false,"text":"Accuracy 0.900  ·  Macro-F1 0.914  ·  n = 20","font":{"size":12,"color":"#60636e"}},{"x":0.5,"y":-0.24,"xref":"paper","yref":"paper","showarrow":false,"text":"格内：样本数 / 该真实类别占比","font":{"size":12,"color":"#60636e"}}]}}</script>
+</div>
+</div>
+</div>
 <details class="result-details">
 <summary>
-查看完整实验记录（参数与指标）
+查看所选参数与验证、测试指标
 </summary>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href="">R</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>khan_r[<span class="fu">c</span>(<span class="st">'train_n'</span>,<span class="st">'test_n'</span>,<span class="st">'parameters'</span>,<span class="st">'cv_macro_f1'</span>,<span class="st">'accuracy'</span>,<span class="st">'macro_f1'</span>)]</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>({k: result_khan[k] <span class="cf">for</span> k <span class="kw">in</span> [<span class="st">'parameters'</span>, <span class="st">'cv_macro_f1'</span>, <span class="st">'accuracy'</span>, <span class="st">'macro_f1'</span>]})</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>$train_n
-[1] 63
-
-$test_n
-[1] 20
-
-$parameters
+<pre><code>{'parameters': {'svm__C': 0.1, 'svm__kernel': 'linear'}, 'cv_macro_f1': 0.9873015873015873, 'accuracy': 0.9, 'macro_f1': 0.9142857142857144}</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>result_khan_r[<span class="fu">c</span>(<span class="st">'parameters'</span>,<span class="st">'cv_macro_f1'</span>,<span class="st">'accuracy'</span>,<span class="st">'macro_f1'</span>)]</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$parameters
 $parameters$C
 [1] 0.1
 
@@ -498,29 +764,60 @@ $macro_f1
 [1] 0.9142857</code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
 </details>
-</div>
-</div>
-</div>
-<p>20 个测试样本中，一个错误就改变 5 个百分点的 accuracy。某次高分不证明在新医院、不同平台或批次上同样有效。批次效应和特征选择是高维小样本研究不可忽略的问题。</p>
+<p>20个测试样本中一个错误就让accuracy改变5个百分点。逐类样本数也很少，必须一起读计数。若增加基因筛选，筛选也须放进训练折；先用全体标签筛基因会泄漏。</p>
+<p>高维数据可能含批次效应、平台差异与采样偏差。当前测试结果不能直接推断在新平台上的识别效果。</p>
 </section>
-<section id="同一协议比较不同模型" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="同一协议比较不同模型"><span class="header-section-number">8.5</span> 同一协议比较不同模型</h2>
-<p>图中浅色柱为选参时的训练集五折验证分数，深色柱为独立测试分数；两者使用同一个 0–1 指标尺度。模型按固定顺序显示，验证分数是从网格中选出的分数，不是无偏的泛化估计。</p>
-<p>以下 Iris 比较在相同训练/测试划分和五个训练折上，分别选择 SVM、逻辑回归、随机森林和小型 MLP 的有限参数网格。各模型网格规模不完全相同，因此这里只是教学对照，不能称为等算力竞赛或普遍模型排名。</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fig, comparison <span class="op">=</span> lab.compare_models()</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lab.figure_html(fig, <span class="st">'model-comparison'</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="同一协议比较不同模型" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="同一协议比较不同模型"><span class="header-section-number">12.5</span> 同一协议比较不同模型</h2>
+<p>先固定问题和指标，再比较模型。下面使用Iris相同训练/测试和五折编号，分别选择SVM、逻辑回归、随机森林与小型MLP。完整选择循环如下。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compare_visible():</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestClassifier</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="im">from</span> sklearn.neural_network <span class="im">import</span> MLPClassifier</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    df<span class="op">=</span>pd.read_csv(<span class="st">'data/iris.csv'</span>)<span class="op">;</span> tr<span class="op">=</span>df[df.split<span class="op">==</span><span class="st">'train'</span>]<span class="op">;</span> te<span class="op">=</span>df[df.split<span class="op">==</span><span class="st">'test'</span>]</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    features<span class="op">=</span>[c <span class="cf">for</span> c <span class="kw">in</span> df <span class="cf">if</span> c <span class="kw">not</span> <span class="kw">in</span> [<span class="st">'id'</span>,<span class="st">'split'</span>,<span class="st">'target'</span>,<span class="st">'fold'</span>]]</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    models<span class="op">=</span>{</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">'RBF SVM'</span>:(SVC(),{<span class="st">'model__C'</span>:[<span class="fl">.1</span>,<span class="dv">1</span>,<span class="dv">10</span>],<span class="st">'model__gamma'</span>:[<span class="fl">.01</span>,<span class="fl">.1</span>,<span class="dv">1</span>]}),</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">'逻辑回归'</span>:(LogisticRegression(max_iter<span class="op">=</span><span class="dv">2000</span>),{<span class="st">'model__C'</span>:[<span class="fl">.1</span>,<span class="dv">1</span>,<span class="dv">10</span>]}),</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">'随机森林'</span>:(RandomForestClassifier(n_estimators<span class="op">=</span><span class="dv">150</span>,random_state<span class="op">=</span><span class="dv">42</span>),{<span class="st">'model__max_depth'</span>:[<span class="dv">2</span>,<span class="dv">4</span>,<span class="va">None</span>]}),</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>      <span class="st">'小型 MLP'</span>:(MLPClassifier(random_state<span class="op">=</span><span class="dv">42</span>,max_iter<span class="op">=</span><span class="dv">3000</span>,solver<span class="op">=</span><span class="st">'lbfgs'</span>),{<span class="st">'model__hidden_layer_sizes'</span>:[(<span class="dv">8</span>,),(<span class="dv">16</span>,)],<span class="st">'model__alpha'</span>:[<span class="fl">.01</span>,<span class="dv">1</span>]})}</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    rows<span class="op">=</span>[]</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> name,(model,params) <span class="kw">in</span> models.items():</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>        pipeline<span class="op">=</span>Pipeline([(<span class="st">'scale'</span>,StandardScaler()),(<span class="st">'model'</span>,model)])</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>        folds<span class="op">=</span>[(np.flatnonzero(tr.fold.values<span class="op">!=</span>f),np.flatnonzero(tr.fold.values<span class="op">==</span>f)) <span class="cf">for</span> f <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)]</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>        fit<span class="op">=</span>GridSearchCV(pipeline,params,scoring<span class="op">=</span><span class="st">'f1_macro'</span>,cv<span class="op">=</span>folds).fit(tr[features],tr.target)</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>        rows.append({<span class="st">'model'</span>:name,<span class="st">'cv_macro_f1'</span>:fit.best_score_,<span class="st">'test_macro_f1'</span>:f1_score(te.target,fit.predict(te[features]),average<span class="op">=</span><span class="st">'macro'</span>),<span class="st">'params'</span>:<span class="bu">str</span>(fit.best_params_)})</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>    fig<span class="op">=</span>go.Figure()</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> field,label,color <span class="kw">in</span> [(<span class="st">'cv_macro_f1'</span>,<span class="st">'五折验证（选参分数）'</span>,<span class="st">'#a9bfd8'</span>),(<span class="st">'test_macro_f1'</span>,<span class="st">'独立测试集'</span>,<span class="st">'#245e91'</span>)]:</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>        fig.add_bar(y<span class="op">=</span>[r[<span class="st">'model'</span>] <span class="cf">for</span> r <span class="kw">in</span> rows],x<span class="op">=</span>[r[field] <span class="cf">for</span> r <span class="kw">in</span> rows],orientation<span class="op">=</span><span class="st">'h'</span>,name<span class="op">=</span>label,</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>            marker<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span>color,line<span class="op">=</span><span class="bu">dict</span>(width<span class="op">=</span><span class="dv">0</span>)),text<span class="op">=</span>[r[field] <span class="cf">for</span> r <span class="kw">in</span> rows],texttemplate<span class="op">=</span><span class="st">'%</span><span class="sc">{text:.3f}</span><span class="st">'</span>,textposition<span class="op">=</span><span class="st">'outside'</span>,cliponaxis<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>            customdata<span class="op">=</span>[r[<span class="st">'params'</span>] <span class="cf">for</span> r <span class="kw">in</span> rows],hovertemplate<span class="op">=</span><span class="st">'%</span><span class="sc">{y}</span><span class="st">&lt;br&gt;'</span><span class="op">+</span>label<span class="op">+</span><span class="st">' macro-F1=%</span><span class="sc">{x:.4f}</span><span class="st">&lt;br&gt;%</span><span class="sc">{customdata}</span><span class="st">&lt;extra&gt;&lt;/extra&gt;'</span>)</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>    fig.update_layout(title<span class="op">=</span><span class="bu">dict</span>(text<span class="op">=</span><span class="st">'Iris · 同一协议下的模型比较'</span>,x<span class="op">=</span><span class="fl">.02</span>,xanchor<span class="op">=</span><span class="st">'left'</span>,font<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">18</span>)),</span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>        height<span class="op">=</span><span class="dv">410</span>,meta<span class="op">=</span><span class="bu">dict</span>(tutorial_kind<span class="op">=</span><span class="st">'comparison'</span>),barmode<span class="op">=</span><span class="st">'group'</span>,bargap<span class="op">=</span><span class="fl">.32</span>,bargroupgap<span class="op">=</span><span class="fl">.12</span>,</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>        paper_bgcolor<span class="op">=</span><span class="st">'white'</span>,plot_bgcolor<span class="op">=</span><span class="st">'white'</span>,font<span class="op">=</span><span class="bu">dict</span>(family<span class="op">=</span><span class="st">'Segoe UI, Microsoft YaHei, sans-serif'</span>,size<span class="op">=</span><span class="dv">13</span>,color<span class="op">=</span><span class="st">'#30323b'</span>),</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>        margin<span class="op">=</span><span class="bu">dict</span>(l<span class="op">=</span><span class="dv">100</span>,r<span class="op">=</span><span class="dv">60</span>,t<span class="op">=</span><span class="dv">100</span>,b<span class="op">=</span><span class="dv">65</span>),legend<span class="op">=</span><span class="bu">dict</span>(orientation<span class="op">=</span><span class="st">'h'</span>,x<span class="op">=</span><span class="dv">0</span>,y<span class="op">=</span><span class="fl">1.16</span>,font<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">12</span>)),</span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>        xaxis<span class="op">=</span><span class="bu">dict</span>(title<span class="op">=</span><span class="st">'Macro-F1'</span>,<span class="bu">range</span><span class="op">=</span>[<span class="dv">0</span>,<span class="fl">1.08</span>],tickvals<span class="op">=</span>[<span class="dv">0</span>,<span class="fl">.2</span>,<span class="fl">.4</span>,<span class="fl">.6</span>,<span class="fl">.8</span>,<span class="dv">1</span>],tickformat<span class="op">=</span><span class="st">'.1f'</span>,gridcolor<span class="op">=</span><span class="st">'#edf0f4'</span>,zeroline<span class="op">=</span><span class="va">False</span>),</span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>        yaxis<span class="op">=</span><span class="bu">dict</span>(autorange<span class="op">=</span><span class="st">'reversed'</span>,categoryorder<span class="op">=</span><span class="st">'array'</span>,categoryarray<span class="op">=</span>[r[<span class="st">'model'</span>] <span class="cf">for</span> r <span class="kw">in</span> rows],showgrid<span class="op">=</span><span class="va">False</span>,zeroline<span class="op">=</span><span class="va">False</span>))</span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fig,rows</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fig, comparison <span class="op">=</span> compare_visible()</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lab.figure_html(fig, <span class="st">'model-comparison'</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="model-comparison" class="plotly-output" data-plotly-source="model-comparison-json">
 
 </div>
 <script type="application/json" id="model-comparison-json">{"data":[{"cliponaxis":false,"customdata":["{'model__C': 10, 'model__gamma': 0.01}","{'model__C': 1}","{'model__max_depth': 2}","{'model__alpha': 1, 'model__hidden_layer_sizes': (8,)}"],"hovertemplate":"%{y}\u003cbr\u003e\u4e94\u6298\u9a8c\u8bc1\uff08\u9009\u53c2\u5206\u6570\uff09 macro-F1=%{x:.4f}\u003cbr\u003e%{customdata}\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#a9bfd8","line":{"width":0}},"name":"\u4e94\u6298\u9a8c\u8bc1\uff08\u9009\u53c2\u5206\u6570\uff09","orientation":"h","text":["0.980854700854701","0.980854700854701","0.9618070818070817","0.980854700854701"],"textposition":"outside","texttemplate":"%{text:.3f}","x":[0.980854700854701,0.980854700854701,0.9618070818070817,0.980854700854701],"y":["RBF SVM","\u903b\u8f91\u56de\u5f52","\u968f\u673a\u68ee\u6797","\u5c0f\u578b MLP"],"type":"bar"},{"cliponaxis":false,"customdata":["{'model__C': 10, 'model__gamma': 0.01}","{'model__C': 1}","{'model__max_depth': 2}","{'model__alpha': 1, 'model__hidden_layer_sizes': (8,)}"],"hovertemplate":"%{y}\u003cbr\u003e\u72ec\u7acb\u6d4b\u8bd5\u96c6 macro-F1=%{x:.4f}\u003cbr\u003e%{customdata}\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#245e91","line":{"width":0}},"name":"\u72ec\u7acb\u6d4b\u8bd5\u96c6","orientation":"h","text":["0.9107142857142857","0.9107142857142857","0.8877665544332212","0.9332591768631814"],"textposition":"outside","texttemplate":"%{text:.3f}","x":[0.9107142857142857,0.9107142857142857,0.8877665544332212,0.9332591768631814],"y":["RBF SVM","\u903b\u8f91\u56de\u5f52","\u968f\u673a\u68ee\u6797","\u5c0f\u578b MLP"],"type":"bar"}],"layout":{"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"font":{"size":18},"text":"Iris \u00b7 \u540c\u4e00\u534f\u8bae\u4e0b\u7684\u6a21\u578b\u6bd4\u8f83","x":0.02,"xanchor":"left"},"font":{"family":"Segoe UI, Microsoft YaHei, sans-serif","size":13,"color":"#30323b"},"margin":{"l":100,"r":60,"t":100,"b":65},"legend":{"font":{"size":12},"orientation":"h","x":0,"y":1.16},"xaxis":{"title":{"text":"Macro-F1"},"range":[0,1.08],"tickvals":[0,0.2,0.4,0.6,0.8,1],"tickformat":".1f","gridcolor":"#edf0f4","zeroline":false},"yaxis":{"autorange":"reversed","categoryorder":"array","categoryarray":["RBF SVM","\u903b\u8f91\u56de\u5f52","\u968f\u673a\u68ee\u6797","\u5c0f\u578b MLP"],"showgrid":false,"zeroline":false},"height":410,"meta":{"tutorial_kind":"comparison"},"barmode":"group","bargap":0.32,"bargroupgap":0.12,"paper_bgcolor":"white","plot_bgcolor":"white"}}</script>
 <details class="result-details">
 <summary>
-查看完整实验记录（参数与指标）
+查看全部候选选择结果
 </summary>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> comparison:</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(row)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> comparison:</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(row)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{'model': 'RBF SVM', 'cv_macro_f1': np.float64(0.980854700854701), 'test_macro_f1': 0.9107142857142857, 'params': "{'model__C': 10, 'model__gamma': 0.01}"}
 {'model': '逻辑回归', 'cv_macro_f1': np.float64(0.980854700854701), 'test_macro_f1': 0.9107142857142857, 'params': "{'model__C': 1}"}
@@ -529,30 +826,77 @@ $macro_f1
 </div>
 </div>
 </details>
-<p>数据太小，测试波动往往比模型差异更大。若需要稳健结论，应在预先规定的重复划分或外层 CV 上报告分布，并加入时间与内存测量。Transformer 或基础模型的比较还应明确预训练数据、许可证、外部资源和特征工程预算。</p>
+<p>浅色柱是选参时的验证分数，深色柱是独立测试分数。搜索网格大小不同，此处是教学对照，不是等算力排名；一次小测试集的差异可能只是划分波动。</p>
 </section>
-<section id="重复评估一次分数不足以决定模型" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="重复评估一次分数不足以决定模型"><span class="header-section-number">8.6</span> 重复评估：一次分数不足以决定模型</h2>
-<p>新增模拟数据包含240个样本、10维输入。使用8个固定种子作分层外层留出（训练70%、测试30%）；每次外层训练中再用相同的三折划分选参。比较线性SVM、RBF SVM与逻辑回归，标准化始终在训练折内拟合。</p>
-<p>线性SVM和逻辑回归搜索3种C，RBF搜索3种C×2种γ，所以搜索预算并非完全相等。这是明确协议下的教学比较，不是算法排名。箱线图叠加每次真实分数；配对差值使用同一次划分的RBF分数减线性SVM分数。</p>
-<section class="lab" data-experiment="repeated" aria-label="重复外层评估：分布与配对差值">
-<p class="lab-title">重复外层评估：分布与配对差值</p><p class="lab-hint">切换分数分布/配对差值。分数来自每轮重新执行内层调参后的外层测试。</p>
+<section id="重复外层评估比较差异是否稳定" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="重复外层评估比较差异是否稳定"><span class="header-section-number">12.6</span> 重复外层评估：比较差异是否稳定</h2>
+<p>改用固定模拟数据240个样本、10维特征。8次分层外层留出，每次在其训练部分用相同三折重新选参；三个模型共享该轮划分，标准化在折内拟合。</p>
+<p><strong>先预测</strong>：平均分更高的模型是否每次都赢？切换到配对差值，按同一划分比较RBF与线性SVM。</p>
+<section class="lab" data-experiment="repeated" aria-label="重复外层评估">
+<p class="lab-title">一次比较变成八次配对比较</p><p class="lab-hint">查看分数分布与RBF减线性SVM的配对差值；零线区分该轮谁更高。</p>
 <div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats" aria-live="polite"></div>
 </section>
-<p>卡片的均值±标准差描述划分敏感性。外层测试集重叠，各次结果不是独立样本，不能据此直接构造独立样本置信区间或宣称统计显著。也不能查看这些测试结果后继续修改网格并仍把它们当成未见评估。</p>
-<p>下载<a href="../data/repeated-evaluation.csv">逐次结果CSV</a>和<a href="../data/repeated-splits.json">外层ID与内层验证ID</a>。固定数据及全部划分记录可通过生成脚本重建。建议先解释配对差值的符号与变化，再决定是否需要更多数据、外部评估或更复杂的模型。</p>
+<p>RBF搜索6组，其余3组，预算不同。多次测试样本重叠，分数并非独立观测；标准差描述划分敏感性，不能直接当独立样本置信区间。</p>
+<p>下载<a href="../data/repeated-evaluation.csv">逐次结果</a>和<a href="../data/repeated-splits.json">划分记录</a>。先解释配对变化，再判断是否需要更多数据或外部评估。</p>
 </section>
-<section id="数据与结果可追溯" class="level2" data-number="8.7">
-<h2 data-number="8.7" class="anchored" data-anchor-id="数据与结果可追溯"><span class="header-section-number">8.7</span> 数据与结果可追溯</h2>
-<p>共享数据位于 <code>data/</code>，<code>manifest.json</code> 记录文件 SHA-256。自动验证结果见 <a href="../reports/validation.json">实验验证 JSON</a>。复制案例时保留实验元数据，但将 <code>id/split/fold</code> 从模型输入中排除。</p>
-<p>Heart 文件来自旧笔记；Iris 来自 scikit-learn；Khan 从 <code>ISLR2</code> 包导出。具体来源和分享注意事项见 <code>data/README.md</code>。任何公开分享都不应把“教学实验成功”描述成真实场景性能承诺。</p>
+<section id="把核近似落实为完整实验" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="把核近似落实为完整实验"><span class="header-section-number">12.7</span> 把核近似落实为完整实验</h2>
+<p>用双月牙数据，在训练集内选择Nyström近似维数、核尺度与线性分类器惩罚，最后评估一次测试。<code>LinearSVC</code>默认squared hinge，因此这是近似核特征上的线性分类实验，不宣称与普通hinge的核SVC完全相同。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.kernel_approximation <span class="im">import</span> Nystroem</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> LinearSVC</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>moons <span class="op">=</span> pd.read_csv(<span class="st">'data/moons.csv'</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> moons[moons.split <span class="op">==</span> <span class="st">'train'</span>]<span class="op">;</span> b <span class="op">=</span> moons[moons.split <span class="op">==</span> <span class="st">'test'</span>]</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>folds <span class="op">=</span> [(np.flatnonzero(a.fold.to_numpy() <span class="op">!=</span> f),</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>          np.flatnonzero(a.fold.to_numpy() <span class="op">==</span> f)) <span class="cf">for</span> f <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)]</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>approx <span class="op">=</span> Pipeline([(<span class="st">'scale'</span>, StandardScaler()),</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>                   (<span class="st">'map'</span>, Nystroem(random_state<span class="op">=</span><span class="dv">42</span>)),</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>                   (<span class="st">'model'</span>, LinearSVC(dual<span class="op">=</span><span class="va">False</span>, max_iter<span class="op">=</span><span class="dv">10000</span>))])</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>search_approx <span class="op">=</span> GridSearchCV(approx,</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'map__n_components'</span>: [<span class="dv">10</span>, <span class="dv">30</span>, <span class="dv">60</span>], <span class="st">'map__gamma'</span>: [<span class="fl">.1</span>, <span class="dv">1</span>],</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>     <span class="st">'model__C'</span>: [<span class="fl">.1</span>, <span class="dv">1</span>, <span class="dv">10</span>]}, cv<span class="op">=</span>folds, scoring<span class="op">=</span><span class="st">'f1_macro'</span>)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>search_approx.fit(a[[<span class="st">'x1'</span>,<span class="st">'x2'</span>]], a.target)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>GridSearchCV(cv=[(array([  0,   3,   4,   5,   6,   7,   8,   9,  11,  12,  13,  14,  15,
+        16,  19,  20,  21,  22,  23,  24,  27,  28,  29,  30,  31,  32,
+        33,  34,  35,  36,  37,  38,  39,  40,  41,  42,  43,  44,  45,
+        46,  47,  48,  49,  51,  52,  55,  56,  57,  58,  59,  60,  61,
+        63,  64,  65,  66,  67,  68,  69,  70,  71,  72,  74,  77,  80,
+        82,  83,  85,  86,  87,  88,  90,  91,  93,  94,  95,  96,  97,
+        99, 100, 101, 102, 103, 104, 105, 106, 107, 110, 111, 112, 113,
+       114, 115, 116, 117, 119, 120, 121, 122, 124]),
+                  array([  1,   2...
+       114, 116, 117, 118, 119, 121, 122, 123, 124, 125]),
+                  array([  0,   7,  11,  14,  16,  20,  21,  23,  32,  33,  42,  45,  46,
+        51,  59,  68,  71,  82,  86, 100, 104, 105, 110, 115, 120]))],
+             estimator=Pipeline(steps=[('scale', StandardScaler()),
+                                       ('map', Nystroem(random_state=42)),
+                                       ('model',
+                                        LinearSVC(dual=False,
+                                                  max_iter=10000))]),
+             param_grid={'map__gamma': [0.1, 1],
+                         'map__n_components': [10, 30, 60],
+                         'model__C': [0.1, 1, 10]},
+             scoring='f1_macro')</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(search_approx.best_params_)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'map__gamma': 1, 'map__n_components': 30, 'model__C': 10}</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'独立测试macro-F1:'</span>, f1_score(b.target,</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>      search_approx.predict(b[[<span class="st">'x1'</span>,<span class="st">'x2'</span>]]), average<span class="op">=</span><span class="st">'macro'</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>独立测试macro-F1: 0.9073756432246998</code></pre>
+</div>
+</div>
+<p>若比较速度，应另记录硬件、重复耗时、内存和相同精度要求；一次分数不能回答成本收益问题。</p>
 </section>
-<section id="练习与解答" class="level2" data-number="8.8">
-<h2 data-number="8.8" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">8.8</span> 练习与解答</h2>
+<section id="练习与解答" class="level2" data-number="12.8">
+<h2 data-number="12.8" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">12.8</span> 练习与解答</h2>
 <ol type="1">
-<li>加入一个“只使用两个花瓣特征”的 Iris 模型，与四特征模型比较，但不要混淆两种边界。</li>
-<li>如果 Khan 的测试集只错两个样本，accuracy 是多少？为什么应同时报告每类指标？</li>
-<li>将 Heart 的类别编码改为数字后直接标准化，可能引入什么错误假设？</li>
+<li>将Heart类别字符串任意编码为1、2、3后直接进入RBF距离，有何隐含假设？</li>
+<li>Khan测试集错2个样本，accuracy是多少？缺少什么信息？</li>
+<li>多个模型共用划分为何更容易解释差异？</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled" title="参考解答">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -567,13 +911,17 @@ $macro_f1
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>明确重新训练模型，沿用保存的划分，在训练集内调参；二维图只解释二维模型。</li>
-<li>90%。类别样本数不同，总精度可能掩盖某一类完全未识别。</li>
-<li>任意编码引入类别间顺序和距离；RBF 会将这些数值差当作真实几何距离。</li>
+<li>强行定义类别顺序与数值距离，例如1与3的距离大于1与2。通常缺乏领域依据，one-hot避免这种人为几何。</li>
+<li>90%。仍需真实类别分布、错误落在哪类及不确定性；总分可能掩盖小类别。</li>
+<li>排除了模型间划分不同这一混杂来源，可以配对比较。但搜索预算、损失和预处理仍需注明。</li>
 </ol>
 </div>
 </div>
 </div>
+</section>
+<section id="下一步" class="level2" data-number="12.9">
+<h2 data-number="12.9" class="anchored" data-anchor-id="下一步"><span class="header-section-number">12.9</span> 下一步</h2>
+<p>实验已说明模型选择受数据、表示、评估与成本共同影响。最后一章从这些具体限制出发，理解现代核方法、稳健学习和深度表示为何仍与最大间隔思想有关。</p>
 
 
 </section>
@@ -1018,13 +1366,13 @@ document.addEventListener('DOMContentLoaded',function(){
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/06-workflow.html" class="pagination-link" aria-label="可靠建模流程">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">可靠建模流程</span></span>
+      <a href="../chapters/00-python-start.html" class="pagination-link" aria-label="Python / R 实践">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python / R 实践</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../chapters/08-modern.html" class="pagination-link" aria-label="现代研究导读">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">现代研究导读</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">现代研究导读</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

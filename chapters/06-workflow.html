@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; 建立可信的建模流程 – 支持向量机教程：从几何到现代学习</title>
+<title>10&nbsp; 可靠评估与模型选择 – 支持向量机教程：从几何到现代学习</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,41 +23,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -68,7 +33,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/07-cases.html" rel="next">
+<link href="../chapters/00-python-start.html" rel="next">
 <link href="../chapters/05-multiclass.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -118,6 +83,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../assets/experiments.js"></script>
 
 <script defer="" src="../assets/experiments-ui.js"></script>
+
+
+
+<script src="../assets/teaching-data.js"></script>
+
+<script defer="" src="../assets/teaching-ui.js"></script>
+
+
+
+<script src="../assets/legacy-links.js"></script>
 
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
@@ -170,7 +145,7 @@ window.Quarto = {
 <span class="menu-text">首页</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../chapters/00-python-start.html"> 
+    <a class="nav-link" href="../chapters/01-geometry.html"> 
 <span class="menu-text">教程</span></a>
   </li>  
   <li class="nav-item compact">
@@ -189,7 +164,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/06-workflow.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">可靠建模流程</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/06-workflow.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">评估与模型选择</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="展开或折叠侧边栏导航" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -216,68 +191,86 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/00-python-start.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">纯 Python 入门</span></span></a>
+  <a href="../chapters/01-geometry.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">分类与超平面</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/01-geometry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">超平面与间隔</span></span></a>
+  <a href="../chapters/01-hard-margin.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">间隔与硬间隔</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/02-soft-margin.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔与损失</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">软间隔与正则化</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-optimization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">约束优化与 KKT</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/03-duality-smo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">对偶、KKT 与 SMO</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">SVM 对偶与解</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/04-kernels.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">核方法</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">映射与核技巧</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-rkhs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">核的函数空间</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-smo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">SMO 求解</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/05-multiclass.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">多分类</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">多分类</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/06-workflow.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">可靠建模流程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">评估与模型选择</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/00-python-start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python / R 实践</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/07-cases.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">真实数据案例</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">案例与模型比较</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/08-modern.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">现代研究导读</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/09-authoring.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">维护本教程</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">现代研究导读</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">参考文献</span></span></a>
+ <span class="menu-text">参考文献</span></a>
   </div>
 </li>
     </ul>
@@ -290,13 +283,16 @@ window.Quarto = {
     <h2 id="toc-title">本章目录</h2>
    
   <ul class="collapse">
-  <li><a href="#先划分再学习任何变换" id="toc-先划分再学习任何变换" class="nav-link active" data-scroll-target="#先划分再学习任何变换"><span class="header-section-number">7.1</span> 先划分，再学习任何变换</a></li>
-  <li><a href="#调参不能看测试集" id="toc-调参不能看测试集" class="nav-link" data-scroll-target="#调参不能看测试集"><span class="header-section-number">7.2</span> 调参不能看测试集</a></li>
-  <li><a href="#指标回答不同问题" id="toc-指标回答不同问题" class="nav-link" data-scroll-target="#指标回答不同问题"><span class="header-section-number">7.3</span> 指标回答不同问题</a></li>
-  <li><a href="#概率校准与分数" id="toc-概率校准与分数" class="nav-link" data-scroll-target="#概率校准与分数"><span class="header-section-number">7.4</span> 概率校准与分数</a></li>
-  <li><a href="#类别不平衡与部署成本" id="toc-类别不平衡与部署成本" class="nav-link" data-scroll-target="#类别不平衡与部署成本"><span class="header-section-number">7.5</span> 类别不平衡与部署成本</a></li>
-  <li><a href="#从原则到对照实验" id="toc-从原则到对照实验" class="nav-link" data-scroll-target="#从原则到对照实验"><span class="header-section-number">7.6</span> 从原则到对照实验</a></li>
-  <li><a href="#练习与解答" id="toc-练习与解答" class="nav-link" data-scroll-target="#练习与解答"><span class="header-section-number">7.7</span> 练习与解答</a></li>
+  <li><a href="#从十个预测结果计算混淆矩阵" id="toc-从十个预测结果计算混淆矩阵" class="nav-link active" data-scroll-target="#从十个预测结果计算混淆矩阵"><span class="header-section-number">10.1</span> 从十个预测结果计算混淆矩阵</a></li>
+  <li><a href="#多分类与不平衡指标" id="toc-多分类与不平衡指标" class="nav-link" data-scroll-target="#多分类与不平衡指标"><span class="header-section-number">10.2</span> 多分类与不平衡指标</a></li>
+  <li><a href="#从一个阈值到一条排序曲线" id="toc-从一个阈值到一条排序曲线" class="nav-link" data-scroll-target="#从一个阈值到一条排序曲线"><span class="header-section-number">10.3</span> 从一个阈值到一条排序曲线</a></li>
+  <li><a href="#为什么必须留出测试集" id="toc-为什么必须留出测试集" class="nav-link" data-scroll-target="#为什么必须留出测试集"><span class="header-section-number">10.4</span> 为什么必须留出测试集</a></li>
+  <li><a href="#五折验证怎样运转" id="toc-五折验证怎样运转" class="nav-link" data-scroll-target="#五折验证怎样运转"><span class="header-section-number">10.5</span> 五折验证怎样运转</a></li>
+  <li><a href="#所有会学习参数的预处理都在折内" id="toc-所有会学习参数的预处理都在折内" class="nav-link" data-scroll-target="#所有会学习参数的预处理都在折内"><span class="header-section-number">10.6</span> 所有会学习参数的预处理都在折内</a></li>
+  <li><a href="#类别加权阈值与重采样" id="toc-类别加权阈值与重采样" class="nav-link" data-scroll-target="#类别加权阈值与重采样"><span class="header-section-number">10.7</span> 类别加权、阈值与重采样</a></li>
+  <li><a href="#好的排序不等于可信概率" id="toc-好的排序不等于可信概率" class="nav-link" data-scroll-target="#好的排序不等于可信概率"><span class="header-section-number">10.8</span> 好的排序不等于可信概率</a></li>
+  <li><a href="#练习与解答" id="toc-练习与解答" class="nav-link" data-scroll-target="#练习与解答"><span class="header-section-number">10.9</span> 练习与解答</a></li>
+  <li><a href="#下一步" id="toc-下一步" class="nav-link" data-scroll-target="#下一步"><span class="header-section-number">10.10</span> 下一步</a></li>
   </ul>
 </nav>
     </div>
@@ -305,7 +301,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">建立可信的建模流程</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">可靠评估与模型选择</span></h1>
 </div>
 
 
@@ -323,572 +319,166 @@ window.Quarto = {
 
 
 <div class="chapter-intro">
-<p><strong>学习目标</strong>：把“能跑出一个模型”升级成可复现、无信息泄漏的实验。真正决定结果可信度的，往往是数据划分和预处理位置。</p>
-<p><strong>前置知识</strong>：训练集与测试集、基础 Python 或 R。</p>
+<p><strong>本章要回答</strong>：怎样区分“训练模型成功”与“有证据相信它能预测新样本”？</p>
+<p><strong>前置知识</strong>：预测标签、分类分数、多分类规则。先手算指标，再组织模型选择流程。</p>
 </div>
-<section id="先划分再学习任何变换" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="先划分再学习任何变换"><span class="header-section-number">7.1</span> 先划分，再学习任何变换</h2>
-<p>正确顺序是保存测试集、在训练集内交叉验证，并在每个训练折内拟合缺失值填补、编码、标准化和模型。若在全数据上先求均值/标准差，验证折的信息已经进入训练。监督特征筛选更不能在全数据上先做。</p>
-<p>Python 使用 <code>Pipeline</code> 将这些步骤放在一起；R 示例的 <code>fit_preprocessor()</code> 每次只读取当前训练折。数值缺失用训练折中位数填补，类别缺失用训练折众数填补，类别编码字典也只从训练折学习。未知类别映射成全零 one-hot，需在真实任务中检查它是否合理。</p>
-<p>实验数据含 <code>id</code>、<code>split</code>、<code>fold</code> 和 <code>target</code>；前三者是实验元数据，不能混入特征。随机分层划分适合这里的独立样本演示；同一受试者多条记录需要按组划分，时间预测需要按时间划分。</p>
-<section id="标准化怎样改变图中的法向量" class="level3" data-number="7.1.1">
-<h3 data-number="7.1.1" class="anchored" data-anchor-id="标准化怎样改变图中的法向量"><span class="header-section-number">7.1.1</span> 标准化怎样改变图中的法向量</h3>
-<p>训练折均值为 <span class="math inline">\(\mu\)</span>、各特征标准差为 <span class="math inline">\(s_r&gt;0\)</span>，令 <span class="math inline">\(A=\operatorname{diag}(1/s_r)\)</span>。标准化变量 <span class="math inline">\(z=A(x-\mu)\)</span>，在此空间学习 <span class="math inline">\(f=v^Tz+c\)</span>，展开为</p>
-<p><span class="math display">\[f(x)=(A^Tv)^Tx+c-v^TA\mu=w_{\rm raw}^Tx+b_{\rm raw},\quad
-w_{\rm raw}=A^Tv,\quad b_{\rm raw}=c-w_{\rm raw}^T\mu.\]</span></p>
-<p>因此原始坐标的两条 <span class="math inline">\(f=\pm1\)</span> 线之间距离是 <span class="math inline">\(2/\|w_{\rm raw}\|\)</span>，标准化空间的是 <span class="math inline">\(2/\|v\|\)</span>。模型优化的是<strong>标准化空间</strong>中的范数，二者通常不同。本教程线性图卡片显示原始坐标的线间距离，避免混用两个量。常数特征需要专门处理；示例由预处理器遵循既定缩放约定。</p>
+<section id="从十个预测结果计算混淆矩阵" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="从十个预测结果计算混淆矩阵"><span class="header-section-number">10.1</span> 从十个预测结果计算混淆矩阵</h2>
+<p>假设测试集10个样本，真实正类4个，模型找到其中3个、漏掉1个；真实负类6个，误报其中2个、正确排除4个。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>真实类别</th>
+<th>负类</th>
+<th>正类</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>负类</td>
+<td><span class="math inline">\(TN=4\)</span></td>
+<td><span class="math inline">\(FP=2\)</span></td>
+</tr>
+<tr class="even">
+<td>正类</td>
+<td><span class="math inline">\(FN=1\)</span></td>
+<td><span class="math inline">\(TP=3\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>行表示真实、列表示预测。<span class="math inline">\(TP\)</span> 为找到的正类，<span class="math inline">\(FN\)</span> 为漏掉的正类，<span class="math inline">\(FP\)</span> 为误报，<span class="math inline">\(TN\)</span> 为正确识别的负类。</p>
+<p><span class="math display">\[\mathrm{Accuracy}=\frac{TP+TN}{n}=\frac7{10}=0.7,\]</span></p>
+<p><span class="math display">\[\mathrm{Precision}=\frac{TP}{TP+FP}=\frac35=0.6,
+\qquad\mathrm{Recall}=\frac{TP}{TP+FN}=\frac34=0.75.\]</span></p>
+<p>precision 问“预测为正中有多少是真的”，recall 问“真实正类有多少被找到”。分母代表不同人群，不能互换。</p>
+<p><span class="math display">\[F_1=\frac{2PR}{P+R}=\frac{2TP}{2TP+FP+FN}=\frac69\approx0.667.\]</span></p>
+<p>这个调和平均会惩罚一项很低的情况。分母为0时应固定约定；实践代码取0，并同时检查缺少预测或样本的类别。</p>
 </section>
+<section id="多分类与不平衡指标" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="多分类与不平衡指标"><span class="header-section-number">10.2</span> 多分类与不平衡指标</h2>
+<p>对每一类按“该类对其余”计算 <span class="math inline">\(F_{1,k}\)</span>：</p>
+<p><span class="math display">\[\mathrm{macro\text{-}}F_1=\frac1K\sum_kF_{1,k}.\]</span></p>
+<p>macro 给每类相同权重；weighted 按该类样本数加权；micro 汇总所有类别的计数。在单标签全类别多分类中，micro precision、recall和F1都等于accuracy。macro-F1不是先平均precision和recall再求F1。</p>
+<p>若99%的样本为负，全预测负类也有99%accuracy，但正类recall为0。看总正确率前，应先问最需要识别哪类、漏报与误报的代价是什么。</p>
 </section>
-<section id="调参不能看测试集" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="调参不能看测试集"><span class="header-section-number">7.2</span> 调参不能看测试集</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> lab.load_data(<span class="st">'moons'</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>tr <span class="op">=</span> df[df.split <span class="op">==</span> <span class="st">'train'</span>]</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>folds <span class="op">=</span> [(np.flatnonzero(tr.fold.values <span class="op">!=</span> f),</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>          np.flatnonzero(tr.fold.values <span class="op">==</span> f)) <span class="cf">for</span> f <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)]</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>pipeline <span class="op">=</span> lab.Pipeline([(<span class="st">'scale'</span>, lab.StandardScaler()), (<span class="st">'svm'</span>, lab.SVC())])</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>search <span class="op">=</span> GridSearchCV(pipeline,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'svm__C'</span>:[<span class="fl">0.1</span>,<span class="dv">1</span>,<span class="dv">10</span>,<span class="dv">100</span>], <span class="st">'svm__gamma'</span>:[<span class="fl">0.03</span>,<span class="fl">0.1</span>,<span class="dv">1</span>,<span class="dv">10</span>]},</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">=</span>folds, scoring<span class="op">=</span><span class="st">'f1_macro'</span>).fit(tr[[<span class="st">'x1'</span>,<span class="st">'x2'</span>]], tr.target)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'训练集内最佳参数:'</span>, search.best_params_)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>训练集内最佳参数: {'svm__C': 1, 'svm__gamma': 10}</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'CV macro-F1:'</span>, search.best_score_)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>CV macro-F1: 0.9526035928644625</code></pre>
-</div>
-</div>
-<section class="lab" data-svm-lab="tuning" aria-label="交叉验证网格">
-<p class="lab-title">读懂 C–γ 热图</p><p class="lab-hint">悬停查看训练集内验证分数。参数在对数尺度上取离散值。</p>
-<div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats"></div>
+<section id="从一个阈值到一条排序曲线" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="从一个阈值到一条排序曲线"><span class="header-section-number">10.3</span> 从一个阈值到一条排序曲线</h2>
+<p>SVM 产生分数，按 <span class="math inline">\(f(x)\ge t\)</span> 判正类。降低 <span class="math inline">\(t\)</span> 会纳入更多样本，可能同时增加 <span class="math inline">\(TP\)</span> 与 <span class="math inline">\(FP\)</span>。</p>
+<ul>
+<li>ROC：横轴 <span class="math inline">\(FPR=FP/(FP+TN)\)</span>，纵轴 <span class="math inline">\(TPR=Recall\)</span>。</li>
+<li>PR：横轴 Recall，纵轴 Precision。</li>
+</ul>
+<p>排序曲线需要分数相对大小，不要求分数为概率。以降序分数 <span class="math inline">\(3,2,1,0\)</span>、标签“正、负、正、负”为例：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>纳入的前几个样本</th>
+<th>TP</th>
+<th>FP</th>
+<th>Recall</th>
+<th>Precision</th>
+<th>FPR</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0.5</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>0.5</td>
+<td>0.5</td>
+<td>0.5</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>2/3</td>
+<td>0.5</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>0.5</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>ROC-AUC 是随机正样本分数超过随机负样本的概率，平分计半。本例四对正负比较中有三对排序正确，AUC为0.75。</p>
+<p><span class="math display">\[\mathrm{AUC}=\frac1{n_+n_-}\sum_{i:y_i=1}\sum_{j:y_j=-1}
+\left[\mathbf1\{f_i&gt;f_j\}+\tfrac12\mathbf1\{f_i=f_j\}\right].\]</span></p>
+<p>AP 按 recall 的增加加权对应 precision：<span class="math inline">\(\mathrm{AP}=\sum_l(R_l-R_{l-1})P_l\)</span>。本例为 <span class="math inline">\(0.5\cdot1+0.5\cdot2/3=5/6\)</span>。它不同于随意连直线得到的 PR 梯形面积。</p>
+<p>类别比例影响 PR 的解释；严重不平衡时同时看少数类指标与 PR。选择部署阈值仍应在训练/验证数据中完成。</p>
 </section>
-<p>选择最大验证分数会带来“选优偏差”；这个最大值不等于无偏的泛化估计。如果需要同时选模型并估计表现，可用嵌套交叉验证：外层评估、内层选择。报告参数网格、划分方法、随机性、计算预算以及不确定性，而不是只写一个最高精度。</p>
+<section id="为什么必须留出测试集" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="为什么必须留出测试集"><span class="header-section-number">10.4</span> 为什么必须留出测试集</h2>
+<p>若试10组 <span class="math inline">\(C,\gamma\)</span>，然后选测试分数最高的那组，这个测试集已参与模型选择。最终报告的分数会受到选择偏差影响。</p>
+<p>正确流程是：预先规定指标与候选 → 留出测试集 → 在训练集内选择参数 → 用全部训练集重拟合 → 最后评估一次测试集。测试集回答的是整个已选流程的未知样本表现，而不只某个已知参数的表现。</p>
+<p>样本少时可用外层交叉验证评估、内层交叉验证选参，即嵌套验证；每个外层测试折都不能参与那轮选择。</p>
 </section>
-<section id="指标回答不同问题" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="指标回答不同问题"><span class="header-section-number">7.3</span> 指标回答不同问题</h2>
-<p>accuracy 统计总体正确比例，在不平衡数据中容易掩盖少数类错误。macro-F1 先分别计算每类 F1 再平均，让各类权重相同；weighted-F1 按样本数加权，micro 指标汇总所有样本。多分类一定要同时看混淆矩阵及每类召回率。</p>
-<p>二分类 ROC 绘制阈值变化下的 TPR 与 FPR；PR 绘制 precision 与 recall。ROC-AUC 衡量排序，AP 是不同召回增量对应 precision 的加权和，不等于任意梯形积分 PR-AUC。严重不平衡时，PR 及少数类召回通常更直观。阈值应按训练/验证信息与业务成本选择。</p>
-<section id="把评估指标写成可核对的公式" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="把评估指标写成可核对的公式"><span class="header-section-number">7.3.1</span> 把评估指标写成可核对的公式</h3>
-<p>对某个正类，<span class="math inline">\(\mathrm{Precision}=TP/(TP+FP)\)</span>、<span class="math inline">\(\mathrm{Recall}=TP/(TP+FN)\)</span>，从调和平均得到</p>
-<p><span class="math display">\[F_1=\frac{2\,\mathrm{Precision}\,\mathrm{Recall}}{\mathrm{Precision}+\mathrm{Recall}}=\frac{2TP}{2TP+FP+FN},\qquad
-\mathrm{macro\text{-}}F_1=\frac1K\sum_{k=1}^K F_{1,k}.\]</span></p>
-<p>多分类的每个 <span class="math inline">\(F_{1,k}\)</span> 按“类别 <span class="math inline">\(k\)</span> 对其余类别”计数；分母为零时需要固定约定，代码按0处理。macro-F1不是先平均precision/recall再计算F1。</p>
-<p>给定阈值 <span class="math inline">\(t\)</span>，按 <span class="math inline">\(f(x)\ge t\)</span> 判正类，ROC 的横纵轴为 <span class="math inline">\(FP/(FP+TN)\)</span>、<span class="math inline">\(TP/(TP+FN)\)</span>，PR 的横纵轴为recall、precision。阈值降低会同时纳入更多样本，曲线由排序而非单个分类阈值决定。</p>
-<p>AUC可解释为随机正样本分数超过随机负样本的概率，平分计半：</p>
-<p><span class="math display">\[\mathrm{AUC}=\frac1{n_+n_-}\sum_{i:y_i=1}\sum_{j:y_j=0}\left[\mathbf1\{f_i&gt;f_j\}+\frac12\mathbf1\{f_i=f_j\}\right].\]</span></p>
-<p>Average Precision 按recall的增量加权precision，<span class="math inline">\(\mathrm{AP}=\sum_l(R_l-R_{l-1})P_l\)</span>（按recall递增排列）。它不等于任意线性插值后的PR梯形面积。排序指标不能替代概率校准检查。</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">R</a></li></ul>
-<div class="tab-content" data-group="language">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig, ranking_metrics <span class="op">=</span> lab.evaluation_plot(<span class="st">'heart'</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lab.figure_html(fig, <span class="st">'heart-ranking-python'</span>))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="heart-ranking-python" class="plotly-output" data-plotly-source="heart-ranking-python-json">
-
-</div>
-<script type="application/json" id="heart-ranking-python-json">{"data":[{"hovertemplate":"FPR=%{x:.3f}\u003cbr\u003eTPR=%{y:.3f}\u003cextra\u003e\u003c\u002fextra\u003e","mode":"lines","name":"ROC \u00b7 AUC=0.937","x":[0.0,0.0,0.0,0.02040816326530612,0.02040816326530612,0.061224489795918366,0.061224489795918366,0.08163265306122448,0.08163265306122448,0.12244897959183673,0.12244897959183673,0.2653061224489796,0.2653061224489796,0.2857142857142857,0.2857142857142857,0.32653061224489793,0.32653061224489793,0.40816326530612246,0.40816326530612246,1.0],"y":[0.0,0.023809523809523808,0.3333333333333333,0.3333333333333333,0.7619047619047619,0.7619047619047619,0.7857142857142857,0.7857142857142857,0.8333333333333334,0.8333333333333334,0.8571428571428571,0.8571428571428571,0.8809523809523809,0.8809523809523809,0.9047619047619048,0.9047619047619048,0.9761904761904762,0.9761904761904762,1.0,1.0],"type":"scatter"},{"hovertemplate":"Recall=%{x:.3f}\u003cbr\u003ePrecision=%{y:.3f}\u003cextra\u003e\u003c\u002fextra\u003e","mode":"lines","name":"PR \u00b7 AP=0.931","visible":"legendonly","x":[1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,0.9761904761904762,0.9761904761904762,0.9761904761904762,0.9761904761904762,0.9761904761904762,0.9523809523809523,0.9285714285714286,0.9047619047619048,0.9047619047619048,0.9047619047619048,0.8809523809523809,0.8809523809523809,0.8571428571428571,0.8571428571428571,0.8571428571428571,0.8571428571428571,0.8571428571428571,0.8571428571428571,0.8571428571428571,0.8571428571428571,0.8333333333333334,0.8333333333333334,0.8333333333333334,0.8095238095238095,0.7857142857142857,0.7857142857142857,0.7619047619047619,0.7619047619047619,0.7619047619047619,0.7380952380952381,0.7142857142857143,0.6904761904761905,0.6666666666666666,0.6428571428571429,0.6190476190476191,0.5952380952380952,0.5714285714285714,0.5476190476190477,0.5238095238095238,0.5,0.47619047619047616,0.4523809523809524,0.42857142857142855,0.40476190476190477,0.38095238095238093,0.35714285714285715,0.3333333333333333,0.3333333333333333,0.30952380952380953,0.2857142857142857,0.2619047619047619,0.23809523809523808,0.21428571428571427,0.19047619047619047,0.16666666666666666,0.14285714285714285,0.11904761904761904,0.09523809523809523,0.07142857142857142,0.047619047619047616,0.023809523809523808,0.0],"y":[0.46153846153846156,0.4666666666666667,0.47191011235955055,0.4772727272727273,0.4827586206896552,0.4883720930232558,0.49411764705882355,0.5,0.5060240963855421,0.5121951219512195,0.5185185185185185,0.525,0.5316455696202531,0.5384615384615384,0.5454545454545454,0.5526315789473685,0.56,0.5675675675675675,0.5753424657534246,0.5833333333333334,0.5915492957746479,0.6,0.6086956521739131,0.6176470588235294,0.6268656716417911,0.6363636363636364,0.6461538461538462,0.65625,0.6666666666666666,0.6774193548387096,0.6721311475409836,0.6833333333333333,0.6949152542372882,0.7068965517241379,0.7192982456140351,0.7142857142857143,0.7090909090909091,0.7037037037037037,0.7169811320754716,0.7307692307692307,0.7254901960784313,0.74,0.7346938775510204,0.75,0.7659574468085106,0.782608695652174,0.8,0.8181818181818182,0.8372093023255814,0.8571428571428571,0.8536585365853658,0.875,0.8974358974358975,0.8947368421052632,0.8918918918918919,0.9166666666666666,0.9142857142857143,0.9411764705882353,0.9696969696969697,0.96875,0.967741935483871,0.9666666666666667,0.9655172413793104,0.9642857142857143,0.9629629629629629,0.9615384615384616,0.96,0.9583333333333334,0.9565217391304348,0.9545454545454546,0.9523809523809523,0.95,0.9473684210526315,0.9444444444444444,0.9411764705882353,0.9375,0.9333333333333333,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0],"type":"scatter"}],"layout":{"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"title":{"text":"FPR\uff08ROC\uff09\u002f Recall\uff08PR\uff09"},"range":[0,1]},"yaxis":{"title":{"text":"TPR\uff08ROC\uff09\u002f Precision\uff08PR\uff09"},"range":[0,1.02]},"title":{"text":"Heart \u00b7 Python\uff1a\u70b9\u51fb\u56fe\u4f8b\u5207\u6362 ROC\u002fPR"},"height":560}}</script>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">evaluation_html_r</span>())</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="heart-roc-r" class="plotly-output" data-plotly-source="heart-roc-r-json">
-
-</div>
-<script type="application/json" id="heart-roc-r-json">{"data":[{"type":"scatter","mode":"lines","x":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.02040816,0.04081633,0.06122449,0.06122449,0.08163265,0.08163265,0.08163265,0.10204082,0.12244898,0.12244898,0.14285714,0.16326531,0.18367347,0.20408163,0.2244898,0.24489796,0.26530612,0.26530612,0.28571429,0.28571429,0.30612245,0.32653061,0.32653061,0.32653061,0.32653061,0.34693878,0.36734694,0.3877551,0.40816327,0.40816327,0.42857143,0.44897959,0.46938776,0.48979592,0.51020408,0.53061224,0.55102041,0.57142857,0.59183673,0.6122449,0.63265306,0.65306122,0.67346939,0.69387755,0.71428571,0.73469388,0.75510204,0.7755102,0.79591837,0.81632653,0.83673469,0.85714286,0.87755102,0.89795918,0.91836735,0.93877551,0.95918367,0.97959184,1],"y":[0,0.02380952,0.04761905,0.07142857,0.0952381,0.11904762,0.14285714,0.16666667,0.19047619,0.21428571,0.23809524,0.26190476,0.28571429,0.30952381,0.33333333,0.33333333,0.35714286,0.38095238,0.4047619,0.42857143,0.45238095,0.47619048,0.5,0.52380952,0.54761905,0.57142857,0.5952381,0.61904762,0.64285714,0.66666667,0.69047619,0.71428571,0.73809524,0.76190476,0.76190476,0.76190476,0.78571429,0.78571429,0.80952381,0.83333333,0.83333333,0.83333333,0.85714286,0.85714286,0.85714286,0.85714286,0.85714286,0.85714286,0.85714286,0.85714286,0.88095238,0.88095238,0.9047619,0.9047619,0.9047619,0.92857143,0.95238095,0.97619048,0.97619048,0.97619048,0.97619048,0.97619048,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"name":"ROC · AUC=0.937"},{"type":"scatter","mode":"lines","x":[0,0.02380952,0.04761905,0.07142857,0.0952381,0.11904762,0.14285714,0.16666667,0.19047619,0.21428571,0.23809524,0.26190476,0.28571429,0.30952381,0.33333333,0.33333333,0.35714286,0.38095238,0.4047619,0.42857143,0.45238095,0.47619048,0.5,0.52380952,0.54761905,0.57142857,0.5952381,0.61904762,0.64285714,0.66666667,0.69047619,0.71428571,0.73809524,0.76190476,0.76190476,0.76190476,0.78571429,0.78571429,0.80952381,0.83333333,0.83333333,0.83333333,0.85714286,0.85714286,0.85714286,0.85714286,0.85714286,0.85714286,0.85714286,0.85714286,0.88095238,0.88095238,0.9047619,0.9047619,0.9047619,0.92857143,0.95238095,0.97619048,0.97619048,0.97619048,0.97619048,0.97619048,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"y":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0.93333333,0.9375,0.94117647,0.94444444,0.94736842,0.95,0.95238095,0.95454545,0.95652174,0.95833333,0.96,0.96153846,0.96296296,0.96428571,0.96551724,0.96666667,0.96774194,0.96875,0.96969697,0.94117647,0.91428571,0.91666667,0.89189189,0.89473684,0.8974359,0.875,0.85365854,0.85714286,0.8372093,0.81818182,0.8,0.7826087,0.76595745,0.75,0.73469388,0.74,0.7254902,0.73076923,0.71698113,0.7037037,0.70909091,0.71428571,0.71929825,0.70689655,0.69491525,0.68333333,0.67213115,0.67741935,0.66666667,0.65625,0.64615385,0.63636364,0.62686567,0.61764706,0.60869565,0.6,0.5915493,0.58333333,0.57534247,0.56756757,0.56,0.55263158,0.54545455,0.53846154,0.53164557,0.525,0.51851852,0.51219512,0.5060241,0.5,0.49411765,0.48837209,0.48275862,0.47727273,0.47191011,0.46666667,0.46153846],"name":"PR · AP=0.931","visible":"legendonly"}],"layout":{"title":"Heart · R：点击图例切换 ROC/PR","height":560,"xaxis":{"title":"FPR（ROC）/ Recall（PR）","range":[0,1]},"yaxis":{"title":"TPR（ROC）/ Precision（PR）","range":[0,1.02]}}}</script>
-</div>
-</div>
-</div>
-<p>这组图使用测试集决策分数、正类为 <code>AHD=Yes</code>。图例默认显示 ROC，点击 PR 可显示 PR 曲线；两者轴含义不同，最好一次查看一条。这里不将训练 ROC 当成泛化证据。</p>
-</section>
-</section>
-<section id="概率校准与分数" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="概率校准与分数"><span class="header-section-number">7.4</span> 概率校准与分数</h2>
-<p><span class="math inline">\(f(x)\)</span> 不是 <span class="math inline">\(P(y=1\mid x)\)</span>。如果需要风险概率，可以用训练集内的交叉验证校准。Platt scaling 对分数拟合 sigmoid；isotonic 是更灵活的单调映射，但小校准集容易过拟合。</p>
-<p>下面显式把整个预处理和分类 Pipeline 交给校准器，避免在校准折外提前拟合标准化：</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.calibration <span class="im">import</span> CalibratedClassifierCV</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> brier_score_loss</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> lab.load_data(<span class="st">'moons'</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>tr <span class="op">=</span> df[df.split <span class="op">==</span> <span class="st">'train'</span>]<span class="op">;</span> te <span class="op">=</span> df[df.split <span class="op">==</span> <span class="st">'test'</span>]</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> lab.Pipeline([(<span class="st">'scale'</span>,lab.StandardScaler()),</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                     (<span class="st">'svm'</span>,lab.SVC(C<span class="op">=</span><span class="dv">1</span>,gamma<span class="op">=</span><span class="dv">1</span>))])</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>calibrated <span class="op">=</span> CalibratedClassifierCV(base, method<span class="op">=</span><span class="st">'sigmoid'</span>, cv<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>calibrated.fit(tr[[<span class="st">'x1'</span>,<span class="st">'x2'</span>]],tr.target)</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<style>#sk-container-id-1 {
-  /* Definition of color scheme common for light and dark mode */
-  --sklearn-color-text: #000;
-  --sklearn-color-text-muted: #666;
-  --sklearn-color-line: gray;
-  /* Definition of color scheme for unfitted estimators */
-  --sklearn-color-unfitted-level-0: #fff5e6;
-  --sklearn-color-unfitted-level-1: #f6e4d2;
-  --sklearn-color-unfitted-level-2: #ffe0b3;
-  --sklearn-color-unfitted-level-3: chocolate;
-  /* Definition of color scheme for fitted estimators */
-  --sklearn-color-fitted-level-0: #f0f8ff;
-  --sklearn-color-fitted-level-1: #d4ebff;
-  --sklearn-color-fitted-level-2: #b3dbfd;
-  --sklearn-color-fitted-level-3: cornflowerblue;
-
-  /* Specific color for light theme */
-  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
-  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
-  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
-  --sklearn-color-icon: #696969;
-
-  @media (prefers-color-scheme: dark) {
-    /* Redefinition of color scheme for dark theme */
-    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
-    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
-    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
-    --sklearn-color-icon: #878787;
-  }
-}
-
-#sk-container-id-1 {
-  color: var(--sklearn-color-text);
-}
-
-#sk-container-id-1 pre {
-  padding: 0;
-}
-
-#sk-container-id-1 input.sk-hidden--visually {
-  border: 0;
-  clip: rect(1px 1px 1px 1px);
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-
-#sk-container-id-1 div.sk-dashed-wrapped {
-  border: 1px dashed var(--sklearn-color-line);
-  margin: 0 0.4em 0.5em 0.4em;
-  box-sizing: border-box;
-  padding-bottom: 0.4em;
-  background-color: var(--sklearn-color-background);
-}
-
-#sk-container-id-1 div.sk-container {
-  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
-     but bootstrap.min.css set `[hidden] { display: none !important; }`
-     so we also need the `!important` here to be able to override the
-     default hidden behavior on the sphinx rendered scikit-learn.org.
-     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
-  display: inline-block !important;
-  position: relative;
-}
-
-#sk-container-id-1 div.sk-text-repr-fallback {
-  display: none;
-}
-
-div.sk-parallel-item,
-div.sk-serial,
-div.sk-item {
-  /* draw centered vertical line to link estimators */
-  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
-  background-size: 2px 100%;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
-/* Parallel-specific style estimator block */
-
-#sk-container-id-1 div.sk-parallel-item::after {
-  content: "";
-  width: 100%;
-  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
-  flex-grow: 1;
-}
-
-#sk-container-id-1 div.sk-parallel {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  background-color: var(--sklearn-color-background);
-  position: relative;
-}
-
-#sk-container-id-1 div.sk-parallel-item {
-  display: flex;
-  flex-direction: column;
-}
-
-#sk-container-id-1 div.sk-parallel-item:first-child::after {
-  align-self: flex-end;
-  width: 50%;
-}
-
-#sk-container-id-1 div.sk-parallel-item:last-child::after {
-  align-self: flex-start;
-  width: 50%;
-}
-
-#sk-container-id-1 div.sk-parallel-item:only-child::after {
-  width: 0;
-}
-
-/* Serial-specific style estimator block */
-
-#sk-container-id-1 div.sk-serial {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--sklearn-color-background);
-  padding-right: 1em;
-  padding-left: 1em;
-}
-
-
-/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
-clickable and can be expanded/collapsed.
-- Pipeline and ColumnTransformer use this feature and define the default style
-- Estimators will overwrite some part of the style using the `sk-estimator` class
-*/
-
-/* Pipeline and ColumnTransformer style (default) */
-
-#sk-container-id-1 div.sk-toggleable {
-  /* Default theme specific background. It is overwritten whether we have a
-  specific estimator or a Pipeline/ColumnTransformer */
-  background-color: var(--sklearn-color-background);
-}
-
-/* Toggleable label */
-#sk-container-id-1 label.sk-toggleable__label {
-  cursor: pointer;
-  display: flex;
-  width: 100%;
-  margin-bottom: 0;
-  padding: 0.5em;
-  box-sizing: border-box;
-  text-align: center;
-  align-items: start;
-  justify-content: space-between;
-  gap: 0.5em;
-}
-
-#sk-container-id-1 label.sk-toggleable__label .caption {
-  font-size: 0.6rem;
-  font-weight: lighter;
-  color: var(--sklearn-color-text-muted);
-}
-
-#sk-container-id-1 label.sk-toggleable__label-arrow:before {
-  /* Arrow on the left of the label */
-  content: "▸";
-  float: left;
-  margin-right: 0.25em;
-  color: var(--sklearn-color-icon);
-}
-
-#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
-  color: var(--sklearn-color-text);
-}
-
-/* Toggleable content - dropdown */
-
-#sk-container-id-1 div.sk-toggleable__content {
-  max-height: 0;
-  max-width: 0;
-  overflow: hidden;
-  text-align: left;
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-1 div.sk-toggleable__content.fitted {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-#sk-container-id-1 div.sk-toggleable__content pre {
-  margin: 0.2em;
-  border-radius: 0.25em;
-  color: var(--sklearn-color-text);
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-1 div.sk-toggleable__content.fitted pre {
-  /* unfitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
-  /* Expand drop-down */
-  max-height: 200px;
-  max-width: 100%;
-  overflow: auto;
-}
-
-#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
-  content: "▾";
-}
-
-/* Pipeline/ColumnTransformer-specific style */
-
-#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Estimator-specific style */
-
-/* Colorize estimator box */
-#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-#sk-container-id-1 div.sk-label label.sk-toggleable__label,
-#sk-container-id-1 div.sk-label label {
-  /* The background is the default theme color */
-  color: var(--sklearn-color-text-on-default-background);
-}
-
-/* On hover, darken the color of the background */
-#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-/* Label box, darken color on hover, fitted */
-#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
-  color: var(--sklearn-color-text);
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Estimator label */
-
-#sk-container-id-1 div.sk-label label {
-  font-family: monospace;
-  font-weight: bold;
-  display: inline-block;
-  line-height: 1.2em;
-}
-
-#sk-container-id-1 div.sk-label-container {
-  text-align: center;
-}
-
-/* Estimator-specific */
-#sk-container-id-1 div.sk-estimator {
-  font-family: monospace;
-  border: 1px dotted var(--sklearn-color-border-box);
-  border-radius: 0.25em;
-  box-sizing: border-box;
-  margin-bottom: 0.5em;
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-0);
-}
-
-#sk-container-id-1 div.sk-estimator.fitted {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-0);
-}
-
-/* on hover */
-#sk-container-id-1 div.sk-estimator:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-2);
-}
-
-#sk-container-id-1 div.sk-estimator.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-2);
-}
-
-/* Specification for estimator info (e.g. "i" and "?") */
-
-/* Common style for "i" and "?" */
-
-.sk-estimator-doc-link,
-a:link.sk-estimator-doc-link,
-a:visited.sk-estimator-doc-link {
-  float: right;
-  font-size: smaller;
-  line-height: 1em;
-  font-family: monospace;
-  background-color: var(--sklearn-color-background);
-  border-radius: 1em;
-  height: 1em;
-  width: 1em;
-  text-decoration: none !important;
-  margin-left: 0.5em;
-  text-align: center;
-  /* unfitted */
-  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
-  color: var(--sklearn-color-unfitted-level-1);
-}
-
-.sk-estimator-doc-link.fitted,
-a:link.sk-estimator-doc-link.fitted,
-a:visited.sk-estimator-doc-link.fitted {
-  /* fitted */
-  border: var(--sklearn-color-fitted-level-1) 1pt solid;
-  color: var(--sklearn-color-fitted-level-1);
-}
-
-/* On hover */
-div.sk-estimator:hover .sk-estimator-doc-link:hover,
-.sk-estimator-doc-link:hover,
-div.sk-label-container:hover .sk-estimator-doc-link:hover,
-.sk-estimator-doc-link:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
-.sk-estimator-doc-link.fitted:hover,
-div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
-.sk-estimator-doc-link.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-/* Span, style for the box shown on hovering the info icon */
-.sk-estimator-doc-link span {
-  display: none;
-  z-index: 9999;
-  position: relative;
-  font-weight: normal;
-  right: .2ex;
-  padding: .5ex;
-  margin: .5ex;
-  width: min-content;
-  min-width: 20ex;
-  max-width: 50ex;
-  color: var(--sklearn-color-text);
-  box-shadow: 2pt 2pt 4pt #999;
-  /* unfitted */
-  background: var(--sklearn-color-unfitted-level-0);
-  border: .5pt solid var(--sklearn-color-unfitted-level-3);
-}
-
-.sk-estimator-doc-link.fitted span {
-  /* fitted */
-  background: var(--sklearn-color-fitted-level-0);
-  border: var(--sklearn-color-fitted-level-3);
-}
-
-.sk-estimator-doc-link:hover span {
-  display: block;
-}
-
-/* "?"-specific style due to the `<a>` HTML tag */
-
-#sk-container-id-1 a.estimator_doc_link {
-  float: right;
-  font-size: 1rem;
-  line-height: 1em;
-  font-family: monospace;
-  background-color: var(--sklearn-color-background);
-  border-radius: 1rem;
-  height: 1rem;
-  width: 1rem;
-  text-decoration: none;
-  /* unfitted */
-  color: var(--sklearn-color-unfitted-level-1);
-  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
-}
-
-#sk-container-id-1 a.estimator_doc_link.fitted {
-  /* fitted */
-  border: var(--sklearn-color-fitted-level-1) 1pt solid;
-  color: var(--sklearn-color-fitted-level-1);
-}
-
-/* On hover */
-#sk-container-id-1 a.estimator_doc_link:hover {
-  /* unfitted */
-  background-color: var(--sklearn-color-unfitted-level-3);
-  color: var(--sklearn-color-background);
-  text-decoration: none;
-}
-
-#sk-container-id-1 a.estimator_doc_link.fitted:hover {
-  /* fitted */
-  background-color: var(--sklearn-color-fitted-level-3);
-}
-</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>CalibratedClassifierCV(cv=5,
-                       estimator=Pipeline(steps=[('scale', StandardScaler()),
-                                                 ('svm', SVC(C=1, gamma=1))]))</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox"><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>CalibratedClassifierCV</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.calibration.CalibratedClassifierCV.html">?<span>Documentation for CalibratedClassifierCV</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>CalibratedClassifierCV(cv=5,
-                       estimator=Pipeline(steps=[('scale', StandardScaler()),
-                                                 ('svm', SVC(C=1, gamma=1))]))</pre></div> </div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox"><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>estimator: Pipeline</div></div></label><div class="sk-toggleable__content fitted"><pre>Pipeline(steps=[('scale', StandardScaler()), ('svm', SVC(C=1, gamma=1))])</pre></div> </div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox"><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>StandardScaler</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></div></label><div class="sk-toggleable__content fitted"><pre>StandardScaler()</pre></div> </div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox"><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>SVC</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.svm.SVC.html">?<span>Documentation for SVC</span></a></div></label><div class="sk-toggleable__content fitted"><pre>SVC(C=1, gamma=1)</pre></div> </div></div></div></div></div></div></div></div></div></div></div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>probabilities <span class="op">=</span> calibrated.predict_proba(te[[<span class="st">'x1'</span>,<span class="st">'x2'</span>]])[:,<span class="dv">1</span>]</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'测试 Brier score:'</span>, brier_score_loss(te.target,probabilities))</span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>测试 Brier score: 0.07183578496048904</code></pre>
-</div>
-</div>
-<p>这里参数预先固定，避免一边看测试概率一边改模型。多分类需要说明采用何种校准/归一化策略。概率质量应检查 Brier/log loss 和可靠性图，单看 accuracy 无法判断概率是否可信。不同 scikit-learn 版本的概率接口可能变化，本教程固定依赖为 1.6.1，升级时应重新核对 <a href="https://scikit-learn.org/1.6/modules/calibration.html">官方校准文档</a>。</p>
-</section>
-<section id="类别不平衡与部署成本" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="类别不平衡与部署成本"><span class="header-section-number">7.5</span> 类别不平衡与部署成本</h2>
-<p>类权重相当于让不同样本使用不同惩罚 <span class="math inline">\(C_i\)</span>。<code>class_weight='balanced'</code> 是一个可比较的基线，不是保证少数类表现更好的规则。重采样必须在训练折内进行，否则重复样本可能跨越训练/验证边界。若概率将用于决策，还要考虑真实类别先验与部署分布。</p>
-<p>实际模型选择还包括训练时间、峰值内存、预测延迟、支持向量数量和特征计算成本。机器不同，单次耗时缺乏可比性；需要重复测量和说明硬件。小数据案例不用于推断大规模部署性能。</p>
-</section>
-<section id="从原则到对照实验" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="从原则到对照实验"><span class="header-section-number">7.6</span> 从原则到对照实验</h2>
-<p>下面三组实验分别隔离一个问题。数据都是固定随机种子的模拟样本，并保存训练/测试ID；模型参数预先规定。它们用来观察机制，不代表调参后的最佳性能。模型训练在生成脚本中完成，浏览器只切换预计算结果。</p>
-<section id="特征尺度会怎样改变-rbf-边界" class="level3" data-number="7.6.1">
-<h3 data-number="7.6.1" class="anchored" data-anchor-id="特征尺度会怎样改变-rbf-边界"><span class="header-section-number">7.6.1</span> 特征尺度会怎样改变 RBF 边界</h3>
-<p>同一份双月牙数据，将第一维人为乘1000。对比“未标准化”与“只用训练集拟合StandardScaler”，两种模型都设置 <span class="math inline">\(C=1,\gamma=\text{scale}\)</span>。注意 <code>scale</code> 是按输入方差计算γ的规则，不是同一个数值；卡片给出实际γ。图形始终使用原始坐标，避免把变换后坐标与原始距离混用。</p>
-<section class="lab" data-experiment="scaling" aria-label="标准化前后：同一原始坐标下的边界">
-<p class="lab-title">标准化前后：同一原始坐标下的边界</p><p class="lab-hint">切换处理方式，查看测试指标、实际γ和支持向量。空心菱形为测试样本。</p>
+<section id="五折验证怎样运转" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="五折验证怎样运转"><span class="header-section-number">10.5</span> 五折验证怎样运转</h2>
+<p>将训练集分成五份。固定一组候选参数，每次用四份训练、一份验证，得到五个分数并取平均。对所有候选重复，选均分最高的参数。</p>
+<p>最后用整个训练集重拟合。五折均分是选参过程中使用的分数，选择过后的最佳均分不能当作独立、无偏的泛化评估。</p>
+<section class="lab" data-svm-lab="tuning" aria-label="训练集参数验证热图">
+<p class="lab-title">候选模型怎样被比较</p><p class="lab-hint">悬停读取每组 C、γ 的训练集五折 macro-F1；最优组合由验证分数决定。</p>
 <div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats" aria-live="polite"></div>
 </section>
-<p>先解释边界为何改变，再比较测试表现。不要从单次固定配置得出“标准化必然提高所有数据集精度”。参考<a href="https://www.csie.ntu.edu.tw/~cjlin/papers/guide/guide.pdf">LIBSVM实践指南</a>。</p>
+<p><strong>自测</strong>：这个热图能否证明最佳格子在所有未来数据上最好？不能；它是在有限训练数据上选择参数的依据。独立测试用于检查选出的流程。</p>
 </section>
-<section id="类别加权改变的是不同类别的代价" class="level3" data-number="7.6.2">
-<h3 data-number="7.6.2" class="anchored" data-anchor-id="类别加权改变的是不同类别的代价"><span class="header-section-number">7.6.2</span> 类别加权改变的是不同类别的代价</h3>
-<p>模拟数据使用每类两个簇、重叠分布和4%的随机标签扰动，使少数类识别具有挑战；类别1为少数类，对比同样参数下普通SVM与 <code>class_weight='balanced'</code>。权重只由训练标签计算，不读取测试比例。检查少数类precision、recall、F1，不能只看accuracy。</p>
-<section class="lab" data-experiment="imbalance" aria-label="普通与加权 SVM：少数类的代价">
-<p class="lab-title">普通与加权 SVM：少数类的代价</p><p class="lab-hint">切换模型，观察边界及少数类precision/recall的权衡。</p>
+<section id="所有会学习参数的预处理都在折内" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="所有会学习参数的预处理都在折内"><span class="header-section-number">10.6</span> 所有会学习参数的预处理都在折内</h2>
+<p>标准化学习均值和标准差，填补学习中位数或众数，类别编码学习类别字典，特征筛选可能学习标签关系。每个验证折都必须用其余四折拟合这些操作。</p>
+<p>先在全数据上标准化再分折，会让验证数据影响训练变换；先用全部标签选特征更直接泄漏。Python Pipeline 和 R 的显式折循环将在实践篇落实这条原则。</p>
+<p>独立样本演示可分层随机划分；同一受试者多行记录应按组划分；预测未来应按时间划分。划分方式来自任务，而非一律打乱。</p>
+<section id="标准化改变了哪一个几何空间" class="level3" data-number="10.6.1">
+<h3 data-number="10.6.1" class="anchored" data-anchor-id="标准化改变了哪一个几何空间"><span class="header-section-number">10.6.1</span> 标准化改变了哪一个几何空间</h3>
+<p>设 <span class="math inline">\(z=A(x-\mu)\)</span>，<span class="math inline">\(A=\operatorname{diag}(1/s_r)\)</span>。若标准化空间模型为 <span class="math inline">\(v^Tz+c\)</span>，原始坐标中</p>
+<p><span class="math display">\[w_{\rm raw}=A^Tv,\qquad b_{\rm raw}=c-w_{\rm raw}^T\mu.\]</span></p>
+<p>原坐标参考带宽为 <span class="math inline">\(2/\|w_{\rm raw}\|\)</span>，标准化空间为 <span class="math inline">\(2/\|v\|\)</span>；优化正则项使用后者的权重范数。不能把两种坐标的长度混为一个量。</p>
+<section class="lab" data-experiment="scaling" aria-label="特征尺度对照">
+<p class="lab-title">一个特征放大1000倍之后</p><p class="lab-hint">先预测边界是否改变，再比较处理方式；图始终保留原始坐标。</p>
 <div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats" aria-live="polite"></div>
 </section>
-<p>加权改变训练代价，阈值选择改变预测规则，重采样改变训练样本分布；它们不是同一种操作。本实验只比较前者。若继续选权重或阈值，必须在训练/验证数据内完成。参考<a href="https://scikit-learn.org/1.6/auto_examples/svm/plot_separating_hyperplane_unbalanced.html">官方类别权重示例</a>。</p>
+<p>两种固定配置均使用 <span class="math inline">\(C=1,\gamma=\text{scale}\)</span>；scale 是按输入方差求参数的规则，实际数值不同，卡片列出实际值。标准化只拟合训练集。这是机制对照，不证明每个任务标准化都会提高精度。</p>
 </section>
-<section id="校准前后概率与真实频率是否一致" class="level3" data-number="7.6.3">
-<h3 data-number="7.6.3" class="anchored" data-anchor-id="校准前后概率与真实频率是否一致"><span class="header-section-number">7.6.3</span> 校准前后：概率与真实频率是否一致</h3>
-<p>可靠性曲线将预测值分为8个固定区间：横轴是区间内平均预测概率，纵轴是实际正类比例。悬停查看每箱样本数。空箱不画点。曲线接近对角线只是有限样本证据，还需要结合Brier与log loss及采样不确定性。</p>
-<section class="lab" data-experiment="calibration" aria-label="概率校准：sigmoid 与 isotonic">
-<p class="lab-title">概率校准：sigmoid 与 isotonic</p><p class="lab-hint">切换方法，查看可靠性曲线与测试Brier/log loss；悬停查看分箱样本数。</p>
+</section>
+<section id="类别加权阈值与重采样" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="类别加权阈值与重采样"><span class="header-section-number">10.7</span> 类别加权、阈值与重采样</h2>
+<p>类别加权将损失写成 <span class="math inline">\(\sum_i C_i\ell(m_i)\)</span>，提高某类的违例价格。阈值改变最终判定规则，重采样改变训练样本的构成；三种操作需分别评估。</p>
+<section class="lab" data-experiment="imbalance" aria-label="类别加权对照">
+<p class="lab-title">提高少数类代价，会改变哪些指标？</p><p class="lab-hint">比较普通与加权模型；先解释少数类 recall，再检查 precision 的代价。</p>
 <div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats" aria-live="polite"></div>
 </section>
-<p>未校准基线只是对原始SVM分数直接取sigmoid，没有拟合校准参数，不能称为SVM自带概率。另两种方法将完整Pipeline交给训练集内五折校准器，以避免预处理泄漏；它们同时使用交叉验证集成，比较包含这部分实现差异。固定分类器参数，测试集不参与选择校准方法。本例不能证明isotonic总是更好。参考<a href="https://scikit-learn.org/1.6/auto_examples/calibration/plot_calibration_curve.html">官方可靠性曲线实验</a>。</p>
+<p>balanced 权重从训练标签计算。加权不保证所有指标同时改善；阈值或权重若需要选择，仍放在训练验证中。重采样也必须在训练折内，否则复制样本可能跨到验证折。</p>
 </section>
+<section id="好的排序不等于可信概率" class="level2" data-number="10.8">
+<h2 data-number="10.8" class="anchored" data-anchor-id="好的排序不等于可信概率"><span class="header-section-number">10.8</span> 好的排序不等于可信概率</h2>
+<p>将分数直接取 sigmoid 并不自动获得概率。校准通过训练集内的留出或交叉验证，学习分数与正类频率之间的关系。sigmoid 拟合参数较少；isotonic 更灵活，但数据少时可能过拟合。</p>
+<p>Brier 分数 <span class="math inline">\(\frac1n\sum_i(p_i-\mathbf1\{y_i=+1\})^2\)</span> 越低越好；log loss 对自信但错误的预测惩罚更重。可靠性图按预测概率分箱，比较平均预测概率与实际频率。</p>
+<section class="lab" data-experiment="calibration" aria-label="概率校准对照">
+<p class="lab-title">预测0.8的样本，是否约有80%为正类？</p><p class="lab-hint">切换方法，查看分箱样本数、Brier和log loss；不要只看曲线是否贴近对角线。</p>
+<div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats" aria-live="polite"></div>
 </section>
-<section id="练习与解答" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">7.7</span> 练习与解答</h2>
+<p>对照的未校准基线只对分数直接取sigmoid；另两种方法在训练集内校准完整Pipeline，并使用交叉验证集成。有限分箱有采样波动，方法优劣不能据一次图确定。</p>
+</section>
+<section id="练习与解答" class="level2" data-number="10.9">
+<h2 data-number="10.9" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">10.9</span> 练习与解答</h2>
 <ol type="1">
-<li>为什么先在全数据上标准化，再交叉验证，会泄漏？</li>
-<li>一个 99% 阴性数据集，总预测阴性的 accuracy 是多少？它的阳性召回率呢？</li>
-<li>为什么决策分数可以用于 ROC，却不能直接当风险概率？</li>
+<li>首个十样本例中，若把漏报的一个正类改为正确预测，其他不变，新的 recall 和 precision 是多少？</li>
+<li>每个候选都在测试集上评估，再取最高者，为什么不能把最高值叫独立测试结果？</li>
+<li>哪些任务不适合普通随机行划分？</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled" title="参考解答">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
@@ -903,13 +493,17 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li>验证折影响了变换参数，训练过程间接使用了它的信息。</li>
-<li>accuracy 为 99%，阳性召回为 0%。</li>
-<li>ROC 需要阈值排序，不需要概率尺度；概率还要求与事件频率一致的校准含义。</li>
+<li><span class="math inline">\(TP=4,FN=0,FP=2\)</span>，recall为1，precision为 <span class="math inline">\(4/6=2/3\)</span>。先改计数再算分母。</li>
+<li>测试标签影响了选参，最高值反映真实能力与选择噪声。需新的未见评估，或从开始采用外层评估。</li>
+<li>同一人的重复记录、时间序列、同一地点或设备的聚类采样等。划分应隔离预期部署中的未知单位或未来时间。</li>
 </ol>
 </div>
 </div>
 </div>
+</section>
+<section id="下一步" class="level2" data-number="10.10">
+<h2 data-number="10.10" class="anchored" data-anchor-id="下一步"><span class="header-section-number">10.10</span> 下一步</h2>
+<p>理论路线已经覆盖预测、优化、多分类和评估。下一章开始完整 Python/R 实践：把读数据、保存划分、折内预处理、选参、预测和解释连接成可独立运行的代码。</p>
 
 
 </section>
@@ -1355,12 +949,12 @@ document.addEventListener('DOMContentLoaded',function(){
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../chapters/05-multiclass.html" class="pagination-link" aria-label="多分类">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">多分类</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">多分类</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/07-cases.html" class="pagination-link" aria-label="真实数据案例">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">真实数据案例</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/00-python-start.html" class="pagination-link" aria-label="Python / R 实践">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python / R 实践</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
