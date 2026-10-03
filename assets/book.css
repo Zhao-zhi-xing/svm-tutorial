@@ -1,12 +1,14 @@
 /* 教程阅读系统：宽度、颜色与字号统一从这里维护。 */
 :root {
-  --ink:#30323b; --blue:#3451b2; --teal:#137d80; --muted:#60636e;
-  --line:#e2e5eb; --surface:#f6f7f9; --active:#eaf0ff;
+  --ink:#352f2a; --blue:#365c85; --teal:#137d80; --muted:#70675e;
+  --line:#ddd4c8; --surface:#f5f0e8; --active:#e8eef4;
+  --page-bg:#f1ebe2; --paper:#fffdf9; --nav-paper:#faf6ef;
+  --nav-shadow:0 10px 32px rgba(72,52,31,.09);
   --tutorial-nav-width:270px; --tutorial-body-width:1040px;
   --reading-width:800px; --tutorial-gutter:32px; --tutorial-header-height:56px;
 }
-body { background:#fff; color:var(--ink); font-family:'Segoe UI','Microsoft YaHei','PingFang SC',sans-serif; font-size:17px; }
-main.content { min-width:0; line-height:1.85; }
+body { background:var(--page-bg); color:var(--ink); font-family:'Segoe UI','Microsoft YaHei','PingFang SC',sans-serif; font-size:17px; }
+main.content { min-width:0; line-height:1.85; background:var(--paper); }
 h1,h2,h3,h4 { font-family:inherit; color:var(--ink); font-weight:650; line-height:1.45; }
 h1 { font-size:32px; letter-spacing:-.02em; }
 h2 { font-size:25px; margin-top:2.3rem; margin-bottom:1rem; border:0; padding:0; }
@@ -24,15 +26,15 @@ main mjx-container[display='true'] { margin:1.1rem 0!important; }
 a { color:var(--blue); text-underline-offset:.22em; }
 a:hover { color:#253f91; }
 :is(a,button,input,select,summary):focus-visible { outline:3px solid var(--blue); outline-offset:3px; }
-::selection { background:#dce5fa; color:#1b2f69; }
-* { scrollbar-color:#aab2c2 transparent; scrollbar-width:thin; }
+::selection { background:#e4d9c8; color:#352f2a; }
+* { scrollbar-color:#b9aa97 transparent; scrollbar-width:thin; }
 .chapter-number { color:inherit; }
-#quarto-header { border-bottom:1px solid var(--line); background:#fff; }
-#quarto-header .navbar { min-height:var(--tutorial-header-height); padding:8px 32px; box-shadow:none; }
+#quarto-header { border-bottom:1px solid var(--line); background:var(--paper); }
+#quarto-header .navbar { background:var(--paper)!important; min-height:var(--tutorial-header-height); padding:8px 32px; box-shadow:none; }
 #quarto-header .navbar-container { max-width:1580px; margin-inline:auto; width:100%; }
 #quarto-header .navbar-nav { gap:12px; }
 #quarto-header .nav-link { font-size:.88rem; color:var(--ink); }
-#quarto-sidebar { background:var(--surface); }
+#quarto-sidebar { background:var(--nav-paper); }
 #quarto-sidebar .sidebar-header { margin-top:0!important; padding-top:0!important; }
 .tutorial-brand,.sidebar-title { font-size:1.08rem; font-weight:700; color:var(--ink); line-height:1.5; }
 .sidebar-title a { color:var(--ink); }
@@ -41,7 +43,7 @@ a:hover { color:#253f91; }
 #quarto-sidebar .sidebar-menu-container { padding-top:12px; }
 #quarto-sidebar .sidebar-item-container { padding:3px 0; }
 #quarto-sidebar .sidebar-item-text { color:var(--muted); font-size:14px; line-height:1.6; padding:8px 10px; border-radius:6px; }
-#quarto-sidebar .sidebar-link:hover { background:#eef1f7; color:var(--blue); }
+#quarto-sidebar .sidebar-link:hover { background:#eee6db; color:var(--blue); }
 #quarto-sidebar .sidebar-link.active { background:var(--active); color:var(--blue); font-weight:600; }
 #quarto-sidebar .chapter-number::before { content:'第'; }
 #quarto-sidebar .chapter-number::after { content:'章：'; }
@@ -96,8 +98,29 @@ pre.sourceCode code,pre.sourceCode code span { white-space:pre; overflow-wrap:no
 .stat-note { margin:.3rem 0 0; font-size:14px; color:var(--muted); line-height:1.8; }
 .lab-plot,.plotly-output { width:100%; min-width:0; min-height:560px; }
 main .cell-output-display { width:100%; }
-.lab-table { display:block; overflow-x:auto; font-size:14px; margin-top:.8rem; }
-.lab-table th,.lab-table td { padding:6px 10px; border-bottom:1px solid var(--line); }
+/* 三线表：顶线、表头分隔线、底线；不依赖Bootstrap的逐行网格。 */
+main.content table {
+  display:table; width:auto; min-width:min(480px,100%); max-width:min(800px,100%);
+  margin:1.5rem auto; border-collapse:collapse; border-spacing:0;
+  border-top:2px solid #807365; border-bottom:2px solid #807365;
+  font-size:15px; line-height:1.7; font-variant-numeric:tabular-nums;
+}
+main.content table :is(th,td) {
+  text-align:center!important; vertical-align:middle; padding:10px 20px;
+  border:0!important; background:transparent!important; box-shadow:none!important;
+  max-width:320px; overflow-wrap:anywhere;
+}
+main.content table :is(thead,tr:has(th)) { border-bottom:1px solid #aa9d8c; }
+main.content table th { font-weight:650; color:var(--ink); }
+main.content table :is(th,td) p { margin:0; }
+main.content .lab-table { font-size:14px; }
+.quarto-table { overflow-x:auto; }
+/* 文献编号由CSL生成，链接和段落按条目分开。 */
+#refs { max-width:var(--reading-width); margin-inline:auto; font-size:15px; }
+#refs .csl-entry { margin-block:0 1.1rem; padding-bottom:1rem; border-bottom:1px solid var(--line); line-height:1.8; }
+#refs .csl-entry:last-child { border-bottom:0; }
+#refs .csl-left-margin { color:var(--blue); font-weight:650; }
+#refs .csl-right-inline { overflow-wrap:anywhere; }
 @media(prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; } }
 @media (min-width:1200px) {
   #quarto-content.page-columns {
@@ -144,3 +167,18 @@ body:has(.tutorial-meta) #TOC > ul > li > ul { padding-left:0; }
 .tutorial-hero { max-width:800px; margin:1.2rem auto 2rem; }
 .tutorial-start { display:inline-block; padding:9px 18px; background:var(--blue); color:white; border-radius:6px; text-decoration:none; }
 [data-teaching="loss"] .lab-plot { min-height:480px; }
+
+@media(min-width:992px) {
+  #quarto-sidebar {
+    position:fixed!important; left:16px!important; top:calc(var(--tutorial-header-height) + 16px)!important;
+    width:calc(var(--tutorial-nav-width) - 32px)!important;
+    height:calc(100dvh - var(--tutorial-header-height) - 32px)!important;
+    max-height:calc(100dvh - var(--tutorial-header-height) - 32px)!important;
+    margin:0!important; padding:24px 18px!important; border:0!important;
+    border-radius:20px; box-shadow:var(--nav-shadow); overflow-y:auto; box-sizing:border-box;
+  }
+  main.content { padding-inline:24px!important; }
+}
+@media(min-width:992px) and (max-width:1199.98px) {
+  #quarto-sidebar { width:208px!important; }
+}

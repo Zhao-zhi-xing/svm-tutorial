@@ -84,6 +84,7 @@ book:
     text: 参考文献
 lang: zh
 bibliography: references.bib
+csl: assets/ieee.csl
 engine: knitr
 execute:
   echo: true

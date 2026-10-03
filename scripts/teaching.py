@@ -15,20 +15,25 @@ def hand_step():
  aj=np.clip(y[1]*(E[0]-E[1])/eta,0,2);ai=aj
  w=(np.array([ai,aj])*y)@X;b=-E[0]-y[0]*ai*K[0,0]-y[1]*aj*K[0,1]
  return np.array([ai,aj]),w,float(b)
+def soft_model(X, y, C):
+ clf=SVC(C=C,kernel='linear',tol=1e-10).fit(X,y)
+ alpha=np.zeros(len(y));alpha[clf.support_]=abs(clf.dual_coef_[0]);v=clf.coef_[0];bias=float(clf.intercept_[0]);m=y*(X@v+bias);xi=np.maximum(0,1-m)
+ return dict(C=C,w=v.tolist(),b=bias,alpha=alpha.tolist(),margins=m.tolist(),slack=xi.tolist(),sv=clf.support_.tolist(),errors=int(np.sum(clf.predict(X)!=y)),primal=float(.5*v@v+C*xi.sum()),dual=float(alpha.sum()-.5*v@v))
+
 def build_teaching():
  scenarios=[]
  for name,pos,w,b,feasible in [('原始：宽间隔',1,[1,0],0,True),('移动一点：窄间隔',-.5,[4,0],3,True),('进入凸包：不可分',-1.5,None,None,False)]:
   X=points.copy();X[3,0]=pos;states=[]
   for C in [.1,1.,10.,100.]:
-   clf=SVC(C=C,kernel='linear',tol=1e-10).fit(X,labels)
-   alpha=np.zeros(6);alpha[clf.support_]=abs(clf.dual_coef_[0]);v=clf.coef_[0];bias=float(clf.intercept_[0]);m=labels*(X@v+bias);xi=np.maximum(0,1-m)
-   states.append(dict(C=C,w=v.tolist(),b=bias,alpha=alpha.tolist(),margins=m.tolist(),slack=xi.tolist(),sv=clf.support_.tolist(),errors=int(np.sum(clf.predict(X)!=labels)),primal=float(.5*v@v+C*xi.sum()),dual=float(alpha.sum()-.5*v@v)))
+   states.append(soft_model(X,labels,C))
   scenarios.append(dict(label=name,points=X.tolist(),feasible=feasible,w=w,b=b,soft=states))
- return dict(points=points.tolist(),labels=labels.tolist(),scenarios=scenarios,projection=projection())
+ extra_points=np.vstack([points,[-1.5,1.5]]);extra_labels=np.r_[labels,1]
+ effect=dict(points=extra_points.tolist(),labels=extra_labels.tolist(),models=[soft_model(extra_points,extra_labels,C) for C in [.1,.3,1.,3.,10.,100.]])
+ return dict(points=points.tolist(),labels=labels.tolist(),scenarios=scenarios,projection=projection(),c_effect=effect)
 def main():
  d=build_teaching();text=json.dumps(d,ensure_ascii=False,allow_nan=False)
  (ROOT/'assets/teaching.json').write_text(text,encoding='utf-8')
  (ROOT/'assets/teaching-data.js').write_text('window.SVM_TEACHING='+text+';',encoding='utf-8')
  (ROOT/'data/teaching-six-points.json').write_text(text,encoding='utf-8')
- print('Prepared 3 scenarios and 12 raw-coordinate soft models.')
+ print('Prepared 12 six-point models and 6 seven-point C-effect models.')
 if __name__=='__main__':main()

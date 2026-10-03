@@ -381,3 +381,16 @@ Python/R实践展示完整拟合步骤，案例的可独立调用实现存于 `s
 本项目也提供 `python scripts/publish_site.py` 预览当前产物与gh-pages的差异，核对后运行 `python scripts/publish_site.py --publish`。脚本要求content-validation已通过，使用gh登录，以普通新提交更新Pages并清理明确退役的作者资源；不强制覆盖分支。发布前先提交并推送源码。
 
 运行 `python scripts/check_visible_code.py` 可以仅执行网页可见代码，并比较Python/R的入门与三个案例。每章Python命名空间、每个R进程独立；验证不调用隐藏setup单元。结果写入reports/content-execution.json。
+
+
+## 详细讲解与阅读样式（2026-10-03）
+
+教程原则是“不怕内容多，就怕不详细”：新符号先解释含义，公式给出动机、代入和逐步推导，图表配操作任务及参考结论。不要为了缩短页面删掉必要步骤；可折叠重复参数和原始日志，不折叠关键推导。
+
+`assets/book.css` 的 `--page-bg`、`--paper`、`--nav-paper` 控制浅咖啡背景及暖白内容区。桌面导航距左边16px、距顶部导航及窗口底部各16px，圆角20px，使用低透明度柔和阴影。正文表格统一采用居中三线表；长表以完整内容优先。
+
+`assets/ieee.csl` 在本地提供IEEE数字文献格式，保留原样式授权元数据，正文编号与参考文献由Quarto统一生成。CS229作者采用吴恩达（Andrew Ng）老师的中文显示名，不猜测未标注的出版年份。
+
+`python scripts/teaching.py` 同时更新原六点的12个模型和七点C取舍例的6个模型；第七点只供教学，不改变Iris/Heart/Khan评估数据。新增控件使用 `data-teaching="c-effect"`。
+
+使用knitr + reticulate时，`fig.update_layout(...)`、`model.fit(...)` 等会返回对象；即使在循环内也可能自动输出长文本。对不需要显示的返回值赋给明确命名的变量（例如 `fig = fig.update_layout(...)`），不要赋给 `_`：reticulate把它当作最近一次自动显示的值，会影响后续代码块。再调用 `print(lab.figure_html(...))` 展示图。不要用CSS隐藏原始输出来掩盖执行问题。

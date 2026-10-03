@@ -269,7 +269,7 @@ for tag, x, y, xtitle, ytitle, value in [
     ('PR', recall, precision, 'Recall', 'Precision', average_precision_score(test_heart.target, score))]:
     fig = go.Figure(go.Scatter(x=x, y=y, mode='lines', name=tag,
                              line=dict(color='#245e91', width=3)))
-    fig.update_layout(title=f'Heart · {tag} ({value:.3f})', height=480,
+    fig = fig.update_layout(title=f'Heart · {tag} ({value:.3f})', height=480,
                       xaxis_title=xtitle, yaxis_title=ytitle)
     print(lab.figure_html(fig, 'heart-' + tag.lower()))
 ```
@@ -413,7 +413,7 @@ approx = Pipeline([('scale', StandardScaler()),
 search_approx = GridSearchCV(approx,
     {'map__n_components': [10, 30, 60], 'map__gamma': [.1, 1],
      'model__C': [.1, 1, 10]}, cv=folds, scoring='f1_macro')
-search_approx.fit(a[['x1','x2']], a.target)
+search_approx = search_approx.fit(a[['x1','x2']], a.target)
 print(search_approx.best_params_)
 print('独立测试macro-F1:', f1_score(b.target,
       search_approx.predict(b[['x1','x2']]), average='macro'))

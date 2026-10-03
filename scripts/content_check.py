@@ -1,6 +1,6 @@
 """自学内容重构验收：链接、资源隔离、真实交互状态与实践输出。"""
 from pathlib import Path
-import json,functools,http.server,threading,os
+import json,functools,http.server,threading,os,re
 from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
 from browser_check import link_check
@@ -16,6 +16,12 @@ def main():
  alltext='\n'.join(BeautifulSoup(p.read_text(encoding='utf-8'),'html.parser').get_text() for p in BOOK.glob('chapters/*.html'))
  for phrase in ['这里恢复原笔记','新版直接','旧代码','方向错误已纠正']:
   assert phrase not in alltext,phrase
+ for path in BOOK.glob('chapters/*.html'):
+  visible=BeautifulSoup(path.read_text(encoding='utf-8'),'html.parser').select_one('main')
+  for node in visible.select('pre,code,script,style'):node.decompose()
+  assert not re.search(r'Figure\s*\(\s*\{',visible.get_text()),path.name
+  assert not re.search(r'GridSearchCV\(cv=',visible.get_text()),path.name
+  assert 'cdn.plot.ly' not in path.read_text(encoding='utf-8'),path.name
  class Quiet(http.server.SimpleHTTPRequestHandler):
   def log_message(self,*args):pass
  server=http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Quiet,directory=str(ROOT)))
@@ -54,8 +60,15 @@ def main():
     measured=page.evaluate("()=>{const r=document.querySelector('main').getBoundingClientRect();return {center:r.x+r.width/2,overflow:document.documentElement.scrollWidth};}")
     assert abs(measured['center']-width/2)<2,measured
     assert measured['overflow']<=width+1,(name,width,measured)
+    nav=page.locator('#quarto-sidebar').evaluate("e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return {x:r.x,y:r.y,bottom:r.bottom,radius:s.borderRadius,shadow:s.boxShadow};}")
+    assert abs(nav['x']-16)<1 and abs(nav['bottom']-984)<1,nav
+    assert nav['radius']=='20px' and nav['shadow']!='none',nav
   checks.append('15 pages; author materials excluded; 4 desktop widths centered with no document overflow')
   page.set_viewport_size({'width':1440,'height':1000});visit('chapters/01-geometry.html')
+  table=page.locator('main table').first
+  style=table.evaluate("e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return {width:r.width,top:s.borderTopWidth,bottom:s.borderBottomWidth,cell:getComputedStyle(e.querySelector('td')).textAlign};}")
+  assert style['width']<=800 and style['top']=='2px' and style['bottom']=='2px' and style['cell']=='center',style
+  page.screenshot(path=str(ROOT/'reports/reading-warm-table.png'))
   lab=page.locator('[data-teaching=geometry]');lab.wait_for();page.wait_for_selector('[data-teaching=geometry] .js-plotly-plot')
   assert lab.locator('.lab-plot').evaluate('e=>e._fullLayout.xaxis._length')>600
   for angle in ['-80','0','80']:
@@ -81,9 +94,24 @@ def main():
   for i in range(4):
    projection.locator('select[name=scale]').select_option(str(i))
    assert '0.400' in projection.inner_text()
-  checks.append('hard separability states and projection scales')
+  annotations=projection.locator('.annotation-text').evaluate_all("nodes=>nodes.filter(n=>n.textContent.trim()).map(n=>{const r=n.getBoundingClientRect();return {x:r.x,y:r.y,right:r.right,bottom:r.bottom};})")
+  assert len(annotations)==4,annotations
+  for i,a in enumerate(annotations):
+   for b in annotations[i+1:]:assert a['right']<=b['x'] or b['right']<=a['x'] or a['bottom']<=b['y'] or b['bottom']<=a['y'],annotations
+  projection.screenshot(path=str(ROOT/'reports/reading-projection-labels.png'))
+  checks.append('hard separability states, projection scales and non-overlapping labels')
   visit('chapters/02-soft-margin.html');lab=page.locator('[data-teaching=soft]')
   data=json.loads((ROOT/'assets/teaching.json').read_text(encoding='utf-8'))
+  effect=page.locator('[data-teaching=c-effect]')
+  for i,model in enumerate(data['c_effect']['models']):
+   effect.locator('select[name=C]').select_option(str(i))
+   assert float(effect.get_attribute('data-current-c'))==model['C']
+   assert effect.locator('.lab-table tr').count()==8
+   shown=effect.locator('.lab-plot').evaluate('e=>e.data.find(t=>t.name==="决策边界 f=0")')
+   for x,y in zip(shown['x'],shown['y']):assert abs(model['w'][0]*x+model['w'][1]*y+model['b'])<1e-6
+  effect.locator('button').click();assert effect.get_attribute('data-current-c')=='0.1'
+  effect.screenshot(path=str(ROOT/'reports/reading-c-effect.png'))
+  checks.append('all 6 seven-point C states, fitted boundaries, point table and reset')
   for i,state in enumerate(data['scenarios']):
    lab.locator('select[name=scenario]').select_option(str(i))
    for j,model in enumerate(state['soft']):
@@ -137,6 +165,12 @@ def main():
   for old,target in [('chapters/01-geometry.html#eq-hard-primal','01-hard-margin.html'),('chapters/03-duality-smo.html#eq-general-kkt','03-optimization.html'),('chapters/04-kernels.html#展开-rbf看到无限维映射','04-rkhs.html')]:
    visit(old);page.wait_for_url('**/'+target+'**');assert target in page.url
   checks.append('moved equation and section anchor compatibility')
+  visit('references.html')
+  numbers=page.locator('#refs .csl-left-margin').all_text_contents()
+  assert len(numbers)>10 and all(str(i+1) in v for i,v in enumerate(numbers)),numbers
+  assert '吴恩达' in page.locator('#refs').inner_text()
+  page.screenshot(path=str(ROOT/'reports/reading-numbered-references.png'))
+  checks.append('numeric references, explicit CS229 author, centered three-rule tables, floating sidebar')
   # Existing native search still finds a newly split chapter.
   visit('index.html');page.locator('#quarto-search button').first.click()
   search=page.locator('.aa-Input');search.fill('互补松弛');page.wait_for_timeout(650)
