@@ -27,6 +27,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -343,7 +344,7 @@ window.Quarto = {
 <p>正类分数越大越好，负类分数越小越好。为了不用分别讨论两类，定义</p>
 <p><span id="eq-functional-margin"><span class="math display">\[m_i=y_i f(x_i). \tag{2.1}\]</span></span></p>
 <p>这叫<strong>函数间隔</strong>。对于负类，乘以 <span class="math inline">\(-1\)</span> 会把正确的负分数翻成正数；对于正类，分数保持不变。所以两类都满足：<span class="math inline">\(m_i&gt;0\)</span> 表示正确，<span class="math inline">\(m_i&lt;0\)</span> 表示错误，<span class="math inline">\(m_i=0\)</span> 表示在边界。</p>
-<p>以 <span class="math inline">\(w=(1,0),b=0\)</span> 为例，六点的函数间隔是 <span class="math inline">\((2,2,1,1,2,2)\)</span>。最近的一对样本2、3取得最小值1。但整体乘10以后，它们的函数间隔变成10，直线完全没动。因此不能直接最大化函数间隔来衡量真实距离 <span class="citation" data-cites="succinctly">(<a href="../references.html#ref-succinctly" role="doc-biblioref">Kowalczyk 2017年, 第3章</a>)</span>。</p>
+<p>以 <span class="math inline">\(w=(1,0),b=0\)</span> 为例，六点的函数间隔是 <span class="math inline">\((2,2,1,1,2,2)\)</span>。最近的一对样本2、3取得最小值1。但整体乘10以后，它们的函数间隔变成10，直线完全没动。因此不能直接最大化函数间隔来衡量真实距离 <span class="citation" data-cites="succinctly"><a href="../references.html#ref-succinctly" role="doc-biblioref">[1, 页 第3章]</a></span>。</p>
 </section>
 <section id="geometric-margin" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="geometric-margin"><span class="header-section-number">2.2</span> 从垂足推导几何距离</h2>
@@ -361,7 +362,7 @@ x_\perp=x-\frac{f(x)}{\|w\|^2}w,\qquad
 \operatorname{dist}(x,H)=\frac{|f(x)|}{\|w\|}. \tag{2.2}\]</span></span></p>
 <p><span class="math inline">\(d\)</span> 的符号只描述位于法向量的哪一侧。要判断是否位于<strong>正确</strong>的一侧，再乘标签：</p>
 <p><span id="eq-geometric-margin"><span class="math display">\[\rho_i=y_i d=\frac{y_i f(x_i)}{\|w\|}=\frac{m_i}{\|w\|}. \tag{2.3}\]</span></span></p>
-<p><span class="math inline">\(\rho_i\)</span> 叫样本的几何间隔：正确时为正，错误时为负。无符号距离总是非负，两者不能混用。这个推导与 CS229 的单位法向量图一致 <span class="citation" data-cites="cs229">(<a href="../references.html#ref-cs229" role="doc-biblioref">Ng, 不详</a>)</span>。</p>
+<p><span class="math inline">\(\rho_i\)</span> 叫样本的几何间隔：正确时为正，错误时为负。无符号距离总是非负，两者不能混用。这个推导与吴恩达（Andrew Ng）老师的 CS229 讲义中的单位法向量图一致 <span class="citation" data-cites="cs229"><a href="../references.html#ref-cs229" role="doc-biblioref">[2]</a></span>。</p>
 <section id="把公式落实到一个数值例子" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="把公式落实到一个数值例子"><span class="header-section-number">2.2.1</span> 把公式落实到一个数值例子</h3>
 <p>令 <span class="math inline">\(w=(3,4),b=-5,x=(1,1),y=+1\)</span>：</p>
@@ -393,6 +394,16 @@ x_\perp=x-\frac{f(x)}{\|w\|^2}w,\qquad
 <p>在最优解中至少有一个约束取等号：否则可把参数整体缩小，保持可行并降低范数目标，直到某个约束取等号。整体缩放不改变真实几何距离；变化的是参数尺度与 <span class="math inline">\(f=\pm1\)</span> 的参考带宽。规范化后 <span class="math inline">\(\rho=1/\|w\|\)</span>，最大化它等价于最小化 <span class="math inline">\(\|w\|\)</span>，也等价于最小化其平方的一半：</p>
 <p><span id="eq-hard-primal"><span class="math display">\[\min_{w,b}\frac12\|w\|^2\quad
 \text{s.t. }y_i(w^Tx_i+b)\ge1,\quad i=1,\ldots,n. \tag{2.4}\]</span></span></p>
+<p>把“等价”写成一条链，会更容易看出优化方向：在同一组硬间隔约束 <span class="math inline">\(y_i(w^Tx_i+b)\ge1\)</span> 下，</p>
+<p><span class="math display">\[
+\boxed{
+\max_{w,b}\rho
+\ \Longleftrightarrow\ \max_{w,b}\frac1{\|w\|}
+\ \Longleftrightarrow\ \min_{w,b}\|w\|
+\ \Longleftrightarrow\ \min_{w,b}\frac12\|w\|^2
+}
+\]</span></p>
+<p>这里的 <span class="math inline">\(\Longleftrightarrow\)</span> 表示<strong>最优参数集合相同</strong>，并不表示四个目标函数的数值相等。因为 <span class="math inline">\(\|w\|&gt;0\)</span>，倒数越大，范数越小；在非负数上平方严格递增，再乘正数 <span class="math inline">\(1/2\)</span> 都不改变最小值出现的位置。最后一种写法便于求导，而且是标准凸二次目标。</p>
 <p>这个模型要求所有点正确、并位于参考间隔之外，叫<strong>硬间隔 SVM</strong>。因目标凸、约束仿射，它是凸二次规划。</p>
 <p>两条参考线 <span class="math inline">\(f=+1\)</span> 与 <span class="math inline">\(f=-1\)</span> 各距边界 <span class="math inline">\(1/\|w\|\)</span>，故总宽度</p>
 <p><span id="eq-margin-width"><span class="math display">\[\text{间隔带宽度}=2/\|w\|=2\rho. \tag{2.5}\]</span></span></p>
@@ -451,12 +462,12 @@ x_\perp=x-\frac{f(x)}{\|w\|^2}w,\qquad
 <p>硬间隔把“所有样本必须正确且留足距离”写成约束。一个异常点可能把间隔压得很窄，甚至让问题无解。下一章放松这项要求，建立始终可行的软间隔模型。</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-succinctly" class="csl-entry" role="listitem">
-Kowalczyk, Alexandre. 2017年. <em>Support Vector Machines Succinctly</em>. Syncfusion. <a href="https://www.syncfusion.com/succinctly-free-ebooks/support-vector-machines-succinctly">https://www.syncfusion.com/succinctly-free-ebooks/support-vector-machines-succinctly</a>.
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">A. Kowalczyk, <em>Support Vector Machines Succinctly</em>. Syncfusion, 2017. 载于: <a href="https://www.syncfusion.com/succinctly-free-ebooks/support-vector-machines-succinctly">https://www.syncfusion.com/succinctly-free-ebooks/support-vector-machines-succinctly</a></div>
 </div>
 <div id="ref-cs229" class="csl-entry" role="listitem">
-Ng, Andrew. 不详. <em>CS229 Lecture Notes: Support Vector Machines</em>. Stanford University. <a href="https://cs229.stanford.edu/notes/cs229-notes3.pdf">https://cs229.stanford.edu/notes/cs229-notes3.pdf</a>.
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">吴恩达（Andrew Ng）, <span>《CS229 Lecture Notes: Support Vector Machines》</span>. Stanford University. 载于: <a href="https://cs229.stanford.edu/notes/cs229-notes3.pdf">https://cs229.stanford.edu/notes/cs229-notes3.pdf</a></div>
 </div>
 </div>
 </section>

@@ -27,6 +27,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -382,7 +383,7 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<p>负类都在左侧，正类都在右侧。直线 <span class="math inline">\(x_1=0\)</span> 可以分开它们，<span class="math inline">\(x_1=0.5\)</span> 也可以。于是“分类全对”还不能唯一确定模型。我们先把预测规则建立起来，下一章再讨论怎样选择更好的分隔线。这样的递进也是 ISL 最大间隔分类器的出发点 <span class="citation" data-cites="islp">(<a href="../references.html#ref-islp" role="doc-biblioref">James 等 2023年, 第9.1节</a>)</span>。</p>
+<p>负类都在左侧，正类都在右侧。直线 <span class="math inline">\(x_1=0\)</span> 可以分开它们，<span class="math inline">\(x_1=0.5\)</span> 也可以。于是“分类全对”还不能唯一确定模型。我们先把预测规则建立起来，下一章再讨论怎样选择更好的分隔线。这样的递进也是 ISL 最大间隔分类器的出发点 <span class="citation" data-cites="islp"><a href="../references.html#ref-islp" role="doc-biblioref">[1, 页 第9.1节]</a></span>。</p>
 </section>
 <section id="从直线方程到分类分数" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="从直线方程到分类分数"><span class="header-section-number">1.2</span> 从直线方程到分类分数</h2>
@@ -453,9 +454,9 @@ window.Quarto = {
 <p>超平面方程同时提供边界和预测分数。法向量控制方向，截距控制位置；同一条边界的分数可以随参数整体缩放改变。下一章要寻找一个不受这种缩放影响、又能衡量分隔线离样本有多远的量。</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-islp" class="csl-entry" role="listitem">
-James, Gareth, Daniela Witten, Trevor Hastie, Robert Tibshirani, 和 Jonathan Taylor. 2023年. <em>An Introduction to Statistical Learning with Applications in Python</em>. Springer. <a href="https://doi.org/10.1007/978-3-031-38747-0">https://doi.org/10.1007/978-3-031-38747-0</a>.
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">G. James, D. Witten, T. Hastie, R. Tibshirani, 和 J. Taylor, <em>An Introduction to Statistical Learning with Applications in Python</em>. Springer, 2023. doi: <a href="https://doi.org/10.1007/978-3-031-38747-0">10.1007/978-3-031-38747-0</a>.</div>
 </div>
 </div>
 </section>

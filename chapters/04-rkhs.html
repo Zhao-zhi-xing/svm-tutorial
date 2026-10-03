@@ -27,6 +27,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -409,7 +410,7 @@ k(x,z)=\sum_{a\in\mathbb N^p}\phi_a(x)\phi_a(z).\]</span></p>
 <p>那么近似内积为</p>
 <p><span class="math display">\[\widetilde k(x,z)=v(x)^TW^\dagger v(z),\quad
 \widetilde G=AW^\dagger A^T,\quad A_{ia}=k(x_i,z_a).\]</span></p>
-<p><span class="math inline">\(W^\dagger\)</span> 表示伪逆：只对保留的正特征值求倒数。直观上，我们把全部核函数投影到代表点张成的空间。模型可在至多 <span class="math inline">\(m\)</span> 维的显式特征上训练线性分类器（这里保留 <span class="math inline">\(r\)</span> 维） <span class="citation" data-cites="nystrom">(<a href="../references.html#ref-nystrom" role="doc-biblioref">Williams 和 Seeger 2000年</a>)</span>。</p>
+<p><span class="math inline">\(W^\dagger\)</span> 表示伪逆：只对保留的正特征值求倒数。直观上，我们把全部核函数投影到代表点张成的空间。模型可在至多 <span class="math inline">\(m\)</span> 维的显式特征上训练线性分类器（这里保留 <span class="math inline">\(r\)</span> 维） <span class="citation" data-cites="nystrom"><a href="../references.html#ref-nystrom" role="doc-biblioref">[1]</a></span>。</p>
 <p><span class="math inline">\(m\)</span> 越大，通常能表达更多方向，但增加计算和存储；代表点选择与小特征值处理也影响误差。近似维数必须纳入训练集内验证，不能根据测试曲线选择。</p>
 </section>
 <section id="随机-fourier-特征用随机坐标近似相似度" class="level2" data-number="7.7">
@@ -418,7 +419,7 @@ k(x,z)=\sum_{a\in\mathbb N^p}\phi_a(x)\phi_a(z).\]</span></p>
 <p><span class="math display">\[z_j(x)=\sqrt{\frac2m}\cos(\omega_j^Tx+b_j).\]</span></p>
 <p>先对随机相位求期望，有 <span class="math inline">\(\mathbb E_b[2\cos(a+b)\cos(c+b)]=\cos(a-c)\)</span>；再对 Gaussian 频率求期望，有 <span class="math inline">\(\mathbb E_\omega\cos(\omega^T(x-z))=e^{-\gamma\|x-z\|^2}\)</span>。因此</p>
 <p><span class="math display">\[\mathbb E[z(x)^Tz(z)]=k_\gamma(x,z).\]</span></p>
-<p>有限 <span class="math inline">\(m\)</span> 给出随机近似，增加坐标数量可减少近似波动；它与 Nyström 利用代表样本构造坐标不同 <span class="citation" data-cites="rff">(<a href="../references.html#ref-rff" role="doc-biblioref">Rahimi 和 Recht 2007年</a>)</span>。这不是把每个样本随机映射一次就自动保留所有分类性质。</p>
+<p>有限 <span class="math inline">\(m\)</span> 给出随机近似，增加坐标数量可减少近似波动；它与 Nyström 利用代表样本构造坐标不同 <span class="citation" data-cites="rff"><a href="../references.html#ref-rff" role="doc-biblioref">[2]</a></span>。这不是把每个样本随机映射一次就自动保留所有分类性质。</p>
 </section>
 <section id="练习与解答" class="level2" data-number="7.8">
 <h2 data-number="7.8" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">7.8</span> 练习与解答</h2>
@@ -453,12 +454,12 @@ k(x,z)=\sum_{a\in\mathbb N^p}\phi_a(x)\phi_a(z).\]</span></p>
 <p>合法核、函数范数和有限系数表示已经明确。下一章利用对偶的等式与盒约束，推导 SMO 的成对更新，解释模型如何实际求出。</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-rff" class="csl-entry" role="listitem">
-Rahimi, Ali, 和 Benjamin Recht. 2007年. <span>《Random Features for Large-Scale Kernel Machines》</span>. <em>Advances in Neural Information Processing Systems</em> 20. <a href="https://papers.nips.cc/paper_files/paper/2007/hash/013a006f03dbc5392effeb8f18fda755-Abstract.html">https://papers.nips.cc/paper_files/paper/2007/hash/013a006f03dbc5392effeb8f18fda755-Abstract.html</a>.
-</div>
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-nystrom" class="csl-entry" role="listitem">
-Williams, Christopher K. I., 和 Matthias Seeger. 2000年. <span>《Using the Nyström Method to Speed Up Kernel Machines》</span>. <em>Advances in Neural Information Processing Systems</em> 13. <a href="https://proceedings.neurips.cc/paper/2000/file/19de10adbaa1b2ee13f77f679fa1483a-Paper.pdf">https://proceedings.neurips.cc/paper/2000/file/19de10adbaa1b2ee13f77f679fa1483a-Paper.pdf</a>.
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">C. K. I. Williams 和 M. Seeger, <span>《Using the Nyström Method to Speed Up Kernel Machines》</span>, 收入 <em>Advances in Neural Information Processing Systems</em>, 2000. 载于: <a href="https://proceedings.neurips.cc/paper/2000/file/19de10adbaa1b2ee13f77f679fa1483a-Paper.pdf">https://proceedings.neurips.cc/paper/2000/file/19de10adbaa1b2ee13f77f679fa1483a-Paper.pdf</a></div>
+</div>
+<div id="ref-rff" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">A. Rahimi 和 B. Recht, <span>《Random Features for Large-Scale Kernel Machines》</span>, 收入 <em>Advances in Neural Information Processing Systems</em>, 2007. 载于: <a href="https://papers.nips.cc/paper_files/paper/2007/hash/013a006f03dbc5392effeb8f18fda755-Abstract.html">https://papers.nips.cc/paper_files/paper/2007/hash/013a006f03dbc5392effeb8f18fda755-Abstract.html</a></div>
 </div>
 </div>
 </section>

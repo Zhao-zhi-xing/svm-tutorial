@@ -284,15 +284,16 @@ window.Quarto = {
    
   <ul class="collapse">
   <li><a href="#从十个预测结果计算混淆矩阵" id="toc-从十个预测结果计算混淆矩阵" class="nav-link active" data-scroll-target="#从十个预测结果计算混淆矩阵"><span class="header-section-number">10.1</span> 从十个预测结果计算混淆矩阵</a></li>
-  <li><a href="#多分类与不平衡指标" id="toc-多分类与不平衡指标" class="nav-link" data-scroll-target="#多分类与不平衡指标"><span class="header-section-number">10.2</span> 多分类与不平衡指标</a></li>
-  <li><a href="#从一个阈值到一条排序曲线" id="toc-从一个阈值到一条排序曲线" class="nav-link" data-scroll-target="#从一个阈值到一条排序曲线"><span class="header-section-number">10.3</span> 从一个阈值到一条排序曲线</a></li>
-  <li><a href="#为什么必须留出测试集" id="toc-为什么必须留出测试集" class="nav-link" data-scroll-target="#为什么必须留出测试集"><span class="header-section-number">10.4</span> 为什么必须留出测试集</a></li>
-  <li><a href="#五折验证怎样运转" id="toc-五折验证怎样运转" class="nav-link" data-scroll-target="#五折验证怎样运转"><span class="header-section-number">10.5</span> 五折验证怎样运转</a></li>
-  <li><a href="#所有会学习参数的预处理都在折内" id="toc-所有会学习参数的预处理都在折内" class="nav-link" data-scroll-target="#所有会学习参数的预处理都在折内"><span class="header-section-number">10.6</span> 所有会学习参数的预处理都在折内</a></li>
-  <li><a href="#类别加权阈值与重采样" id="toc-类别加权阈值与重采样" class="nav-link" data-scroll-target="#类别加权阈值与重采样"><span class="header-section-number">10.7</span> 类别加权、阈值与重采样</a></li>
-  <li><a href="#好的排序不等于可信概率" id="toc-好的排序不等于可信概率" class="nav-link" data-scroll-target="#好的排序不等于可信概率"><span class="header-section-number">10.8</span> 好的排序不等于可信概率</a></li>
-  <li><a href="#练习与解答" id="toc-练习与解答" class="nav-link" data-scroll-target="#练习与解答"><span class="header-section-number">10.9</span> 练习与解答</a></li>
-  <li><a href="#下一步" id="toc-下一步" class="nav-link" data-scroll-target="#下一步"><span class="header-section-number">10.10</span> 下一步</a></li>
+  <li><a href="#f1为什么不能只看-precision-或-recall" id="toc-f1为什么不能只看-precision-或-recall" class="nav-link" data-scroll-target="#f1为什么不能只看-precision-或-recall"><span class="header-section-number">10.2</span> F1：为什么不能只看 precision 或 recall</a></li>
+  <li><a href="#多分类-f1macromicroweighted-分别在平均什么" id="toc-多分类-f1macromicroweighted-分别在平均什么" class="nav-link" data-scroll-target="#多分类-f1macromicroweighted-分别在平均什么"><span class="header-section-number">10.3</span> 多分类 F1：macro、micro、weighted 分别在平均什么</a></li>
+  <li><a href="#从一个阈值到一条排序曲线" id="toc-从一个阈值到一条排序曲线" class="nav-link" data-scroll-target="#从一个阈值到一条排序曲线"><span class="header-section-number">10.4</span> 从一个阈值到一条排序曲线</a></li>
+  <li><a href="#为什么必须留出测试集" id="toc-为什么必须留出测试集" class="nav-link" data-scroll-target="#为什么必须留出测试集"><span class="header-section-number">10.5</span> 为什么必须留出测试集</a></li>
+  <li><a href="#五折验证怎样运转" id="toc-五折验证怎样运转" class="nav-link" data-scroll-target="#五折验证怎样运转"><span class="header-section-number">10.6</span> 五折验证怎样运转</a></li>
+  <li><a href="#所有会学习参数的预处理都在折内" id="toc-所有会学习参数的预处理都在折内" class="nav-link" data-scroll-target="#所有会学习参数的预处理都在折内"><span class="header-section-number">10.7</span> 所有会学习参数的预处理都在折内</a></li>
+  <li><a href="#类别加权阈值与重采样" id="toc-类别加权阈值与重采样" class="nav-link" data-scroll-target="#类别加权阈值与重采样"><span class="header-section-number">10.8</span> 类别加权、阈值与重采样</a></li>
+  <li><a href="#好的排序不等于可信概率" id="toc-好的排序不等于可信概率" class="nav-link" data-scroll-target="#好的排序不等于可信概率"><span class="header-section-number">10.9</span> 好的排序不等于可信概率</a></li>
+  <li><a href="#练习与解答" id="toc-练习与解答" class="nav-link" data-scroll-target="#练习与解答"><span class="header-section-number">10.10</span> 练习与解答</a></li>
+  <li><a href="#下一步" id="toc-下一步" class="nav-link" data-scroll-target="#下一步"><span class="header-section-number">10.11</span> 下一步</a></li>
   </ul>
 </nav>
     </div>
@@ -351,18 +352,229 @@ window.Quarto = {
 <p><span class="math display">\[\mathrm{Precision}=\frac{TP}{TP+FP}=\frac35=0.6,
 \qquad\mathrm{Recall}=\frac{TP}{TP+FN}=\frac34=0.75.\]</span></p>
 <p>precision 问“预测为正中有多少是真的”，recall 问“真实正类有多少被找到”。分母代表不同人群，不能互换。</p>
-<p><span class="math display">\[F_1=\frac{2PR}{P+R}=\frac{2TP}{2TP+FP+FN}=\frac69\approx0.667.\]</span></p>
-<p>这个调和平均会惩罚一项很低的情况。分母为0时应固定约定；实践代码取0，并同时检查缺少预测或样本的类别。</p>
 </section>
-<section id="多分类与不平衡指标" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="多分类与不平衡指标"><span class="header-section-number">10.2</span> 多分类与不平衡指标</h2>
-<p>对每一类按“该类对其余”计算 <span class="math inline">\(F_{1,k}\)</span>：</p>
-<p><span class="math display">\[\mathrm{macro\text{-}}F_1=\frac1K\sum_kF_{1,k}.\]</span></p>
-<p>macro 给每类相同权重；weighted 按该类样本数加权；micro 汇总所有类别的计数。在单标签全类别多分类中，micro precision、recall和F1都等于accuracy。macro-F1不是先平均precision和recall再求F1。</p>
-<p>若99%的样本为负，全预测负类也有99%accuracy，但正类recall为0。看总正确率前，应先问最需要识别哪类、漏报与误报的代价是什么。</p>
+<section id="f1为什么不能只看-precision-或-recall" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="f1为什么不能只看-precision-或-recall"><span class="header-section-number">10.2</span> F1：为什么不能只看 precision 或 recall</h2>
+<p>先把符号说清楚：<strong><span class="math inline">\(P\)</span> 表示 precision（查准率），<span class="math inline">\(R\)</span> 表示 recall（查全率）</strong>，二者都不是 F1。上例中 <span class="math inline">\(P=0.6\)</span>，<span class="math inline">\(R=0.75\)</span>。查准率问“我报出的正类有多可靠”，查全率问“我找全了多少真实正类”。</p>
+<p>只看查全率，可以把所有10个样本都报为正：4个正类全被找到，<span class="math inline">\(R=1\)</span>，但 <span class="math inline">\(P=4/10=0.4\)</span>。只追求查准率，也可能只报出一个很有把握的正类，漏掉大量正类。我们需要同时检查这两个方向。</p>
+<section id="从调和平均一步步得到-f1" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="从调和平均一步步得到-f1"><span class="header-section-number">10.2.1</span> 从调和平均一步步得到 F1</h3>
+<p>算术平均 <span class="math inline">\((P+R)/2\)</span> 比较宽容。例如 <span class="math inline">\(P=0.1,R=0.9\)</span> 时平均数为0.5，但很低的查准率仍然是严重问题。F1 使用<strong>调和平均</strong>：先平均倒数，再取倒数。</p>
+<p><span id="eq-f1-harmonic"><span class="math display">\[
+F_1=\frac{1}{\frac12\left(\frac1P+\frac1R\right)}
+=\frac{2}{\frac1P+\frac1R}
+=\frac{2PR}{P+R}.
+\tag{10.1}\]</span></span></p>
+<p>最后一步只是在分子分母同乘 <span class="math inline">\(PR\)</span>。<span class="math inline">\(P,R\)</span> 越不均衡，调和平均越受较小的一项限制：<span class="math inline">\(0.1\)</span> 与 <span class="math inline">\(0.9\)</span> 的 F1 为 <span class="math inline">\(2\times0.1\times0.9/(0.1+0.9)=0.18\)</span>，明显低于算术平均0.5；若 <span class="math inline">\(P=R=q\)</span>，则 <span class="math inline">\(F_1=q\)</span>。</p>
+<p>回到十样本例，逐项代入，不必死记字母：</p>
+<p><span class="math display">\[F_1=\frac{2\times0.6\times0.75}{0.6+0.75}
+=\frac{0.9}{1.35}=\frac23\approx0.667.\]</span></p>
+<p>也可以直接从混淆矩阵得到同一结果。把 <span class="math inline">\(P=TP/(TP+FP)\)</span>、<span class="math inline">\(R=TP/(TP+FN)\)</span> 代入：</p>
+<p><span id="eq-f1-counts"><span class="math display">\[
+\begin{aligned}
+F_1
+&amp;=\frac{2\frac{TP}{TP+FP}\frac{TP}{TP+FN}}
+{\frac{TP}{TP+FP}+\frac{TP}{TP+FN}}\\
+&amp;=\frac{2TP^2}{TP(TP+FN)+TP(TP+FP)}\\
+&amp;=\frac{2TP}{2TP+FP+FN}
+=\frac{2\times3}{2\times3+2+1}=\frac69.
+\end{aligned}
+\tag{10.2}\]</span></span></p>
+<p>这个化简假设 <span class="math inline">\(TP&gt;0\)</span>。实际计算中，若 <span class="math inline">\(TP=0\)</span> 而存在漏报或误报，则 F1 为0；若 <span class="math inline">\(TP=FP=FN=0\)</span>，该类在真实和预测中都不存在，分式是 <span class="math inline">\(0/0\)</span>，必须声明处理约定。本教程实践采用 <code>zero_division=0</code>，并同时列出每类真实样本数，避免用一个0掩盖“根本没有这一类”的情况。</p>
+<p>F1 在0与1之间，越高表示这两个方向的综合表现越好，但它<strong>没有使用 <span class="math inline">\(TN\)</span></strong>。模型全预测负类时，本例仍有60%准确率，却得到正类 F1 为0。F1 不能替代整个混淆矩阵，也不是所有任务都应默认最大化的指标。</p>
 </section>
-<section id="从一个阈值到一条排序曲线" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="从一个阈值到一条排序曲线"><span class="header-section-number">10.3</span> 从一个阈值到一条排序曲线</h2>
+<section id="fβ需要更重视漏报时怎么办" class="level3" data-number="10.2.2">
+<h3 data-number="10.2.2" class="anchored" data-anchor-id="fβ需要更重视漏报时怎么办"><span class="header-section-number">10.2.2</span> Fβ：需要更重视漏报时怎么办</h3>
+<p>F1 对查准率与查全率对称。若更重视找全正类，可以用 <span class="math inline">\(F_\beta\)</span>，其中 <span class="math inline">\(\beta&gt;0\)</span>：</p>
+<p><span id="eq-fbeta"><span class="math display">\[
+F_\beta=\frac{(1+\beta^2)PR}{\beta^2P+R}
+=\frac{1+\beta^2}{\frac1P+\frac{\beta^2}{R}}.
+\tag{10.3}\]</span></span></p>
+<p>第二种写法显示：这仍是加权调和平均；<strong>recall 的倒数项权重是 <span class="math inline">\(\beta^2\)</span></strong>。因此 <span class="math inline">\(\beta&gt;1\)</span> 更重视 recall，<span class="math inline">\(0&lt;\beta&lt;1\)</span> 更重视 precision，<span class="math inline">\(\beta=1\)</span> 回到 F1。注意，<span class="math inline">\(\beta=2\)</span> 对应的是平方权重4，不是把 recall 简单乘2。</p>
+<p>代入混淆矩阵可以看出错在哪里会被更多惩罚：</p>
+<p><span class="math display">\[F_\beta=\frac{(1+\beta^2)TP}{(1+\beta^2)TP+\beta^2FN+FP}.\]</span></p>
+<p>当 <span class="math inline">\(\beta=2\)</span> 时，分母的漏报项是 <span class="math inline">\(4FN\)</span>，误报项仍为 <span class="math inline">\(FP\)</span>。当 <span class="math inline">\(\beta=0.5\)</span> 时，漏报项只有 <span class="math inline">\(0.25FN\)</span>。这帮助你理解指标的侧重，但它不是实际业务收益或成本的完整模型。</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>指标</th>
+<th>逐项代入本例 <span class="math inline">\(TP=3,FP=2,FN=1\)</span></th>
+<th>结果</th>
+<th>侧重</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(F_{0.5}\)</span></td>
+<td><span class="math inline">\(\frac{1.25\times3}{1.25\times3+0.25\times1+2}\)</span></td>
+<td>0.625</td>
+<td>更重视查准率</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(F_1\)</span></td>
+<td><span class="math inline">\(\frac{2\times3}{2\times3+1+2}\)</span></td>
+<td>约0.667</td>
+<td>对称兼顾两者</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(F_2\)</span></td>
+<td><span class="math inline">\(\frac{5\times3}{5\times3+4\times1+2}\)</span></td>
+<td>约0.714</td>
+<td>更重视查全率</td>
+</tr>
+</tbody>
+</table>
+<p>本例 recall 高于 precision，因此侧重 recall 的 <span class="math inline">\(F_2\)</span> 较高；这不表示把指标从 F1 换成 F2 就使模型变好了。比较模型时必须事先固定指标和 <span class="math inline">\(\beta\)</span>，不能看完测试结果再挑一个更好看的指标。定义和软件约定可查 <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.fbeta_score.html">scikit-learn 的 Fβ 文档</a>。</p>
+</section>
+</section>
+<section id="多分类-f1macromicroweighted-分别在平均什么" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="多分类-f1macromicroweighted-分别在平均什么"><span class="header-section-number">10.3</span> 多分类 F1：macro、micro、weighted 分别在平均什么</h2>
+<p>多分类没有唯一的一对 <span class="math inline">\(TP,FP,FN\)</span>。先对每一类做“该类是正类、其余都是负类”的计数，再决定如何汇总。<strong>这是计算评估指标的方式，与前面训练模型使用 OvR 还是 OvO 无关。</strong></p>
+<p>用同一个三分类混淆矩阵完成三种平均方式的手算，行是真实类别，列是预测类别：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>真实类别</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>真实样本数（support）</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>8</td>
+<td>1</td>
+<td>1</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>2</td>
+<td>3</td>
+<td>0</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p>共有17个样本，正确分类 <span class="math inline">\(8+3+1=12\)</span> 个。以 A 为例：<span class="math inline">\(TP_A=8\)</span>；预测成 A 却不是真实 A 的有 <span class="math inline">\(2+1=3\)</span> 个，所以 <span class="math inline">\(FP_A=3\)</span>；真实 A 却预测成 B/C 的有 <span class="math inline">\(1+1=2\)</span> 个，所以 <span class="math inline">\(FN_A=2\)</span>。对 B、C 同理：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>类别</th>
+<th><span class="math inline">\(TP_k\)</span></th>
+<th><span class="math inline">\(FP_k\)</span></th>
+<th><span class="math inline">\(FN_k\)</span></th>
+<th><span class="math inline">\(P_k\)</span></th>
+<th><span class="math inline">\(R_k\)</span></th>
+<th><span class="math inline">\(F_{1,k}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>8</td>
+<td>3</td>
+<td>2</td>
+<td><span class="math inline">\(8/11\)</span></td>
+<td><span class="math inline">\(8/10\)</span></td>
+<td><span class="math inline">\(16/21\approx0.762\)</span></td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+<td><span class="math inline">\(3/4\)</span></td>
+<td><span class="math inline">\(3/5\)</span></td>
+<td><span class="math inline">\(6/9\approx0.667\)</span></td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td><span class="math inline">\(1/2\)</span></td>
+<td><span class="math inline">\(1/2\)</span></td>
+<td><span class="math inline">\(2/4=0.500\)</span></td>
+</tr>
+</tbody>
+</table>
+<section id="macro每个类别一票" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="macro每个类别一票"><span class="header-section-number">10.3.1</span> macro：每个类别一票</h3>
+<p>先分别算出每一类的 F1，再不加权平均：</p>
+<p><span class="math display">\[F_1^{\mathrm{macro}}=\frac1K\sum_{k=1}^K F_{1,k}
+=\frac{16/21+2/3+1/2}{3}\approx0.643.\]</span></p>
+<p>A 有10个样本，C 只有2个样本，但二者对 macro-F1 的权重均为 <span class="math inline">\(1/3\)</span>。因此小类别表现差也能明显拉低指标。教程案例用它选参，是为了不让较多样本的类别完全主导评价。</p>
+<p><strong>不要交换运算顺序</strong>：平均各类 F1，一般不等于先平均各类 precision 和 recall，再套一次二分类 F1 公式。非线性运算的次序会改变结果。</p>
+</section>
+<section id="weighted按真实类别人数加权" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="weighted按真实类别人数加权"><span class="header-section-number">10.3.2</span> weighted：按真实类别人数加权</h3>
+<p>记 <span class="math inline">\(n_k\)</span> 为真实类别 <span class="math inline">\(k\)</span> 的样本数，<span class="math inline">\(N=\sum_k n_k\)</span>：</p>
+<p><span class="math display">\[F_1^{\mathrm{weighted}}=\sum_{k=1}^K\frac{n_k}{N}F_{1,k}
+=\frac{10(16/21)+5(2/3)+2(1/2)}{17}\approx0.703.\]</span></p>
+<p>A 的权重为 <span class="math inline">\(10/17\)</span>，C 为 <span class="math inline">\(2/17\)</span>，因此本例 weighted 更靠近表现较好的 A。它能反映样本构成，但大量多数类可能掩盖少数类的低分。这里的 weighted 是<strong>评估的加权平均</strong>，不等于训练 SVM 时设置 <code>class_weight</code>；训练和评价是两件不同的事。</p>
+</section>
+<section id="micro先汇总计数再计算一个-f1" class="level3" data-number="10.3.3">
+<h3 data-number="10.3.3" class="anchored" data-anchor-id="micro先汇总计数再计算一个-f1"><span class="header-section-number">10.3.3</span> micro：先汇总计数，再计算一个 F1</h3>
+<p><span class="math display">\[TP_{\mathrm{all}}=\sum_kTP_k=12,\quad
+FP_{\mathrm{all}}=\sum_kFP_k=5,\quad
+FN_{\mathrm{all}}=\sum_kFN_k=5.\]</span></p>
+<p>先使用这些总数计算 precision、recall，再得到 F1：</p>
+<p><span class="math display">\[P_{\mathrm{micro}}=\frac{12}{12+5},\quad R_{\mathrm{micro}}=\frac{12}{12+5},\]</span></p>
+<p><span class="math display">\[F_1^{\mathrm{micro}}=\frac{2\times12}{2\times12+5+5}=\frac{12}{17}\approx0.706.\]</span></p>
+<p>为什么与 accuracy 相同？在<strong>单标签多分类、纳入全部类别</strong>时，每个正确样本贡献一个 <span class="math inline">\(TP\)</span>；每个错误样本同时给“被误报的类别”贡献一个 <span class="math inline">\(FP\)</span>、给“被漏掉的真实类别”贡献一个 <span class="math inline">\(FN\)</span>。所以总 <span class="math inline">\(FP\)</span> 和总 <span class="math inline">\(FN\)</span> 都等于错误样本数，micro precision、recall、F1 就都等于正确样本比例。</p>
+<p>若一个样本可有多个标签，或只评价某些类别，这个等式一般不成立。不能把它当作所有分类任务的通用公式。三种平均方式和零分母约定可查 <a href="https://scikit-learn.org/stable/modules/model_evaluation.html#precision-recall-and-f-measures">scikit-learn 的指标说明</a>。</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>平均方式</th>
+<th>运算顺序</th>
+<th>谁有更大影响</th>
+<th>本例</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>macro</td>
+<td>每类 F1 → 等权平均</td>
+<td>各类相同</td>
+<td>约0.643</td>
+</tr>
+<tr class="even">
+<td>weighted</td>
+<td>每类 F1 → 按真实人数加权</td>
+<td>人数多的类</td>
+<td>约0.703</td>
+</tr>
+<tr class="odd">
+<td>micro</td>
+<td>先合计 TP/FP/FN → 算 F1</td>
+<td>每个样本；错误被统一累计</td>
+<td>约0.706</td>
+</tr>
+</tbody>
+</table>
+<p>若99%的样本为负，全预测负类也有99%accuracy，但正类 recall 和 F1 为0。确定主指标时，先明确最需要识别哪类、漏报与误报的影响，再同时报告每类分数和 support。</p>
+<p><strong>检验理解</strong>：本例中 C 类只有两个真实样本，如果全被漏掉，哪一种平均更容易明确暴露这个类别的问题？macro 对 C 仍给 <span class="math inline">\(1/3\)</span> 权重，而 weighted 只给 <span class="math inline">\(2/17\)</span>；不过最直接的证据仍是 C 类 recall、F1 和混淆矩阵。宏平均也不能代替逐类检查。</p>
+</section>
+</section>
+<section id="从一个阈值到一条排序曲线" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="从一个阈值到一条排序曲线"><span class="header-section-number">10.4</span> 从一个阈值到一条排序曲线</h2>
 <p>SVM 产生分数，按 <span class="math inline">\(f(x)\ge t\)</span> 判正类。降低 <span class="math inline">\(t\)</span> 会纳入更多样本，可能同时增加 <span class="math inline">\(TP\)</span> 与 <span class="math inline">\(FP\)</span>。</p>
 <ul>
 <li>ROC：横轴 <span class="math inline">\(FPR=FP/(FP+TN)\)</span>，纵轴 <span class="math inline">\(TPR=Recall\)</span>。</li>
@@ -421,14 +633,14 @@ window.Quarto = {
 <p>AP 按 recall 的增加加权对应 precision：<span class="math inline">\(\mathrm{AP}=\sum_l(R_l-R_{l-1})P_l\)</span>。本例为 <span class="math inline">\(0.5\cdot1+0.5\cdot2/3=5/6\)</span>。它不同于随意连直线得到的 PR 梯形面积。</p>
 <p>类别比例影响 PR 的解释；严重不平衡时同时看少数类指标与 PR。选择部署阈值仍应在训练/验证数据中完成。</p>
 </section>
-<section id="为什么必须留出测试集" class="level2" data-number="10.4">
-<h2 data-number="10.4" class="anchored" data-anchor-id="为什么必须留出测试集"><span class="header-section-number">10.4</span> 为什么必须留出测试集</h2>
+<section id="为什么必须留出测试集" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="为什么必须留出测试集"><span class="header-section-number">10.5</span> 为什么必须留出测试集</h2>
 <p>若试10组 <span class="math inline">\(C,\gamma\)</span>，然后选测试分数最高的那组，这个测试集已参与模型选择。最终报告的分数会受到选择偏差影响。</p>
 <p>正确流程是：预先规定指标与候选 → 留出测试集 → 在训练集内选择参数 → 用全部训练集重拟合 → 最后评估一次测试集。测试集回答的是整个已选流程的未知样本表现，而不只某个已知参数的表现。</p>
 <p>样本少时可用外层交叉验证评估、内层交叉验证选参，即嵌套验证；每个外层测试折都不能参与那轮选择。</p>
 </section>
-<section id="五折验证怎样运转" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="五折验证怎样运转"><span class="header-section-number">10.5</span> 五折验证怎样运转</h2>
+<section id="五折验证怎样运转" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="五折验证怎样运转"><span class="header-section-number">10.6</span> 五折验证怎样运转</h2>
 <p>将训练集分成五份。固定一组候选参数，每次用四份训练、一份验证，得到五个分数并取平均。对所有候选重复，选均分最高的参数。</p>
 <p>最后用整个训练集重拟合。五折均分是选参过程中使用的分数，选择过后的最佳均分不能当作独立、无偏的泛化评估。</p>
 <section class="lab" data-svm-lab="tuning" aria-label="训练集参数验证热图">
@@ -437,13 +649,13 @@ window.Quarto = {
 </section>
 <p><strong>自测</strong>：这个热图能否证明最佳格子在所有未来数据上最好？不能；它是在有限训练数据上选择参数的依据。独立测试用于检查选出的流程。</p>
 </section>
-<section id="所有会学习参数的预处理都在折内" class="level2" data-number="10.6">
-<h2 data-number="10.6" class="anchored" data-anchor-id="所有会学习参数的预处理都在折内"><span class="header-section-number">10.6</span> 所有会学习参数的预处理都在折内</h2>
+<section id="所有会学习参数的预处理都在折内" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="所有会学习参数的预处理都在折内"><span class="header-section-number">10.7</span> 所有会学习参数的预处理都在折内</h2>
 <p>标准化学习均值和标准差，填补学习中位数或众数，类别编码学习类别字典，特征筛选可能学习标签关系。每个验证折都必须用其余四折拟合这些操作。</p>
 <p>先在全数据上标准化再分折，会让验证数据影响训练变换；先用全部标签选特征更直接泄漏。Python Pipeline 和 R 的显式折循环将在实践篇落实这条原则。</p>
 <p>独立样本演示可分层随机划分；同一受试者多行记录应按组划分；预测未来应按时间划分。划分方式来自任务，而非一律打乱。</p>
-<section id="标准化改变了哪一个几何空间" class="level3" data-number="10.6.1">
-<h3 data-number="10.6.1" class="anchored" data-anchor-id="标准化改变了哪一个几何空间"><span class="header-section-number">10.6.1</span> 标准化改变了哪一个几何空间</h3>
+<section id="标准化改变了哪一个几何空间" class="level3" data-number="10.7.1">
+<h3 data-number="10.7.1" class="anchored" data-anchor-id="标准化改变了哪一个几何空间"><span class="header-section-number">10.7.1</span> 标准化改变了哪一个几何空间</h3>
 <p>设 <span class="math inline">\(z=A(x-\mu)\)</span>，<span class="math inline">\(A=\operatorname{diag}(1/s_r)\)</span>。若标准化空间模型为 <span class="math inline">\(v^Tz+c\)</span>，原始坐标中</p>
 <p><span class="math display">\[w_{\rm raw}=A^Tv,\qquad b_{\rm raw}=c-w_{\rm raw}^T\mu.\]</span></p>
 <p>原坐标参考带宽为 <span class="math inline">\(2/\|w_{\rm raw}\|\)</span>，标准化空间为 <span class="math inline">\(2/\|v\|\)</span>；优化正则项使用后者的权重范数。不能把两种坐标的长度混为一个量。</p>
@@ -454,8 +666,8 @@ window.Quarto = {
 <p>两种固定配置均使用 <span class="math inline">\(C=1,\gamma=\text{scale}\)</span>；scale 是按输入方差求参数的规则，实际数值不同，卡片列出实际值。标准化只拟合训练集。这是机制对照，不证明每个任务标准化都会提高精度。</p>
 </section>
 </section>
-<section id="类别加权阈值与重采样" class="level2" data-number="10.7">
-<h2 data-number="10.7" class="anchored" data-anchor-id="类别加权阈值与重采样"><span class="header-section-number">10.7</span> 类别加权、阈值与重采样</h2>
+<section id="类别加权阈值与重采样" class="level2" data-number="10.8">
+<h2 data-number="10.8" class="anchored" data-anchor-id="类别加权阈值与重采样"><span class="header-section-number">10.8</span> 类别加权、阈值与重采样</h2>
 <p>类别加权将损失写成 <span class="math inline">\(\sum_i C_i\ell(m_i)\)</span>，提高某类的违例价格。阈值改变最终判定规则，重采样改变训练样本的构成；三种操作需分别评估。</p>
 <section class="lab" data-experiment="imbalance" aria-label="类别加权对照">
 <p class="lab-title">提高少数类代价，会改变哪些指标？</p><p class="lab-hint">比较普通与加权模型；先解释少数类 recall，再检查 precision 的代价。</p>
@@ -463,8 +675,8 @@ window.Quarto = {
 </section>
 <p>balanced 权重从训练标签计算。加权不保证所有指标同时改善；阈值或权重若需要选择，仍放在训练验证中。重采样也必须在训练折内，否则复制样本可能跨到验证折。</p>
 </section>
-<section id="好的排序不等于可信概率" class="level2" data-number="10.8">
-<h2 data-number="10.8" class="anchored" data-anchor-id="好的排序不等于可信概率"><span class="header-section-number">10.8</span> 好的排序不等于可信概率</h2>
+<section id="好的排序不等于可信概率" class="level2" data-number="10.9">
+<h2 data-number="10.9" class="anchored" data-anchor-id="好的排序不等于可信概率"><span class="header-section-number">10.9</span> 好的排序不等于可信概率</h2>
 <p>将分数直接取 sigmoid 并不自动获得概率。校准通过训练集内的留出或交叉验证，学习分数与正类频率之间的关系。sigmoid 拟合参数较少；isotonic 更灵活，但数据少时可能过拟合。</p>
 <p>Brier 分数 <span class="math inline">\(\frac1n\sum_i(p_i-\mathbf1\{y_i=+1\})^2\)</span> 越低越好；log loss 对自信但错误的预测惩罚更重。可靠性图按预测概率分箱，比较平均预测概率与实际频率。</p>
 <section class="lab" data-experiment="calibration" aria-label="概率校准对照">
@@ -473,8 +685,8 @@ window.Quarto = {
 </section>
 <p>对照的未校准基线只对分数直接取sigmoid；另两种方法在训练集内校准完整Pipeline，并使用交叉验证集成。有限分箱有采样波动，方法优劣不能据一次图确定。</p>
 </section>
-<section id="练习与解答" class="level2" data-number="10.9">
-<h2 data-number="10.9" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">10.9</span> 练习与解答</h2>
+<section id="练习与解答" class="level2" data-number="10.10">
+<h2 data-number="10.10" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">10.10</span> 练习与解答</h2>
 <ol type="1">
 <li>首个十样本例中，若把漏报的一个正类改为正确预测，其他不变，新的 recall 和 precision 是多少？</li>
 <li>每个候选都在测试集上评估，再取最高者，为什么不能把最高值叫独立测试结果？</li>
@@ -501,8 +713,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="下一步" class="level2" data-number="10.10">
-<h2 data-number="10.10" class="anchored" data-anchor-id="下一步"><span class="header-section-number">10.10</span> 下一步</h2>
+<section id="下一步" class="level2" data-number="10.11">
+<h2 data-number="10.11" class="anchored" data-anchor-id="下一步"><span class="header-section-number">10.11</span> 下一步</h2>
 <p>理论路线已经覆盖预测、优化、多分类和评估。下一章开始完整 Python/R 实践：把读数据、保存划分、折内预处理、选参、预测和解释连接成可独立运行的代码。</p>
 
 

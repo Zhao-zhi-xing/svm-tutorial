@@ -27,6 +27,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -342,7 +343,7 @@ window.Quarto = {
 <section id="软间隔解决不了所有表达问题" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="软间隔解决不了所有表达问题"><span class="header-section-number">6.1</span> 软间隔解决不了所有表达问题</h2>
 <p>把内圈点设为负类、外圈点设为正类。即使没有标签噪声，一条直线也不能把完整的两个同心圆环分开。软间隔可以容忍错误，却不让直线变成圆。</p>
-<p>这个问题与上一章异常点不同：异常点说明严格约束可能不合适；圆环说明<strong>输入空间中的线性函数表达能力不足</strong>。可以改变特征表示，再对新特征训练软间隔 SVM <span class="citation" data-cites="islp">(<a href="../references.html#ref-islp" role="doc-biblioref">James 等 2023年, 第9.3节</a>)</span>。</p>
+<p>这个问题与上一章异常点不同：异常点说明严格约束可能不合适；圆环说明<strong>输入空间中的线性函数表达能力不足</strong>。可以改变特征表示，再对新特征训练软间隔 SVM <span class="citation" data-cites="islp"><a href="../references.html#ref-islp" role="doc-biblioref">[1, 页 第9.3节]</a></span>。</p>
 </section>
 <section id="feature-map" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="feature-map"><span class="header-section-number">6.2</span> 加入一个有意义的新特征</h2>
@@ -354,7 +355,7 @@ window.Quarto = {
 <p class="lab-title">输入空间与特征空间：同一批点</p><p class="lab-hint">切换二维/三维；三维图可旋转。平面 z=2.5 是明确设置的教学边界。</p>
 <div class="lab-controls"></div><div class="lab-plot"></div><div class="lab-stats" aria-live="polite"></div>
 </section>
-<p>这里并没有训练新的最优平面，而是构造一个能看懂的分隔示例。这是有限三维映射，不是 RBF 的完整特征空间 <span class="citation" data-cites="succinctly">(<a href="../references.html#ref-succinctly" role="doc-biblioref">Kowalczyk 2017年, 第6章</a>)</span>。</p>
+<p>这里并没有训练新的最优平面，而是构造一个能看懂的分隔示例。这是有限三维映射，不是 RBF 的完整特征空间 <span class="citation" data-cites="succinctly"><a href="../references.html#ref-succinctly" role="doc-biblioref">[2, 页 第6章]</a></span>。</p>
 </section>
 <section id="对新特征应用原来的-svm" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="对新特征应用原来的-svm"><span class="header-section-number">6.3</span> 对新特征应用原来的 SVM</h2>
@@ -443,12 +444,12 @@ window.Quarto = {
 </div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-islp" class="csl-entry" role="listitem">
-James, Gareth, Daniela Witten, Trevor Hastie, Robert Tibshirani, 和 Jonathan Taylor. 2023年. <em>An Introduction to Statistical Learning with Applications in Python</em>. Springer. <a href="https://doi.org/10.1007/978-3-031-38747-0">https://doi.org/10.1007/978-3-031-38747-0</a>.
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">G. James, D. Witten, T. Hastie, R. Tibshirani, 和 J. Taylor, <em>An Introduction to Statistical Learning with Applications in Python</em>. Springer, 2023. doi: <a href="https://doi.org/10.1007/978-3-031-38747-0">10.1007/978-3-031-38747-0</a>.</div>
 </div>
 <div id="ref-succinctly" class="csl-entry" role="listitem">
-Kowalczyk, Alexandre. 2017年. <em>Support Vector Machines Succinctly</em>. Syncfusion. <a href="https://www.syncfusion.com/succinctly-free-ebooks/support-vector-machines-succinctly">https://www.syncfusion.com/succinctly-free-ebooks/support-vector-machines-succinctly</a>.
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">A. Kowalczyk, <em>Support Vector Machines Succinctly</em>. Syncfusion, 2017. 载于: <a href="https://www.syncfusion.com/succinctly-free-ebooks/support-vector-machines-succinctly">https://www.syncfusion.com/succinctly-free-ebooks/support-vector-machines-succinctly</a></div>
 </div>
 </div>
 </section>

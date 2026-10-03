@@ -27,6 +27,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -343,7 +344,7 @@ window.Quarto = {
 <h2 data-number="13.1" class="anchored" data-anchor-id="先明确表示再讨论分类器"><span class="header-section-number">13.1</span> 先明确表示，再讨论分类器</h2>
 <p>同一原始文本可以用词频向量表示，也可以用预训练编码器得到向量。SVM在固定向量上学习分类规则；深度模型还可能学习表示本身。若一个模型使用大规模预训练、另一个只用原始特征，性能差异不只来自输出分类器。</p>
 <p>因此把问题写成两步：<span class="math inline">\(x\mapsto z(x)\)</span> 决定信息表示，<span class="math inline">\(z\mapsto\widehat y\)</span> 决定分类。实验时可以固定 <span class="math inline">\(z\)</span>，比较线性SVM与逻辑回归；也可固定分类流程，比较表示。这样能解释收益来自哪里。</p>
-<p>小数据也不意味着SVM必然最好。TabPFN的2025年同行评审研究展示了表格基础模型在所研究数据范围中的潜力 <span class="citation" data-cites="tabpfn">(<a href="../references.html#ref-tabpfn" role="doc-biblioref">Hollmann 等 2025年</a>)</span>。比较时仍需交代数据范围、预训练资源和协议。前面的Iris比较只回答自己的实验问题。</p>
+<p>小数据也不意味着SVM必然最好。TabPFN的2025年同行评审研究展示了表格基础模型在所研究数据范围中的潜力 <span class="citation" data-cites="tabpfn"><a href="../references.html#ref-tabpfn" role="doc-biblioref">[1]</a></span>。比较时仍需交代数据范围、预训练资源和协议。前面的Iris比较只回答自己的实验问题。</p>
 </section>
 <section id="方向一核模型如何突破样本规模限制" class="level2" data-number="13.2">
 <h2 data-number="13.2" class="anchored" data-anchor-id="方向一核模型如何突破样本规模限制"><span class="header-section-number">13.2</span> 方向一：核模型如何突破样本规模限制</h2>
@@ -355,8 +356,8 @@ window.Quarto = {
 <section id="怎样设计一个可回答的实验" class="level3" data-number="13.2.2">
 <h3 data-number="13.2.2" class="anchored" data-anchor-id="怎样设计一个可回答的实验"><span class="header-section-number">13.2.2</span> 怎样设计一个可回答的实验</h3>
 <p>固定数据、指标和精度要求；在内层验证选择代表点数或随机特征数、核尺度与分类惩罚；外层记录误差、训练时间、内存与预测成本。比较多个随机种子，避免把一次随机近似的好运当成规律。</p>
-<p>FALKON（2017，同行评审）将Nyström与预条件迭代结合用于大规模核岭回归 <span class="citation" data-cites="falkon">(<a href="../references.html#ref-falkon" role="doc-biblioref">Rudi 等 2017年</a>)</span>。岭回归使用平方损失，与hinge-SVM目标不同；它提供扩展核计算的思想入口，不能直接当作SVM求解器。</p>
-<p>2025年同行评审的 <em>Towards Unified Native Spaces in Kernel Methods</em> 研究核参数族及相应函数空间之间的关系 <span class="citation" data-cites="native">(<a href="../references.html#ref-native" role="doc-biblioref">Emery 等 2025年</a>)</span>。它承接“核定义函数空间”这个概念：改变核不只是调整图形，还会改变平滑性、局部作用与正则化含义。</p>
+<p>FALKON（2017，同行评审）将Nyström与预条件迭代结合用于大规模核岭回归 <span class="citation" data-cites="falkon"><a href="../references.html#ref-falkon" role="doc-biblioref">[2]</a></span>。岭回归使用平方损失，与hinge-SVM目标不同；它提供扩展核计算的思想入口，不能直接当作SVM求解器。</p>
+<p>2025年同行评审的 <em>Towards Unified Native Spaces in Kernel Methods</em> 研究核参数族及相应函数空间之间的关系 <span class="citation" data-cites="native"><a href="../references.html#ref-native" role="doc-biblioref">[3]</a></span>。它承接“核定义函数空间”这个概念：改变核不只是调整图形，还会改变平滑性、局部作用与正则化含义。</p>
 <p><strong>阅读任务</strong>：分别写下论文的损失、近似空间和成本指标；若它研究核岭回归，不把结论直接转成SVM分类提升。</p>
 </section>
 </section>
@@ -377,7 +378,7 @@ window.Quarto = {
 <p>分布鲁棒优化不是只移动单个输入，而是考虑经验分布 <span class="math inline">\(P_n\)</span> 附近的一组可能分布 <span class="math inline">\(\mathcal U(P_n)\)</span>：</p>
 <p><span class="math display">\[\min_g\sup_{Q\in\mathcal U(P_n)}\mathbb E_Q[\ell(y,g(x))]+\frac\lambda2\|g\|_{\mathcal H}^2.\]</span></p>
 <p>普通经验风险只用 <span class="math inline">\(P_n\)</span> 的平均损失；这里先找集合中的最坏平均损失，再选择函数。集合可以限制迁移成本、矩或群体变化；越宽可能越保守。</p>
-<p>2024年 <em>Wasserstein Distributionally Robust Multiclass Support Vector Machine</em> 使用Crammer–Singer损失并讨论核版本上界 <span class="citation" data-cites="wasserstein">(<a href="../references.html#ref-wasserstein" role="doc-biblioref">Ibrahim 等 2024年</a>)</span>；2025年 <em>Globalized distributionally robust chance-constrained support vector machine based on core sets</em> 研究机会约束与核心集合 <span class="citation" data-cites="gdrc">(<a href="../references.html#ref-gdrc" role="doc-biblioref">Li 等 2025年</a>)</span>。此处二者按核实记录标为<strong>预印本</strong>。</p>
+<p>2024年 <em>Wasserstein Distributionally Robust Multiclass Support Vector Machine</em> 使用Crammer–Singer损失并讨论核版本上界 <span class="citation" data-cites="wasserstein"><a href="../references.html#ref-wasserstein" role="doc-biblioref">[4]</a></span>；2025年 <em>Globalized distributionally robust chance-constrained support vector machine based on core sets</em> 研究机会约束与核心集合 <span class="citation" data-cites="gdrc"><a href="../references.html#ref-gdrc" role="doc-biblioref">[5]</a></span>。此处二者按核实记录标为<strong>预印本</strong>。</p>
 <p><strong>阅读任务</strong>：说明不确定集合允许改变输入、标签还是群体比例；找出参数选择是否使用独立验证，以及声称的稳健性由什么测试支持。</p>
 </section>
 </section>
@@ -393,7 +394,7 @@ window.Quarto = {
 <p>设 <span class="math inline">\(z=z_\theta(x)\)</span> 是网络，联合优化</p>
 <p><span class="math display">\[\min_{\theta,w,b}\frac12\|w\|^2+C\sum_i\ell_{\rm hinge}(y_i[w^Tz_\theta(x_i)+b])\]</span></p>
 <p>通常对所有参数不再凸。固定 <span class="math inline">\(\theta\)</span> 的SVM子问题仍可凸，但整体最优性不能由原来的线性KKT证明直接保证。还需定义网络的正则、尺度与优化方法。</p>
-<p>ICML2025同行评审论文 <em>Deep Principal Support Vector Machines for Nonlinear Sufficient Dimension Reduction</em> 把principal SVM相关的充分降维扩展到神经网络函数类 <span class="citation" data-cites="deepprincipal">(<a href="../references.html#ref-deepprincipal" role="doc-biblioref">Chen 等 2025年</a>)</span>。降维问题问“能否用较低维表示保留响应相关信息”，与单纯预测类别的目标不同。</p>
+<p>ICML2025同行评审论文 <em>Deep Principal Support Vector Machines for Nonlinear Sufficient Dimension Reduction</em> 把principal SVM相关的充分降维扩展到神经网络函数类 <span class="citation" data-cites="deepprincipal"><a href="../references.html#ref-deepprincipal" role="doc-biblioref">[6]</a></span>。降维问题问“能否用较低维表示保留响应相关信息”，与单纯预测类别的目标不同。</p>
 <p><strong>阅读任务</strong>：写清论文学习的是分类器、特征表示还是充分降维结构，再找对应的理论保证。</p>
 </section>
 </section>
@@ -404,12 +405,12 @@ window.Quarto = {
 <p>先限定无截距 <span class="math inline">\(b=0\)</span> 的线性模型，假设数据可被过原点的超平面分开。对可分方向 <span class="math inline">\(w_0\)</span>，取 <span class="math inline">\(w=t w_0\)</span>，所有训练间隔随 <span class="math inline">\(t\)</span> 增大。logistic损失</p>
 <p><span class="math display">\[\sum_i\log(1+e^{-t m_i})\]</span></p>
 <p>趋于0，范数却趋于无穷。无正则的这种目标没有有限参数能达到零损失。于是应问的是<strong>方向</strong>趋向何处，而非参数是否收敛到某个有限向量。</p>
-<p>Soudry等（2018，同行评审）证明，在特定线性可分、损失与梯度下降条件下，归一化参数方向趋向硬间隔SVM方向 <span class="citation" data-cites="soudry">(<a href="../references.html#ref-soudry" role="doc-biblioref">Soudry 等 2018年</a>)</span>。这叫隐式偏置：优化过程偏向某种解，即使没有显式写入范数正则。</p>
+<p>Soudry等（2018，同行评审）证明，在特定线性可分、损失与梯度下降条件下，归一化参数方向趋向硬间隔SVM方向 <span class="citation" data-cites="soudry"><a href="../references.html#ref-soudry" role="doc-biblioref">[7]</a></span>。这叫隐式偏置：优化过程偏向某种解，即使没有显式写入范数正则。</p>
 <p>它与前面参数整体缩放例子紧密相连：范数可以增长，而边界方向逐渐稳定。有限步逻辑回归参数不因此等于SVM参数。若截距也通过梯度下降更新，可将其作为增广向量 <span class="math inline">\((w,b)\)</span> 的坐标；相应隐式范数可能包含截距，与前面只正则化 <span class="math inline">\(w\)</span> 的模型不同，不能直接等同。</p>
 </section>
 <section id="与注意力优化的联系" class="level3" data-number="13.5.2">
 <h3 data-number="13.5.2" class="anchored" data-anchor-id="与注意力优化的联系"><span class="header-section-number">13.5.2</span> 与注意力优化的联系</h3>
-<p>2026年JMLR论文 <em>Optimizing Attention with Mirror Descent: Generalized Max-Margin Token Selection</em> 分析指定softmax注意力分类模型与镜像下降，在条件下建立朝广义硬间隔目标方向收敛的结果 <span class="citation" data-cites="attention">(<a href="../references.html#ref-attention" role="doc-biblioref">Julistiono 等 2026年</a>)</span>。</p>
+<p>2026年JMLR论文 <em>Optimizing Attention with Mirror Descent: Generalized Max-Margin Token Selection</em> 分析指定softmax注意力分类模型与镜像下降，在条件下建立朝广义硬间隔目标方向收敛的结果 <span class="citation" data-cites="attention"><a href="../references.html#ref-attention" role="doc-biblioref">[8]</a></span>。</p>
 <p>镜像下降改变优化几何，广义间隔目标可使用 <span class="math inline">\(\ell_p\)</span> 范数。这里“优化几何选择哪种方向”的问题比“是否都在做分类”更关键。论文的特定模型与假设不能直接覆盖完整大语言模型。</p>
 <p><strong>阅读任务</strong>：列出模型、损失、优化器、数据假设、收敛对象；逐项对照自己想研究的网络是否满足。</p>
 </section>
@@ -487,30 +488,30 @@ window.Quarto = {
 <p>你已从分类问题走到模型目标、对偶系数、核空间、求解算法和可靠实践。继续学习时，使用同一个习惯：先写清问题，再对应图形与公式，最后用可复现的实验或明确假设下的证明检验结论。</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-deepprincipal" class="csl-entry" role="listitem">
-Chen, Yinfeng, Jin Liu, 和 Rui Qiu. 2025年. <span>《Deep Principal Support Vector Machines for Nonlinear Sufficient Dimension Reduction》</span>. <em>Proceedings of the 42nd International Conference on Machine Learning</em> 267: 8574～93. <a href="https://proceedings.mlr.press/v267/chen25ap.html">https://proceedings.mlr.press/v267/chen25ap.html</a>.
-</div>
-<div id="ref-native" class="csl-entry" role="listitem">
-Emery, Xavier, Emilio Porcu, 和 Moreno Bevilacqua. 2025年. <span>《Towards Unified Native Spaces in Kernel Methods》</span>. <em>Journal of Machine Learning Research</em> 26 (267): 1～35. <a href="https://jmlr.org/papers/v26/25-0022.html">https://jmlr.org/papers/v26/25-0022.html</a>.
-</div>
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-tabpfn" class="csl-entry" role="listitem">
-Hollmann, Noah, Samuel Müller, Lennart Purucker, 等. 2025年. <span>《Accurate predictions on small data with a tabular foundation model》</span>. <em>Nature</em> 637: 319～26. <a href="https://doi.org/10.1038/s41586-024-08328-6">https://doi.org/10.1038/s41586-024-08328-6</a>.
-</div>
-<div id="ref-wasserstein" class="csl-entry" role="listitem">
-Ibrahim, Michael, Heraldo Rozas, 和 Nagi Gebraeel. 2024年. <em>Wasserstein Distributionally Robust Multiclass Support Vector Machine</em>. <a href="https://arxiv.org/abs/2409.08409">https://arxiv.org/abs/2409.08409</a>.
-</div>
-<div id="ref-attention" class="csl-entry" role="listitem">
-Julistiono, Addison Kristanto, Davoud Ataee Tarzanagh, 和 Navid Azizan. 2026年. <span>《Optimizing Attention with Mirror Descent: Generalized Max-Margin Token Selection》</span>. <em>Journal of Machine Learning Research</em> 27 (36): 1～61. <a href="https://jmlr.org/papers/v27/25-0549.html">https://jmlr.org/papers/v27/25-0549.html</a>.
-</div>
-<div id="ref-gdrc" class="csl-entry" role="listitem">
-Li, Yueyao, Chenglong Bao, 和 Wenxun Xing. 2025年. <em>Globalized distributionally robust chance-constrained support vector machine based on core sets</em>. <a href="https://arxiv.org/abs/2505.10024">https://arxiv.org/abs/2505.10024</a>.
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">N. Hollmann <em>等</em>, <span>《Accurate predictions on small data with a tabular foundation model》</span>, <em>Nature</em>, 卷 637, 页 319～326, 2025, doi: <a href="https://doi.org/10.1038/s41586-024-08328-6">10.1038/s41586-024-08328-6</a>.</div>
 </div>
 <div id="ref-falkon" class="csl-entry" role="listitem">
-Rudi, Alessandro, Luigi Carratino, 和 Lorenzo Rosasco. 2017年. <span>《FALKON: An Optimal Large Scale Kernel Method》</span>. <em>Advances in Neural Information Processing Systems</em>. <a href="https://papers.neurips.cc/paper/6978-falkon-an-optimal-large-scale-kernel-method.pdf">https://papers.neurips.cc/paper/6978-falkon-an-optimal-large-scale-kernel-method.pdf</a>.
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">A. Rudi, L. Carratino, 和 L. Rosasco, <span>《FALKON: An Optimal Large Scale Kernel Method》</span>, 收入 <em>Advances in Neural Information Processing Systems</em>, 2017. 载于: <a href="https://papers.neurips.cc/paper/6978-falkon-an-optimal-large-scale-kernel-method.pdf">https://papers.neurips.cc/paper/6978-falkon-an-optimal-large-scale-kernel-method.pdf</a></div>
+</div>
+<div id="ref-native" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">X. Emery, E. Porcu, 和 M. Bevilacqua, <span>《Towards Unified Native Spaces in Kernel Methods》</span>, <em>Journal of Machine Learning Research</em>, 卷 26, 期 267, 页 1～35, 2025, 载于: <a href="https://jmlr.org/papers/v26/25-0022.html">https://jmlr.org/papers/v26/25-0022.html</a></div>
+</div>
+<div id="ref-wasserstein" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">M. Ibrahim, H. Rozas, 和 N. Gebraeel, <span>《Wasserstein Distributionally Robust Multiclass Support Vector Machine》</span>. 2024年. 载于: <a href="https://arxiv.org/abs/2409.08409">https://arxiv.org/abs/2409.08409</a></div>
+</div>
+<div id="ref-gdrc" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">Y. Li, C. Bao, 和 W. Xing, <span>《Globalized distributionally robust chance-constrained support vector machine based on core sets》</span>. 2025年. 载于: <a href="https://arxiv.org/abs/2505.10024">https://arxiv.org/abs/2505.10024</a></div>
+</div>
+<div id="ref-deepprincipal" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">Y. Chen, J. Liu, 和 R. Qiu, <span>《Deep Principal Support Vector Machines for Nonlinear Sufficient Dimension Reduction》</span>, 收入 <em>Proceedings of the 42nd International Conference on Machine Learning</em>, 2025, 页 8574～8593. 载于: <a href="https://proceedings.mlr.press/v267/chen25ap.html">https://proceedings.mlr.press/v267/chen25ap.html</a></div>
 </div>
 <div id="ref-soudry" class="csl-entry" role="listitem">
-Soudry, Daniel, Elad Hoffer, Mor Shpigel Nacson, Suriya Gunasekar, 和 Nathan Srebro. 2018年. <span>《The Implicit Bias of Gradient Descent on Separable Data》</span>. <em>Journal of Machine Learning Research</em> 19 (70): 1～57. <a href="https://jmlr.org/papers/v19/18-188.html">https://jmlr.org/papers/v19/18-188.html</a>.
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">D. Soudry, E. Hoffer, M. S. Nacson, S. Gunasekar, 和 N. Srebro, <span>《The Implicit Bias of Gradient Descent on Separable Data》</span>, <em>Journal of Machine Learning Research</em>, 卷 19, 期 70, 页 1～57, 2018, 载于: <a href="https://jmlr.org/papers/v19/18-188.html">https://jmlr.org/papers/v19/18-188.html</a></div>
+</div>
+<div id="ref-attention" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline">A. K. Julistiono, D. A. Tarzanagh, 和 N. Azizan, <span>《Optimizing Attention with Mirror Descent: Generalized Max-Margin Token Selection》</span>, <em>Journal of Machine Learning Research</em>, 卷 27, 期 36, 页 1～61, 2026, 载于: <a href="https://jmlr.org/papers/v27/25-0549.html">https://jmlr.org/papers/v27/25-0549.html</a></div>
 </div>
 </div>
 </section>

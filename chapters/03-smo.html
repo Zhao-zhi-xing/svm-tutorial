@@ -27,6 +27,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -346,7 +347,7 @@ window.Quarto = {
 <p><span class="math display">\[y_i\Delta\alpha_i+y_j\Delta\alpha_j=0.\]</span></p>
 <p>因为 <span class="math inline">\(y_i^2=1\)</span>，有</p>
 <p><span id="eq-smo-pair"><span class="math display">\[\alpha_i'=\alpha_i+y_iy_j(\alpha_j-\alpha_j'). \tag{8.1}\]</span></span></p>
-<p>这样两变量实际只剩一个自由度。SMO（Sequential Minimal Optimization）反复选择这样的最小子问题 <span class="citation" data-cites="platt">(<a href="../references.html#ref-platt" role="doc-biblioref">Platt 1998年</a>)</span>。</p>
+<p>这样两变量实际只剩一个自由度。SMO（Sequential Minimal Optimization）反复选择这样的最小子问题 <span class="citation" data-cites="platt"><a href="../references.html#ref-platt" role="doc-biblioref">[1]</a></span>。</p>
 </section>
 <section id="从盒约束求出可行区间" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="从盒约束求出可行区间"><span class="header-section-number">8.2</span> 从盒约束求出可行区间</h2>
@@ -400,7 +401,7 @@ window.Quarto = {
 <section id="退化情况与成熟求解器" class="level2" data-number="8.7">
 <h2 data-number="8.7" class="anchored" data-anchor-id="退化情况与成熟求解器"><span class="header-section-number">8.7</span> 退化情况与成熟求解器</h2>
 <p><span class="math inline">\(\eta=0\)</span> 时不能除以它。一维目标此时为线性或常数，应比较端点；教学实现跳过这一分支，因此不保证任意重复样本都能求解。实践篇会展示实现和检查方式。</p>
-<p>成熟 LIBSVM 使用工作集选择、缓存、shrinking、退化处理和停止策略 <span class="citation" data-cites="libsvm">(<a href="../references.html#ref-libsvm" role="doc-biblioref">Chang 和 Lin 2011年</a>)</span>。本章的目的在于理解成对优化，而真实建模使用成熟实现。核函数改变 <span class="math inline">\(k_{ij}\)</span>，成对推导仍然适用。</p>
+<p>成熟 LIBSVM 使用工作集选择、缓存、shrinking、退化处理和停止策略 <span class="citation" data-cites="libsvm"><a href="../references.html#ref-libsvm" role="doc-biblioref">[2]</a></span>。本章的目的在于理解成对优化，而真实建模使用成熟实现。核函数改变 <span class="math inline">\(k_{ij}\)</span>，成对推导仍然适用。</p>
 </section>
 <section id="练习与解答" class="level2" data-number="8.8">
 <h2 data-number="8.8" class="anchored" data-anchor-id="练习与解答"><span class="header-section-number">8.8</span> 练习与解答</h2>
@@ -435,12 +436,12 @@ window.Quarto = {
 <p>至此，二分类模型的几何、目标、核表示和求解逻辑已经连起来。下一章把一个二分类器扩展为多个类别，重点区分训练策略和最终预测规则。</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-libsvm" class="csl-entry" role="listitem">
-Chang, Chih-Chung, 和 Chih-Jen Lin. 2011年. <span>《LIBSVM: A Library for Support Vector Machines》</span>. <em>ACM Transactions on Intelligent Systems and Technology</em> 2 (3): 27:1～27. <a href="https://doi.org/10.1145/1961189.1961199">https://doi.org/10.1145/1961189.1961199</a>.
-</div>
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-platt" class="csl-entry" role="listitem">
-Platt, John. 1998年. <em>Sequential Minimal Optimization: A Fast Algorithm for Training Support Vector Machines</em>. MSR-TR-98-14. Microsoft Research. <a href="https://www.microsoft.com/en-us/research/publication/sequential-minimal-optimization-a-fast-algorithm-for-training-support-vector-machines/">https://www.microsoft.com/en-us/research/publication/sequential-minimal-optimization-a-fast-algorithm-for-training-support-vector-machines/</a>.
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">J. Platt, <span>《Sequential Minimal Optimization: A Fast Algorithm for Training Support Vector Machines》</span>, Microsoft Research, MSR-TR-98-14, 1998. 载于: <a href="https://www.microsoft.com/en-us/research/publication/sequential-minimal-optimization-a-fast-algorithm-for-training-support-vector-machines/">https://www.microsoft.com/en-us/research/publication/sequential-minimal-optimization-a-fast-algorithm-for-training-support-vector-machines/</a></div>
+</div>
+<div id="ref-libsvm" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">C.-C. Chang 和 C.-J. Lin, <span>《LIBSVM: A Library for Support Vector Machines》</span>, <em>ACM Transactions on Intelligent Systems and Technology</em>, 卷 2, 期 3, 页 27:1～27:27, 2011, doi: <a href="https://doi.org/10.1145/1961189.1961199">10.1145/1961189.1961199</a>.</div>
 </div>
 </div>
 </section>

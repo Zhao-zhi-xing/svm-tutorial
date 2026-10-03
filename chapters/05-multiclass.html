@@ -27,6 +27,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -344,7 +345,7 @@ window.Quarto = {
 <section id="三个类别不能只看分数正负" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="三个类别不能只看分数正负"><span class="header-section-number">9.1</span> 三个类别，不能只看分数正负</h2>
 <p>二分类使用一个分数的符号。多分类有 <span class="math inline">\(K\)</span> 个类别，既可以训练多个二分类器，再组合输出，也可以联合训练多个类别分数。</p>
-<p>《神经网络与深度学习》图3.3区分一对其余、一对一和 argmax 的决策区域，并展示模糊区域 <span class="citation" data-cites="nndl">(<a href="../references.html#ref-nndl" role="doc-biblioref">邱锡鹏 2020年, 第3.1.2节</a>)</span>。下面按这个思路解释并重绘交互图。</p>
+<p>《神经网络与深度学习》图3.3区分一对其余、一对一和 argmax 的决策区域，并展示模糊区域 <span class="citation" data-cites="nndl"><a href="../references.html#ref-nndl" role="doc-biblioref">[1, 页 第3.1.2节]</a></span>。下面按这个思路解释并重绘交互图。</p>
 </section>
 <section id="ovr每类与其余所有类比较" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="ovr每类与其余所有类比较"><span class="header-section-number">9.2</span> OvR：每类与其余所有类比较</h2>
@@ -411,11 +412,11 @@ window.Quarto = {
 <p><span class="math display">\[\ell_i=\max\left(0,\max_{k\ne y_i}[1+f_k(x_i)-f_{y_i}(x_i)]\right).\]</span></p>
 <p>假设真实类别A，分数 <span class="math inline">\((0.2,0.8,-0.4)\)</span>，最强竞争者B：损失 <span class="math inline">\(1+0.8-0.2=1.6\)</span>。若分数为 <span class="math inline">\((1.5,0.2,-0.4)\)</span>，A领先最强竞争者1.3，损失0。</p>
 <p>在唯一最强竞争者且损失正的区域，损失对 <span class="math inline">\(w_{y_i}\)</span> 的梯度为 <span class="math inline">\(-x_i\)</span>，对 <span class="math inline">\(w_k\)</span> 为 <span class="math inline">\(+x_i\)</span>，对其余为0；加上正则梯度。梯度下降提高正确类分数、降低竞争类分数。平局或折角处使用次梯度的凸组合。</p>
-<p>联合训练与 OvR 都可能用 argmax 预测，但训练目标不同。不能因为最终调用 argmax 就判断使用了哪种训练方法 <span class="citation" data-cites="crammer">(<a href="../references.html#ref-crammer" role="doc-biblioref">Crammer 和 Singer 2001年</a>)</span>。</p>
+<p>联合训练与 OvR 都可能用 argmax 预测，但训练目标不同。不能因为最终调用 argmax 就判断使用了哪种训练方法 <span class="citation" data-cites="crammer"><a href="../references.html#ref-crammer" role="doc-biblioref">[2]</a></span>。</p>
 </section>
 <section id="dagsvm以淘汰方式组织类别对" class="level2" data-number="9.6">
 <h2 data-number="9.6" class="anchored" data-anchor-id="dagsvm以淘汰方式组织类别对"><span class="header-section-number">9.6</span> DAGSVM：以淘汰方式组织类别对</h2>
-<p>DAGSVM 可以沿用 OvO 的类别对分类器，预测时按有向无环图逐步淘汰。例如三类先比A/C，若C胜，淘汰A；随后比B/C，胜者为最终类别。一次预测经过 <span class="math inline">\(K-1\)</span> 个比较，而不必统计所有 <span class="math inline">\(K(K-1)/2\)</span> 票 <span class="citation" data-cites="dagsvm">(<a href="../references.html#ref-dagsvm" role="doc-biblioref">Platt 等 1999年</a>)</span>。</p>
+<p>DAGSVM 可以沿用 OvO 的类别对分类器，预测时按有向无环图逐步淘汰。例如三类先比A/C，若C胜，淘汰A；随后比B/C，胜者为最终类别。一次预测经过 <span class="math inline">\(K-1\)</span> 个比较，而不必统计所有 <span class="math inline">\(K(K-1)/2\)</span> 票 <span class="citation" data-cites="dagsvm"><a href="../references.html#ref-dagsvm" role="doc-biblioref">[3]</a></span>。</p>
 <p>它改变的是类别对结果的组织方式。早期错误淘汰可能传播，节点次序也影响路径，不能把减少比较次数理解为无条件更准确。</p>
 </section>
 <section id="ecoc为类别指定二进制编码" class="level2" data-number="9.7">
@@ -462,15 +463,15 @@ window.Quarto = {
 <p>能得到唯一预测后，还需要判断预测是否可靠。下一章从手算混淆矩阵开始，说明评价指标如何回答不同问题，以及模型选择为何必须隔离测试数据。</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-nndl" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">邱锡鹏, <em>神经网络与深度学习</em>. 机械工业出版社, 2020. 载于: <a href="https://nndl.github.io/">https://nndl.github.io/</a></div>
+</div>
 <div id="ref-crammer" class="csl-entry" role="listitem">
-Crammer, Koby, 和 Yoram Singer. 2001年. <span>《On the Algorithmic Implementation of Multiclass Kernel-based Vector Machines》</span>. <em>Journal of Machine Learning Research</em> 2: 265～92. <a href="https://www.jmlr.org/papers/v2/crammer01a.html">https://www.jmlr.org/papers/v2/crammer01a.html</a>.
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">K. Crammer 和 Y. Singer, <span>《On the Algorithmic Implementation of Multiclass Kernel-based Vector Machines》</span>, <em>Journal of Machine Learning Research</em>, 卷 2, 页 265～292, 2001, 载于: <a href="https://www.jmlr.org/papers/v2/crammer01a.html">https://www.jmlr.org/papers/v2/crammer01a.html</a></div>
 </div>
 <div id="ref-dagsvm" class="csl-entry" role="listitem">
-Platt, John, Nello Cristianini, 和 John Shawe-Taylor. 1999年. <span>《Large Margin DAGs for Multiclass Classification》</span>. <em>Advances in Neural Information Processing Systems</em> 12. <a href="https://proceedings.neurips.cc/paper/1999/hash/4abe17a1c80cbdd2aa241b70840879de-Abstract.html">https://proceedings.neurips.cc/paper/1999/hash/4abe17a1c80cbdd2aa241b70840879de-Abstract.html</a>.
-</div>
-<div id="ref-nndl" class="csl-entry" role="listitem">
-邱锡鹏. 2020年. <em>神经网络与深度学习</em>. 机械工业出版社. <a href="https://nndl.github.io/">https://nndl.github.io/</a>.
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">J. Platt, N. Cristianini, 和 J. Shawe-Taylor, <span>《Large Margin DAGs for Multiclass Classification》</span>, 收入 <em>Advances in Neural Information Processing Systems</em>, 1999. 载于: <a href="https://proceedings.neurips.cc/paper/1999/hash/4abe17a1c80cbdd2aa241b70840879de-Abstract.html">https://proceedings.neurips.cc/paper/1999/hash/4abe17a1c80cbdd2aa241b70840879de-Abstract.html</a></div>
 </div>
 </div>
 </section>

@@ -27,6 +27,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -405,7 +406,7 @@ window.Quarto = {
 </section>
 <section id="强对偶的条件" class="level3" data-number="4.3.2">
 <h3 data-number="4.3.2" class="anchored" data-anchor-id="强对偶的条件"><span class="header-section-number">4.3.2</span> 强对偶的条件</h3>
-<p>若 <span class="math inline">\(f_0,g_i\)</span> 凸，等式约束仿射，且满足适当的约束资格条件，可以保证 <span class="math inline">\(d^*=p^*\)</span>。一个常用的充分条件是 <strong>Slater 条件</strong>：存在满足等式并使所有不等式严格成立的点 <span class="citation" data-cites="boyd">(<a href="../references.html#ref-boyd" role="doc-biblioref">Boyd 和 Vandenberghe 2004年, 第5章</a>)</span>。</p>
+<p>若 <span class="math inline">\(f_0,g_i\)</span> 凸，等式约束仿射，且满足适当的约束资格条件，可以保证 <span class="math inline">\(d^*=p^*\)</span>。一个常用的充分条件是 <strong>Slater 条件</strong>：存在满足等式并使所有不等式严格成立的点 <span class="citation" data-cites="boyd"><a href="../references.html#ref-boyd" role="doc-biblioref">[1, 页 第5章]</a></span>。</p>
 <p>一维例子可取 <span class="math inline">\(u&gt;a\)</span>；软间隔可取 <span class="math inline">\(w=0,b=0,\xi_i=2\)</span>；可分的硬间隔可把一个严格分隔的参数放大，使所有 <span class="math inline">\(y_if(x_i)&gt;1\)</span>。这些例子的凸性与严格可行性允许我们利用强对偶。</p>
 <p>这里使用 inf/sup 是因为一般问题未必取到最优值；对于后面的 SVM，我们会讨论达到最优值时的变量与条件。</p>
 </section>
@@ -465,9 +466,9 @@ window.Quarto = {
 <p>对偶提供可验证的目标下界，KKT 将最优性拆成可检查的条件。下一章把每个 SVM 样本的间隔约束配上乘子，推导训练和预测都依赖的系数表示。</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-boyd" class="csl-entry" role="listitem">
-Boyd, Stephen, 和 Lieven Vandenberghe. 2004年. <em>Convex Optimization</em>. Cambridge University Press. <a href="https://web.stanford.edu/~boyd/cvxbook/">https://web.stanford.edu/~boyd/cvxbook/</a>.
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">S. Boyd 和 L. Vandenberghe, <em>Convex Optimization</em>. Cambridge University Press, 2004. 载于: <a href="https://web.stanford.edu/~boyd/cvxbook/">https://web.stanford.edu/~boyd/cvxbook/</a></div>
 </div>
 </div>
 </section>
