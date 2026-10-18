@@ -13,7 +13,7 @@ powershell -ExecutionPolicy Bypass -File scripts/book.ps1 validate
 powershell -ExecutionPolicy Bypass -File scripts/book.ps1 serve
 ```
 
-预览/本地阅读地址：`http://localhost:4317`。完整操作见[制作与维护指南](使用VSCode制作与维护QuartoBook.md)，内容审查见[作者记录](docs/内容审查与改写说明.md)。这些作者Markdown保留于源码，不随Pages发布。
+预览/本地阅读地址：`http://localhost:4317`。完整操作见[制作与维护指南](使用VSCode制作与维护QuartoBook.md)，内容审查与改写说明是仅保存在本机的私人记录，不进入Git或Pages；仓库克隆不包含该文件。
 
 数值测试：`python -m pytest tests -q`。教学图更新：`python scripts/teaching.py`。网页可见代码独立执行：`python scripts/check_visible_code.py`。站点验收：`python scripts/content_check.py`，紧凑图验收：`python scripts/chart_check.py`。浏览器检查需要可选Playwright与本机Chrome。
 
