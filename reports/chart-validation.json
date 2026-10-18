@@ -1,8 +1,0 @@
-{
-  "passed": [
-    "compact C-gamma grid with direct score labels",
-    "Python/R compact square confusion matrices; counts and row shares match",
-    "horizontal CV/test grouped bars; direct labels and zero baseline"
-  ],
-  "page_errors": []
-}

@@ -24,7 +24,6 @@ project:
   - /notebooks/**
   - requirements-notebook.txt
   - requirements-notebook.lock.txt
-  - reports/validation.json
   - '!/.R-library/**'
   - '!/.tools/**'
   - '!/.venv/**'

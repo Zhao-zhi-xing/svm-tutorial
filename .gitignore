@@ -19,3 +19,9 @@ reports/*.png
 
 # 私人本地审查记录：不进入版本库
 内容审查与改写说明.md
+/MIGRATION.md
+/docs/
+/.vscode/settings.json
+/reports/*
+!/reports/.gitkeep
+*.log

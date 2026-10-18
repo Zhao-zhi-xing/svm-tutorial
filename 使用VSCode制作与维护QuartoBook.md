@@ -20,18 +20,18 @@ Posit 的官方 FAQ 表示继续维护 R Markdown；bookdown.org 托管服务结
 code .
 ```
 
-当前交付保留项目内 Quarto 1.9.38；因为 Windows 上该版本的 Lua 模块加载无法正确处理中文安装路径，实际验证使用英文路径 `C:/Users/HP/.cache/svm-quarto-1.9.38/bin/quarto.cmd`。`.tools/runtime-path.txt` 记录实际位置，项目脚本优先读取它。官方 VS Code 扩展 ID 为 `quarto.quarto`。CLI 负责构建，扩展提供编辑和预览入口，两者不是同一个程序。
+本教程使用 Quarto 1.9.38。Windows 建议将 CLI 安装到不含中文的路径并加入 PATH，以避免 Lua 模块的路径兼容问题。官方 VS Code 扩展 ID 为 `quarto.quarto`。CLI 负责构建，扩展提供编辑和预览入口，两者不是同一个程序。
 
 查看工具：
 
 ```powershell
-& 'C:/Users/HP/.cache/svm-quarto-1.9.38/bin/quarto.cmd' --version
+quarto --version
 code --install-extension quarto.quarto
 ```
 
 迁移到另一台电脑时，工具和语言库目录不会随源码版本控制。推荐从 [Quarto 官网](https://quarto.org/docs/download/) 安装 CLI 到英文路径；也可以把同版本 Windows ZIP 解压到英文工具目录。将 VS Code 的 `quarto.path` 改为实际 CLI 路径；项目脚本可使用 PATH 上的 Quarto。若保留项目内 `.tools`，需更新 `runtime-path.txt`，避免再次从中文工具路径启动。
 
-`.vscode/settings.json` 使用已验证的英文缓存工具路径。换电脑后，在 VS Code 工作区设置中将 **Quarto: Path** 指向本机英文安装目录中的 CLI，并同步更新 `.tools/runtime-path.txt`；或者使用系统 PATH 上的 Quarto。项目终端任务通过脚本找路径，不依赖扩展的路径展开。
+如果扩展不能从 PATH 找到 CLI，可在 VS Code 用户设置中将 **Quarto: Path** 指向自己的安装路径。项目终端任务通过脚本查找 CLI；使用自定义工具位置时，可以在 `.tools/runtime-path.txt` 中保存路径。
 
 ## 3. Python 和 R 环境
 
@@ -102,8 +102,8 @@ powershell -ExecutionPolicy Bypass -File scripts/book.ps1 render -PythonPath 'C:
 - `scripts/`：数据、训练、R/Python 辅助函数与构建脚本。
 - `assets/`：样式、本地 Plotly、浏览器交互代码、预计算模型。
 - `data/`：共享实验数据和固定划分。
-- `tests/` 与 `reports/`：数值检查、验证记录。
-- `MIGRATION.md` 与 `docs/`：迁移说明、旧附件和源文件清单。
+- `tests/`：可以重复执行的数值与协议检查。
+- `reports/`：运行检查时生成的报告和截图。
 - `_book/`：可分享的结果，构建会覆盖它。
 
 不要把 `.tools/`、`.R-library/`、`.venv/` 上传为网站资源。
@@ -253,9 +253,9 @@ JSON 用于检查，`models.js` 用于站点加载；使用脚本输出减少浏
 powershell -ExecutionPolicy Bypass -File scripts/book.ps1 validate
 ```
 
-数值测试检查教学 SMO、共享划分与模型网格；`validate.py` 运行两套核心实验，写 `reports/validation.json` 并检查一致性。HTML 检查另用浏览器验证控件和链接。本次检查记录在 `reports/QA.md`。
+数值测试检查教学 SMO、共享划分与模型网格；`validate.py` 运行两套核心实验，写 `reports/validation.json` 并检查一致性。HTML 检查另用浏览器验证控件和链接。报告由相应检查脚本生成。
 
-可选自动浏览器验收需要 Playwright（本次版本1.60.0），与正文构建依赖分开。`scripts/browser_check.py` 使用本机 Chrome；路径不同需修改其中的 `executable_path`。在安装了 Playwright 的解释器中运行 `python scripts/browser_check.py`，会临时启动本地服务、检查11页及交互控件，并保存 `reports/browser-validation.json` 和截图。正文和构建本身不需要该包。
+可选自动浏览器验收需要 Playwright，与正文构建依赖分开。`scripts/browser_check.py` 使用本机 Chrome；路径不同需修改其中的 `executable_path`。在安装了 Playwright 的解释器中运行 `python scripts/browser_check.py`，会临时启动本地服务、检查教程页面及交互控件，并保存 `reports/browser-validation.json` 和截图。正文和构建本身不需要该包。
 
 本教程默认 `cache: false`，每次完整构建重新计算，适合学习与避免旧结果混入。若以后启用缓存，数据/辅助脚本变化后必须强制重算，并检查缓存失效规则。大型论文实验宜单独运行并保存可追溯结果，不让每次写正文都下载权重或训练大型模型。
 
@@ -283,9 +283,9 @@ powershell -ExecutionPolicy Bypass -File scripts/book.ps1 validate
 
 本地分享时发送整个 `_book/`，接收者用静态服务打开它，而不是只发送首页。首次阅读不需要安装 R/Python。
 
-发布 GitHub Pages 的简单路线是发布已经构建的静态目录：先在本机验证并生成 `_book/`；将其内容放到仓库的 `docs/`；确保有 `.nojekyll`；在仓库 Pages 设置中选择对应分支的 `/docs`。源代码和生成站点可以放在同一个仓库，但目录要区分。
+当前仓库通过 `gh-pages` 分支发布。先运行数值验证、完整构建和 `python scripts/content_check.py`，再运行 `python scripts/publish_site.py` 查看差异；确认后执行 `python scripts/publish_site.py --publish`。发布需要安装并登录 GitHub CLI，且账号对目标仓库具有写入权限。Fork 后需将发布脚本的 `REPO` 改为自己的仓库。
 
-另外也可以使用 `quarto publish gh-pages` 或 GitHub Actions 自动构建。自动构建需要安装相同 Quarto、Python/R 依赖并恢复项目库；不能仅安装 Quarto 扩展。本次交付提供步骤，不直接连接或上传你的 GitHub。
+也可以采用 `quarto publish gh-pages` 或 GitHub Actions。自动构建需要安装同样的 Quarto、Python/R 依赖并恢复项目库，不能只安装编辑器扩展。
 
 公开站点前检查：相对资源路径、参考书版权、外部数据许可、不要上传个人环境和缓存。Quarto 会改写本站链接；自定义脚本路径也需要测试仓库子路径部署。
 
@@ -298,7 +298,7 @@ powershell -ExecutionPolicy Bypass -File scripts/book.ps1 validate
 完成后，你掌握的不只是套用模板，而是从源码、计算、交互到发布的完整教程制作流程。
 
 
-## 15. 本次视觉与推导调整的维护入口
+## 15. 样式、代码与图表的维护入口
 
 本教程以桌面阅读为主。`_quarto.yml` 的 `grid.body-width` 为 1040px，图形在 `assets/tutorial.js` 中统一设置二维几何图高度 860px、三维图高度 800px、其他实验图高度 560px；等比例坐标需要足够高度，单纯拉宽容器不会让正方形绘图区同步变宽。
 
@@ -362,11 +362,9 @@ Python 混淆矩阵由 `scripts/svm_lab.py` 的 `confusion_plot()` 绘制，R �
 完整构建后运行 `scripts/layout_check.py`、`scripts/chart_check.py` 和 `scripts/browser_check.py` 检查居中、目录、交互与图表；`scripts/reading_check.py` 专门检查普通阅读宽度、首页编号和折叠结果。浏览器检查使用安装了 Playwright 的 Python 与本机 Chrome，不属于读者运行教程的依赖。发布后若仍看到旧样式，可用 Ctrl+F5 刷新。
 
 
-## 自学内容结构与教学图维护（2026-10-03）
+## 自学内容结构与教学图维护
 
-章节顺序由 `_quarto.yml` 的 `book.chapters` 决定，不由文件编号决定。`00-python-start.qmd` 保留旧URL但位于理论之后。新增硬间隔、约束优化、RKHS、SMO四章；核心公式保持编号交叉引用。`project.render` 显式列出读者页面。
-
-作者说明放在 `docs/内容审查与改写说明.md`。本制作指南、MIGRATION和docs不随HTML资源发布；09-authoring已归档为本地Markdown。正文避免改稿历史、错误修复过程与实现沟通。
+章节顺序由 `_quarto.yml` 的 `book.chapters` 决定，不由文件编号决定。`00-python-start.qmd` 保留旧URL但位于理论之后。理论部分包括硬间隔、约束优化、RKHS与SMO；核心公式保持编号交叉引用。`project.render` 显式列出读者页面。
 
 连续六点教学数据由 `python scripts/teaching.py` 生成，产物为 `assets/teaching.json`、`assets/teaching-data.js` 和 `data/teaching-six-points.json`。它们使用原始坐标，无标准化或泛化评估。更新后运行 `pytest tests/test_teaching.py -q`，核对垂足、尺度不变、线性可行性、盒约束、KKT与目标间隙。
 
@@ -376,7 +374,7 @@ Python/R实践展示完整拟合步骤，案例的可独立调用实现存于 `s
 
 `assets/legacy-links.js` 为拆分后移动的旧锚点提供兼容定位。新增或更改兼容条目后，运行 `scripts/content_check.py`。该检查还验证完整构建、作者资源隔离、新控件与旧案例图，并保存 `reports/content-validation.json`。
 
-发布前清理旧构建输出中的作者资源；发布脚本显式同步当前产物并移除已退役资源。这样仅改导航时，旧维护页不会继续留在Pages上。避免删除未确认属于本项目的路径。
+发布前完整构建并执行检查，再由发布脚本同步当前产物；修改源文件，不手工修补 `_book/` 中的页面。
 
 本项目也提供 `python scripts/publish_site.py` 预览当前产物与gh-pages的差异，核对后运行 `python scripts/publish_site.py --publish`。脚本要求content-validation已通过，使用gh登录，以普通新提交更新Pages并清理明确退役的作者资源；不强制覆盖分支。发布前先提交并推送源码。
 
